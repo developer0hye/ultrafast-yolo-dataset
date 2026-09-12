@@ -13,6 +13,7 @@ license = "AGPL-3.0-only"
 [tool.maturin]
 python-source = "python"
 module-name = "ultrafast_yolo_dataset._native"
+locked = true
 exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]
 
 [tool.pytest.ini_options]

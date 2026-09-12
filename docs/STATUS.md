@@ -2,6 +2,12 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
+manifest for 54 selected registry crates and the observed standard-library
+versions. Source hashes are verified; new wheel/sdist validation is pending.
+The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
+locally linted, with hosted execution awaiting the repository visibility choice.
+
 - Rust Detection/Segmentation parser, ordered batched file reads and packed results implemented.
 - Hybrid Pillow scan, explicit JPEG repair policy, reference diagnostic fallback, immutable packed arrays and mutable label export implemented.
 - 34 parser/scan tests (10,000 seeded cases included) passed on macOS and Linux; 3 Rust unit tests passed on macOS. JPEG repair bytes and negative-zero segment reductions match the reference.

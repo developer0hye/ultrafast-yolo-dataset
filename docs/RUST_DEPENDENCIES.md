@@ -1,4 +1,4 @@
-# Rust dependency notice inventory
+# Rust dependency notice bundle
 
 `validation/rust-dependency-notice-inventory.json` records the current lockfile's
 58 resolved registry packages, including build-time dependencies and packages
@@ -9,12 +9,30 @@ not the actual linked set for a particular wheel.
 
 56 packages contain top-level notice files. The GNU support crates
 `winapi-i686-pc-windows-gnu` and `winapi-x86_64-pc-windows-gnu` declare a license
-expression but have no top-level notice file; this needs explicit resolution
-before claiming complete coverage. The inventory also retains combined and
+expression but have no top-level notice file. They are absent from the selected
+macOS arm64, Linux x86_64 and Windows MSVC normal/build dependency trees, so the
+current bundle excludes them. GNU Windows is not a covered target. The inventory also retains combined and
 exception-bearing expressions such as Unicode-3.0 and the LLVM exception, rather
 than treating every dependency as interchangeable MIT text.
 
-Remaining work is to collect applicable embedded-source and Rust standard
-library/toolchain notices, bundle the relevant texts into wheel/sdist artifacts,
-and inspect the resulting files on supported platforms. Current installed-wheel
-test success does not establish complete third-party notice packaging.
+`python/ultrafast_yolo_dataset/licenses/manifest.json` records the conservative
+source bundle collected by `bench/collect_rust_notices.py`: 54 selected registry
+crates, 375 distinct source-comment notice blocks, and 136 files plus the
+manifest. The three target trees are retained in `docs/validation/`. Four crates
+are absent from all selected trees: the two GNU support crates, `portable-atomic`
+and `portable-atomic-util`. Build dependencies are intentionally included; this
+does not claim every selected crate is linked into the extension.
+
+The bundle preserves verbatim archive notice files and source comment blocks
+from checksum-verified crate archives. It also includes the self-contained Rust
+standard-library copyright HTML and supplied license texts from Rust 1.98.0 on
+macOS and Rust 1.97.1 on the Linux benchmark host. Each supplied file has a hash
+in the manifest. Changing the lockfile, target set or compiler requires reviewing
+and refreshing this collection. Maturin now uses locked dependency resolution.
+
+This source bundle has not yet been validated in a newly built wheel/sdist.
+Earlier installed-wheel tests predate its addition. The prepared compatibility
+workflow compares all bundled source files with the wheel, sdist and isolated
+installation; it also checks the pinned Rust compiler's copyright HTML against
+the supplied copy. Hosted CI has not run. Embedded notices, platform-specific
+system dependencies and final redistribution coverage still require review.

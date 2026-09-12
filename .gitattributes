@@ -1,0 +1,4 @@
+* text=auto eol=lf
+python/ultrafast_yolo_dataset/licenses/** -text
+bench/results/** -text
+docs/validation/** -text
