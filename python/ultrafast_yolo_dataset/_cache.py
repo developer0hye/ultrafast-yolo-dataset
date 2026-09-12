@@ -12,6 +12,7 @@ import time
 import uuid
 from contextlib import contextmanager
 from dataclasses import dataclass
+from itertools import chain
 from pathlib import Path
 from types import MappingProxyType
 
@@ -107,7 +108,7 @@ def _request(images, labels, policy, options):
     if min(values[k] for k in ("max_file_bytes", "max_image_bytes", "max_fallback_bytes")) < 1:
         raise ValueError("byte limits must be positive")
     config = {k: values[k] for k in _CONFIG_KEYS}
-    cwd = os.getcwd() if any(not os.path.isabs(p) for p in images + labels) else None
+    cwd = os.getcwd() if any(not os.path.isabs(p) for p in chain(images, labels)) else None
     return images, labels, config, cwd, values["workers"]
 
 
@@ -256,7 +257,12 @@ def load_cache(
     path, image_paths, label_paths, *, fingerprint="content", max_cache_bytes=DEFAULT_MAX_CACHE_BYTES, **scan_options
 ):
     """Return a validated ScanResult or CacheMiss, without unpickling any data."""
-    images, labels, config, cwd, workers = _request(image_paths, label_paths, fingerprint, scan_options)
+    request = _request(image_paths, label_paths, fingerprint, scan_options)
+    return _load_requested(path, request, fingerprint, max_cache_bytes)
+
+
+def _load_requested(path, request, fingerprint, max_cache_bytes):
+    images, labels, config, cwd, workers = request
     if type(max_cache_bytes) is not int or max_cache_bytes <= 0:
         raise ValueError("max_cache_bytes must be a positive integer")
     try:
@@ -404,25 +410,26 @@ def scan_cached(
     path = Path(path).absolute()
     if path.suffix != ".uydcache":
         raise ValueError("native caches must use .uydcache")
-    images, labels, _, _, workers = _request(image_paths, label_paths, fingerprint, scan_options)
-    existing = load_cache(
-        path, images, labels, fingerprint=fingerprint, max_cache_bytes=max_cache_bytes, **scan_options
-    )
+    request = _request(image_paths, label_paths, fingerprint, scan_options)
+    images, labels, _, cwd, workers = request
+    existing = _load_requested(path, request, fingerprint, max_cache_bytes)
     if isinstance(existing, ScanResult):
         return existing
     result = None
     try:
         with _locked(path, lock_timeout):
-            existing = load_cache(
-                path, images, labels, fingerprint=fingerprint, max_cache_bytes=max_cache_bytes, **scan_options
-            )
+            existing = _load_requested(path, request, fingerprint, max_cache_bytes)
             if isinstance(existing, ScanResult):
                 return existing
+            if cwd is not None and os.getcwd() != cwd:
+                raise InputChangedError("working directory changed since cache request")
             result = scan(images, labels, fingerprint=fingerprint, **scan_options)
             saved = _save_locked(result, path, workers, max_cache_bytes)
     except (OSError, TimeoutError) as error:
         # A cache-directory/lock failure must not prevent dataset initialization.
         if result is None:
+            if cwd is not None and os.getcwd() != cwd:
+                raise InputChangedError("working directory changed since cache request")
             result = scan(images, labels, **scan_options)
         saved = SaveResult(False, reason=f"{type(error).__name__}: {error}")
     result.cache_hit, result.cache_path, result.cache_write_error = False, str(path), saved.reason

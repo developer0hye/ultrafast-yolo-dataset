@@ -256,6 +256,7 @@ fn native_cache_profile() -> String {
         include_str!("parser.rs"),
         include_str!("snapshot.rs"),
         include_str!("provenance.rs"),
+        include_str!("materialize.rs"),
         include_str!("cache.rs"),
         include_str!("lib.rs"),
         include_str!("../Cargo.toml"),

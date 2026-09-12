@@ -95,6 +95,9 @@ on every hit; metadata mode is an explicit weaker option. See
 Real COCO Detection/Segmentation fixtures and the full constructor/first-batch
 benchmark are reproducible through [COCO_FIXTURE.md](docs/COCO_FIXTURE.md). Results
 include regressions: faster cache generation does not imply faster cache reuse.
+The [native mutable label exporter](docs/MATERIALIZATION.md) preserves independent
+NumPy ownership while reducing Python object-construction work; its latest full
+startup measurements and remaining regressions are also recorded.
 
 ```sh
 uv venv --python 3.12

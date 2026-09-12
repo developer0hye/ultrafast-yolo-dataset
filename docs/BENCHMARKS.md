@@ -172,7 +172,8 @@ acceleration. The x86 implementation is unchanged. SHA digests are checked again
 Python hashlib across padding, 64 KiB read, and large-input boundaries, including
 the container's stored section checksums.
 
-Latest cache-generation results (actual constructor, no annotation cache):
+Cache-generation checkpoint results (actual constructor, no annotation cache;
+before the native mutable exporter described below):
 
 | Host / task | Reference → native | Ratio (95% paired bootstrap CI) | First batch total reference → native | Peak constructor RSS reference → native |
 |---|---:|---:|---:|---:|
@@ -181,7 +182,8 @@ Latest cache-generation results (actual constructor, no annotation cache):
 | i5-10400 / Detection | 1.47351 → 1.53402 s | 0.96× (0.95–0.97) | 1.50586 → 1.56589 s | 302.57 → 315.00 MiB |
 | i5-10400 / Segmentation | 2.17738 → 1.81340 s | 1.20× (1.20–1.23) | 2.21868 → 1.85402 s | 340.99 → 341.99 MiB |
 
-Latest content-validated cache hits (separately primed processes):
+Cache-checkpoint content-validated hits (separately primed processes; before the
+native mutable exporter):
 
 | Host / task | Reference-content → native | Ratio (95% paired bootstrap CI) | First batch total reference → native | Peak constructor RSS reference → native |
 |---|---:|---:|---:|---:|
@@ -198,11 +200,72 @@ Segmentation. The 1.5× hit target and broad memory goals remain open. Final mut
 Python label materialization and hashing/discovery costs still need optimization.
 There is no steady-state or GPU training-throughput claim.
 
-Final full validation passed **128 tests per host**. The ARM wheel was installed in
+The cache checkpoint's full validation passed **128 tests per host**. The ARM wheel was installed in
 another new standalone environment: 37 parser/hash tests and the four Detect/Segment
 cache smoke cases passed. Its Python/profile payload matches source. Environment,
 compiler and extension hashes are recorded in `docs/validation/cache-environments.json`;
 both measured extensions' compiled source profiles match the current Rust sources
-and Cargo manifest/lockfile. Current raw reports are `coco-*-m2-arm.json` and
+and Cargo manifest/lockfile at that checkpoint. Its raw reports are `coco-*-m2-arm.json` and
 `coco-*-server.json`. Supported wheel/CI, 500k-file and actual training gates are
 still pending.
+
+## Native mutable export and request normalization
+
+The final revision constructs mutable labels in Rust with independent NumPy-owned
+allocations and normalizes a cache request once. Layout/alignment validation and
+signal checks are included in these measurements. See
+[MATERIALIZATION.md](MATERIALIZATION.md) for the ownership and safety contract.
+
+The comparison retains the same content-validated baseline, five alternating fresh
+processes per backend, separately primed annotation caches, and full input/output
+checks described above. Both backends use the same accelerated hashing engine.
+Imports are outside timing; fixture validation pre-reads the OS cache. The measured
+constructor still includes discovery, validation and mutable object creation.
+The first batch uses batch size 8 and zero loader workers. These are CPU startup
+measurements on shared hosts, not cold-storage or training-throughput measurements.
+Load averages, available RAM and process counters are retained per run. All runs,
+including the slower first M2 Detection sample, contribute to the statistics.
+
+| Host / fixture | Constructor reference-content → native | Ratio (95% paired bootstrap CI) | First batch total reference-content → native | Peak constructor RSS reference-content → native |
+|---|---:|---:|---:|---:|
+| i5-10400 / synthetic Detection, 100k | 2.41156 → 2.38507 s | 1.01× (1.002–1.050) | 2.42711 → 2.40027 s | 523.39 → 494.83 MiB |
+| M2 / COCO Detection, 5k | 0.19115 → 0.22649 s | 0.84× (0.715–0.879) | 0.21455 → 0.24952 s | 249.14 → 250.98 MiB |
+| M2 / COCO Segmentation, 5k | 0.22429 → 0.23642 s | 0.95× (0.922–0.991) | 0.25247 → 0.26479 s | 292.62 → 277.31 MiB |
+| i5-10400 / COCO Detection, 5k | 0.66320 → 0.68739 s | 0.96× (0.953–0.979) | 0.69518 → 0.71908 s | 299.37 → 298.53 MiB |
+| i5-10400 / COCO Segmentation, 5k | 0.74256 → 0.75301 s | 0.99× (0.942–1.025) | 0.78641 → 0.79537 s | 339.62 → 316.08 MiB |
+
+The 100k-file result is approximately equal in startup time, with a 5.5% process-RSS
+reduction. All four real-COCO native medians remain slower; the server Segmentation
+interval includes equality. Segmentation process-RSS reductions are 5.2% on M2 and
+6.9% on the server. **The 1.5× warm-cache target remains unmet.** The new implementation
+has not been rebenchmarked for cache misses, so the earlier miss results belong to
+their recorded source revisions.
+
+The native exporter takes a median **0.22558 s** on the 100k-file fixture, versus
+**0.52218 s** for the historical Python exporter in `cache-hit-server-v2.json`.
+Those are separate development sessions, not an interleaved before/after experiment.
+The first Rust prototype took 0.21089 s using Vec-backed arrays, but its full
+constructor was 2.45333 s. Final request normalization reduces other startup work;
+the NumPy-owned exporter itself is slightly slower than that prototype in these
+samples. Ownership and allocation changes should not be credited with every
+observed improvement. Final content validation alone takes 0.76911 s on the 100k
+fixture, and discovery/path handling and other constructor work remain substantial.
+
+The five final reports are `materialize-final-*.json` (50 measured processes).
+Three prototype reports (30 processes) and their exact source archives are also
+retained as `materialize-vec-*` and `materialize-owned-initial-*`.
+[materialize-checkpoint.json](validation/materialize-checkpoint.json) records all
+80 measurements, source/archive hashes, recomputed medians/p95/bootstrap intervals,
+full output-hash parity and test artifacts. Both hosts' compiled source profiles
+match the final source tree; CPU/RAM, compiler and dependency details are in
+[materialize-environments.json](validation/materialize-environments.json).
+
+Full tests passed **157 per host**, including 200 seeded packed-export examples,
+arbitrary float32 bit preservation, independent writable ownership, malformed
+offset/layout/alignment rejection, signal interruption, and relative-path rebinding.
+Four Rust unit tests, Clippy, formatting and Ruff passed. A newly built macOS ARM
+CPython 3.12 wheel passed **65 parser/hash/materialization tests** plus four
+Detect/Segment content/metadata cache smoke cases in a new standalone environment.
+Its runtime/profile bytes match source and its extension is byte-identical to the
+M2 benchmark extension. Framework/platform wheel coverage, distribution and full
+training validation remain open.

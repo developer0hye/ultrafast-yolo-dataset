@@ -6,6 +6,7 @@ import multiprocessing as mp
 import os
 import struct
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
@@ -80,6 +81,27 @@ def test_empty_cache(tmp_path):
     result = scan_cached(tmp_path / "empty.uydcache", [], [], num_classes=1)
     assert result.num_valid == 0 and result.summary["total"] == 0
     assert scan_cached(tmp_path / "empty.uydcache", [], [], num_classes=1).cache_hit
+
+
+def test_relative_request_cannot_rebind_while_waiting_for_lock(tmp_path, monkeypatch):
+    import ultrafast_yolo_dataset._cache as cache_module
+
+    first, second = tmp_path / "first", tmp_path / "second"
+    first.mkdir()
+    second.mkdir()
+    images, labels = corpus(first, ["0 .5 .5 .2 .2"])
+    corpus(second, ["0 .5 .5 .3 .3"])
+    monkeypatch.chdir(first)
+
+    @contextmanager
+    def change_directory(*_):
+        monkeypatch.chdir(second)
+        yield
+
+    monkeypatch.setattr(cache_module, "_locked", change_directory)
+    with pytest.raises(InputChangedError, match="working directory changed"):
+        scan_cached(first / "relative.uydcache", [Path(images[0]).name], [Path(labels[0]).name], num_classes=1)
+    assert not (first / "relative.uydcache").exists()
 
 
 @pytest.mark.parametrize("damage", ["short", "kind", "nonfile_digest", "missing_metadata", "encoding", "schema"])

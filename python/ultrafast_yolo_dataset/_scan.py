@@ -149,28 +149,16 @@ class ScanResult:
         return save_cache(self, path, **options)
 
     def to_ultralytics_labels(self):
-        labels = []
-        segment_index = 0
-        for index, source in enumerate(self.source_indices):
-            begin, end = map(int, self.object_offsets[index : index + 2])
-            segments = []
-            while segment_index < len(self.segment_object_indices) and self.segment_object_indices[segment_index] < end:
-                a, b = self.segment_offsets[segment_index : segment_index + 2]
-                segments.append(self.segment_points[a:b].copy())
-                segment_index += 1
-            labels.append(
-                {
-                    "im_file": self.image_paths[int(source)],
-                    "shape": tuple(map(int, self.image_shapes[index])),
-                    "cls": self.classes[begin:end].copy(),
-                    "bboxes": self.boxes[begin:end].copy(),
-                    "segments": segments,
-                    "keypoints": None,
-                    "normalized": True,
-                    "bbox_format": "xywh",
-                }
-            )
-        return labels
+        return _native.materialize_labels(
+            self.image_paths,
+            self.source_indices,
+            self.image_shapes,
+            self.object_offsets,
+            self._labels,
+            self.segment_points,
+            self.segment_offsets,
+            self.segment_object_indices,
+        )
 
 
 def scan(

@@ -1,0 +1,165 @@
+{
+  "scope": "native mutable export development checkpoint; full startup targets and release gates remain open",
+  "final_source_sha256": {
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "tests/test_parser.py": "58a8cab379b513839279fa09fe36b3cafba937b4498f1d720715621523863aad",
+    "tests/test_snapshot_hashes.py": "0ed678a93a3ee5299ede63bda881504c30bf9cd8cde8bc1f57ef989423f01f71",
+    "tests/test_scan.py": "d896c0056c0ed4c3d993a2f9c8abb2bd56218a1a97ad6678d62c49871cdae784",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924",
+    "tests/test_integration.py": "e9079c31cdd4b41d499b383588a447eaf09a082db798dd68bc7a71a5ef43be26",
+    "tests/test_materialize.py": "c0a0d73496e634753aefd8ef2486766a2b62a13c22f0fbc26446c8952c1ebb67",
+    "tests/test_cache.py": "ada22fb7e7cf376e030a29673342030aa4563b3357cdc8f52be76416848b17f6",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "1a4c0c326271f717322ab2e6efc3c82baffefaad1f7fd4a2225aefcccab9d9e3",
+    "requirements-test.txt": "f4fcda7abe4ed1ec83c5ea84bf70036af81606c867b6e46b282e1725c8be9998",
+    "requirements-integration.txt": "50ea67b07642169f2912c84aeaf9b9fc1dc7075aab65bab877af9a67d53a6720"
+  },
+  "source_archives": [
+    {
+      "artifact": "bench/results/materialize-vec-source.tar.gz",
+      "sha256": "b9623189e50d787f622f0de2ca4aca08a099d2a8b17ca56c301bcafc591a3bd2",
+      "verified_reports": [
+        "materialize-vec-server-100k.json"
+      ]
+    },
+    {
+      "artifact": "bench/results/materialize-owned-initial-source.tar.gz",
+      "sha256": "ae8ed4064f92dbc82a246fbae3e6e8441439e85af83d1e290518dd365c333a77",
+      "verified_reports": [
+        "materialize-owned-initial-coco-detect-m2.json",
+        "materialize-owned-initial-coco-segment-m2.json"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "artifact": "bench/results/materialize-final-coco-detect-m2.json",
+      "sha256": "823c993ed81027153e1d3603e518f26e6d6dea618298e381ee64305c23f02797",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "current"
+    },
+    {
+      "artifact": "bench/results/materialize-final-coco-detect-server.json",
+      "sha256": "ba5ff282e7249d010247b66a55f34d276439704c9013f38df9a063a083405e0d",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "current"
+    },
+    {
+      "artifact": "bench/results/materialize-final-coco-segment-m2.json",
+      "sha256": "3b65a8cbb6e2c432fa2985cafdd3103e15038e441b62857def56367f0f8e9a2b",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "current"
+    },
+    {
+      "artifact": "bench/results/materialize-final-coco-segment-server.json",
+      "sha256": "1344e5ca5adf175acc2058fcda2652bb0659448f1b1765097845eb09c37b00e1",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "current"
+    },
+    {
+      "artifact": "bench/results/materialize-final-server-100k.json",
+      "sha256": "e1b6745fac621871bb34efa7b3da7f12fd2913c347ea3f89e135f622716040ec",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "current"
+    },
+    {
+      "artifact": "bench/results/materialize-owned-initial-coco-detect-m2.json",
+      "sha256": "3593685569b59e708115ca350737844285368e9557267d81cbd2bfe7c958a680",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "archive"
+    },
+    {
+      "artifact": "bench/results/materialize-owned-initial-coco-segment-m2.json",
+      "sha256": "b3acb07e794061b3aaed9d98dc4caf4a4512a5fced88bd5c58f044874c56c17f",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "archive"
+    },
+    {
+      "artifact": "bench/results/materialize-vec-server-100k.json",
+      "sha256": "e022864f76e4a871bc83591accfc7560b9f5f87d99715b0ef55259a77148b2d4",
+      "measured_processes": 10,
+      "parity": true,
+      "summary_recomputed": true,
+      "source_binding": "archive"
+    }
+  ],
+  "total_measured_processes": 80,
+  "full_and_standalone_tests": [
+    {
+      "artifact": "docs/validation/dataset-materialize-aligned-m2.xml",
+      "sha256": "cd9ecdfc9959c8cad09f0d0c63c10c208093763653d4f15f0018779fde54e8c1",
+      "passed": 157
+    },
+    {
+      "artifact": "docs/validation/dataset-materialize-final-server.xml",
+      "sha256": "d49fac1c0d3ab65649edbc3159390b6710f1972f73feec9de0eb70e68eb6a279",
+      "passed": 157
+    },
+    {
+      "artifact": "docs/validation/dataset-materialize-wheel-arm.xml",
+      "sha256": "cc56841eab6c7de708af974aa09cb04a26bf7a083e93bc855007bb53a04f1f13",
+      "passed": 65
+    },
+    {
+      "artifact": "docs/validation/dataset-materialize-vec-server.xml",
+      "sha256": "2dab5cec607b3af0eef14dec66c55bffb305f2804413ef92324df817dcea380e",
+      "passed": 145
+    }
+  ],
+  "environments": {
+    "artifact": "docs/validation/materialize-environments.json",
+    "sha256": "fe5998c3a1ccb38898b153c9babe8bbc80eecd4d04c31a538f5bcea1a180ea82"
+  },
+  "wheel": {
+    "artifact": "/Volumes/T7/ultrafast-vision-build/materialize-wheels-arm/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "45b3800638e413e46582d121910c9266e2c3a8b88d74c4a3ac90a4dc4139aca9",
+    "scope": "macOS ARM CPython 3.12 standalone; no framework/platform matrix claim",
+    "runtime_files_match_source": [
+      "python/ultrafast_yolo_dataset/_cache.py",
+      "python/ultrafast_yolo_dataset/_snapshots.py",
+      "python/ultrafast_yolo_dataset/_scan.py",
+      "python/ultrafast_yolo_dataset/__init__.py",
+      "python/ultrafast_yolo_dataset/_ultralytics_profile.json",
+      "python/ultrafast_yolo_dataset/ultralytics.py",
+      "python/ultrafast_yolo_dataset/_reference.py"
+    ],
+    "extension_matches_m2_benchmark": true,
+    "smoke": {
+      "artifact": "docs/validation/dataset-materialize-wheel-arm-smoke.json",
+      "sha256": "86d0f58bf020e9522a3e01c5cd5db09708d06c4a9d435a234dd32ace223854a6"
+    }
+  },
+  "other_checks": [
+    "cargo test --lib: four tests passed",
+    "cargo clippy --all-targets -- -D warnings: passed",
+    "cargo fmt --check: passed",
+    "ruff 0.16.7 check .: passed"
+  ],
+  "check_note": "cargo test without --lib also attempted building the extension as a normal cdylib and failed to link Python symbols; the documented --lib unit-test command passed"
+}
