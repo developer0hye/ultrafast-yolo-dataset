@@ -12,7 +12,9 @@ installed runtime/data bytes. Every source notice must match the wheel, sdist
 and installed copy. Four standalone Detect/Segment content/metadata cache cases
 exercise cold and warm reads, exact labels/diagnostics and content invalidation.
 The parser, hashing and materialization tests then run against the installed
-wheel. Python 3.11–3.13 also run scan, cache and integration suites with the pinned
+wheel. The prepared filesystem and startup-artifact checks run in the same core
+job; the newly added 24 artifact checks still await their first local test run.
+Python 3.11–3.13 also run scan, cache and integration suites with the pinned
 Ultralytics commit and numerical dependencies. Python 3.10 uses NumPy 2.2.6 for
 core-only coverage; it is not a validated framework-adapter profile. Artifacts
 and reports are retained for 14 days.

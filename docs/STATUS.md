@@ -2,6 +2,11 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+This `bench/startup-audit` worktree adds an independent [startup artifact auditor](STARTUP_AUDIT.md).
+It passed read-only checks of all four actual 1,003-pair P3/P4 pilot reports.
+Twenty-four adversarial tests are prepared but not run; the final 500k audits
+remain pending. The active main-worktree measurements retain their frozen code.
+
 The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
 preflight and distinct-file audit. Its nine filesystem tests and the actual
 1,003-pair Detection/Segmentation P3/P4 pilot passed on M2. Preparation of a fresh

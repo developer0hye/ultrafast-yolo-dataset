@@ -1,0 +1,67 @@
+{
+  "complete_requested_samples": true,
+  "phase": "p3",
+  "task": "segment",
+  "pairs": 1003,
+  "repeats": 1,
+  "workers": 7,
+  "completed_workers": 2,
+  "report_sha256": "6d5de254a515f21065d4ad665e41fadd776023df1d9c3f0e15bc3dce040e6d46",
+  "identity_sha256": "a00d5da1667c5464d785be84007c159ed9662504da634249111da742837c106a",
+  "preflight_sha256": "22c9f0abd829870987d4f5a6c1ec9c36011baa0fdfdc9d3a32c86a1d57d14d05",
+  "fixture_manifest_sha256": "20939deab7f1493f1a8882e38cc15af8f3a9a8bd2e214d4f4395e28ff6a09750",
+  "auditor_sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+  "raw_sha256": {
+    "0-reference.json": "f1c4a9b7dc74da521866b755ceb27e40d6d44615f20574dbf663a6e08138c7c0",
+    "0-native-content.json": "ee1bbbdb2e84fdd6e00948d452e8db95a0d6a594946cff9923d84aa0d3effd1e"
+  },
+  "output_sha256": {
+    "labels": "62ff6dbf332d84563b35de75794e1a0a7e33c8736543332a8c31f6ac32df20fa",
+    "first_batch": "322c909e82b1ba5b4ed2f49949415b2baec622d98f839e66b7ee666f5ba84f13",
+    "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+  },
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation."
+  ],
+  "summary": {
+    "constructor_s": {
+      "pairs": 1,
+      "reference_median": 0.2542807919671759,
+      "candidate_median": 0.33038941700942814,
+      "reference_over_candidate": 0.7696396400006954,
+      "paired_bootstrap_ci95": [
+        0.7696396400006954,
+        0.7696396400006954
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 1
+    },
+    "first_batch_total_s": {
+      "pairs": 1,
+      "reference_median": 0.2681234999326989,
+      "candidate_median": 0.34521179203875363,
+      "reference_over_candidate": 0.7766927611285053,
+      "paired_bootstrap_ci95": [
+        0.7766927611285053,
+        0.7766927611285053
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 1
+    },
+    "peak_rss_constructor_bytes": {
+      "pairs": 1,
+      "reference_median": 258097152,
+      "candidate_median": 260685824,
+      "reference_over_candidate": 0.9900697630570046,
+      "paired_bootstrap_ci95": [
+        0.9900697630570046,
+        0.9900697630570046
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 1
+    }
+  }
+}

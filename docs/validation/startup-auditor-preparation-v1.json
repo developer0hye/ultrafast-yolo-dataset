@@ -1,0 +1,16 @@
+{
+  "scope": "four actual pilot artifact audits passed; 24 synthetic tests not run; no full-scale final audit or new performance measurement",
+  "source_sha256": {
+    "bench/audit_startup.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+    "tests/test_startup_audit.py": "67ef3216391a5b0d4b972ae40cd5c10bf844ee0777340aaf72e71c5b030e978a",
+    ".github/workflows/wheels.yml": "391db1295587e14fd6c0d54ed52d56dfe2eed744e05fa411e13beea5fd2ce894"
+  },
+  "pilot_audits_sha256": {
+    "startup-auditor-pilot-detect-p3-v2.json": "1c99148bf681f20f2d7f4368030de8477e09e557e7f8e47731a0d2e1f1d6b857",
+    "startup-auditor-pilot-detect-p4-v2.json": "e2c57d00a5c0459f4417fdc2954ac1bd9689cc1db5fa7b5bb6a34e69c6e7d7e2",
+    "startup-auditor-pilot-segment-p3-v2.json": "e46a62b5d1464c61dbdd4701741779c671917bd29a94ac58b73dbebce658626c",
+    "startup-auditor-pilot-segment-p4-v2.json": "5cc7b2f8f2cd25fc520e55aedf1b6769ecc1d13689e790aeb244d0c2dff919a5"
+  },
+  "ruff": "passed (0.16.7)",
+  "actionlint": "passed (1.7.12)"
+}
