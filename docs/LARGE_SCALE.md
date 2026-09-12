@@ -1,13 +1,14 @@
-# 500k-pair startup experiment preparation
+# 500k-pair startup experiment
 
-No 500k-pair measurement is completed yet. Detection fixture preparation and its
+Detection P1 has completed all five paired measurements; P3 is running and P4
+remains queued. Actual full-scale startup is not yet verified. Fixture preparation and its
 complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
 and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
 `931bd8059aefe560c3601e49d9b5f08ddc87831440bb0a1b4118575edca83f5d`.
 The generator and independent preflight fingerprints match; all entries are
 regular single-link files. Original logs/manifests are retained in
-`validation/detect-500k-{fixture,preflight,prepare}-v1.*`. P1 is now running,
-followed sequentially by the queued five-pair P3/P4 measurements.
+`validation/detect-500k-{fixture,preflight,prepare}-v1.*`. The same frozen runtime
+and inputs continue sequentially through five-pair P3/P4 measurements.
 The active host is an Apple M2 with eight CPU cores and 16 GiB RAM, on macOS
 26.6.2. Inputs reside on the `/Volumes/T7` USB SSD using APFS and 4 KiB device
 blocks. A read-only mid-run hardware/package observation is preserved in
@@ -21,6 +22,43 @@ headroom assessment on the 16 GiB M2 host. The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
 and Segmentation are separate fixtures. These are synthetic scalability inputs;
 the real COCO experiments remain separate evidence.
+
+## Completed Detection P1 on M2
+
+All ten fresh processes completed on 500,000 distinct label files, using four
+workers and alternating backend order. The full packed-output hashes match.
+The independent artifact audit accepted the fixture/source/native identity,
+sample order/count, zero fallback and all five pairs. Its exact source, original
+parent report and log are preserved under `validation/detect-500k-p1-*`.
+
+| Metric, median of five processes per backend | Reference | Native | Comparison |
+| --- | ---: | ---: | ---: |
+| File read, parse, validate and equivalent packed-array export | 50.8404 s | 32.0845 s | 1.5846x; 36.9% less time |
+| Process high-water RSS sampled after that timed region | 748.53 MiB | 482.23 MiB | 35.6% lower |
+
+The paired percentile bootstrap for the latency ratio is [1.5613, 1.6201],
+enumerating all 3,125 ordered five-pair resamples. This interval describes these
+repetitions on this host/fixture, not uncertainty across hardware or datasets.
+The source reference is the label-only extraction at pinned upstream commit
+`795a556942a12fe0124cf767888194a1d0b83e2e`, followed by equivalent packed export.
+Discovery, image verification, dataset/cache construction and training are
+excluded. Full label-content verification runs before and after each timed
+region, warming file caches; this is not a cold-cache measurement.
+
+RSS includes imports, path lists, preflight and allocator history. It is sampled
+before output hashing and post-measurement input verification, so it is neither
+isolated working allocation nor the final process-exit peak. The P1 harness
+embeds worker records in its parent JSON rather than retaining independent
+child files; Python/NumPy/native/CPU/RAM parent metadata matches the mid-run host
+supplement, but there is no per-worker package inventory. The independent
+auditor ran successfully on the actual artifacts; its 24 adversarial tests are
+still pending while the hosts are occupied.
+
+See [raw report](validation/detect-500k-p1-complete-v1.json),
+[audit and exact statistics](validation/detect-500k-p1-complete-audit-v1.json),
+and [byte-preservation receipt](validation/detect-500k-p1-preservation-v1.json).
+These results do not complete the actual startup or Segmentation gates. P3/P4
+and a separate full-scale Segmentation workload remain required.
 
 ## Fixture and preflight
 

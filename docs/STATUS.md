@@ -6,8 +6,12 @@ The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
 preflight and distinct-file audit. Its nine filesystem tests and the actual
 1,003-pair Detection/Segmentation P3/P4 pilot passed on M2. The fresh 500,000-pair
 Detection fixture and complete one-million-file preflight passed. Five-pair P1
-measurements are running, with P3/P4 queued sequentially. No full-scale timing
-result is available yet. Historical results
+finished with all ten packed-output hashes matching: median file read/parse/
+validate/export time 50.8404 → 32.0845 s (1.5846x), and process peak RSS sampled
+after that timed region 748.53 → 482.23 MiB. The actual-artifact audit passed;
+its adversarial tests remain pending. These are label-engine results, excluding
+image verification and actual initialization. P3 is running and P4 is queued;
+full-scale startup and Segmentation coverage remain incomplete. Historical results
 retain the older fingerprint implementation and their original memory scope.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its

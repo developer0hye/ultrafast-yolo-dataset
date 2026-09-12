@@ -1,0 +1,19 @@
+{
+  "scope": "Completed P1 artifact preservation and parent-profile comparison; P3/P4 and Segmentation remain incomplete",
+  "files_sha256": {
+    "detect-500k-p1-complete-v1.json": "b27d47c121f5dcccbd572d8c3a8a2f81e015778cebfa607fcc812e39344a8710",
+    "detect-500k-p1-complete-v1.log": "6532a5d9eb929676dc7b28d1b343980d38ed1083a8b34ffc0619d215e8745a3b",
+    "detect-500k-p1-complete-audit-v1.json": "aae23fc599912d92bcc5ef738bd9f5d171510ef37225fa01637833062ecf8339",
+    "detect-500k-p1-auditor-v1.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d"
+  },
+  "host_supplement_sha256": "2c3627b11e701f123817aa4e5e64b74d151d38380629c233b741a2e4bb46639d",
+  "parent_profile_matches_host_supplement": true,
+  "worker_records": 10,
+  "paired_repetitions": 5,
+  "independent_medians_match": true,
+  "limits": [
+    "P1 worker records are embedded in the parent, with no independent child JSON or per-worker package inventory.",
+    "The auditor passed on these actual artifacts; its 24 adversarial tests remain pending while measurement hosts are occupied.",
+    "RSS is sampled after timed parse/export before output hashing and post-measurement input verification; not final process-exit peak."
+  ]
+}
