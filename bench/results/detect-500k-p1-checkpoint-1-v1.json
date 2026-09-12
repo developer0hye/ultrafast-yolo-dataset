@@ -1,0 +1,83 @@
+{
+  "corpus": {
+    "count": 500000,
+    "task": "detect",
+    "seed": 20260912,
+    "bytes": 85500000,
+    "sha256_names_and_contents": "f149082c6d12e5bcc16904770de49d702d2649ddb6607b8c645aafba3f04efaa",
+    "distinct_files": 500000,
+    "templates": 1000,
+    "objects_distribution_percent": {
+      "1": 80,
+      "10": 19,
+      "100": 1
+    },
+    "segment_vertices_cycle": [
+      3,
+      16,
+      100
+    ],
+    "synthetic": true,
+    "os_cache": "uncontrolled; generation/previous runs may warm file cache"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "numpy": "2.4.4",
+  "ram_bytes": 17179869184,
+  "logical_cpus": 8,
+  "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "native_extension_sha256": "5799c19d7fbe704451cb9ac3e7e72f1b6c8ecdd8219d7fca971dfcb24eff2b0b",
+  "source_sha256": {
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "bench/cache_startup.py": "588981bd6fa1f4947b6a665c94dae97836e6696073aeeff8a1e032a388096c1a",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/collect_rust_notices.py": "c95f5db3678b5c7541c92f216aefcb187ae0d6c83c05b3b35f7df4df0e67bf46",
+    "bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "bench/wheel_smoke.py": "fb183c06426daa7142f19732f364bdc2e4bd5366c570c123ba296bbac9ce3ea4",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "scope": "P1 label-only file engine including export to equivalent packed arrays; image verification excluded",
+  "input_checks": "full name/content SHA256 before and after each measurement, excluded from timing",
+  "os_cache": "pre-read by content verification; no cold-cache claim",
+  "results": [
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 50.50954825000372,
+      "labels_per_s": 9899.118430542749,
+      "peak_rss_bytes": 784760832,
+      "legacy_ru_maxrss_bytes": 784760832,
+      "rss_method": "getrusage ru_maxrss bytes",
+      "output_sha256": "42000ec7a78bd810e8f7203b2736d49cf0b4456561e1994fceffd72c02437f05",
+      "reference_required": 0,
+      "user_s": 34.447291,
+      "system_s": 60.437885,
+      "loadavg": [
+        2.9599609375,
+        4.7294921875,
+        4.84375
+      ],
+      "available_ram_bytes": 6333120512,
+      "round": 0,
+      "parity": true
+    }
+  ]
+}

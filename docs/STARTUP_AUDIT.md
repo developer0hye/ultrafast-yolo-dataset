@@ -10,8 +10,13 @@ auditor. Their exact output records are in
 `validation/startup-auditor-pilot-*-v2.json`. These are artifact checks on existing
 measurements, not benchmark reruns. Ruff and actionlint passed. The 24 synthetic
 tests in `tests/test_startup_audit.py` are written but **not executed yet** because
-both benchmark hosts have active workloads. P1 and five-pair full-series audit
-paths are not yet execution-validated; a full-scale audit is not complete.
+both benchmark hosts have active workloads. The first real 500k-pair P1 reference
+worker also passed a partial artifact audit, including fixture/source/native
+identity and the declared count/throughput relationship. Its immutable report is
+`bench/results/detect-500k-p1-checkpoint-1-v1.json`, with the audit under
+`validation/detect-500k-p1-checkpoint-1-audit-v1.json`. There is no completed pair
+or aggregate in that snapshot. Five-pair final-audit paths are not yet execution-
+validated, and a full-scale audit is not complete.
 
 ## Checked evidence
 
