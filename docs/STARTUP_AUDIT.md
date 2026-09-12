@@ -18,6 +18,15 @@ identity and the declared count/throughput relationship. Its immutable report is
 or aggregate in that snapshot. Five-pair final-audit paths are not yet execution-
 validated, and a full-scale audit is not complete.
 
+The subsequent two-worker snapshot completes the first reference/native P1 pair
+on all 500,000 labels. Its full packed-output hashes match and the partial audit
+passes, still without an aggregate. See
+`bench/results/detect-500k-p1-checkpoint-2-v1.json` and
+`validation/detect-500k-p1-checkpoint-2-audit-v1.json`. Four more paired repetitions
+remain. P1 RSS is the process high-water mark sampled immediately after the timed
+parse/export, before output-digest and post-measurement input verification; it
+is not the final process-exit RSS peak or isolated working allocation.
+
 ## Checked evidence
 
 - The caller explicitly supplies the task, expected pair count, repetition count

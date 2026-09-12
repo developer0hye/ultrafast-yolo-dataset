@@ -6,6 +6,9 @@ This `bench/startup-audit` worktree adds an independent [startup artifact audito
 It passed read-only checks of all four actual 1,003-pair P3/P4 pilot reports and
 an interim audit of the first full 500k-pair P1 reference worker, without a timing
 summary or completed-pair claim.
+The next snapshot completed one P1 reference/native pair with identical full
+packed outputs; its partial audit also passed. Four more pairs remain, so no
+repeated-performance claim is made.
 Twenty-four adversarial tests are prepared but not run; the final 500k audits
 remain pending. The active main-worktree measurements retain their frozen code.
 

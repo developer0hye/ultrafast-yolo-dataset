@@ -1,0 +1,22 @@
+{
+  "complete_requested_samples": false,
+  "phase": "p1",
+  "task": "detect",
+  "pairs": 500000,
+  "repeats": 5,
+  "workers": 4,
+  "completed_workers": 2,
+  "report_sha256": "35c8a5a35142fdb0e251e62dc142558a32bc0cb3e25ea946fb3a1ad9c4e9d955",
+  "identity_sha256": "e274e709557bb2f2decccddcca1b48c4b3f5ab548a5fc4c76bb60877e75e8c9e",
+  "preflight_sha256": "2dccb4afbdad6b75eaf11b91f957bbba471bfadcebde316a3e4d0e4eee9eae28",
+  "fixture_manifest_sha256": "18be0c465d5e87030c62a7909a17711451c5bff10f1718d396eefac19cd0fa65",
+  "auditor_sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+  "raw_sha256": {},
+  "output_sha256": "42000ec7a78bd810e8f7203b2736d49cf0b4456561e1994fceffd72c02437f05",
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation."
+  ]
+}
