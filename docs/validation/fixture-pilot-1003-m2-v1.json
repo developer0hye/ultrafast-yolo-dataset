@@ -1,0 +1,117 @@
+{
+  "scope": "small actual-startup harness qualification; one pair per task/phase, not a speedup claim or 500k gate",
+  "checks": [
+    {
+      "task": "detect",
+      "phase": "p3",
+      "completed_measured_workers": 2,
+      "pairs_per_worker": 1003,
+      "full_output_sha256": {
+        "labels": "d4775c0f8d5e75c68eb2104024b6623aa3e4e7570a99ca6d433915e3efa8cda5",
+        "first_batch": "3434fa1137c624655b32fde160168c9a18ff8bf31770835a94836db296743415",
+        "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+      }
+    },
+    {
+      "task": "detect",
+      "phase": "p4",
+      "completed_measured_workers": 2,
+      "pairs_per_worker": 1003,
+      "full_output_sha256": {
+        "labels": "d4775c0f8d5e75c68eb2104024b6623aa3e4e7570a99ca6d433915e3efa8cda5",
+        "first_batch": "3434fa1137c624655b32fde160168c9a18ff8bf31770835a94836db296743415",
+        "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+      }
+    },
+    {
+      "task": "segment",
+      "phase": "p3",
+      "completed_measured_workers": 2,
+      "pairs_per_worker": 1003,
+      "full_output_sha256": {
+        "labels": "62ff6dbf332d84563b35de75794e1a0a7e33c8736543332a8c31f6ac32df20fa",
+        "first_batch": "322c909e82b1ba5b4ed2f49949415b2baec622d98f839e66b7ee666f5ba84f13",
+        "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+      }
+    },
+    {
+      "task": "segment",
+      "phase": "p4",
+      "completed_measured_workers": 2,
+      "pairs_per_worker": 1003,
+      "full_output_sha256": {
+        "labels": "62ff6dbf332d84563b35de75794e1a0a7e33c8736543332a8c31f6ac32df20fa",
+        "first_batch": "322c909e82b1ba5b4ed2f49949415b2baec622d98f839e66b7ee666f5ba84f13",
+        "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+      }
+    }
+  ],
+  "source_sha256": {
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "bench/cache_startup.py": "588981bd6fa1f4947b6a665c94dae97836e6696073aeeff8a1e032a388096c1a",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/collect_rust_notices.py": "c95f5db3678b5c7541c92f216aefcb187ae0d6c83c05b3b35f7df4df0e67bf46",
+    "bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "bench/wheel_smoke.py": "fb183c06426daa7142f19732f364bdc2e4bd5366c570c123ba296bbac9ce3ea4",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "native_extension_sha256": "5799c19d7fbe704451cb9ac3e7e72f1b6c8ecdd8219d7fca971dfcb24eff2b0b",
+  "wheel_sha256": "2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595",
+  "archive_sha256": "16f42487fe9f4e5f28ac5c6f7050aef1efdb8e8d35b6af30e29da190b5afb12b",
+  "files_sha256": {
+    "fixture-pilot-detect-preflight-v1.json": "4c9730d4b4cfcc7682da28f7cd7dbafeda4e2ce1b0228947ce24c0bc45dd3a55",
+    "fixture-pilot-detect-prepare-v1.log": "82487ca3fbd4b9646710447519af417147a384d41469be805463bbd572b36371",
+    "fixture-pilot-detect-p3-v1.json": "40c2bc6bad4e5fff333a72a9619918c857f314a801732e0c1d161aa83966de44",
+    "fixture-pilot-detect-p3-v1.log": "ec41c520a379d05dc44c42e90f09f4d896dcdbded8fe31d7cbeede9a571f5746",
+    "fixture-pilot-detect-p3-v1.runs/0-native-content.json": "4b812dd0f8d57473e9f8a0e0d5921e56bc028361bb69cd5f3cd067ee3fe92082",
+    "fixture-pilot-detect-p3-v1.runs/0-native-content.log": "b7bc20730f7bd59ce8a52aca95898b84e385ea6bee804f3897dad0d8f498c5d1",
+    "fixture-pilot-detect-p3-v1.runs/0-reference.json": "d64d90dfcf29607fd7efb4da8ae236789a103c4dda8408df7c2147a6c6a853d6",
+    "fixture-pilot-detect-p3-v1.runs/0-reference.log": "7cef450e372bc7f5033b8b343e064a9f5407884d789c5a09a11b46d1b84c2097",
+    "fixture-pilot-detect-p4-v1.json": "ec992ce4de0ee15f6a9276aa30dadd27a630b0f7e8521d6fd9da0a1363c7c83a",
+    "fixture-pilot-detect-p4-v1.log": "6a5c744a35bcef971a2810da7160e50886f8dff923aef70a4f37a626b86885fc",
+    "fixture-pilot-detect-p4-v1.runs/0-native-content.json": "e2205266117c13b56cfccb42372cafb5ebeb2408990a2ce4bff22d7b1efc9834",
+    "fixture-pilot-detect-p4-v1.runs/0-native-content.log": "05a5701f88a5c878120917acdba256b0e7ef17820fe748c1fc305e943885a3d8",
+    "fixture-pilot-detect-p4-v1.runs/0-reference-content.json": "562094d5a613cc5192d8316126e745a728e5febd6a4c474657da5ed3a2e7855a",
+    "fixture-pilot-detect-p4-v1.runs/0-reference-content.log": "4537045b99f0498d7e626d1ed2346817f523d9642de7212d42efde7edca8760a",
+    "fixture-pilot-detect-p4-v1.runs/prime-native-content.json": "c2ca331be438211bd56bc9990054d38715f436f68bd27e08ea38b7049e679505",
+    "fixture-pilot-detect-p4-v1.runs/prime-native-content.log": "72a0605d64e476fca2343884616759794b3b5deb736f664bbfceabb06a083c85",
+    "fixture-pilot-detect-p4-v1.runs/prime-reference-content.json": "1dfe05466a0d28e73afa44e5fde812d4630972609eb085a6f0a34cd4849383e4",
+    "fixture-pilot-detect-p4-v1.runs/prime-reference-content.log": "b21e7918f00802c481b876fc4fa0238573b41b9cebe4fb0877c4095ce04f9142",
+    "fixture-pilot-segment-preflight-v1.json": "22c9f0abd829870987d4f5a6c1ec9c36011baa0fdfdc9d3a32c86a1d57d14d05",
+    "fixture-pilot-segment-prepare-v1.log": "d44427501a1c9a083fd1f94a8e55528148a13b441e60968f0b8c10cd10361ea1",
+    "fixture-pilot-segment-p3-v1.json": "6d5de254a515f21065d4ad665e41fadd776023df1d9c3f0e15bc3dce040e6d46",
+    "fixture-pilot-segment-p3-v1.log": "7069dd55261d85073fd5e17db2b0a4d006faf89d6621f7270d10ce344e549613",
+    "fixture-pilot-segment-p3-v1.runs/0-native-content.json": "ee1bbbdb2e84fdd6e00948d452e8db95a0d6a594946cff9923d84aa0d3effd1e",
+    "fixture-pilot-segment-p3-v1.runs/0-native-content.log": "1c97e87a95407adee4549b31a4011048a167f43a03a44e76ad002ac1353dc95d",
+    "fixture-pilot-segment-p3-v1.runs/0-reference.json": "f1c4a9b7dc74da521866b755ceb27e40d6d44615f20574dbf663a6e08138c7c0",
+    "fixture-pilot-segment-p3-v1.runs/0-reference.log": "3722295e12254a87499a1fe65f7e7dbc8c19cb5882fb967baabe37f648c30561",
+    "fixture-pilot-segment-p4-v1.json": "d2de9d788817858f4aa8382b22a304a16b964aea4db1ea283000e637ef64bfee",
+    "fixture-pilot-segment-p4-v1.log": "9884d1ed727f131178094dbc190500a768112f9ec056044a8652eff00a481191",
+    "fixture-pilot-segment-p4-v1.runs/0-native-content.json": "bd41e5aa26bf7f8c7398a6fe1ced104dcead8d4e1b1704cf9b4ad7f7a4a71300",
+    "fixture-pilot-segment-p4-v1.runs/0-native-content.log": "ddefbac9175fa7cf7b1e182fa774b7c20a4e82e64a62fe5741cda45d820f8456",
+    "fixture-pilot-segment-p4-v1.runs/0-reference-content.json": "1280fdb2279b803e6aed05d3007cd1385e981c70cd85c6fadd30407e2bdcf15a",
+    "fixture-pilot-segment-p4-v1.runs/0-reference-content.log": "8a00fd96f3aa6cc1f5b00b124d6fcf67e01f7aa2f244a123defaaa28cb1134e8",
+    "fixture-pilot-segment-p4-v1.runs/prime-native-content.json": "c2ca331be438211bd56bc9990054d38715f436f68bd27e08ea38b7049e679505",
+    "fixture-pilot-segment-p4-v1.runs/prime-native-content.log": "1a380234cb945da6cab100e14fb79d4cf7bd69b5c0cf308acd5542eece447f7a",
+    "fixture-pilot-segment-p4-v1.runs/prime-reference-content.json": "1dfe05466a0d28e73afa44e5fde812d4630972609eb085a6f0a34cd4849383e4",
+    "fixture-pilot-segment-p4-v1.runs/prime-reference-content.log": "742a2f9dc5d6d7de5b376b31669cd0a336239ad0e0b382bda550c9b026640254"
+  }
+}

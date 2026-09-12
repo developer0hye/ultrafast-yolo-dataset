@@ -3,9 +3,11 @@
 Active development; original PRD goals remain unchanged. Not release-ready.
 
 The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
-preflight and distinct-file audit. Its nine filesystem tests passed on M2;
-no new large fixture or measurement has started. Historical results retain the
-older fingerprint implementation and their original memory scope.
+preflight and distinct-file audit. Its nine filesystem tests and the actual
+1,003-pair Detection/Segmentation P3/P4 pilot passed on M2. Preparation of a fresh
+500,000-pair Detection fixture has started, followed sequentially by five-pair
+P1/P3/P4 measurements. No full-scale result is available yet. Historical results
+retain the older fingerprint implementation and their original memory scope.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library

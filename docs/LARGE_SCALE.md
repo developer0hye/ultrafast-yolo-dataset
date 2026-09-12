@@ -1,6 +1,9 @@
 # 500k-pair startup experiment preparation
 
-No 500k-pair measurement is completed yet. The scope is **500,000 image/label
+No 500k-pair measurement is completed yet. Detection fixture preparation is now
+running on M2, with sequential five-pair P1/P3/P4 runs queued in the same script.
+Segmentation remains pending; its resampled annotations need a separate memory
+headroom assessment on the 16 GiB M2 host. The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
 and Segmentation are separate fixtures. These are synthetic scalability inputs;
 the real COCO experiments remain separate evidence.
@@ -28,8 +31,18 @@ Nine filesystem cases are prepared in `tests/test_benchmark_fixture.py` for
 hash/order compatibility, shard boundaries, ignored cache files, corruption,
 missing/extra inputs and aliases. All nine passed on M2; the combined 21-test
 report (including 12 GPU-artifact checks) and helper source hashes are retained
-in `validation/benchmark-audits-m2.*`. Ruff and actionlint also passed. A small
-actual startup pilot and the full 500k-pair measurements remain pending.
+in `validation/benchmark-audits-m2.*`. Ruff and actionlint also passed.
+
+A fresh actual-startup pilot completed with 1,003 pairs per task, spanning two
+shards. Detection and Segmentation each passed P3 cache generation and P4 content
+hits: eight measured fresh processes and four separate primers. All 1,003 labels,
+first-batch hashes and ordered scan diagnostics matched; native fallback counts
+were zero. Original child reports match their parent entries and the native
+extension matches the previously audited notice wheel. The 36 raw reports/logs
+and preflight records are retained in `bench/results/fixture-pilot-1003-m2-v1.tar.gz`,
+with source/archive hashes in `validation/fixture-pilot-1003-m2-v1.json`.
+This one-pair pilot includes slower native timings and is harness qualification,
+not evidence for a speedup or the 500k-pair gate.
 
 Run preparation, preflight and every measurement sequentially on an otherwise
 unoccupied benchmark host. Start with a small fixture to validate the revised
@@ -52,9 +65,10 @@ python bench/cache_startup.py --corpus /measurement/new-detect-500k --mode hit -
 ```
 
 Repeat with a distinct `segment` fixture and `--task segment`. Do not run another
-build, test or benchmark on that host during this series. The current M2 and
-server jobs keep their existing inputs and installed binaries; none of these
-large-fixture commands has been launched yet.
+build, test or benchmark on that host during this series. The launched M2
+Detection script, source hashes, wheel identity and initial headroom are recorded
+in `validation/detect-500k-launch-v1.json`. The server GPU job keeps its existing
+inputs and installed binaries. Segmentation has not been launched.
 
 ## Comparison and evidence requirements
 
