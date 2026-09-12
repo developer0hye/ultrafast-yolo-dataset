@@ -3,3 +3,5 @@ pytest==9.1.1
 hypothesis==6.168.0
 psutil==7.2.2
 maturin==1.15.0
+ruff==0.16.7
+pillow==12.1.1

@@ -1,8 +1,7 @@
 import numpy as np
 import pytest
-
-from ultrafast_yolo_dataset import _native, parse_labels
 from reference import verify_image_label
+from ultrafast_yolo_dataset import _native, parse_labels
 
 
 def oracle(path, classes=80, single=False):
@@ -24,29 +23,44 @@ def compare(text, path, classes=80, single=False):
     offsets = got["segment_offsets"]
     assert len(offsets) == len(expected[3]) + 1
     for i, segment in enumerate(expected[3]):
-        assert got["segment_points"][offsets[i]:offsets[i+1]].tobytes() == segment.tobytes()
+        assert got["segment_points"][offsets[i] : offsets[i + 1]].tobytes() == segment.tobytes()
     duplicates = int(got["duplicates"][0])
     assert bool(duplicates) == ("duplicate labels removed" in expected[-1])
 
 
-@pytest.mark.parametrize("text", [
-    b"", b" \n\t ", b"0 .5 .5 .2 .2\r\n", b"0 1.0000000596046448 .5 .2 .2",
-    b"1 .5 .5 .2 .2\n0 .4 .4 .1 .1", b"1 .5 .5 .2 .2\n0 .4 .4 .1 .1\n1 .5 .5 .2 .2",
-    b"0 -0.0 .5 .2 .2\n0 0 .5 .2 .2", b".5 .5 .5 .2 .2", b"-.01 1.01 .5 .2 .2",
-    b"0 0 0 1 0 1 1\n0 1 1 0 0 1 0", b"0 .5 .5 .2 .2\n \n0 .3 .3 .1 .1",
-    b"nan .5 .5 .2 .2", b"0 inf .5 .2 .2", b"0 1.02 .5 .2 .2", b"-1 .5 .5 .2 .2",
-    b"80 .5 .5 .2 .2", b"0 0 0 1 0 1 1\n0 .5 .5 .2 .2", b"0 0 0 1 1 0 1 0",
-])
+@pytest.mark.parametrize(
+    "text",
+    [
+        b"",
+        b" \n\t ",
+        b"0 .5 .5 .2 .2\r\n",
+        b"0 1.0000000596046448 .5 .2 .2",
+        b"1 .5 .5 .2 .2\n0 .4 .4 .1 .1",
+        b"1 .5 .5 .2 .2\n0 .4 .4 .1 .1\n1 .5 .5 .2 .2",
+        b"0 -0.0 .5 .2 .2\n0 0 .5 .2 .2",
+        b".5 .5 .5 .2 .2",
+        b"-.01 1.01 .5 .2 .2",
+        b"0 0 0 1 0 1 1\n0 1 1 0 0 1 0",
+        b"0 .5 .5 .2 .2\n \n0 .3 .3 .1 .1",
+        b"nan .5 .5 .2 .2",
+        b"0 inf .5 .2 .2",
+        b"0 1.02 .5 .2 .2",
+        b"-1 .5 .5 .2 .2",
+        b"80 .5 .5 .2 .2",
+        b"0 0 0 1 0 1 1\n0 .5 .5 .2 .2",
+        b"0 0 0 1 1 0 1 0",
+    ],
+)
 def test_reference_edges(text, tmp_path):
-    compare(text, tmp_path/"labels.txt")
+    compare(text, tmp_path / "labels.txt")
 
 
 def test_single_class(tmp_path):
-    compare(b"999 .5 .5 .2 .2", tmp_path/"a.txt", 1, True)
+    compare(b"999 .5 .5 .2 .2", tmp_path / "a.txt", 1, True)
 
 
 def test_files_order_lifetime_limits(tmp_path):
-    paths = [tmp_path/f"标注 {i}.txt" for i in range(6)]
+    paths = [tmp_path / f"标注 {i}.txt" for i in range(6)]
     for i, p in enumerate(paths[:-1]):
         p.write_text(f"{i} .5 .5 .2 .2")
     paths[2].write_text("")
@@ -68,17 +82,17 @@ def test_files_order_lifetime_limits(tmp_path):
 
 def test_10000_seeded_differential_cases(tmp_path):
     rng = np.random.default_rng(20260912)
-    path = tmp_path/"case.txt"
+    path = tmp_path / "case.txt"
     for i in range(10000):
-        rows=[]
+        rows = []
         for _ in range(int(rng.integers(1, 20))):
             cls = int(rng.integers(0, 80))
             if i % 2:
                 points = rng.uniform(0, 1, (int(rng.integers(3, 20)), 2))
                 values = points.ravel()
             else:
-                values = rng.uniform(-.005, 1.005, 4)
-            rows.append(str(cls)+' '+' '.join(format(float(v),'.17g') for v in values))
+                values = rng.uniform(-0.005, 1.005, 4)
+            rows.append(str(cls) + " " + " ".join(format(float(v), ".17g") for v in values))
         if i % 3 == 0:
             rows.extend(rows[:2])
-        compare(('\n'.join(rows)).encode(),path)
+        compare(("\n".join(rows)).encode(), path)

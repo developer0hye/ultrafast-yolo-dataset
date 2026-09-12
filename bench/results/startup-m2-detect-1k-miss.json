@@ -1,0 +1,441 @@
+{
+  "scope": "actual YOLODataset discovery, hash, Pillow verification, labels, materialization, legacy-cache write/load, then first batch",
+  "cache_guarantee": "both use legacy path/size hash; NOT native content-cache P4 evidence",
+  "os_cache": "inputs pre-read for full fingerprints; no cold-cache claim",
+  "imports": "excluded from timing; both processes import both backends",
+  "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "numpy": "2.4.4",
+  "pillow": "12.1.1",
+  "cv2": "4.13.0",
+  "torch": "2.10.0",
+  "ram_bytes": 17179869184,
+  "physical_cpus": 8,
+  "logical_cpus": 8,
+  "source_sha256": {
+    "src/lib.rs": "3202507cd1d486c47a3362ced77730c1adbc99b00a1dc0b2e2795779a729de26",
+    "src/parser.rs": "79b84e650b501f9506d3286ebcaa90e4d86b8f6b0e0b0e7244a5046badde56b6",
+    "python/ultrafast_yolo_dataset/_scan.py": "88cd8d486f938fccbededbe6593907cae197d625f84ec4cb9db00ef5f3d00636",
+    "python/ultrafast_yolo_dataset/__init__.py": "747139b787b859fe634602a9bbeff8c813c64f80cf90be98ca700beb32d2db6b",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "a25c36cdf64fd573ee6023764b331b511b294fb1b623cb9b4c46315fea36ffc7",
+    "python/ultrafast_yolo_dataset/_reference.py": "462b8a4a299227ebb5ec25bb3527ebd482aa8ad662883706c2794303bb19d444",
+    "bench/startup.py": "c56357915777c7a3a43ab65cd19f0af6ab388dbd3e66684b03b93ce9e391f87c"
+  },
+  "corpus": {
+    "kind": "ultrafast-yolo-startup-synthetic-v1",
+    "task": "detect",
+    "count": 1000,
+    "labels": {
+      "count": 1000,
+      "task": "detect",
+      "seed": 20260912,
+      "bytes": 171000,
+      "sha256_names_and_contents": "9f35dc61bedef9df05218ed463a69cce503f56ff126bcabd66b7be648c5c60f1",
+      "distinct_files": 1000,
+      "templates": 1000,
+      "objects_distribution_percent": {
+        "1": 80,
+        "10": 19,
+        "100": 1
+      },
+      "segment_vertices_cycle": [
+        3,
+        16,
+        100
+      ],
+      "synthetic": true,
+      "os_cache": "uncontrolled; generation/previous runs may warm file cache"
+    },
+    "images": "16 solid-color JPEG templates, distinct physical files; dimensions cycle 320x240/640x480/1280x720",
+    "fingerprint": {
+      "files": 2000,
+      "bytes": 7245387,
+      "sha256": "bc65942e491ae8c2b1ab45a3188bdc0cb9962f874b298d9a401b1ec4af280c51"
+    }
+  },
+  "results": [
+    {
+      "backend": "reference",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.22756350005511194,
+      "first_batch_total_s": 0.23843475000467151,
+      "first_batch_after_constructor_s": 0.01087124994955957,
+      "peak_rss_constructor_bytes": 247840768,
+      "peak_rss_first_batch_bytes": 277856256,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252236,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": null,
+      "user_s": 0.14862600000000004,
+      "system_s": 0.320146,
+      "minor_faults": 3676,
+      "major_faults": 0,
+      "loadavg": [
+        1.376953125,
+        1.85400390625,
+        2.16015625
+      ],
+      "available_ram_bytes": 7216578560,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.16806149994954467,
+      "first_batch_total_s": 0.17889504099730402,
+      "first_batch_after_constructor_s": 0.010833541047759354,
+      "peak_rss_constructor_bytes": 250560512,
+      "peak_rss_first_batch_bytes": 280772608,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252478,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": {
+        "summary": {
+          "found": 1000,
+          "missing": 0,
+          "empty": 0,
+          "corrupt": 0,
+          "total": 1000
+        },
+        "fallback_count": 0,
+        "diagnostics": []
+      },
+      "user_s": 0.11981900000000001,
+      "system_s": 0.23710799999999999,
+      "minor_faults": 2372,
+      "major_faults": 0,
+      "loadavg": [
+        1.376953125,
+        1.85400390625,
+        2.16015625
+      ],
+      "available_ram_bytes": 7221116928,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.15949829202145338,
+      "first_batch_total_s": 0.17074845801107585,
+      "first_batch_after_constructor_s": 0.011250165989622474,
+      "peak_rss_constructor_bytes": 250757120,
+      "peak_rss_first_batch_bytes": 280936448,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252478,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": {
+        "summary": {
+          "found": 1000,
+          "missing": 0,
+          "empty": 0,
+          "corrupt": 0,
+          "total": 1000
+        },
+        "fallback_count": 0,
+        "diagnostics": []
+      },
+      "user_s": 0.11778900000000003,
+      "system_s": 0.216022,
+      "minor_faults": 2375,
+      "major_faults": 0,
+      "loadavg": [
+        1.4267578125,
+        1.85595703125,
+        2.1591796875
+      ],
+      "available_ram_bytes": 7220379648,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.22760866698808968,
+      "first_batch_total_s": 0.23864787502679974,
+      "first_batch_after_constructor_s": 0.011039208038710058,
+      "peak_rss_constructor_bytes": 247775232,
+      "peak_rss_first_batch_bytes": 277839872,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252236,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": null,
+      "user_s": 0.1495129999999999,
+      "system_s": 0.318378,
+      "minor_faults": 3665,
+      "major_faults": 0,
+      "loadavg": [
+        1.4267578125,
+        1.85595703125,
+        2.1591796875
+      ],
+      "available_ram_bytes": 7212662784,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.22716579108964652,
+      "first_batch_total_s": 0.23824637499637902,
+      "first_batch_after_constructor_s": 0.0110805839067325,
+      "peak_rss_constructor_bytes": 247758848,
+      "peak_rss_first_batch_bytes": 277757952,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252236,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": null,
+      "user_s": 0.14824700000000002,
+      "system_s": 0.32194,
+      "minor_faults": 3660,
+      "major_faults": 0,
+      "loadavg": [
+        1.4267578125,
+        1.85595703125,
+        2.1591796875
+      ],
+      "available_ram_bytes": 7210729472,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.1684118340490386,
+      "first_batch_total_s": 0.1792474170215428,
+      "first_batch_after_constructor_s": 0.010835582972504199,
+      "peak_rss_constructor_bytes": 250822656,
+      "peak_rss_first_batch_bytes": 281001984,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252478,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": {
+        "summary": {
+          "found": 1000,
+          "missing": 0,
+          "empty": 0,
+          "corrupt": 0,
+          "total": 1000
+        },
+        "fallback_count": 0,
+        "diagnostics": []
+      },
+      "user_s": 0.12110900000000002,
+      "system_s": 0.23957599999999996,
+      "minor_faults": 2377,
+      "major_faults": 0,
+      "loadavg": [
+        1.4267578125,
+        1.85595703125,
+        2.1591796875
+      ],
+      "available_ram_bytes": 7220199424,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.16935958398971707,
+      "first_batch_total_s": 0.18024937494192272,
+      "first_batch_after_constructor_s": 0.010889790952205658,
+      "peak_rss_constructor_bytes": 250642432,
+      "peak_rss_first_batch_bytes": 280690688,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252478,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": {
+        "summary": {
+          "found": 1000,
+          "missing": 0,
+          "empty": 0,
+          "corrupt": 0,
+          "total": 1000
+        },
+        "fallback_count": 0,
+        "diagnostics": []
+      },
+      "user_s": 0.12082999999999999,
+      "system_s": 0.24670499999999995,
+      "minor_faults": 2358,
+      "major_faults": 0,
+      "loadavg": [
+        1.552734375,
+        1.87451171875,
+        2.1640625
+      ],
+      "available_ram_bytes": 7224410112,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.2263715829467401,
+      "first_batch_total_s": 0.23746112501248717,
+      "first_batch_after_constructor_s": 0.011089542065747082,
+      "peak_rss_constructor_bytes": 247627776,
+      "peak_rss_first_batch_bytes": 277708800,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252236,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": null,
+      "user_s": 0.1482779999999999,
+      "system_s": 0.31783,
+      "minor_faults": 3664,
+      "major_faults": 0,
+      "loadavg": [
+        1.552734375,
+        1.87451171875,
+        2.1640625
+      ],
+      "available_ram_bytes": 7211008000,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.23202333296649158,
+      "first_batch_total_s": 0.24336595798376948,
+      "first_batch_after_constructor_s": 0.011342625017277896,
+      "peak_rss_constructor_bytes": 247676928,
+      "peak_rss_first_batch_bytes": 277790720,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252236,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": null,
+      "user_s": 0.14938799999999997,
+      "system_s": 0.32644,
+      "minor_faults": 3690,
+      "major_faults": 0,
+      "loadavg": [
+        1.552734375,
+        1.87451171875,
+        2.1640625
+      ],
+      "available_ram_bytes": 7214776320,
+      "round": 4,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "cache": "miss",
+      "workers": 7,
+      "loader_workers": 0,
+      "constructor_s": 0.1702696670545265,
+      "first_batch_total_s": 0.18112795799970627,
+      "first_batch_after_constructor_s": 0.01085829094517976,
+      "peak_rss_constructor_bytes": 250494976,
+      "peak_rss_first_batch_bytes": 280608768,
+      "rss_scope": "process peak since launch, including untimed cache priming on hit runs",
+      "cache_bytes": 252478,
+      "output_sha256": {
+        "labels": "fc9317112731c29fb2ef15fde21e5988a0f7c290fd9e8f43752373c3a47f2531",
+        "first_batch": "456bb7ba8b3c99cc6b8da6cac14782667e53280948d3b81f415b2d1c98909b61"
+      },
+      "scan_evidence": {
+        "summary": {
+          "found": 1000,
+          "missing": 0,
+          "empty": 0,
+          "corrupt": 0,
+          "total": 1000
+        },
+        "fallback_count": 0,
+        "diagnostics": []
+      },
+      "user_s": 0.12137700000000007,
+      "system_s": 0.245951,
+      "minor_faults": 2375,
+      "major_faults": 0,
+      "loadavg": [
+        1.552734375,
+        1.87451171875,
+        2.1640625
+      ],
+      "available_ram_bytes": 7223836672,
+      "round": 4,
+      "parity": true
+    }
+  ],
+  "summary": {
+    "constructor_s": {
+      "median": {
+        "reference": 0.22756350005511194,
+        "native": 0.1684118340490386
+      },
+      "p95": {
+        "reference": 0.2311403997708112,
+        "native": 0.17008765044156463
+      },
+      "speedup": 1.3512322417250644,
+      "paired_bootstrap_speedup_ci95": [
+        1.3366328471879372,
+        1.4270288672274627
+      ]
+    },
+    "first_batch_total_s": {
+      "median": {
+        "reference": 0.23843475000467151,
+        "native": 0.1792474170215428
+      },
+      "p95": {
+        "reference": 0.24242234139237553,
+        "native": 0.18095224138814955
+      },
+      "speedup": 1.330199084408649,
+      "paired_bootstrap_speedup_ci95": [
+        1.3174033202001303,
+        1.3976575707132857
+      ]
+    }
+  }
+}

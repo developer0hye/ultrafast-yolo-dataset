@@ -7,8 +7,8 @@ name = "ultrafast-yolo-dataset"
 version = "0.1.0a1"
 description = "Batched native YOLO annotation parsing and compact storage"
 requires-python = ">=3.10"
-dependencies = ["numpy>=2.0,<3"]
-license = "AGPL-3.0-or-later"
+dependencies = ["numpy>=2.0,<3", "pillow>=12.1.1,<13"]
+license = "AGPL-3.0-only"
 
 [tool.maturin]
 python-source = "python"
@@ -16,3 +16,10 @@ module-name = "ultrafast_yolo_dataset._native"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["tests/reference.py", "python/ultrafast_yolo_dataset/_reference.py", "docs/PRD.md"]
+
+[tool.ruff.lint.per-file-ignores]
+"bench/*.py" = ["E402"]

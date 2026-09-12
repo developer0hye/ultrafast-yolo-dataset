@@ -1,0 +1,244 @@
+{
+  "corpus": {
+    "count": 100000,
+    "task": "segment",
+    "seed": 20260912,
+    "bytes": 316834600,
+    "sha256_names_and_contents": "da049d15317120b71da5804afe4a63d8ead6d3b3158fcff45c5342b0a9f20f90",
+    "distinct_files": 100000,
+    "templates": 1000,
+    "objects_distribution_percent": {
+      "1": 80,
+      "10": 19,
+      "100": 1
+    },
+    "segment_vertices_cycle": [
+      3,
+      16,
+      100
+    ],
+    "synthetic": true,
+    "os_cache": "uncontrolled; generation/previous runs may warm file cache"
+  },
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "numpy": "2.4.4",
+  "ram_bytes": 33547984896,
+  "logical_cpus": 12,
+  "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "scope": "P1 label-only file engine including export to equivalent packed arrays; image verification excluded",
+  "input_checks": "full name/content SHA256 before and after each measurement, excluded from timing",
+  "os_cache": "pre-read by content verification; no cold-cache claim",
+  "results": [
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 22.542656445875764,
+      "labels_per_s": 4436.03442389751,
+      "peak_rss_bytes": 563896320,
+      "legacy_ru_maxrss_bytes": 563896320,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 27.379574,
+      "system_s": 4.686193,
+      "loadavg": [
+        1.27001953125,
+        1.3466796875,
+        1.20458984375
+      ],
+      "available_ram_bytes": 30749216768,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 1.027842705603689,
+      "labels_per_s": 97291.15112148061,
+      "peak_rss_bytes": 367607808,
+      "legacy_ru_maxrss_bytes": 367607808,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 7.717351,
+      "system_s": 1.053096,
+      "loadavg": [
+        1.22802734375,
+        1.3349609375,
+        1.20166015625
+      ],
+      "available_ram_bytes": 30837436416,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 0.9901189976371825,
+      "labels_per_s": 100997.9610921917,
+      "peak_rss_bytes": 367058944,
+      "legacy_ru_maxrss_bytes": 367058944,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 7.498986,
+      "system_s": 1.09809,
+      "loadavg": [
+        1.1923828125,
+        1.3232421875,
+        1.19873046875
+      ],
+      "available_ram_bytes": 30665347072,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 23.303166633006185,
+      "labels_per_s": 4291.262280996687,
+      "peak_rss_bytes": 563855360,
+      "legacy_ru_maxrss_bytes": 563855360,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 28.314408,
+      "system_s": 4.671965,
+      "loadavg": [
+        1.173828125,
+        1.30712890625,
+        1.19580078125
+      ],
+      "available_ram_bytes": 30684385280,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 23.06233471725136,
+      "labels_per_s": 4336.074435915493,
+      "peak_rss_bytes": 564137984,
+      "legacy_ru_maxrss_bytes": 564137984,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 28.059539,
+      "system_s": 4.517508,
+      "loadavg": [
+        1.09521484375,
+        1.271484375,
+        1.185546875
+      ],
+      "available_ram_bytes": 30747840512,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 1.0640325997956097,
+      "labels_per_s": 93982.0828978445,
+      "peak_rss_bytes": 366657536,
+      "legacy_ru_maxrss_bytes": 366657536,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 7.748533,
+      "system_s": 1.168029,
+      "loadavg": [
+        1.080078125,
+        1.26171875,
+        1.1826171875
+      ],
+      "available_ram_bytes": 30766620672,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 1.0470694690011442,
+      "labels_per_s": 95504.64697953171,
+      "peak_rss_bytes": 367169536,
+      "legacy_ru_maxrss_bytes": 367169536,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 7.777615,
+      "system_s": 1.134858,
+      "loadavg": [
+        1.06689453125,
+        1.2529296875,
+        1.18017578125
+      ],
+      "available_ram_bytes": 30696693760,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 23.031869209371507,
+      "labels_per_s": 4341.809997744807,
+      "peak_rss_bytes": 563777536,
+      "legacy_ru_maxrss_bytes": 563777536,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 27.782268,
+      "system_s": 5.004529,
+      "loadavg": [
+        1.03564453125,
+        1.22314453125,
+        1.17333984375
+      ],
+      "available_ram_bytes": 30699847680,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 22.544090509880334,
+      "labels_per_s": 4435.752240977443,
+      "peak_rss_bytes": 561356800,
+      "legacy_ru_maxrss_bytes": 561356800,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 27.414123,
+      "system_s": 4.618475,
+      "loadavg": [
+        1.1455078125,
+        1.23193359375,
+        1.1787109375
+      ],
+      "available_ram_bytes": 30722703360,
+      "round": 4,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 1.426674353890121,
+      "labels_per_s": 70093.08026553462,
+      "peak_rss_bytes": 365805568,
+      "legacy_ru_maxrss_bytes": 365805568,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "4b46758e95d99220a7cfdd45bf0f4f80b068b763ea1568f00dfbee1f5c0bcb6b",
+      "reference_required": 0,
+      "user_s": 8.130938,
+      "system_s": 1.988804,
+      "loadavg": [
+        1.20361328125,
+        1.2412109375,
+        1.1826171875
+      ],
+      "available_ram_bytes": 30842429440,
+      "round": 4,
+      "parity": true
+    }
+  ]
+}

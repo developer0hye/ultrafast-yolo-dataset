@@ -1,0 +1,30 @@
+{
+  "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "numpy": "2.4.4",
+  "pillow": "12.1.1",
+  "sources": {
+    "YOLODataset": "8fcde5128ee7bfad10d85694b453b5ea151c1d07628f1084fdbe7ef044ea034d",
+    "build_yolo_dataset": "b241900e63bb270c9a554f958d2445725736b432636a92a467c7ab516327b38a",
+    "get_split_fraction": "25c2bfb67788102570cf7e2ce45e0526f11bea59e712063fd3ba8213a119717d",
+    "verify_image_label": "e27353a30ddea3e70331a86a41d052e3b930eb48e6dc820c87135fbeed8fd923",
+    "check_image": "eba9c9dd168ad392791c8bb7ea7d237d8c2a56366ca7032de5fcf27de3d937d4",
+    "exif_size": "4f04ef07c8b90b66473ad278a267eecd949f26a80f090b655f7928180862a62a",
+    "segments2boxes": "9834bd620f2cb3f2fc0b70c3a86c97d1589733097e5f0e112956b44a2562aa26",
+    "xyxy2xywh": "34f63f7f00c6fa9dc3882344eb648a6a2bba68b9c88b0fd53c2fa91d9ec911c2",
+    "get_hash": "c199f5f35674f33ddf1af7b74db5cacf6caa5345b90de604781aede0635f88a3",
+    "img2label_paths": "ef568d5ecad33e9511788ee41491269ed9890a02227ee65a6fca0dd564696628",
+    "load_dataset_cache_file": "6f9378e209ad44756fa45c2748354a28b922f4b9a6c8ea0ee1522ece7aeb4230",
+    "save_dataset_cache_file": "6ec94c2cdbf29073f7421e41f8677c2c2e5eef7d83283a8cd54fdc5087edd0d9",
+    "BaseDataset": "c467cde97ecd798b8711382314c99fdcbb30a1f4acccedc6e92706940ea42379",
+    "YOLODataset.__init__": "66374e7611cc7604f990eac766c8171fc3314cfa54f970bd9256e5d99346f33b",
+    "YOLODataset.cache_labels": "4fbd92e40e89b95c2ba54dcdf8bcdfa908969113448308f7f5a3dc60b819338c",
+    "YOLODataset.get_labels": "ae6745590431e7a51fac18df784d3c88cab5f2ec93a1bd7d996a84e9942bf0f8",
+    "YOLODataset.get_label_files": "3143c3a3fc228da2e9cf36ae93c19092be2c47b02b40554c06fd8ab094f4fc18",
+    "YOLODataset.get_cache_hash": "7e952d8683c93a576333a01a21761fff8e88d207b0f5fbdeaf661e279cf9ef6c",
+    "YOLODataset.verify_args": "25a7776eb2c2cca3556b9f9db27f9cea8a82acd81522effebcfc587e55ecb2b3",
+    "YOLODataset.result_to_label": "0adf2edac6110bc33850ebc38f06456bbd21fea09c3b9879eb5f8dc3841e791b",
+    "YOLODataset.scan_summary": "dd9eeb1404738511c91f2c1495f191a3fdb306d8a2b54b8e43943cd0b2573481",
+    "YOLODataset._load_or_scan_cache": "1f292b5d6bbe59b3ed22d66adf14f0d459c7d10f316b35573efa13755d61a49f",
+    "YOLODataset.verify_labels": "762962c209194f062b4683fea7cd79b163b006242f87787b205beb077fde5436"
+  }
+}
