@@ -14,6 +14,12 @@ image verification and actual initialization. P3 is running and P4 is queued;
 full-scale startup and Segmentation coverage remain incomplete. Historical results
 retain the older fingerprint implementation and their original memory scope.
 
+The first P3 constructor/cache-generation pair passed full-label, first-batch
+and diagnostic parity. Reference/native timings were 137.4544/126.2336 s, but
+constructor high-water RSS increased from 1,752.16 to 1,901.19 MiB. Native
+content revalidation took 48.4948 s. These individual results and the memory
+regression are preserved; four pairs remain, so no repeated P3 conclusion is made.
+
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
 versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;

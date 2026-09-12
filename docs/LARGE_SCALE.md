@@ -60,6 +60,40 @@ and [byte-preservation receipt](validation/detect-500k-p1-preservation-v1.json).
 These results do not complete the actual startup or Segmentation gates. P3/P4
 and a separate full-scale Segmentation workload remain required.
 
+## First Detection P3 pair, incomplete series
+
+The first actual constructor/cache-generation pair completed on all 500,000
+image/label pairs with seven scan workers and zero loader workers. Full mutable
+labels, first-batch output and ordered scan diagnostics match. Both found all
+500,000 labels with zero missing/empty/corrupt entries and zero diagnostics;
+native fallback was zero. The independent partial artifact audit passed.
+
+| Metric, single process per backend | Reference | Native content cache |
+| --- | ---: | ---: |
+| Constructor | 137.4544 s | 126.2336 s |
+| Process high-water RSS sampled at constructor completion | 1,752.16 MiB | 1,901.19 MiB |
+| Cache bytes | 128,361,630 | 195,001,501 |
+
+This pair shows a modest latency improvement but **8.5% higher constructor RSS**.
+Four paired repetitions remain; these are provisional individual measurements,
+not a repeated-performance summary. The P1 memory reduction does not imply
+lower memory for actual cache generation.
+
+Native instrumentation records 48.4948 s in `_validate_inputs`, 1.5079 s in
+`_encode` and 1.2059 s in mutable label export. These hooks cover only part of
+the constructor. Source review locates input revalidation after serialization,
+immediately before atomic cache publication: both image and label content are
+checked against captured fingerprints. This is part of the native cache's
+stronger consistency policy, not removable benchmark overhead. The reference
+uses its ordinary legacy cache. Optimize implementation costs without dropping
+the required content checks; use complete results before prioritizing changes.
+
+The [first-pair archive](../bench/results/detect-500k-p3-first-pair-v1.tar.gz)
+contains exact parent/child reports, the partial audit and its source; the
+[preservation receipt](validation/detect-500k-p3-first-pair-v1.json) binds all
+bytes. The same frozen experiment continues. P3 repeats, P4 and full-scale
+Segmentation remain incomplete.
+
 ## Fixture and preflight
 
 The existing generator uses 16 solid-color JPEG templates and 1,000 seeded label

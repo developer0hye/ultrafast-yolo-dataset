@@ -1,0 +1,12 @@
+{
+  "scope": "First of five P3 pairs only; no repeated-performance aggregate. Native constructor RSS regresses in this pair.",
+  "archive_sha256": "cb4eaedae4f432564bfa69fce3965b81cfaf85fd3bf959c5f559b4446df45b87",
+  "files_sha256": {
+    "series.json": "b4062e19484f89ddf90042a23091806b18247e605bd4d93383ef2970bfe2c653",
+    "audit.json": "fa10b8058cd81ca1ea1ed5984c6f08f970a14fc1256aa7069bc7ab371d142571",
+    "runs/0-reference.json": "7de7e9efdc8eaf0f46bfb6e4236732cc5430427a70ba75606c2147892d2a7adc",
+    "runs/0-native-content.json": "0bf29344c0663a43a3767fd9bdd3e89fa614b29c46d44f986b59db527d0cf739",
+    "auditor.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d"
+  },
+  "auditor_sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d"
+}
