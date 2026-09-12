@@ -351,6 +351,9 @@ def _save_locked(result, path, workers, max_cache_bytes):
     try:
         sections = _encode(result)
         _native.write_cache_sections(str(temporary), sections, max_cache_bytes)
+        # The synchronous writer has flushed the file and released its borrows.
+        # Serialized copies need not stay live during input revalidation.
+        del sections
         # Validate after serialization, immediately before atomic publication.
         # Even metadata-mode saves require proof of the exact captured bytes.
         _validate_inputs(result, workers, content=True)

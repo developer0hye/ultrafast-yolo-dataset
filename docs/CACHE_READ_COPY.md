@@ -1,4 +1,4 @@
-# Experimental direct cache-section reads
+# Experimental cache buffer lifetime changes
 
 This `perf/cache-read-copy` worktree contains an **unbuilt, untested candidate**.
 The ongoing 500k-pair and GPU measurements use their original installed wheels
@@ -21,6 +21,34 @@ It does not remove the cache payload itself, the JSON metadata, array validation
 input content hashing or the final mutable Ultralytics labels. Allocator overhead
 and the highest-memory phase may dominate process RSS; no measured saving or
 cache-hit speedup is claimed.
+
+## Release serialized copies before save-time content revalidation
+
+A later source review adds a separate save-path change: drop the local encoded
+section list immediately after `write_cache_sections` returns. The Rust writer
+already borrows immutable Python bytes and makes no second whole-cache copy.
+It is synchronous, flushing and syncing the temporary file before returning;
+its borrowed buffers and owning references have ended when Python resumes.
+The encoded metadata/array copies are therefore no longer needed by the writer.
+Previously Python retained the list across input content revalidation, atomic
+replacement and directory sync. The candidate ends that lifetime before input
+revalidation, while retaining the original ScanResult and provenance.
+
+This was motivated by the first 500k-pair cache-generation result on the frozen
+baseline: constructor RSS was 1,752.16 MiB for reference and 1,901.19 MiB for
+native, with 48.4948 s in content revalidation. Those values measure neither
+candidate and do not attribute the RSS difference to these copies. A shorter
+object lifetime may not lower the process high-water mark or allocator RSS.
+Shared provenance bytes remain owned by the ScanResult and are not freed merely
+by dropping the section list. No cache format, content check, publication order,
+locking, failure cleanup or reference-compatibility contract is changed.
+
+The prior preparation receipt covers only the Rust reader prototype. This
+save-path change is also **not runtime-tested or benchmarked**. After the hosts
+are free, qualify it using existing save/load parity, mutation-before-publication,
+write-failure and concurrent-writer tests, then profile the constructor phases
+and run a separately identified cache-generation comparison. The direct-reader
+and save-lifetime changes need separate performance attribution.
 
 ## Ownership, errors and GIL scope
 
