@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 import stat
 from pathlib import Path
 
@@ -13,13 +14,15 @@ def sorted_files(directory, suffix):
     recurse through directory symlinks. Matching file symlinks are still read by
     fingerprint(); the stricter synthetic-fixture audit rejects them separately.
     """
-    for path in sorted(directory.iterdir()):
-        if path.is_dir():
-            if path.name.endswith(suffix):
+    with os.scandir(directory) as entries:
+        ordered = sorted(entries, key=lambda entry: entry.name)
+    for entry in ordered:
+        path = Path(entry.path)
+        if entry.is_dir(follow_symlinks=False):
+            if entry.name.endswith(suffix):
                 raise IsADirectoryError(path)
-            if not path.is_symlink():
-                yield from sorted_files(path, suffix)
-        elif path.name.endswith(suffix):
+            yield from sorted_files(path, suffix)
+        elif entry.name.endswith(suffix):
             yield path
 
 

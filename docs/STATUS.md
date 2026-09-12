@@ -3,7 +3,7 @@
 Active development; original PRD goals remain unchanged. Not release-ready.
 
 The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
-preflight and distinct-file audit. Its nine filesystem tests await an idle host;
+preflight and distinct-file audit. Its nine filesystem tests passed on M2;
 no new large fixture or measurement has started. Historical results retain the
 older fingerprint implementation and their original memory scope.
 

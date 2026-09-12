@@ -26,8 +26,10 @@ include their original preflight behavior and must not be silently relabeled.
 
 Nine filesystem cases are prepared in `tests/test_benchmark_fixture.py` for
 hash/order compatibility, shard boundaries, ignored cache files, corruption,
-missing/extra inputs and aliases. They have not run yet while both hosts execute
-other experiments. Ruff and actionlint passed; that is not execution evidence.
+missing/extra inputs and aliases. All nine passed on M2; the combined 21-test
+report (including 12 GPU-artifact checks) and helper source hashes are retained
+in `validation/benchmark-audits-m2.*`. Ruff and actionlint also passed. A small
+actual startup pilot and the full 500k-pair measurements remain pending.
 
 Run preparation, preflight and every measurement sequentially on an otherwise
 unoccupied benchmark host. Start with a small fixture to validate the revised
