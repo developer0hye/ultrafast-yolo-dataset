@@ -1,5 +1,6 @@
 """Bounded hybrid scan: Pillow verification followed by the Rust label engine."""
 
+import json
 import os
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
@@ -8,7 +9,7 @@ from types import MappingProxyType
 import numpy as np
 from PIL import Image, ImageOps
 
-from . import parse_labels
+from . import _native, parse_labels
 from ._reference import exif_size, verify_image_label
 
 IMG_FORMATS = {"avif", "bmp", "dng", "heic", "heif", "jp2", "jpeg", "jpg", "mpo", "png", "tif", "tiff", "webp"}
@@ -31,8 +32,9 @@ class Diagnostic:
     message: str
 
 
-def _check_image(path, repair):
-    with Image.open(path) as im:
+def _check_image(path, repair, *, opener=None, tail=None, save_repaired=None):
+    opener = Image.open if opener is None else opener
+    with opener(path) as im:
         im.verify()
         w, h = exif_size(im)
         shape = (h, w)
@@ -41,18 +43,24 @@ def _check_image(path, repair):
         jpeg = im.format.lower() in {"jpg", "jpeg"}
     message = ""
     if jpeg:
-        with open(path, "rb") as f:
-            f.seek(-2, 2)
-            damaged = f.read() != b"\xff\xd9"
+        if tail is None:
+            with open(path, "rb") as f:
+                f.seek(-2, 2)
+                damaged = f.read() != b"\xff\xd9"
+        else:
+            damaged = tail != b"\xff\xd9"
         if damaged:
             if repair == "reject":
                 raise RepairRequired(
                     "corrupt JPEG requires repair; explicitly set repair_jpeg='reference' to modify the file"
                 )
-            with Image.open(path) as im:
+            with opener(path) as im:
                 corrected = ImageOps.exif_transpose(im)
                 try:
-                    corrected.save(path, "JPEG", subsampling=0, quality=100)
+                    if save_repaired is None:
+                        corrected.save(path, "JPEG", subsampling=0, quality=100)
+                    else:
+                        save_repaired(corrected)
                 finally:
                     corrected.close()
             message = f"{path}: corrupt JPEG restored and saved"
@@ -96,6 +104,10 @@ class ScanResult:
         *,
         label_paths=(),
         repaired_sources=(),
+        provenance=None,
+        fingerprint=None,
+        cache_unavailable_reason=None,
+        source_cwd=None,
     ):
         self.image_paths = tuple(image_paths)
         self.label_paths = tuple(label_paths)
@@ -103,6 +115,10 @@ class ScanResult:
         # duplicate/corrupt labels can overwrite the reference's JPEG message.
         # These indices are bookkeeping, NOT proof of a stable content snapshot.
         self.repaired_source_indices = _immutable(repaired_sources, np.int64)
+        self._provenance = provenance
+        self.fingerprint_policy = fingerprint
+        self.cache_unavailable_reason = cache_unavailable_reason
+        self._source_cwd = source_cwd
         self.num_inputs = len(image_paths)
         self.num_valid = len(source_indices)
         self.source_indices = _immutable(source_indices, np.int64)
@@ -125,6 +141,12 @@ class ScanResult:
         self.diagnostics = tuple(diagnostics)
         self.fallback_count = fallbacks
         self.config = MappingProxyType(dict(config))
+
+    def save_cache(self, path, **options):
+        """Publish a snapshot-backed native cache; ordinary scans cannot be saved."""
+        from ._cache import save_cache
+
+        return save_cache(self, path, **options)
 
     def to_ultralytics_labels(self):
         labels = []
@@ -164,6 +186,9 @@ def scan(
     max_in_flight=256,
     max_file_bytes=16 * 1024**2,
     prefix="",
+    fingerprint=None,
+    max_image_bytes=64 * 1024**2,
+    max_fallback_bytes=64 * 1024**2,
 ):
     """Verify images and parse labels without changing discovery or path order.
 
@@ -172,6 +197,7 @@ def scan(
     """
     images = [os.fsdecode(os.fspath(p)) for p in image_paths]
     labels = [os.fsdecode(os.fspath(p)) for p in label_paths]
+    source_cwd = os.getcwd() if any(not os.path.isabs(p) for p in images + labels) else None
     if len(images) != len(labels):
         raise ValueError("image_paths and label_paths must have equal lengths")
     if task not in ("detect", "segment") or image_validation != "pillow":
@@ -180,8 +206,13 @@ def scan(
         raise ValueError("repair_jpeg must be reject or reference")
     if not 1 <= workers <= 256 or not 1 <= max_in_flight <= 65536 or num_classes < 1:
         raise ValueError("invalid workers, max_in_flight, or num_classes")
-    if max_file_bytes < 1:
-        raise ValueError("max_file_bytes must be positive")
+    if min(max_file_bytes, max_image_bytes, max_fallback_bytes) < 1:
+        raise ValueError("file/image/fallback byte limits must be positive")
+    if fingerprint not in (None, "content", "metadata"):
+        raise ValueError("fingerprint must be None, content, or metadata")
+    if fingerprint:
+        from . import _snapshots
+    image_proofs, label_proofs, unavailable = [], [], []
     summary = {"found": 0, "missing": 0, "empty": 0, "corrupt": 0, "total": len(images)}
     diagnostics, sources, shapes, rows, all_segments, repaired_sources = [], [], [], [], [], []
     fallbacks = 0
@@ -189,16 +220,52 @@ def scan(
         for start in range(0, len(images), max_in_flight):
             stop = min(start + max_in_flight, len(images))
             # Pillow and Rayon stages run sequentially under the same CPU budget.
-            verified = list(pool.map(_verify_image, [(p, repair_jpeg) for p in images[start:stop]]))
+            if fingerprint:
+                captured_images = list(
+                    pool.map(_snapshots.verify_image, [(p, repair_jpeg, max_image_bytes) for p in images[start:stop]])
+                )
+                verified = [v[:3] for v in captured_images]
+                image_proofs.extend(v[3] for v in captured_images)
+                unavailable.extend(v[4] for v in captured_images if v[4])
+            else:
+                verified = list(pool.map(_verify_image, [(p, repair_jpeg) for p in images[start:stop]]))
             valid = [start + i for i, result in enumerate(verified) if result[0] is not None]
-            packed = parse_labels(
-                [labels[i] for i in valid],
-                num_classes=num_classes,
-                task=task,
-                single_cls=single_cls,
-                workers=workers,
-                max_file_bytes=max_file_bytes,
-            )
+            captured_labels = None
+            if fingerprint:
+                try:
+                    captured_labels = _native.snapshot_labels(
+                        [labels[i] for i in valid],
+                        num_classes,
+                        single_cls,
+                        workers,
+                        max_file_bytes,
+                        max_fallback_bytes,
+                    )
+                except (OSError, _native.SnapshotLimitError) as error:
+                    unavailable.append(str(error))
+            if captured_labels is not None:
+                packed = captured_labels
+                proofs = json.loads(captured_labels.fingerprints_json())
+                indexed = dict(zip(valid, proofs))
+                invalid = [start + i for i, v in enumerate(verified) if v[0] is None]
+                try:
+                    indexed.update(
+                        zip(invalid, _snapshots.fingerprints([labels[i] for i in invalid], max_file_bytes, workers))
+                    )
+                except (OSError, _native.SnapshotLimitError) as error:
+                    unavailable.append(str(error))
+                label_proofs.extend(indexed.get(i) for i in range(start, stop))
+            else:
+                packed = parse_labels(
+                    [labels[i] for i in valid],
+                    num_classes=num_classes,
+                    task=task,
+                    single_cls=single_cls,
+                    workers=workers,
+                    max_file_bytes=max_file_bytes,
+                )
+                if fingerprint:
+                    label_proofs.extend([None] * (stop - start))
             arrays = packed.to_arrays()
             del packed
             position = 0
@@ -230,9 +297,16 @@ def scan(
                     raise ResourceLimitError(f"label exceeds max_file_bytes={max_file_bytes}: {labels[source]}")
                 if status == 3:
                     fallbacks += 1
+                    extra = {}
+                    if captured_labels is not None:
+                        # Use the exact bytes already read and hashed by Rust.
+                        # Never reopen a potentially changed path for fallback.
+                        data = captured_labels.fallback_bytes(position - 1)
+                        extra = {"label_isfile": lambda _: True, "open_label": _snapshots.fallback_open(data)}
                     result = verify_image_label(
                         (path, labels[source], prefix, False, num_classes, 0, 0, single_cls),
                         check_image=lambda _, verified_image=(image_message, shape): verified_image,
+                        **extra,
                     )
                     for name, value in zip(("missing", "found", "empty", "corrupt"), result[5:9]):
                         summary[name] += value
@@ -264,7 +338,11 @@ def scan(
         "repair_jpeg": repair_jpeg,
         "max_file_bytes": max_file_bytes,
         "prefix": prefix,
+        "max_image_bytes": max_image_bytes,
+        "max_fallback_bytes": max_fallback_bytes,
     }
+    if fingerprint and source_cwd is not None and os.getcwd() != source_cwd:
+        raise _native.InputChangedError("working directory changed during relative-path scan")
     return ScanResult(
         images,
         sources,
@@ -277,4 +355,8 @@ def scan(
         config,
         label_paths=labels,
         repaired_sources=repaired_sources,
+        provenance={"images": image_proofs, "labels": label_proofs} if fingerprint and not unavailable else None,
+        fingerprint=fingerprint,
+        cache_unavailable_reason="; ".join(dict.fromkeys(unavailable)) or None,
+        source_cwd=source_cwd,
     )

@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
+mod cache;
 mod parser;
+mod provenance;
+mod snapshot;
 use numpy::{IntoPyArray, PyArrayMethods};
 use pyo3::{exceptions::PyValueError, prelude::*, types::PyDict};
 use rayon::prelude::*;
@@ -178,6 +181,9 @@ fn parse_files(
 
 #[pymodule]
 fn _native(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    snapshot::register(m)?;
+    provenance::register(m)?;
+    cache::register(m)?;
     m.add_class::<PackedLabels>()?;
     m.add_function(wrap_pyfunction!(parse_texts, m)?)?;
     m.add_function(wrap_pyfunction!(parse_files, m)?)?;

@@ -1,4 +1,4 @@
-"""Experimental label engine and hybrid Pillow scan. Cache/Ultralytics adapter pending.
+"""Native label engine, hybrid Pillow scan, and explicit versioned cache APIs.
 
 Statuses: 0 valid, 1 missing, 2 empty, 3 reference_required, 4 resource_limit.
 Rows requiring reference processing are never represented as successfully parsed.
@@ -27,5 +27,19 @@ def parse_labels(label_paths, *, num_classes, task="detect", single_cls=False, w
 def scan(*args, **kwargs):
     """Hybrid Pillow image verification and native labels; see _scan.scan."""
     from ._scan import scan as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def scan_cached(*args, **kwargs):
+    """Load or build a content-validated native cache; see _cache.scan_cached."""
+    from ._cache import scan_cached as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def load_cache(*args, **kwargs):
+    """Return a validated ScanResult or CacheMiss; never unpickle native caches."""
+    from ._cache import load_cache as implementation
 
     return implementation(*args, **kwargs)

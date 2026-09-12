@@ -12,6 +12,15 @@ crate-type = ["cdylib", "rlib"]
 pyo3 = { version = "=0.25.1", features = ["extension-module"] }
 numpy = "=0.25.0"
 rayon = "=1.11.0"
+sha2 = "=0.10.9"
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.145"
+fs2 = "=0.4.3"
+
+# sha2 0.10 requires this feature to select its runtime-checked ARM SHA backend.
+# Keep x86's existing runtime-dispatched implementation unchanged.
+[target.'cfg(target_arch = "aarch64")'.dependencies]
+sha2 = { version = "=0.10.9", features = ["asm"] }
 
 [profile.release]
 lto = "thin"

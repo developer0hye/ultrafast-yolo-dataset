@@ -25,6 +25,9 @@
     "YOLODataset.result_to_label": "0adf2edac6110bc33850ebc38f06456bbd21fea09c3b9879eb5f8dc3841e791b",
     "YOLODataset.scan_summary": "dd9eeb1404738511c91f2c1495f191a3fdb306d8a2b54b8e43943cd0b2573481",
     "YOLODataset._load_or_scan_cache": "1f292b5d6bbe59b3ed22d66adf14f0d459c7d10f316b35573efa13755d61a49f",
-    "YOLODataset.verify_labels": "762962c209194f062b4683fea7cd79b163b006242f87787b205beb077fde5436"
-  }
+    "YOLODataset.verify_labels": "762962c209194f062b4683fea7cd79b163b006242f87787b205beb077fde5436",
+    "image_open": "ee6fc0f88771d848065846513dd79bf1e5e382bf4502c26f7d1eb27295043608",
+    "pillow_open": "f1b885a669e39910b4641bd812b2d6b2ac5e9651485465324178200325c9e4cf"
+  },
+  "pi_heif": "1.4.0"
 }

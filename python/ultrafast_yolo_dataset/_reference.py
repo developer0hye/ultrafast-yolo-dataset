@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # Ultralytics commit 795a556942a12fe0124cf767888194a1d0b83e2e.
-# Function bodies preserved; image verification injected as an explicit callback
-# to avoid repeating it or mutating global state during label fallback.
+# Numeric/validation body preserved. Explicit image and label I/O callbacks
+# allow fallback on captured bytes without mutating module globals.
 from __future__ import annotations
 import os
 import numpy as np
@@ -20,7 +20,7 @@ def exif_size(img: Image.Image) -> tuple[int, int]:
             pass
     return s
 
-def verify_image_label(args: tuple, *, check_image) -> list:
+def verify_image_label(args: tuple, *, check_image, label_isfile=os.path.isfile, open_label=open) -> list:
     """Verify one image-label pair."""
     im_file, lb_file, prefix, keypoint, num_cls, nkpt, ndim, single_cls = args
     # Number (missing, found, empty, corrupt), message, segments, keypoints
@@ -31,9 +31,9 @@ def verify_image_label(args: tuple, *, check_image) -> list:
         msg = f"{prefix}{msg}" if msg else ""
 
         # Verify labels
-        if os.path.isfile(lb_file):
+        if label_isfile(lb_file):
             nf = 1  # label found
-            with open(lb_file, encoding="utf-8") as f:
+            with open_label(lb_file, encoding="utf-8") as f:
                 lb = [x.split() for x in f.read().strip().splitlines() if len(x)]
                 if any(len(x) > 6 for x in lb) and (not keypoint):  # is segment
                     assert not any(len(x) == 5 for x in lb), "labels mix segment and detection rows"

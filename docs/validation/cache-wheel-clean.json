@@ -1,0 +1,37 @@
+{
+  "scope": "installed standalone macOS wheel; Detect/Segment cold/warm caches, label-oracle parity, restored-mtime invalidation; no framework or platform-matrix claim",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "numpy": "2.4.4",
+  "pillow": "12.1.1",
+  "package": "/Volumes/T7/ultrafast-vision-build/cache-wheel-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset/__init__.py",
+  "extension_sha256": "ac98d041d2a0e049936ebeaf37f3c718b0176c36fe5ca6ed0e07e2e23d3aff4b",
+  "cases": [
+    {
+      "task": "detect",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "detect",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    }
+  ],
+  "content_edit_detected": true,
+  "metadata_weaker_contract_confirmed": true
+}

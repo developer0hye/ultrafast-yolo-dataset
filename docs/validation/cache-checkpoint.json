@@ -1,0 +1,286 @@
+{
+  "scope": "native cache development checkpoint, not release completion",
+  "final_source_sha256": {
+    "src/cache.rs": "0e697fd53e7ee52901e0554db4eb63cae91ffbd1ee457104b6f715432cca6b26",
+    "src/lib.rs": "3ce99c9e7c4b0701b3b24bef0c2d3e31ea2e78f29513ed5ea5a1cdbc3dbe753b",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "python/ultrafast_yolo_dataset/_cache.py": "b2b9590a9f2402b7e108330bd751241ccd6f5f609e01e552491e600640d4f2e3",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/_scan.py": "1e41af0215be0d5da79520ee36b4fb7b30207ac2e39f61f785f8cff3f5a50954",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "1a4c0c326271f717322ab2e6efc3c82baffefaad1f7fd4a2225aefcccab9d9e3",
+    "requirements-integration.txt": "50ea67b07642169f2912c84aeaf9b9fc1dc7075aab65bab877af9a67d53a6720",
+    "bench/cache_startup.py": "2e25dd7aafa61ee444d4dcbd0f17f4ed323b2b311a4eaded9ad4ea7f452b8dd8",
+    "bench/startup.py": "c56357915777c7a3a43ab65cd19f0af6ab388dbd3e66684b03b93ce9e391f87c",
+    "bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "bench/wheel_smoke.py": "6e2e9d9dcf4af93d23f52a3f8c04e3d05e39291f2985cad602aea6a3177caf78"
+  },
+  "source_archives": [
+    {
+      "archive": "cache-v1-source.tar.gz",
+      "sha256": "ca1b956d0750cbdc08a67c35e8e86985a09689d39a828f2d663fc18deada21f1",
+      "verified_reports": [
+        "cache-hit-m2-v1.json",
+        "cache-hit-server-v1.json"
+      ]
+    },
+    {
+      "archive": "cache-v2-source.tar.gz",
+      "sha256": "aafc3f058f1faa847ba548f2789e41c6c61858f9986fcb5865463185287ed9e3",
+      "verified_reports": [
+        "cache-hit-m2-v2.json",
+        "cache-hit-server-v2.json",
+        "cache-miss-m2-v2.json",
+        "cache-miss-server-v2.json"
+      ]
+    },
+    {
+      "archive": "cache-coco-software-source.tar.gz",
+      "sha256": "8ed41ccde9885df15f36326be6b6c3708f0b645c088c7cdd180cf9554babf947",
+      "verified_reports": [
+        "coco-detect-hit-m2.json",
+        "coco-detect-miss-m2.json",
+        "coco-segment-hit-m2.json",
+        "coco-segment-miss-m2.json"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "artifact": "bench/results/cache-hit-m2-v1.json",
+      "sha256": "d6b0649050ceaa3f3b17de4c360262f671d8452b97261c3e0ad433a1fb7012f5",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/cache-hit-server-v1.json",
+      "sha256": "b8dac5e99902351bfc53f3b863d7ebd6dd1e37e6d4432b6665e53cdfb79b0719",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/cache-hit-m2-v2.json",
+      "sha256": "4dcc5b35c4c102cba5632d8a61f0ad73cab7519491c95965141ad9901cbe9d6a",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/cache-hit-server-v2.json",
+      "sha256": "d3c3cd2f6441b83d38b9367fc4f9efbaa7edd8e1599a4d3544a3e57fe4230497",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/cache-miss-m2-v2.json",
+      "sha256": "05765570e9c99aff2f9673d389b531cb9f4f48033bd60796d6a556ec37691ddd",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/cache-miss-server-v2.json",
+      "sha256": "265fca1f272676f27fa5d5d7acc5147efbbf376489e5b828e7df5f6b25fdaa45",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-hit-m2.json",
+      "sha256": "adfb33dbe122e7e5279bfbc641279c9286aebd9373b97db2842db4aa04bb05a5",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-miss-m2.json",
+      "sha256": "5d5c6fac6f35717621a53a7f36d36da6294a0454e684b27a7e6352b58f80c03d",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-hit-m2.json",
+      "sha256": "c0ab055b5cb89b6d78532d85a8dc4aed2f5bbc94fe6ca4c3fe2c90212d803438",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-miss-m2.json",
+      "sha256": "c9fc4f64cb59d2161a6d2dd32a1741a62c2fada8705362a98c86c928e5d2d710",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-hit-m2-arm.json",
+      "sha256": "07ee0956e3f61b509433973efc3a3b9cff65c0caaad7d508be5cd5df30b6947d",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-hit-server.json",
+      "sha256": "7f459d4efd5ea58b98dda2d4528668f7fe03075577a709e37035f29f70360bbc",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-miss-m2-arm.json",
+      "sha256": "1ff8e383093e6be92f71da960f4ebc1d77fa8a83308c50eeb0661ec3b916da42",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-detect-miss-server.json",
+      "sha256": "e86d3a35d282198168034f86a667bec11db3df76f9280f2f8d543d8fac613bb1",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-hit-m2-arm.json",
+      "sha256": "23044ed0f7f9b88e085d2ceed56c5efc2aa344506d8ab5a7ba85fb28043e2d64",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-hit-server.json",
+      "sha256": "7a441ded46480fbaa88069bde2d63dfb72b17ca2335a71ebf9b223ea6c5c6c86",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-miss-m2-arm.json",
+      "sha256": "799c3aa51ff8d0d55d8f794589db470a69cadde2cf2960e491e485a601790fde",
+      "measured_processes": 10,
+      "parity": true
+    },
+    {
+      "artifact": "bench/results/coco-segment-miss-server.json",
+      "sha256": "e564febb723649cb332fb4bbb7e0282fa6ce6055f63ef888907b631c56292fa5",
+      "measured_processes": 10,
+      "parity": true
+    }
+  ],
+  "validation": [
+    {
+      "artifact": "docs/validation/dataset-cache-arm-full-m2.xml",
+      "sha256": "86d7fc3158579d33b806ea156c3e49852d6977e991ad69ef8089dbddd6ea1155",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "128",
+      "time": "91.801",
+      "timestamp": "2026-09-13T00:51:37.746006+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-compact-full-m2.xml",
+      "sha256": "e1f07be3fed1c79862a9257b00c65e28298a4256f3ca961c6b37d11f6689e8ee",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "112",
+      "time": "91.158",
+      "timestamp": "2026-09-13T00:33:16.691389+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-compact-full-server.xml",
+      "sha256": "5ec25eb50ababd685004d0281741776d7dac62815fac1898d88aeab956a8822c",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "112",
+      "time": "15.622",
+      "timestamp": "2026-09-13T00:37:16.195291+09:00",
+      "hostname": "yonghye-pc"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-final-full-server.xml",
+      "sha256": "eb1d783db3e012e453cf5774200dbf732bb5214576bcfe914c3c0e141fcac93b",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "128",
+      "time": "15.750",
+      "timestamp": "2026-09-13T00:52:58.273260+09:00",
+      "hostname": "yonghye-pc"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-final-local.xml",
+      "sha256": "0c4240ee4225d2761df821105e0254a9e8f617c5b6581d79cb5611986932d9d2",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "43",
+      "time": "2.643",
+      "timestamp": "2026-09-13T00:27:08.192043+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-wheel-arm-clean.xml",
+      "sha256": "c4b951186c36fbc13448e480a1093ce2f8be2e32a3a1730e8c8cd9b7969be893",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "37",
+      "time": "5.491",
+      "timestamp": "2026-09-13T00:53:34.768901+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    },
+    {
+      "artifact": "docs/validation/dataset-cache-wheel-clean-parser.xml",
+      "sha256": "dcca3a323c60d07599fb0fa0fc05a190bf9cf00d6ca0fba0467add0e5c5a15fa",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "21",
+      "time": "5.743",
+      "timestamp": "2026-09-13T00:38:51.992597+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    },
+    {
+      "artifact": "docs/validation/dataset-native-cache-server.xml",
+      "sha256": "8686c4653328c95c1fc0645c0585132f5841b2c2f1999b8962184cb9d619c727",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "99",
+      "time": "15.545",
+      "timestamp": "2026-09-13T00:30:17.456041+09:00",
+      "hostname": "yonghye-pc"
+    },
+    {
+      "artifact": "docs/validation/dataset-native-cache-tests.xml",
+      "sha256": "cb1f0a634b643bd7123e46e31412206ea712a977ce33a756e08378e58efb133c",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "99",
+      "time": "92.304",
+      "timestamp": "2026-09-13T00:19:55.034388+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    }
+  ],
+  "final_benchmark_sources_match_worktree": true,
+  "arm_acceleration_preserves_all_coco_output_hashes": true,
+  "clean_wheel_extension_matches_m2_benchmark": true,
+  "remaining": [
+    "cache-hit speed target",
+    "broader process-memory targets",
+    "500k full workloads",
+    "mask actual training throughput",
+    "supported wheel/CI matrix",
+    "dependency notice bundling"
+  ]
+}

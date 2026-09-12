@@ -1,11 +1,12 @@
 """Explicit integration for the pinned base Detection/Segmentation dataset.
 
-The legacy backend retains Ultralytics' weak path/size invalidation. It is not
-the versioned, content-validated native cache planned for this package.
+The native backend validates captured content; the optional legacy backend
+retains Ultralytics' weaker path/size invalidation and trusted pickle bridge.
 """
 
 import gc
 import hashlib
+import importlib.metadata
 import inspect
 import json
 import os
@@ -18,9 +19,10 @@ from pathlib import Path
 
 import numpy as np
 import PIL
+from PIL import Image
 from ultralytics.data import build, dataset, utils
 from ultralytics.data.base import BaseDataset
-from ultralytics.utils import LOGGER, colorstr, ops
+from ultralytics.utils import LOGGER, colorstr, ops, patches
 
 from . import scan
 
@@ -46,7 +48,15 @@ def check_profile():
     """Reject source drift and replaced runtime hooks before discovery or writes."""
     if np.__version__ != _PROFILE["numpy"] or PIL.__version__ != _PROFILE["pillow"]:
         raise UnsupportedProfile("adapter requires NumPy 2.4.4 and Pillow 12.1.1")
-    objects = {"BaseDataset": BaseDataset}
+    try:
+        heif_version = importlib.metadata.version("pi-heif")
+    except importlib.metadata.PackageNotFoundError:
+        heif_version = None
+    if heif_version != _PROFILE["pi_heif"]:
+        raise UnsupportedProfile("full image/error profile requires pi-heif 1.4.0")
+    if Image.open is not patches.image_open:
+        raise UnsupportedProfile("overridden Pillow image opener")
+    objects = {"BaseDataset": BaseDataset, "image_open": patches.image_open, "pillow_open": patches._image_open}
     for name in _PROFILE["sources"]:
         if name.startswith("YOLODataset."):
             objects[name] = getattr(dataset.YOLODataset, name.split(".")[1], None)
@@ -189,33 +199,54 @@ class FastYOLODataset(_BASE):
         repair_jpeg="reject",
         annotation_cache="none",
         trust_legacy_cache=False,
+        cache_dir=None,
+        cache_fingerprint="content",
+        cache_lock_timeout=30.0,
+        max_cache_bytes=2 * 1024**3,
+        max_image_bytes=64 * 1024**2,
+        max_fallback_bytes=64 * 1024**2,
         **kwargs,
     ):
         check_profile()
         if type(self) is not FastYOLODataset or task not in ("detect", "segment"):
             raise UnsupportedProfile("only the base Detection/Segmentation dataset is supported; retain custom hooks")
-        if annotation_cache not in ("none", "ultralytics"):
-            raise ValueError("annotation_cache must be none or ultralytics; native cache is not yet implemented")
+        if annotation_cache not in ("none", "ultralytics", "native"):
+            raise ValueError("annotation_cache must be none, native, or ultralytics")
         if annotation_cache == "ultralytics" and not trust_legacy_cache:
             raise ValueError("legacy pickle caches require explicit trust_legacy_cache=True")
         if not 1 <= scan_workers <= 256 or not 1 <= max_in_flight <= 65536 or max_file_bytes < 1:
             raise ValueError("invalid scan worker, queue, or file size limit")
         if repair_jpeg not in ("reject", "reference"):
             raise ValueError("repair_jpeg must be reject or reference")
+        if cache_fingerprint not in ("content", "metadata"):
+            raise ValueError("cache_fingerprint must be content or metadata")
         self._scan_options = {
             "workers": scan_workers,
             "max_in_flight": max_in_flight,
             "max_file_bytes": max_file_bytes,
             "repair_jpeg": repair_jpeg,
+            "max_image_bytes": max_image_bytes,
+            "max_fallback_bytes": max_fallback_bytes,
         }
+        self._native_cache_options = {
+            "fingerprint": cache_fingerprint,
+            "lock_timeout": cache_lock_timeout,
+            "max_cache_bytes": max_cache_bytes,
+        }
+        self._native_cache_dir = None if cache_dir is None else Path(cache_dir).absolute()
         self.annotation_cache = annotation_cache
         self.scan_evidence = None
         self.annotation_cache_hit = False
         self.annotation_cache_write_ok = None
         self.annotation_cache_miss_reason = None
+        self.annotation_cache_write_error = None
+        self.annotation_cache_path = None
         super().__init__(*args, task=task, **kwargs)
 
     def _load_or_scan_cache(self, cache_path, cache_hash):
+        if self.annotation_cache == "native":
+            value = self.cache_labels(cache_path)
+            return value, self.annotation_cache_hit
         if self.annotation_cache == "ultralytics":
             try:
                 value = _read_trusted_legacy(cache_path, cache_hash, self._cache_profile(), self.im_files)
@@ -226,12 +257,42 @@ class FastYOLODataset(_BASE):
                 return value, True
         return self.cache_labels(cache_path), False
 
+    def get_labels(self):
+        if self.annotation_cache != "native":
+            return super().get_labels()
+        # Retain the pinned get_labels tail, while avoiding its redundant
+        # legacy path/size hashes. The native cache performs full validation.
+        files = self.get_label_files()
+        path = Path(files[0]).parent.with_suffix(".cache")
+        value, exists = self._load_or_scan_cache(path, None)
+        nf, nm, ne, nc, total = value["results"]
+        if exists and dataset.LOCAL_RANK in {-1, 0}:
+            message = f"Scanning {self.annotation_cache_path}... {self.scan_summary(nf, nm, ne, nc)}"
+            dataset.TQDM(None, desc=self.prefix + message, total=total, initial=total)
+            if value["msgs"]:
+                LOGGER.info("\n".join(value["msgs"]))
+        labels = value["labels"]
+        if not labels:
+            issues = "\n  ".join(sorted(set(value["msgs"]))) or "no error details"
+            raise RuntimeError(f"No valid images found in {path}.\n  {issues}\n{dataset.HELP_URL}")
+        self.im_files = [label["im_file"] for label in labels]
+        self.verify_labels(labels, path)
+        return labels
+
+    def _native_cache_path(self, legacy_path):
+        path = Path(legacy_path).absolute()
+        if self._native_cache_dir is None:
+            return path.with_suffix(".uydcache")
+        key = hashlib.sha256(str(path).encode()).hexdigest()[:20]
+        return self._native_cache_dir / f"{path.stem}-{key}.uydcache"
+
     def _cache_profile(self):
         return {
             "reference_sha": _PROFILE["reference_sha"],
             "numpy": np.__version__,
             "pillow": PIL.__version__,
-            "parser": "0.1.0a1-hybrid-1",
+            "pi_heif": _PROFILE["pi_heif"],
+            "parser": "0.1.0a1-hybrid-2",
             "num_classes": len(self.data["names"]),
             "task": "segment" if self.use_segments else "detect",
             "single_cls": self.single_cls,
@@ -241,23 +302,45 @@ class FastYOLODataset(_BASE):
         }
 
     def cache_labels(self, path=Path("./labels.cache")):
-        result = scan(
-            self.im_files,
-            self.label_files,
+        options = dict(
             num_classes=len(self.data["names"]),
             task="segment" if self.use_segments else "detect",
             single_cls=self.single_cls,
             prefix=self.prefix,
             **self._scan_options,
         )
+        if self.annotation_cache == "native":
+            from . import scan_cached
+
+            result = scan_cached(
+                self._native_cache_path(path), self.im_files, self.label_files, **options, **self._native_cache_options
+            )
+            self.annotation_cache_hit = result.cache_hit
+            self.annotation_cache_path = result.cache_path
+            self.annotation_cache_write_error = result.cache_write_error
+            self.annotation_cache_write_ok = None if result.cache_hit else result.cache_write_error is None
+            if result.cache_write_error:
+                LOGGER.warning(
+                    f"{self.prefix}Native cache unavailable; using scanned labels: {result.cache_write_error}"
+                )
+        else:
+            result = scan(
+                self.im_files,
+                self.label_files,
+                **options,
+            )
         # Retain only small evidence, not a second packed copy for every worker.
-        self.scan_evidence = {
-            "summary": dict(result.summary),
-            "fallback_count": result.fallback_count,
-            "diagnostics": [vars(d) for d in result.diagnostics],
-        }
+        self.scan_evidence = (
+            None
+            if self.annotation_cache_hit
+            else {
+                "summary": dict(result.summary),
+                "fallback_count": result.fallback_count,
+                "diagnostics": [vars(d) for d in result.diagnostics],
+            }
+        )
         messages = [d.message for d in result.diagnostics]
-        if messages:
+        if messages and not self.annotation_cache_hit:
             LOGGER.info("\n".join(messages))
         if result.summary["found"] == 0:
             message = f"{self.prefix}No labels found in {path}. {dataset.HELP_URL}"
@@ -266,7 +349,7 @@ class FastYOLODataset(_BASE):
             LOGGER.warning(message)
         value = {
             "labels": result.to_ultralytics_labels(),
-            "hash": self.get_cache_hash(),
+            "hash": None if self.annotation_cache == "native" else self.get_cache_hash(),
             "results": tuple(result.summary[k] for k in ("found", "missing", "empty", "corrupt", "total")),
             "msgs": messages,
             "version": dataset.DATASET_CACHE_VERSION,

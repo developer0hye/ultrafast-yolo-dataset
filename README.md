@@ -83,7 +83,18 @@ cache policy. A stored scan-profile marker binds task/classes/repair policy;
 unmarked reference caches are rescanned because their configuration is unknown.
 Caches exported by this adapter can also be loaded by the original YOLODataset.
 Truncated/incompatible caches rebuild, and write failure preserves valid scanned
-labels. The separate `.uydcache` content-validated format is still required.
+labels.
+
+`annotation_cache="native", cache_fingerprint="content"` enables the separate
+versioned `.uydcache` format with captured-byte provenance, checksummed compact
+arrays and process-locked atomic publication. Optional `cache_dir` supports
+read-only dataset directories. Content mode verifies all image and label bytes
+on every hit; metadata mode is an explicit weaker option. See
+[the cache contract and format](docs/CACHE.md). Performance validation is ongoing.
+
+Real COCO Detection/Segmentation fixtures and the full constructor/first-batch
+benchmark are reproducible through [COCO_FIXTURE.md](docs/COCO_FIXTURE.md). Results
+include regressions: faster cache generation does not imply faster cache reuse.
 
 ```sh
 uv venv --python 3.12
@@ -115,7 +126,6 @@ runs Ultralytics label verification in its existing ThreadPool style; image chec
 is excluded from both sides. Results are not full dataset-startup or training gains.
 
 Still required: broader Pillow/codec/platform and diagnostic validation,
-versioned content-validated atomic cache,
 representative 100k/500k full-scan/cache/first-batch benchmarks,
 fuzzing and cross-platform wheel/CI validation. See [docs/STATUS.md](docs/STATUS.md).
 

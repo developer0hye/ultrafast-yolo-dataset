@@ -1,4 +1,4 @@
-# Implementation status — 2026-09-12
+# Implementation status — 2026-09-13
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
@@ -12,4 +12,9 @@ Active development; original PRD goals remain unchanged. Not release-ready.
 - Actual Detection startup: M2 1k pairs 0.228 → 0.168 s; server 100k pairs 28.135 → 15.006 s, five paired process runs. Process RSS is approximately equal. M2 1k legacy-cache hits regress 11.98 → 25.84 ms; both favorable and unfavorable results are retained.
 - Successful JPEG repair indices are retained even when label diagnostics overwrite the repair message; ordered label paths and prefix are also preserved. These fields are not content-snapshot proof.
 - macOS CPython 3.12 wheel built; packaged runtime/profile bytes and a fresh-process import/scan smoke were checked with existing dependencies. Clean installation and the supported wheel matrix remain open.
-- Remaining: versioned content-validated native cache with actual-read provenance, repair tracking, corruption/concurrency/race tests; broader codecs/fuzz/platform tests; representative real/500k-file full startup and cache benchmarks; wheels/CI/distribution. No native content-cache or training-throughput gate is established.
+- Native cache implemented: captured image/label bytes (including reference fallback), repaired-byte proof, content/metadata policies, checksummed owned arrays, source/dependency/CPU/plugin profile guards, atomic publication and process-owned locks. Schema 2 uses fixed-width binary fingerprints validated directly in Rust. See [CACHE.md](CACHE.md).
+- Final full suite: 128 tests passed on macOS and Linux, including native Detect/Segment cold/warm batches at workers 0/2, corruption/race/fork/concurrent-writer cases, and hashlib comparisons at SHA padding and read boundaries. Four Rust unit tests, Clippy and Ruff passed on macOS.
+- Synthetic 100k Detection native-cache generation: server 28.132 → 12.877 s (2.18×), RSS 576.4 → 559.0 MiB. Content-hit initialization still regresses: 2.386 → 2.678 s, despite a 5.4% RSS reduction. Initial slower implementations and exact source archives are retained.
+- All 5,000 real COCO val2017 images were converted with the pinned upstream converter, with frozen archive/image/annotation/label hashes. Actual constructor, first batch, counters and diagnostics are compared on both hosts. ARM SHA acceleration fixes a real-data regression: M2 native-cache generation now improves Detection 0.908 → 0.644 s and Segmentation 1.380 → 0.864 s. Server COCO Detection still regresses, and content-hit targets remain unmet; see [BENCHMARKS.md](BENCHMARKS.md).
+- Current macOS CPython 3.12 wheel installed in a new standalone environment: 37 parser/hash tests plus Detect/Segment cold/warm cache smoke passed. Runtime/profile bytes match source. The supported framework/platform wheel matrix remains open.
+- Remaining: cache-hit speed and broader process-memory improvements; 500k-file coverage; broader codecs/fuzz/platform tests; actual training throughput; dependency notice bundling and supported wheels/CI/distribution. Neither library is release-ready; the original goals remain active.

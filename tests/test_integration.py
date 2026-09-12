@@ -242,3 +242,34 @@ def test_explicit_trainer_factory(tmp_path, task):
     # The adapter does not replace the module's original builder/class.
     assert build.YOLODataset is dataset.YOLODataset
     pickle.loads(pickle.dumps(candidate))
+
+
+@pytest.mark.parametrize("task", ["detect", "segment"])
+@pytest.mark.parametrize("workers", [0, 2])
+def test_native_cache_actual_dataset_cold_warm_and_first_batches(tmp_path, monkeypatch, task, workers):
+    images = corpus(tmp_path, task)
+    legacy = tmp_path / "labels.cache"
+    legacy.write_bytes(b"untrusted legacy file must not be opened")
+    native_options = {"annotation_cache": "native", "cache_dir": tmp_path / "separate-cache"}
+
+    def forbidden_pickle(*args, **kwargs):
+        raise AssertionError("native cache path must not call np.load")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(np, "load", forbidden_pickle)
+        first = FastYOLODataset(**kwargs(images, task), **native_options)
+        cached = FastYOLODataset(**kwargs(images, task), **native_options)
+    assert not first.annotation_cache_hit and first.annotation_cache_write_ok
+    assert cached.annotation_cache_hit and cached.scan_evidence is None
+    assert cached.annotation_cache_path.endswith(".uydcache")
+    assert legacy.read_bytes() == b"untrusted legacy file must not be opened"
+    assert len(list((tmp_path / "separate-cache").glob("*.uydcache"))) == 1
+    legacy.unlink()
+    reference = dataset.YOLODataset(**kwargs(images, task))
+    equal(first.labels, reference.labels)
+    equal(cached.labels, reference.labels)
+    options = {"batch_size": 2, "num_workers": workers, "collate_fn": dataset.YOLODataset.collate_fn}
+    if workers:
+        options["multiprocessing_context"] = "spawn"
+    for a, b in zip(DataLoader(cached, **options), DataLoader(reference, **options)):
+        equal(a, b)

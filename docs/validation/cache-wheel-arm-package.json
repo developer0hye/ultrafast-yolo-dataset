@@ -1,0 +1,14 @@
+{
+  "wheel": "ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+  "sha256": "92987657c26b4145c8a0b7f7a749352aa51ac4c1d3237aafc2d7c7668e538180",
+  "runtime_files": {
+    "ultrafast_yolo_dataset/_cache.py": "b2b9590a9f2402b7e108330bd751241ccd6f5f609e01e552491e600640d4f2e3",
+    "ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "ultrafast_yolo_dataset/_scan.py": "1e41af0215be0d5da79520ee36b4fb7b30207ac2e39f61f785f8cff3f5a50954",
+    "ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "ultrafast_yolo_dataset/_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+    "ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684"
+  },
+  "scope": "final ARM-accelerated wheel runtime bytes match source; clean installation, 37 tests and standalone cache smoke are separate artifacts"
+}
