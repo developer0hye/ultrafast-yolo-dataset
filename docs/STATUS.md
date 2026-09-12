@@ -9,8 +9,11 @@ summary or completed-pair claim.
 The next snapshot completed one P1 reference/native pair with identical full
 packed outputs; its partial audit also passed. Four more pairs remain, so no
 repeated-performance claim is made.
-Twenty-four adversarial tests are prepared but not run; the final 500k audits
-remain pending. The active main-worktree measurements retain their frozen code.
+All 24 adversarial tests subsequently passed on Linux/Python 3.12.14 (0.22 s),
+with source-bound JUnit/log evidence in `validation/startup-auditor-linux-tested-v1.json`.
+The real-measurement notes above and below are historical checkpoints of this
+isolated branch; subsequent full-scale results are maintained on `feat/native-core`.
+The active main-worktree measurements retain their frozen code.
 
 The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
 preflight and distinct-file audit. Its nine filesystem tests and the actual

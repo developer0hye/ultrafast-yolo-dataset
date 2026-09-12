@@ -8,9 +8,18 @@ and installed wheel. No measured runtime or benchmark harness was changed.
 The four real 1,003-pair pilot reports (Detection/Segmentation × P3/P4) pass this
 auditor. Their exact output records are in
 `validation/startup-auditor-pilot-*-v2.json`. These are artifact checks on existing
-measurements, not benchmark reruns. Ruff and actionlint passed. The 24 synthetic
-tests in `tests/test_startup_audit.py` are written but **not executed yet** because
-both benchmark hosts have active workloads. The first real 500k-pair P1 reference
+measurements, not benchmark reruns. Ruff and actionlint passed. All 24 synthetic
+tests in `tests/test_startup_audit.py` subsequently passed on Linux/Python 3.12.14
+in 0.22 seconds, with no failures, errors or skips. The original auditor and test
+source hashes match the copied server files; see
+`validation/startup-auditor-linux-tested-v1.json` and the adjacent JUnit/log files.
+The tests ran after the server's mask verification finished and before starting
+its next performance comparison, without overlapping another test or benchmark
+on that host. These fixture tests do not certify unfinished real measurements.
+
+The following checkpoints describe the earlier state of this isolated branch;
+subsequent full-scale results are maintained on `feat/native-core`.
+The first real 500k-pair P1 reference
 worker also passed a partial artifact audit, including fixture/source/native
 identity and the declared count/throughput relationship. Its immutable report is
 `bench/results/detect-500k-p1-checkpoint-1-v1.json`, with the audit under
