@@ -1,7 +1,13 @@
 # 500k-pair startup experiment preparation
 
-No 500k-pair measurement is completed yet. Detection fixture preparation is now
-running on M2, with sequential five-pair P1/P3/P4 runs queued in the same script.
+No 500k-pair measurement is completed yet. Detection fixture preparation and its
+complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
+and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
+`931bd8059aefe560c3601e49d9b5f08ddc87831440bb0a1b4118575edca83f5d`.
+The generator and independent preflight fingerprints match; all entries are
+regular single-link files. Original logs/manifests are retained in
+`validation/detect-500k-{fixture,preflight,prepare}-v1.*`. P1 is now running,
+followed sequentially by the queued five-pair P3/P4 measurements.
 Segmentation remains pending; its resampled annotations need a separate memory
 headroom assessment on the 16 GiB M2 host. The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
