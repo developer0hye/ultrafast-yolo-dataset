@@ -76,6 +76,11 @@ custom trainer. Importing the library does not patch Ultralytics globals. Unknow
 sources, overridden base hooks, further dataset subclasses and unsupported tasks
 raise `UnsupportedProfile`; keep their original implementation.
 
+The current adapter profile pins NumPy 2.4.4, which requires Python 3.11 or
+newer. Although core package metadata allows Python 3.10 with an older NumPy,
+that is not a validated adapter combination. Current execution evidence is on
+CPython 3.12; the wider wheel/profile matrix remains a release requirement.
+
 `annotation_cache="ultralytics", trust_legacy_cache=True` enables the legacy
 pickle bridge for trusted, user-owned caches. It retains **weak path/size hashing**:
 same-size content changes can remain undetected, exactly as with the reference
