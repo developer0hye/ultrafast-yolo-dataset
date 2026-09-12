@@ -2,6 +2,11 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
+preflight and distinct-file audit. Its nine filesystem tests await an idle host;
+no new large fixture or measurement has started. Historical results retain the
+older fingerprint implementation and their original memory scope.
+
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
 versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;

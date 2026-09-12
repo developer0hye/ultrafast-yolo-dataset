@@ -25,6 +25,7 @@ import numpy as np
 import PIL
 import psutil
 import torch
+from fixture_files import fingerprint, source_hashes
 from label_engine import prepare as prepare_labels
 from PIL import Image
 from torch.utils.data import DataLoader
@@ -32,17 +33,6 @@ from ultrafast_yolo_dataset.ultralytics import FastYOLODataset
 from ultralytics.cfg import DEFAULT_CFG
 from ultralytics.data import dataset
 from ultralytics.utils import NUM_THREADS
-
-
-def fingerprint(root):
-    digest = hashlib.sha256()
-    files = sorted((root / "images").rglob("*.jpg")) + sorted((root / "labels").rglob("*.txt"))
-    size = 0
-    for path in files:
-        data = path.read_bytes()
-        digest.update(path.relative_to(root).as_posix().encode() + b"\0" + data)
-        size += len(data)
-    return {"files": len(files), "bytes": size, "sha256": digest.hexdigest()}
 
 
 def prepare(root, count, task):
@@ -215,12 +205,7 @@ def main():
         "ram_bytes": psutil.virtual_memory().total,
         "physical_cpus": psutil.cpu_count(logical=False),
         "logical_cpus": psutil.cpu_count(),
-        "source_sha256": {
-            str(p.relative_to(project)): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in list((project / "src").glob("*.rs"))
-            + list((project / "python").rglob("*.py"))
-            + [Path(__file__).resolve()]
-        },
+        "source_sha256": source_hashes(project),
         "corpus": json.loads((args.corpus / "startup.json").read_text()),
         "results": [],
     }

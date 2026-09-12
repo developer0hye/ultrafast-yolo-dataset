@@ -27,6 +27,7 @@ import numpy as np
 import PIL
 import psutil
 import torch
+from fixture_files import source_hashes
 from startup import digest_value, fingerprint, peak_rss
 from torch.utils.data import DataLoader
 from ultrafast_yolo_dataset import _native
@@ -288,12 +289,7 @@ def main():
         "ram_bytes": psutil.virtual_memory().total,
         "logical_cpus": psutil.cpu_count(),
         "native_extension_sha256": hashlib.sha256(Path(_native.__file__).read_bytes()).hexdigest(),
-        "source_sha256": {
-            str(p.relative_to(project)): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in list((project / "src").glob("*.rs"))
-            + list((project / "python").rglob("*.py"))
-            + [Path(__file__).resolve()]
-        },
+        "source_sha256": source_hashes(project),
         "corpus": fixture_manifest(root),
         "results": [],
     }

@@ -19,10 +19,11 @@ from pathlib import Path
 
 import numpy as np
 import psutil
+from fixture_files import source_hashes
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tests"))
 from reference import verify_image_label
-from ultrafast_yolo_dataset import parse_labels
+from ultrafast_yolo_dataset import _native, parse_labels
 
 
 def prepare(root, task, count):
@@ -160,6 +161,7 @@ def main():
         return
     if not args.out:
         p.error("--out required")
+    project = Path(__file__).resolve().parents[1]
     report = {
         "corpus": json.loads((args.corpus / "manifest.json").read_text()),
         "platform": platform.platform(),
@@ -168,6 +170,8 @@ def main():
         "ram_bytes": psutil.virtual_memory().total,
         "logical_cpus": psutil.cpu_count(),
         "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+        "native_extension_sha256": hashlib.sha256(Path(_native.__file__).read_bytes()).hexdigest(),
+        "source_sha256": source_hashes(project),
         "scope": "P1 label-only file engine including export to equivalent packed arrays; image verification excluded",
         "input_checks": "full name/content SHA256 before and after each measurement, excluded from timing",
         "os_cache": "pre-read by content verification; no cold-cache claim",
