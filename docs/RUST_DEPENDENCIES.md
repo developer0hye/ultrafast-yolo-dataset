@@ -30,9 +30,18 @@ macOS and Rust 1.97.1 on the Linux benchmark host. Each supplied file has a hash
 in the manifest. Changing the lockfile, target set or compiler requires reviewing
 and refreshing this collection. Maturin now uses locked dependency resolution.
 
-This source bundle has not yet been validated in a newly built wheel/sdist.
-Earlier installed-wheel tests predate its addition. The prepared compatibility
-workflow compares all bundled source files with the wheel, sdist and isolated
-installation; it also checks the pinned Rust compiler's copyright HTML against
-the supplied copy. Hosted CI has not run. Embedded notices, platform-specific
-system dependencies and final redistribution coverage still require review.
+A rebuilt M2 CPython 3.12 wheel and sdist now preserve all 137 bundle files,
+including the manifest, exactly. A fresh NumPy/Pillow installation passed the
+RECORD/installed-byte audit, all four standalone cache cases and 65 parser,
+hashing and materialization tests. The wheel SHA-256 is
+`2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595`.
+Reports, JUnit, archive hashes and logs are retained in
+`docs/validation/dataset-notices-*`. Its macOS 11 arm64 tag is not proof of an
+actual macOS 11 run. The full framework suite was not rerun for this packaging
+change; the earlier 157-test results remain attached to their original wheel.
+
+The prepared compatibility workflow uses the same source/wheel/sdist/installed
+notice comparison and also checks the pinned Rust compiler's copyright HTML
+against the supplied copy. Hosted CI has not run. Embedded notices,
+platform-specific system dependencies and final redistribution coverage still
+require review.

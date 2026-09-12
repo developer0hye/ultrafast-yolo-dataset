@@ -1,0 +1,10 @@
+{
+  "scope": "CPython 3.12 M2 installed wheel; other platforms and runtime suite not rerun",
+  "files": {
+    "ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl": "2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595",
+    "ultrafast_yolo_dataset-0.1.0a1.tar.gz": "3d9fd303dbbae6608d88f366a8cb7f7c919a65528c1de0ac3ad8c9853b3c5be7"
+  },
+  "notice_files_including_manifest": 137,
+  "core_tests": 65,
+  "cache_cases": 4
+}

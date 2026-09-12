@@ -4,7 +4,8 @@ Active development; original PRD goals remain unchanged. Not release-ready.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
-versions. Source hashes are verified; new wheel/sdist validation is pending.
+versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;
+installed-byte auditing, 65 core tests and four standalone cache cases passed.
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
 locally linted, with hosted execution awaiting the repository visibility choice.
 

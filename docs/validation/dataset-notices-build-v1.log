@@ -1,0 +1,18 @@
+📦 Including license file `LICENSE`
+📦 Including license file `NOTICE`
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.12 at /Volumes/T7/ultrafast-vision-build/venv/bin/python
+🔗 Found pyo3 bindings
+💻 Using `MACOSX_DEPLOYMENT_TARGET=11.0` for aarch64-apple-darwin by default
+    Finished `release` profile [optimized] target(s) in 0.11s
+📦 Built wheel for CPython 3.12 to /Volumes/T7/ultrafast-vision-build/dataset-notices-dist-v1/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl
+📦 Including license file `LICENSE`
+📦 Including license file `NOTICE`
+🍹 Building a mixed python/rust project
+🔗 Found pyo3 bindings
+📡 Using build options locked from pyproject.toml
+From `cargo package --list --allow-dirty --manifest-path /Users/yhkwon/Documents/ultrafast-yolo-dataset/Cargo.toml`:
+warning: manifest has no description, documentation, homepage or repository
+  |
+  = note: see https://doc.rust-lang.org/cargo/reference/manifest.html#package-metadata for more info
+📦 Built source distribution to /Volumes/T7/ultrafast-vision-build/dataset-notices-dist-v1/ultrafast_yolo_dataset-0.1.0a1.tar.gz

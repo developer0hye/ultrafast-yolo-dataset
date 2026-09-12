@@ -1,0 +1,59 @@
+Using CPython 3.12.13 interpreter at: /Volumes/T7/ultrafast-vision-build/venv/bin/python
+Creating virtual environment with seed packages at: /Volumes/T7/ultrafast-vision-build/dataset-notices-clean-v1
+ + pip==26.2.1
+Activate with: source /Volumes/T7/ultrafast-vision-build/dataset-notices-clean-v1/bin/activate
+Using Python 3.12.13 environment at: /Volumes/T7/ultrafast-vision-build/dataset-notices-clean-v1
+Resolved 7 packages in 81ms
+Installed 7 packages in 113ms
+ + iniconfig==2.3.0
+ + numpy==2.4.4
+ + packaging==26.3
+ + pillow==12.1.1
+ + pluggy==1.6.0
+ + pygments==2.21.0
+ + pytest==9.1.1
+Using Python 3.12.13 environment at: /Volumes/T7/ultrafast-vision-build/dataset-notices-clean-v1
+Resolved 1 package in 1ms
+Prepared 1 package in 119ms
+Installed 1 package in 4ms
+ + ultrafast-yolo-dataset==0.1.0a1 (from file:///Volumes/T7/ultrafast-vision-build/dataset-notices-dist-v1/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl)
+Installed wheel and 137 notice files verified on arm64
+{
+  "scope": "installed standalone wheel on the recorded platform; Detect/Segment cold/warm caches, label-oracle parity, restored-mtime invalidation; no framework or platform-matrix claim",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "numpy": "2.4.4",
+  "pillow": "12.1.1",
+  "package": "/Volumes/T7/ultrafast-vision-build/dataset-notices-clean-v1/lib/python3.12/site-packages/ultrafast_yolo_dataset/__init__.py",
+  "extension_sha256": "5799c19d7fbe704451cb9ac3e7e72f1b6c8ecdd8219d7fca971dfcb24eff2b0b",
+  "cases": [
+    {
+      "task": "detect",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "detect",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    }
+  ],
+  "content_edit_detected": true,
+  "metadata_weaker_contract_confirmed": true
+}
+.................................................................        [100%]
+65 passed in 5.20s
