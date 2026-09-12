@@ -1,0 +1,37 @@
+{
+  "scope": "installed standalone wheel on the recorded platform; Detect/Segment cold/warm caches, label-oracle parity, restored-mtime invalidation; no framework or platform-matrix claim",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "numpy": "2.4.4",
+  "pillow": "12.1.1",
+  "package": "/home/yonghye/ultrafast-vision-build/dataset-wheel-linux-clean-v2/lib/python3.12/site-packages/ultrafast_yolo_dataset/__init__.py",
+  "extension_sha256": "274dc3ae164435e9fa5f588aec3d184a4faffc50a38d6bf8b50273c86f78f7b1",
+  "cases": [
+    {
+      "task": "detect",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "detect",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "content",
+      "cache_hit": true,
+      "parity": true
+    },
+    {
+      "task": "segment",
+      "policy": "metadata",
+      "cache_hit": true,
+      "parity": true
+    }
+  ],
+  "content_edit_detected": true,
+  "metadata_weaker_contract_confirmed": true
+}

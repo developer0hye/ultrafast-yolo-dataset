@@ -87,7 +87,7 @@ def main():
             )
             assert isinstance(value, CacheMiss) == (policy == "content")
     report = {
-        "scope": "installed standalone macOS wheel; Detect/Segment cold/warm caches, label-oracle parity, restored-mtime invalidation; no framework or platform-matrix claim",
+        "scope": "installed standalone wheel on the recorded platform; Detect/Segment cold/warm caches, label-oracle parity, restored-mtime invalidation; no framework or platform-matrix claim",
         "python": sys.version,
         "platform": platform.platform(),
         "numpy": np.__version__,
