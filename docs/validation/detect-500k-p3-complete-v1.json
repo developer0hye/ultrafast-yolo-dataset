@@ -1,0 +1,92 @@
+{
+  "scope": "complete 500000-pair Detection cache generation, five paired fresh-process repetitions, 7 scan workers; all requested artifacts audited",
+  "files_sha256": {
+    "series.json": "ab682d65ad221c467451c62aa03f44f7bd84c6f0dc1da661029c293bef597e37",
+    "audit.json": "332082e9fa6bc4cd002a84e02609b933bed0c039024baf9d633b1fe03002a9db",
+    "run.log": "2889cce69b193dfb543d77ee1bd8e249dd9dee1e048d2a2f4f47c62f86155dc9",
+    "auditor.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+    "launch.json": "e274e709557bb2f2decccddcca1b48c4b3f5ab548a5fc4c76bb60877e75e8c9e",
+    "preflight.json": "2dccb4afbdad6b75eaf11b91f957bbba471bfadcebde316a3e4d0e4eee9eae28",
+    "fixture-manifest.json": "18be0c465d5e87030c62a7909a17711451c5bff10f1718d396eefac19cd0fa65",
+    "runs/0-reference.json": "7de7e9efdc8eaf0f46bfb6e4236732cc5430427a70ba75606c2147892d2a7adc",
+    "runs/0-native-content.json": "0bf29344c0663a43a3767fd9bdd3e89fa614b29c46d44f986b59db527d0cf739",
+    "runs/1-native-content.json": "a33ac83bb8213b451d2ebc222dc56d58501d86a8b127c327f4af524d0b3d0512",
+    "runs/1-reference.json": "1b4734c7c8d4efb912d5e6121816c19569ba8930157dfd56b3870fd925fa6349",
+    "runs/2-reference.json": "65b318f2420e94b3d53748f701ec6d631772e69becb291f101be987d99200255",
+    "runs/2-native-content.json": "84edf01c1b20bb5a1a4e8763fd39ba37971f1dd1347cc51f4aae6be79d39b416",
+    "runs/3-native-content.json": "ee2821789d1697ad9417f982c96cc5dc6416de6c6edc2c749cc578f317022eee",
+    "runs/3-reference.json": "82be4337ae7cb71977a830b84d52ef56b5bf6c5102d621c7d3fc94906451b709",
+    "runs/4-reference.json": "0014c9c0575c3e254a88b38b4ac2be99cf7ad603a0352f916eafe235ae5b31c0",
+    "runs/4-native-content.json": "132b071f39a51720f22a897d47c6d1998096d0ff2d71d6fd76438e9a3a6ca8bb",
+    "source/src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "source/src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "source/src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "source/src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "source/src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "source/src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "source/python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "source/python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "source/python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "source/python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "source/python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "source/python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "source/bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "source/bench/cache_startup.py": "588981bd6fa1f4947b6a665c94dae97836e6696073aeeff8a1e032a388096c1a",
+    "source/bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "source/bench/collect_rust_notices.py": "c95f5db3678b5c7541c92f216aefcb187ae0d6c83c05b3b35f7df4df0e67bf46",
+    "source/bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "source/bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "source/bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "source/bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "source/bench/wheel_smoke.py": "fb183c06426daa7142f19732f364bdc2e4bd5366c570c123ba296bbac9ce3ea4",
+    "source/Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "source/Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "source/pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "source/tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "summary": {
+    "constructor_s": {
+      "pairs": 5,
+      "reference_median": 137.45437495794613,
+      "candidate_median": 126.23356104199775,
+      "reference_over_candidate": 1.0888893082261637,
+      "paired_bootstrap_ci95": [
+        1.0825350185287028,
+        1.1301650816863458
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "first_batch_total_s": {
+      "pairs": 5,
+      "reference_median": 137.55326458299533,
+      "candidate_median": 126.25146354199387,
+      "reference_over_candidate": 1.0895181784347572,
+      "paired_bootstrap_ci95": [
+        1.0825297471524369,
+        1.130144139556682
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "peak_rss_constructor_bytes": {
+      "pairs": 5,
+      "reference_median": 1837465600,
+      "candidate_median": 1993539584,
+      "reference_over_candidate": 0.9217101153884085,
+      "paired_bootstrap_ci95": [
+        0.9200390493613461,
+        0.9230072836508786
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    }
+  },
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation."
+  ],
+  "archive_sha256": "20d45e129a00fd4fa34ac0035d14f5f41c2ddaa97aca8a6d39d632ffa1d8ddc8"
+}

@@ -1,14 +1,15 @@
 # 500k-pair startup experiment
 
-Detection P1 has completed all five paired measurements; P3 is running and P4
-remains queued. Actual full-scale startup is not yet verified. Fixture preparation and its
+Detection P1 and P3 completed all five paired measurements and their artifact
+audits; P4 content-cache hits are running. Full-scale Segmentation remains open.
+Fixture preparation and its
 complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
 and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
 `931bd8059aefe560c3601e49d9b5f08ddc87831440bb0a1b4118575edca83f5d`.
 The generator and independent preflight fingerprints match; all entries are
 regular single-link files. Original logs/manifests are retained in
 `validation/detect-500k-{fixture,preflight,prepare}-v1.*`. The same frozen runtime
-and inputs continue sequentially through five-pair P3/P4 measurements.
+and inputs continue into the five-pair P4 measurement.
 The active host is an Apple M2 with eight CPU cores and 16 GiB RAM, on macOS
 26.6.2. Inputs reside on the `/Volumes/T7` USB SSD using APFS and 4 KiB device
 blocks. A read-only mid-run hardware/package observation is preserved in
@@ -57,10 +58,10 @@ still pending while the hosts are occupied.
 See [raw report](validation/detect-500k-p1-complete-v1.json),
 [audit and exact statistics](validation/detect-500k-p1-complete-audit-v1.json),
 and [byte-preservation receipt](validation/detect-500k-p1-preservation-v1.json).
-These results do not complete the actual startup or Segmentation gates. P3/P4
-and a separate full-scale Segmentation workload remain required.
+P1 alone does not establish actual startup or Segmentation results. The completed
+P3 results are below; P4 and full-scale Segmentation remain required.
 
-## First Detection P3 pair, incomplete series
+## Historical first Detection P3 pair
 
 The first actual constructor/cache-generation pair completed on all 500,000
 image/label pairs with seven scan workers and zero loader workers. Full mutable
@@ -75,8 +76,8 @@ native fallback was zero. The independent partial artifact audit passed.
 | Cache bytes | 128,361,630 | 195,001,501 |
 
 This pair shows a modest latency improvement but **8.5% higher constructor RSS**.
-Four paired repetitions remain; these are provisional individual measurements,
-not a repeated-performance summary. The P1 memory reduction does not imply
+Four paired repetitions remained at this checkpoint; these are individual
+measurements, not the subsequent complete-series summary below. The P1 memory reduction does not imply
 lower memory for actual cache generation.
 
 Native instrumentation records 48.4948 s in `_validate_inputs`, 1.5079 s in
@@ -91,8 +92,7 @@ the required content checks; use complete results before prioritizing changes.
 The [first-pair archive](../bench/results/detect-500k-p3-first-pair-v1.tar.gz)
 contains exact parent/child reports, the partial audit and its source; the
 [preservation receipt](validation/detect-500k-p3-first-pair-v1.json) binds all
-bytes. The same frozen experiment continues. P3 repeats, P4 and full-scale
-Segmentation remain incomplete.
+bytes. P3 subsequently completed; P4 and full-scale Segmentation remain incomplete.
 
 ## Fixture and preflight
 
@@ -182,4 +182,43 @@ inputs and installed binaries. Segmentation has not been launched.
   case; do not extrapolate a 500k result from a smaller successful subset.
 
 The performance/memory targets and release gates in the original PRD remain
-unchanged. This document and the revised preflight are preparation, not a pass.
+unchanged. Completed phase measurements do not satisfy the remaining release gates.
+
+
+## Completed 500k Detection cache generation (P3)
+
+All five paired fresh-process repetitions completed and passed the independent
+artifact audit. All ten runs have identical complete labels, first batches,
+counters and ordered diagnostics, with 500,000 found pairs and no native fallback.
+Every one of the 25 recorded launch source hashes still matches the source tree.
+
+| Measurement | Reference median | Native median | Reference/native | Exact paired 95% interval |
+|---|---:|---:|---:|---:|
+| Constructor including cache generation | 137.4544 s | 126.2336 s | 1.0889 | 1.0825–1.1302 |
+| Constructor through first batch | 137.5533 s | 126.2515 s | 1.0895 | 1.0825–1.1301 |
+| Constructor high-water RSS | 1752.34375 MiB | 1901.18750 MiB | 0.9217 | 0.9200–0.9230 |
+
+Constructor latency is about 8.16% lower, while peak RSS is about 8.49% higher.
+This does not reproduce the label-engine-only P1 memory reduction. The native
+cache uses captured-content revalidation before atomic publication, whereas the
+ordinary reference cache has a weaker invalidation contract; this is an actual
+cache-generation comparison, not proof of equivalent cache consistency costs.
+The previously preserved first pair measured 48.49 s of native save-time content
+revalidation. Buffer lifetime is a candidate explanation to investigate, not a
+proven cause of the RSS regression or evidence that an untested fix works.
+
+Intervals enumerate all 3,125 ordered paired resamples; parent medians/p95 values
+are checked independently. Constructor timing excludes fixture checks, imports
+and post-constructor output hashing. High-water RSS still includes imports,
+preflight and allocator history. Full file checks can warm the storage cache;
+these are shared-host observations, not cold-storage or working-allocation claims.
+The fixture uses distinct files with repeated synthetic content, not 500,000
+unique natural images. P4 content-mode cache hits are running separately and
+full-scale Segmentation remains unmeasured.
+
+The [complete archive](../bench/results/detect-500k-p3-complete-v1.tar.gz) preserves
+the ten raw reports, parent, log, exact auditor, launch/preflight/fixture identity,
+and all 25 recorded source files. The
+[preservation manifest](validation/detect-500k-p3-complete-v1.json) binds every
+archived file and retains the complete independent statistics. The auditor passed
+on these real artifacts; its separately prepared adversarial tests remain pending.
