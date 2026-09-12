@@ -1,0 +1,8 @@
+{
+  "src/lib.rs": "8c1b58e033b0e8b0f29eeb8e13920c3fa44abce4aec6232463eca1673e5bfa86",
+  "src/parser.rs": "35855b878396c7b20875a30dbe7cc98145baec60339938361bdf8c4ad3e20e85",
+  "python/ultrafast_yolo_dataset/__init__.py": "07ac2dc5c20aba64b9f48425f28a582c68e7fe39a17575d52f6dd807377187d8",
+  "tests/test_parser.py": "0f168579c4170ecc85adfe793a7866d56ba81cfe4db2088855410be6492afa08",
+  "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924",
+  "bench/label_engine.py": "a58be2367e093cc2a579e97cab6acb31eac6764dda51cb775e6c3360b5f3c53b"
+}

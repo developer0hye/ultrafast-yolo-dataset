@@ -1,0 +1,18 @@
+[package]
+name = "ultrafast-yolo-dataset"
+version = "0.1.0-alpha.1"
+edition = "2021"
+license = "AGPL-3.0-or-later"
+
+[lib]
+name = "_native"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "=0.25.1", features = ["extension-module"] }
+numpy = "=0.25.0"
+rayon = "=1.11.0"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
