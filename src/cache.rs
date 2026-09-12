@@ -84,26 +84,31 @@ pub fn read_cache_sections(
     let mut result = Vec::with_capacity(descriptors.len());
     for (length, expected) in descriptors {
         py.check_signals()?;
-        let mut data = py.allow_threads(|| -> PyResult<_> {
-            let mut data = Vec::new();
-            data.try_reserve_exact(length)
-                .map_err(|e| PyMemoryError::new_err(e.to_string()))?;
-            data.resize(length, 0);
-            Ok(data)
+        if length > isize::MAX as usize {
+            return Err(PyMemoryError::new_err(
+                "cache section exceeds Python bytes capacity",
+            ));
+        }
+        // The bytes object stays private until initialization succeeds. Fill and
+        // hash its owned buffer directly, avoiding a same-sized temporary Vec
+        // and the subsequent Vec -> PyBytes copy. new_with zero-initializes the
+        // allocation and drops it on any read, checksum or signal error.
+        let data = PyBytes::new_with(py, length, |data| {
+            let mut hasher = Sha256::new();
+            for chunk in data.chunks_mut(4 * 1024 * 1024) {
+                py.check_signals()?;
+                py.allow_threads(|| -> PyResult<()> {
+                    exact(&mut file, chunk)?;
+                    hasher.update(chunk);
+                    Ok(())
+                })?;
+            }
+            if hasher.finalize()[..] != expected {
+                return Err(malformed("section checksum mismatch"));
+            }
+            Ok(())
         })?;
-        let mut hasher = Sha256::new();
-        for chunk in data.chunks_mut(4 * 1024 * 1024) {
-            py.check_signals()?;
-            py.allow_threads(|| -> PyResult<()> {
-                exact(&mut file, chunk)?;
-                hasher.update(chunk);
-                Ok(())
-            })?;
-        }
-        if hasher.finalize()[..] != expected {
-            return Err(malformed("section checksum mismatch"));
-        }
-        result.push(PyBytes::new(py, &data).unbind());
+        result.push(data.unbind());
     }
     let final_meta = file.metadata()?;
     if initial.len() != final_meta.len() || initial.modified()? != final_meta.modified()? {

@@ -1,0 +1,24 @@
+{
+  "scope": "source-level review of unbuilt cache-section read candidate; no compilation, tests or measured speed/memory results",
+  "dependency": "pyo3 0.25.1",
+  "reviewed_file": "/Users/yhkwon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-0.25.1/src/types/bytes.rs",
+  "reviewed_file_sha256": "ec93edc3b94f0fa3b79f96ed5233547fd4e48a3037893495aa95a68cdfdcd003",
+  "inspected_behavior": [
+    "PyBytes::new copies the full input slice",
+    "PyBytes::new_with zero-initializes final owned bytes before invoking initializer",
+    "initializer error drops the unpublished bytes object",
+    "allocation errors return PyErr"
+  ],
+  "source_sha256": {
+    "src/cache.rs": "eaa648cde00a52738d3bb20241723ed76f63c2763455cd1d8efb813c1f8f6730",
+    "tests/test_cache_section_buffers.py": "fee9f2f63a8414e01cbfefaa3b8c5fde98c141c1d7b94c41d107402d1c0af136",
+    ".github/workflows/wheels.yml": "39f47f218c32bf4744c2199c245f3e1b9a79ddea467c4fee6b25a5511e924d9e"
+  },
+  "checks": {
+    "cargo_fmt": "passed",
+    "ruff": "0.16.7 passed",
+    "actionlint": "1.7.12 passed",
+    "build": "not run",
+    "tests": "12 prepared, not run"
+  }
+}

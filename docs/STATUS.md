@@ -2,6 +2,11 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+This experimental branch removes the intermediate copy when reading native cache
+sections. It is not built or tested; twelve focused cases are prepared. No active
+benchmark uses this source. See [CACHE_READ_COPY.md](CACHE_READ_COPY.md) for the
+ownership argument, GIL tradeoff and required validation before merging.
+
 The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
 preflight and distinct-file audit. Its nine filesystem tests and the actual
 1,003-pair Detection/Segmentation P3/P4 pilot passed on M2. Preparation of a fresh
