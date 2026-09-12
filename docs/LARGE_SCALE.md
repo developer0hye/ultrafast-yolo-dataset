@@ -8,6 +8,14 @@ The generator and independent preflight fingerprints match; all entries are
 regular single-link files. Original logs/manifests are retained in
 `validation/detect-500k-{fixture,preflight,prepare}-v1.*`. P1 is now running,
 followed sequentially by the queued five-pair P3/P4 measurements.
+The active host is an Apple M2 with eight CPU cores and 16 GiB RAM, on macOS
+26.6.2. Inputs reside on the `/Volumes/T7` USB SSD using APFS and 4 KiB device
+blocks. A read-only mid-run hardware/package observation is preserved in
+`validation/detect-500k-host-supplement-v1.json`; it matches the sealed P1
+checkpoint's native extension, Python, NumPy and CPU/RAM identity. It does not
+measure USB link speed, drive firmware or thermal stability. Treat results as
+specific to this shared host/storage condition, not a general SSD throughput
+claim or a cold-cache benchmark.
 Segmentation remains pending; its resampled annotations need a separate memory
 headroom assessment on the 16 GiB M2 host. The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection

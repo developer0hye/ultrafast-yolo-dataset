@@ -1,0 +1,39 @@
+{
+  "scope": "read-only host/package supplement collected during the running benchmark, not a launch-time or continuous resource sample",
+  "recorded_utc": "2026-09-12T20:06:48.809577+00:00",
+  "cpu": "Apple M2",
+  "physical_cpus": 8,
+  "logical_cpus": 8,
+  "ram_bytes": 17179869184,
+  "macos": "26.6.2",
+  "machine": "arm64",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "python_executable": "/Volumes/T7/ultrafast-vision-build/mask-resize-roi-clean-v2/bin/python",
+  "storage": {
+    "BusProtocol": "USB",
+    "DeviceBlockSize": 4096,
+    "FilesystemType": "apfs",
+    "SolidState": true,
+    "TotalSize": 999995129856
+  },
+  "storage_mount": "/Volumes/T7",
+  "storage_free_at_observation_bytes": 30425837568,
+  "packages": {
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "opencv-python": "4.13.0.92",
+    "torch": "2.10.0",
+    "torchvision": "0.25.0",
+    "ultralytics": "8.4.149",
+    "ultrafast-yolo-dataset": "0.1.0a1"
+  },
+  "native_extension_sha256": "5799c19d7fbe704451cb9ac3e7e72f1b6c8ecdd8219d7fca971dfcb24eff2b0b",
+  "launch_receipt_sha256": "e274e709557bb2f2decccddcca1b48c4b3f5ab548a5fc4c76bb60877e75e8c9e",
+  "observed_checkpoint_sha256": "29f4cf35171bfc0a8f6d3a4d33a996ef82d100ed559651aa1182c78cd12cc32d",
+  "completed_workers_at_checkpoint": 3,
+  "limits": [
+    "USB speed, SSD firmware and thermal throttling are not measured by this metadata probe.",
+    "OS file caches are warmed by full input validation; no cold-cache result is claimed.",
+    "No build, test, training or parsing call was launched by this probe."
+  ]
+}
