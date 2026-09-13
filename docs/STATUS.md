@@ -29,7 +29,9 @@ not a Python-versus-Rust hashing comparison. The native cache is larger on disk
 (195,001,501 versus 128,361,630 bytes). The 1.5x cache-hit target remains unmet.
 The [Segmentation capacity plan](SEGMENT_500K_PLAN.md) corrects the earlier
 assumption that all polygons are resampled at constructor time; actual full-scale
-memory use and timings still require measurement on the 32 GB server.
+memory use and timings still require measurement. The full 500k Segmentation
+controller has now started preparation on the 32 GB server, followed by capacity
+qualification and five-pair P1/P3/P4 measurements if all preceding checks pass.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
