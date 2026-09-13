@@ -43,3 +43,10 @@ Before integration:
 
 No build/test/measurement job for this candidate is queued automatically. Finish
 each host's reserved campaign before starting its next qualification job.
+
+The candidate wheel workflow explicitly includes `test_snapshot_scratch.py` and
+`test_binary_fingerprints.py` in the core suite for all twelve platform/Python
+jobs. Their dependencies fit the standalone NumPy/Pillow environment and do not
+require Ultralytics. This closes omissions in the earlier explicit test list;
+it does not establish that the unbuilt candidate or updated workflow passes.
+Local workflow lint and hosted execution are still pending.
