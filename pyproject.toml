@@ -14,6 +14,9 @@ license = "AGPL-3.0-only"
 python-source = "python"
 module-name = "ultrafast_yolo_dataset._native"
 locked = true
+# The native cache profile embeds Cargo.toml bytes. Avoid Cargo-generator
+# manifest rewriting so checkout and source-built wheels share the same inputs.
+sdist-generator = "git"
 exclude = [
     "**/__pycache__/**", "**/*.pyc", "**/*.pyo",
     # Preserve measured evidence in Git; source installers need the code and notices.

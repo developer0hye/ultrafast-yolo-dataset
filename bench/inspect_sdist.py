@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import tarfile
+import traceback
 
 
 def sha(data):
@@ -81,4 +82,11 @@ if __name__ == "__main__":
     for name in ("checkout", "archive", "destination", "report"):
         parser.add_argument("--" + name, type=Path, required=True)
     args = parser.parse_args()
-    inspect(args.checkout, args.archive, args.destination, args.report)
+    try:
+        inspect(args.checkout, args.archive, args.destination, args.report)
+    except BaseException:
+        if not args.report.exists():
+            with args.report.open("x") as stream:
+                json.dump(dict(passed=False, error=traceback.format_exc()), stream, indent=2)
+                stream.write("\n")
+        raise

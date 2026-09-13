@@ -73,6 +73,9 @@ jobs:
           SDIST_SOURCE: ${{ steps.unpack.outputs.source }}
         run: |
           mkdir -p sdist-evidence
+          if [ -d dist ]; then
+            cp -a dist sdist-evidence/original-dist
+          fi
           if [ -n "$SDIST_SOURCE" ] && [ -d "$SDIST_SOURCE/dist" ]; then
             cp -a "$SDIST_SOURCE/dist" sdist-evidence/rebuilt
           fi
