@@ -1,0 +1,273 @@
+{
+  "corpus": {
+    "count": 500000,
+    "task": "segment",
+    "seed": 20260912,
+    "bytes": 1584173000,
+    "sha256_names_and_contents": "ea3ac07a32f2ad57643e0543815c82a196ce6f96c46b5b3ca6117b3e2a3e1d7c",
+    "distinct_files": 500000,
+    "templates": 1000,
+    "objects_distribution_percent": {
+      "1": 80,
+      "10": 19,
+      "100": 1
+    },
+    "segment_vertices_cycle": [
+      3,
+      16,
+      100
+    ],
+    "synthetic": true,
+    "os_cache": "uncontrolled; generation/previous runs may warm file cache"
+  },
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "numpy": "2.4.4",
+  "ram_bytes": 33547984896,
+  "logical_cpus": 12,
+  "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "native_extension_sha256": "274dc3ae164435e9fa5f588aec3d184a4faffc50a38d6bf8b50273c86f78f7b1",
+  "source_sha256": {
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "bench/audit_startup.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "bench/cache_startup.py": "588981bd6fa1f4947b6a665c94dae97836e6696073aeeff8a1e032a388096c1a",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/collect_rust_notices.py": "c95f5db3678b5c7541c92f216aefcb187ae0d6c83c05b3b35f7df4df0e67bf46",
+    "bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "bench/wheel_smoke.py": "fb183c06426daa7142f19732f364bdc2e4bd5366c570c123ba296bbac9ce3ea4",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "scope": "P1 label-only file engine including export to equivalent packed arrays; image verification excluded",
+  "input_checks": "full name/content SHA256 before and after each measurement, excluded from timing",
+  "os_cache": "pre-read by content verification; no cold-cache claim",
+  "results": [
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 115.42701530875638,
+      "labels_per_s": 4331.7415655472605,
+      "peak_rss_bytes": 2640322560,
+      "legacy_ru_maxrss_bytes": 2640322560,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 135.085481,
+      "system_s": 24.280429,
+      "loadavg": [
+        1.18994140625,
+        1.2236328125,
+        1.3583984375
+      ],
+      "available_ram_bytes": 28882227200,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 6.667821659706533,
+      "labels_per_s": 74987.00857905162,
+      "peak_rss_bytes": 1665400832,
+      "legacy_ru_maxrss_bytes": 1665400832,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 36.069167,
+      "system_s": 8.515471999999999,
+      "loadavg": [
+        1.2314453125,
+        1.2294921875,
+        1.353515625
+      ],
+      "available_ram_bytes": 29730041856,
+      "round": 0,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 7.008604533970356,
+      "labels_per_s": 71340.87785614454,
+      "peak_rss_bytes": 1664958464,
+      "legacy_ru_maxrss_bytes": 1664958464,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 36.191098,
+      "system_s": 9.078866,
+      "loadavg": [
+        1.2060546875,
+        1.2197265625,
+        1.34326171875
+      ],
+      "available_ram_bytes": 29720956928,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 113.22797399014235,
+      "labels_per_s": 4415.869880737512,
+      "peak_rss_bytes": 2640457728,
+      "legacy_ru_maxrss_bytes": 2640457728,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 132.782263,
+      "system_s": 23.182167,
+      "loadavg": [
+        1.12744140625,
+        1.16357421875,
+        1.2958984375
+      ],
+      "available_ram_bytes": 28855820288,
+      "round": 1,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 113.99206272698939,
+      "labels_per_s": 4386.270307236201,
+      "peak_rss_bytes": 2640580608,
+      "legacy_ru_maxrss_bytes": 2640580608,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 133.506637,
+      "system_s": 24.291652,
+      "loadavg": [
+        0.98486328125,
+        1.076171875,
+        1.23779296875
+      ],
+      "available_ram_bytes": 28871880704,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 7.088434733916074,
+      "labels_per_s": 70537.43439403444,
+      "peak_rss_bytes": 1671426048,
+      "legacy_ru_maxrss_bytes": 1671426048,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 36.412986,
+      "system_s": 9.1931,
+      "loadavg": [
+        1.1435546875,
+        1.10791015625,
+        1.23876953125
+      ],
+      "available_ram_bytes": 29639135232,
+      "round": 2,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 5.655700770672411,
+      "labels_per_s": 88406.37443068874,
+      "peak_rss_bytes": 1668567040,
+      "legacy_ru_maxrss_bytes": 1668567040,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 34.760518,
+      "system_s": 6.498167,
+      "loadavg": [
+        1.1611328125,
+        1.11767578125,
+        1.23388671875
+      ],
+      "available_ram_bytes": 29729984512,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 113.76180444005877,
+      "labels_per_s": 4395.148287784505,
+      "peak_rss_bytes": 2640683008,
+      "legacy_ru_maxrss_bytes": 2640683008,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 133.126896,
+      "system_s": 23.356376,
+      "loadavg": [
+        1.12451171875,
+        1.1064453125,
+        1.20458984375
+      ],
+      "available_ram_bytes": 28718059520,
+      "round": 3,
+      "parity": true
+    },
+    {
+      "backend": "reference",
+      "workers": 4,
+      "wall_s": 113.2892977707088,
+      "labels_per_s": 4413.479559313467,
+      "peak_rss_bytes": 2639400960,
+      "legacy_ru_maxrss_bytes": 2639400960,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 133.093814,
+      "system_s": 23.24448,
+      "loadavg": [
+        1.109375,
+        1.09814453125,
+        1.177734375
+      ],
+      "available_ram_bytes": 28884135936,
+      "round": 4,
+      "parity": true
+    },
+    {
+      "backend": "native",
+      "workers": 4,
+      "wall_s": 6.769312208984047,
+      "labels_per_s": 73862.74773032534,
+      "peak_rss_bytes": 1666166784,
+      "legacy_ru_maxrss_bytes": 1666166784,
+      "rss_method": "/proc/self/status VmHWM",
+      "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+      "reference_required": 0,
+      "user_s": 36.231051,
+      "system_s": 8.656104,
+      "loadavg": [
+        1.20068359375,
+        1.12451171875,
+        1.18115234375
+      ],
+      "available_ram_bytes": 29466456064,
+      "round": 4,
+      "parity": true
+    }
+  ]
+}

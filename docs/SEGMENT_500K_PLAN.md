@@ -1,7 +1,8 @@
 # Full 500k Segmentation startup: capacity and execution plan
 
 The full 500,000-pair Segmentation fixture and both capacity runs have completed
-on Linux. All output hashes match; the five-pair phase campaigns are running.
+on Linux. All output hashes match; five-pair P1 is complete and audited, while
+P3/P4 remain in progress. See [the P1 results](SEGMENT_500K_P1.md).
 Source review shows that its startup memory requirement must not be estimated by
 resampling all instances to 1,000 points. That would be 14.8 GB (13.78 GiB) of
 coordinates, but the pinned implementation does not retain that representation
@@ -112,7 +113,8 @@ the new corpus is `startup-segment-500k-linux-v1`.
 The complete one-million-file preflight and both 500,000-pair constructors passed.
 All labels, the first batch, and scan counters/diagnostics match, with 500,000
 found pairs, zero corrupt/empty/missing pairs and zero native fallback. The
-controller advanced to the five-pair P1 campaign. These two capacity workers are
+controller advanced to the phase campaigns. P1 subsequently completed and passed
+both server and local artifact audits. These two capacity workers are
 separate from, and will not be pooled into, the repeated phase measurements.
 
 | Capacity worker | Constructor | Peak process RSS | Cache bytes |
