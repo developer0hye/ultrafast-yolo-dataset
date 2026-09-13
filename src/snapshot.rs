@@ -9,11 +9,19 @@ use rayon::prelude::*;
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::{
+    cell::RefCell,
     fs::{self, File, Metadata},
     io::{self, Read},
     sync::atomic::{AtomicUsize, Ordering},
     time::UNIX_EPOCH,
 };
+
+thread_local! {
+    // Initialized on the first content read on each worker, then reused. Only
+    // the prefix actually filled by File::read is hashed or copied. Returned
+    // snapshots own separate storage and never borrow this scratch buffer.
+    static READ_BUFFER: RefCell<Vec<u8>> = const { RefCell::new(Vec::new()) };
+}
 
 pyo3::create_exception!(_native, InputChangedError, PyRuntimeError);
 pyo3::create_exception!(_native, SnapshotLimitError, PyValueError);
@@ -50,7 +58,7 @@ struct Stamp {
     size: u64,
     modified_ns: i128,
     regular: bool,
-    identity: Vec<u64>,
+    identity: [u64; 4],
 }
 fn stamp(meta: &Metadata) -> io::Result<Stamp> {
     let time = meta.modified()?;
@@ -61,7 +69,7 @@ fn stamp(meta: &Metadata) -> io::Result<Stamp> {
     #[cfg(unix)]
     let identity = {
         use std::os::unix::fs::MetadataExt;
-        vec![
+        [
             meta.dev(),
             meta.ino(),
             meta.ctime() as u64,
@@ -69,7 +77,7 @@ fn stamp(meta: &Metadata) -> io::Result<Stamp> {
         ]
     };
     #[cfg(not(unix))]
-    let identity = vec![];
+    let identity = [0; 4];
     Ok(Stamp {
         size: meta.len(),
         modified_ns,
@@ -166,24 +174,33 @@ fn read_impl(
             .map_err(|e| Error::Memory(e.to_string()))?;
     }
     let mut hasher = Sha256::new();
-    let mut buffer = [0_u8; 64 * 1024];
     let mut total = 0_usize;
-    loop {
-        let count = file.read(&mut buffer)?;
-        if count == 0 {
-            break;
+    READ_BUFFER.with(|scratch| -> Result<(), Error> {
+        let mut buffer = scratch.borrow_mut();
+        if buffer.is_empty() {
+            buffer
+                .try_reserve_exact(64 * 1024)
+                .map_err(|e| Error::Memory(e.to_string()))?;
+            buffer.resize(64 * 1024, 0);
         }
-        total = total
-            .checked_add(count)
-            .ok_or_else(|| Error::Limit(path.into()))?;
-        if total > limit {
-            return Err(Error::Limit(path.into()));
+        loop {
+            let count = file.read(&mut buffer)?;
+            if count == 0 {
+                break;
+            }
+            total = total
+                .checked_add(count)
+                .ok_or_else(|| Error::Limit(path.into()))?;
+            if total > limit {
+                return Err(Error::Limit(path.into()));
+            }
+            hasher.update(&buffer[..count]);
+            if retain {
+                data.extend_from_slice(&buffer[..count]);
+            }
         }
-        hasher.update(&buffer[..count]);
-        if retain {
-            data.extend_from_slice(&buffer[..count]);
-        }
-    }
+        Ok(())
+    })?;
     // Both the opened handle and the current path must still identify the
     // captured file. A rename/replacement cannot silently mix two snapshots.
     let after = fs::metadata(path).map_err(|_| Error::Changed(path.into()))?;
@@ -358,6 +375,33 @@ pub fn register(m: &Bound<'_, PyModule>) -> PyResult<()> {
 mod tests {
     use super::*;
     use std::time::{Duration, SystemTime};
+
+    #[test]
+    fn failed_read_releases_scratch_before_the_next_snapshot() {
+        let directory = std::env::temp_dir().join(format!(
+            "uyd-snapshot-recovery-{}-{}",
+            std::process::id(),
+            SystemTime::now()
+                .duration_since(UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        ));
+        fs::create_dir(&directory).unwrap();
+        let path = directory.join("growing.bin");
+        fs::write(&path, b"a").unwrap();
+        let failed = read_impl(path.to_str().unwrap(), 4, false, true, || {
+            fs::write(&path, b"longer than the limit")
+        });
+        assert!(matches!(failed, Err(Error::Limit(_))));
+        fs::write(&path, b"z").unwrap();
+        let recovered = read(path.to_str().unwrap(), 4, true, true).unwrap();
+        assert_eq!(recovered.data.as_deref(), Some(&b"z"[..]));
+        assert_eq!(
+            recovered.fingerprint.sha256.as_deref(),
+            Some(format!("{:x}", Sha256::digest(b"z")).as_str())
+        );
+        fs::remove_dir_all(directory).unwrap();
+    }
 
     #[test]
     fn replacement_during_open_read_is_detected() {
