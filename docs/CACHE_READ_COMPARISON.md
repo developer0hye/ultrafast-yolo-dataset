@@ -1,9 +1,10 @@
 # Comparison of the native cache section reader
 
 The candidate Release wheel and all **187 installed tests passed on M2**,
-including twelve native-buffer cases and nine reader helper cases. The seven-case
-fixture is being prepared after completion of the original Detection P4 series.
-Paired reader performance, full startup gains and Linux validation remain open.
+including twelve native-buffer cases and nine reader helper cases. The complete
+70-process comparison and independent artifact audit passed. Reading the actual
+195 MB Detection cache took 121.42 → 118.15 ms, with process peak RSS
+342.41 → 218.28 MiB. Full startup gains and Linux validation remain open.
 
 This experiment isolates the Rust reader change in `CACHE_READ_COPY.md`.
 The native API opens a file, checks headers and limits, reads/checksums sections,
@@ -114,7 +115,7 @@ Use separate cache-generation phase/RSS measurements for save-buffer lifetime.
    the fixture/real-cache identity, compiled artifacts and all slow conditions.
    Test rejection of corrupted evidence before publishing any result.
 
-No new cache-reader performance or memory improvement is currently claimed.
+The measured reader results below apply only to this frozen pair and scope.
 
 ## Baseline provenance and queued M2 build
 
@@ -177,5 +178,65 @@ The [resume receipt](validation/cache-copy-m2-resume-v1.json) records all member
 hashes and successful byte-for-byte readback. Its sealer was checked with Ruff's
 Python 3.12 target because it uses standard-library `tomllib`.
 
-This proves the recorded M2 build and correctness scope. Reader latency/RSS,
-full cache generation/content-hit startup and Linux/platform gates remain open.
+This proves the recorded M2 build and correctness scope. Full cache
+generation/content-hit startup and Linux/platform gates remain open.
+
+## Completed seven-condition reader comparison
+
+Both descriptors and both binaries' empty/actual-cache workers passed separate
+qualification. Then all 70 measured processes completed in the frozen alternating
+order. These qualification samples are excluded from the following five-pair
+statistics. Each process contributes the median of five timed reads.
+
+| Case | Baseline median, ms | Candidate median, ms | Baseline/candidate | Paired 95% interval | Baseline / candidate peak RSS, MiB |
+|---|---:|---:|---:|---:|---:|
+| Empty payload | 0.014042 | 0.014000 | 1.0030 | 0.9549–1.0333 | 31.89 / 31.89 |
+| 4 MiB minus 1 byte | 2.284417 | 2.079417 | 1.0986 | 1.0500–1.1464 | 41.17 / 37.27 |
+| 4 MiB plus 1 byte | 2.176917 | 2.123875 | 1.0250 | 0.9849–1.0770 | 40.22 / 36.23 |
+| One 64 MiB section | 42.155625 | 40.454041 | 1.0421 | 1.0256–1.1233 | 161.23 / 97.22 |
+| One 256 MiB section | 165.832666 | 161.113667 | 1.0293 | 1.0204–1.0569 | 545.23 / 289.22 |
+| Four 64 MiB sections | 167.792167 | 161.209833 | 1.0408 | 1.0269–1.0595 | 353.34 / 289.36 |
+| Actual 500k Detection cache | 121.423583 | 118.150791 | 1.0277 | 1.0244–1.0300 | 342.41 / 218.28 |
+
+The actual-cache reader's process peak RSS is **36.25% lower**; the RSS ratio
+interval is 1.5681–1.5688. Single-section 256 MiB RSS is 46.96% lower, whereas
+four-section 256 MiB RSS is 18.11% lower. Their different section-wise temporary
+vector lifetimes explain why equal total payload sizes need not yield equal
+savings. Empty and 4 MiB-plus-one latency intervals include 1.0; the latency
+improvement is not uniform across conditions.
+
+The actual cache has eleven sections totaling 195,001,045 payload bytes. The
+simple live-payload model gives 223,501,045 bytes for the old reader and
+195,001,045 for the candidate, a difference of 28,500,000 bytes (27.18 MiB).
+That is smaller than the measured process peak RSS difference of 124.125 MiB.
+The latter includes repeated reads, verification, warmups and allocator history;
+it must not be interpreted as the bytes eliminated from one read's live payload.
+Allocator retention is a possible contributor, not an independently traced cause.
+
+These are warmed, shared-host M2 results with the same Python/dependency versions,
+CPU/RAM, Rust/Cargo settings and installed-byte verification for both wheels.
+The actual-cache result is not a 36% reduction in dataset or training memory,
+and the approximately 3.27 ms reader saving is not a full-startup speedup. The old
+500k P4 native constructor took about 56 s, largely input-content validation;
+that work is excluded here. The Python save-path change is not exercised.
+
+The independent audit checks all 72 raw reports, command/backend/order identity,
+fixture/output records, original clock samples, worker medians and aggregate
+statistics. It uses multiset weights to independently reconstruct all 3,125
+ordered paired resamples. All seven input containers were rehashed after timing.
+A valid control passed and **17 damaged-evidence cases were rejected**, including
+edits that recompute raw hashes and alter parent records consistently. The raw
+workers do not record individual PIDs or timestamps; serial fresh-process launch
+is evidenced by the retained harness and command records.
+
+The [207-file evidence archive](../bench/results/cache-reader-m2-v1.tar.gz)
+contains all seven input containers (including the actual captured cache),
+70 workers and two descriptors with logs, separate qualification, launch records,
+both wheels/sdists, build provenance and exact harness/auditor/test sources.
+The inputs permit rerunning the reader experiment independently of the original
+million-file corpus. Archive SHA-256:
+`e9fc2e7c04c0c8bf2a912c33b9dd4de2f64007dd4110fe2c16a9dbf520c319d5`.
+See the [full audit](validation/cache-reader-m2-audit-v1.json),
+[negative cases](validation/cache-reader-m2-audit-negative-v1.json) and
+[byte-preservation receipt](validation/cache-reader-m2-preservation-v1.json).
+Every archived member was read back and checked against its pre-archive hash.

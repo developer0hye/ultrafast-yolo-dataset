@@ -20,9 +20,10 @@ and checksum verification succeed.
 For a section of L bytes, this removes the temporary vector's logical L-byte
 payload and one L-byte copy. It still zero-initializes the final Python buffer.
 It does not remove the cache payload itself, the JSON metadata, array validation,
-input content hashing or the final mutable Ultralytics labels. Allocator overhead
-and the highest-memory phase may dominate process RSS; no measured saving or
-cache-hit speedup is claimed.
+input content hashing or the final mutable Ultralytics labels. The isolated
+reader comparison now measures 36.25% lower process peak RSS for the actual
+195 MB cache; full cache-hit startup gains remain unmeasured. Allocator overhead
+and the highest-memory phase can change the saving in the complete constructor.
 
 ## Release serialized copies before save-time content revalidation
 
@@ -92,11 +93,14 @@ outputs. Then rerun actual P4 construction on fixed real and synthetic fixtures,
 including full mutable labels and first-batch parity. This candidate must remain
 separate until those checks establish both correctness and useful improvement.
 
-## Prepared reader comparison
+## Completed reader comparison
 
 [The seven-condition paired protocol](CACHE_READ_COMPARISON.md) now includes
 six fixed synthetic layouts and a required copy of the native cache from the
 completed 500k startup experiment. It measures section reading independently
-of Python save-buffer lifetime and full P4 construction. The nine helper tests passed in the installed suite. Fixture preparation has
-started after correctness checks; paired results still require native-worker
-qualification and an independent artifact audit.
+of Python save-buffer lifetime and full P4 construction. The nine helper tests
+passed in the installed suite. Native-worker qualification, all 70 measurements,
+independent auditing and 17 artifact-rejection cases have now completed.
+Actual-cache reading measured 121.42 → 118.15 ms and process peak RSS
+342.41 → 218.28 MiB. This includes warmup/allocator history, not just live payload.
+These measurements do not establish save-path, full-startup or training gains.

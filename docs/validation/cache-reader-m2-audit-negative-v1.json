@@ -1,0 +1,94 @@
+{
+  "valid_control_passed": true,
+  "rejected": 17,
+  "cases": [
+    {
+      "damage": "incomplete",
+      "rejected": true,
+      "reason": "incomplete or failed matrix"
+    },
+    {
+      "damage": "missing_worker",
+      "rejected": true,
+      "reason": "missing measured workers"
+    },
+    {
+      "damage": "order",
+      "rejected": true,
+      "reason": "wrong counterbalanced order"
+    },
+    {
+      "damage": "raw_bytes",
+      "rejected": true,
+      "reason": "raw bytes mismatch"
+    },
+    {
+      "damage": "parent_value",
+      "rejected": true,
+      "reason": "parent/raw measurement disagreement"
+    },
+    {
+      "damage": "worker_median",
+      "rejected": true,
+      "reason": "wrong worker median"
+    },
+    {
+      "damage": "negative_time",
+      "rejected": true,
+      "reason": "invalid clock samples"
+    },
+    {
+      "damage": "output_unverified",
+      "rejected": true,
+      "reason": "unverified output"
+    },
+    {
+      "damage": "environment_drift",
+      "rejected": true,
+      "reason": "worker environment drift"
+    },
+    {
+      "damage": "wrong_fixture",
+      "rejected": true,
+      "reason": "wrong measured fixture"
+    },
+    {
+      "damage": "wrong_command",
+      "rejected": true,
+      "reason": "wrong measured worker command"
+    },
+    {
+      "damage": "duplicate_command_flag",
+      "rejected": true,
+      "reason": "duplicate command argument"
+    },
+    {
+      "damage": "extra_raw",
+      "rejected": true,
+      "reason": "missing or extra raw reports"
+    },
+    {
+      "damage": "aggregate",
+      "rejected": true,
+      "reason": "parent aggregate or interval disagreement"
+    },
+    {
+      "damage": "interval",
+      "rejected": true,
+      "reason": "parent aggregate or interval disagreement"
+    },
+    {
+      "damage": "wrong_binary",
+      "rejected": true,
+      "reason": "descriptor/build identity disagreement"
+    },
+    {
+      "damage": "negative_rss",
+      "rejected": true,
+      "reason": "invalid RSS"
+    }
+  ],
+  "auditor_sha256": "3975fbecb57db8ce78caa229a707648d6c79dcc38ab0ee4ed9155404a152ff52",
+  "test_script_sha256": "d8e9a1e630de47593cb1b40b5491a3d9a5bf6e6caf6d02292371f29cb3738aa7",
+  "scope": "17 mutations of the actual completed report; no native workloads repeated"
+}
