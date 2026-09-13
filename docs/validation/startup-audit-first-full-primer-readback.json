@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "scope": "Read-only completed first-primer result/telemetry format inspection. Primer is excluded from performance summaries. Does not inspect the full cache or audit the incomplete campaign.",
+  "auditor_sha256": "136c215cae9e740f5e2269afbbcabaa0f8efe65085ca436c28d68be222f32def",
+  "raw_sha256": "58e8353f7b91b337c18ebb74687222db11d123c516236cc7c3321209f4c45993",
+  "log_sha256": "48118c3755393a26d5e3c67417f528c142b8090adb9066b8ab1f97130b24f6b5",
+  "telemetry_sha256": "2443468ba50e038ea2456e222ba09403d8b3dbb26da007873b402d507598e07d",
+  "observed": {
+    "samples": 539,
+    "sampled_whole_child_peak_rss_bytes": 1508294656,
+    "min_available_memory_bytes": 5120147456,
+    "max_swap_used_bytes": 1576075264,
+    "max_loadavg_1m": 5.8291015625,
+    "max_sample_gap_s": 1.007957,
+    "first_sample_delay_s": 0.002492,
+    "last_sample_to_exit_s": 0.642872
+  },
+  "full_series_complete": false
+}

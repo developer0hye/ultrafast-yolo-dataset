@@ -1,0 +1,36 @@
+{
+  "scope": "Completed first unmeasured primer only; excludes full-cache verification and full-campaign statistics",
+  "bundle": "bench/results/startup-audit-first-full-primer-evidence.tar.gz",
+  "sha256": "d4ca0dcb7216280cd9c6197b2b4452e9df9dbc4b45321337b0ac485e144e7465",
+  "bytes": 52113,
+  "members": {
+    "00-w7.json": {
+      "bytes": 9651,
+      "sha256": "58e8353f7b91b337c18ebb74687222db11d123c516236cc7c3321209f4c45993"
+    },
+    "00-w7.log": {
+      "bytes": 475,
+      "sha256": "48118c3755393a26d5e3c67417f528c142b8090adb9066b8ab1f97130b24f6b5"
+    },
+    "00-w7.host.jsonl": {
+      "bytes": 307552,
+      "sha256": "2443468ba50e038ea2456e222ba09403d8b3dbb26da007873b402d507598e07d"
+    },
+    "qualified-pilot-w7-hit.json": {
+      "bytes": 9633,
+      "sha256": "87cab8321e0ebb98d5615e88457c3c3ee906beaa29f47cfb19edb66a67ed2bab"
+    },
+    "expected-outputs.json": {
+      "bytes": 266,
+      "sha256": "f94630e6b453a001ec63bc9dbb199fc79e82990e449a9bae184d2db0b2e269b0"
+    },
+    "readback.json": {
+      "bytes": 922,
+      "sha256": "fdf86117ad151ce2b671ffdabccd398c0a2d23ff17e2f5beeda9382b29f0f930"
+    },
+    "parent-record.json": {
+      "bytes": 3404,
+      "sha256": "59986db4bf726f73e492528fef3e6ec25779dab86b31dc745a64a476937128a6"
+    }
+  }
+}

@@ -22,6 +22,15 @@ the job log/API responses, original artifact and exact auditor/helper/test/workf
 sources; every member was read back and hashed. This qualifies the artifact
 checker, not the still-running full startup comparison.
 
+The completed first full-size **unmeasured primer** was also inspected without
+rehashing the large cache or rerunning the dataset. Its result/parent/log hashes,
+qualified pilot descriptor, reference outputs, stage/RSS arithmetic and all 539
+whole-child samples passed the selected checks. The
+[seven-member raw bundle](validation/startup-audit-first-full-primer-preservation.json)
+preserves this bounded readback. The maximum sample gap was 1.008 seconds.
+This primer contributes no sample to the measured comparison; full-cache and
+complete-campaign auditing still wait for termination.
+
 Both local benchmark hosts are occupied. The existing wheel workflow accepts
 an explicit `audit_only=true` manual dispatch on this branch, running only the
 standalone standard-library auditor tests in a GitHub runner. This does not
