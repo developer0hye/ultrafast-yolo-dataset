@@ -91,6 +91,22 @@ post-scan re-index. Opening files on this USB APFS volume with 1,000,000 files
 too, and about 3× is the ceiling here. Linux, where opens are cheap, shows the
 scan's own gain.
 
+### M2, the same corpus on the internal SSD
+
+The 500,000-pair corpus was regenerated on the M2's internal SSD with an
+identical fingerprint (1,000,000 files, 3.63 GB). The runs are at commit
+`ad1d738`, five alternating fresh-process pairs per mode, and every run
+produced the same output digest.
+
+| Mode | Reference | Fast | Ratio (95% CI) | Peak RSS |
+|---|---:|---:|---:|---|
+| Cache hit | 21.74 s | 2.00 s | **10.9×** (10.1–11.6) | 1,683 → 802 MB |
+| Cache miss | 115.3 s | 30.4 s | **3.8×** (3.78–3.84) | 1,964 → 1,054 MB |
+
+On the faster volume, the fast miss drops from 54.1 s to 30.4 s while the
+reference drops only from 132.2 s to 115.3 s, so the miss ratio rises from
+2.45× to 3.8×. The hit ratio rises from 10.0× to 10.9×.
+
 ## Parity evidence
 
 - `tests/test_fast_index.py`: miss and hit against the reference for Detection and
