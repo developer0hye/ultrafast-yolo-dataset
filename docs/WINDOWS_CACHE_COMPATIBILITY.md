@@ -6,6 +6,18 @@ the integration/cache stage ended with **11 failures, 79 passes, 2 skips**.
 The original run is retained; it is not retried or described as a platform pass.
 The failed job log and API receipt are preserved alongside their source SHA.
 
+The [complete initial matrix](validation/dataset-hosted-matrix-v1-terminal.json)
+has now terminated: nine jobs succeeded and the Windows 3.11/3.12/3.13 jobs
+failed with the same eleven failing tests (79 passed, two skipped in each
+integration/cache stage). All three immutable failure logs and terminal
+job/run/artifact metadata are preserved. Python 3.10's job runs core tests only;
+it does not establish framework integration compatibility. Full original wheel
+and source archives still need long-term preservation before GitHub expiry.
+
+The [candidate matrix](https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745000202)
+uses exact runtime source `eec2453d215ce8f048ce5ffd60d277aa39c3fd7e` and is still
+running. No rerun of the failed original jobs is substituted for that evidence.
+
 ## Changes under qualification
 
 - Legacy cache publication reopened the completed sibling temporary as `rb`

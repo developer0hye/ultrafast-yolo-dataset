@@ -1,0 +1,102 @@
+{
+  "complete": true,
+  "passed": false,
+  "source_commit": "e1c5861607a86d234e26de35b37734519d901820",
+  "run_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34744593599",
+  "successful_jobs": 9,
+  "failed_jobs": 3,
+  "failed_stages": {
+    "wheel (windows-2022, 3.11)": {
+      "job_id": 103690048444,
+      "cases": [
+        "tests/test_cache.py::test_corrupt_and_missing_images_use_reference_diagnostics",
+        "tests/test_cache.py::test_exact_label_bytes_used_after_path_changes[True]",
+        "tests/test_cache.py::test_write_failure_and_lock_timeout_keep_valid_scan",
+        "tests/test_cache.py::test_fallback_snapshot_budget_preserves_reference_result",
+        "tests/test_integration.py::test_native_legacy_reference_and_reload",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[not a numpy cache]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[\\x93NUMPY\\x01\\x00]",
+        "tests/test_integration.py::test_legacy_malformed_logical_schema_rebuilds",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[True]",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[False]"
+      ],
+      "failed": 11,
+      "passed": 79,
+      "skipped": 2
+    },
+    "wheel (windows-2022, 3.13)": {
+      "job_id": 103690048451,
+      "cases": [
+        "tests/test_cache.py::test_corrupt_and_missing_images_use_reference_diagnostics",
+        "tests/test_cache.py::test_exact_label_bytes_used_after_path_changes[True]",
+        "tests/test_cache.py::test_write_failure_and_lock_timeout_keep_valid_scan",
+        "tests/test_cache.py::test_fallback_snapshot_budget_preserves_reference_result",
+        "tests/test_integration.py::test_native_legacy_reference_and_reload",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[not a numpy cache]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[\\x93NUMPY\\x01\\x00]",
+        "tests/test_integration.py::test_legacy_malformed_logical_schema_rebuilds",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[True]",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[False]"
+      ],
+      "failed": 11,
+      "passed": 79,
+      "skipped": 2
+    },
+    "wheel (windows-2022, 3.12)": {
+      "job_id": 103690048466,
+      "cases": [
+        "tests/test_cache.py::test_corrupt_and_missing_images_use_reference_diagnostics",
+        "tests/test_cache.py::test_exact_label_bytes_used_after_path_changes[True]",
+        "tests/test_cache.py::test_write_failure_and_lock_timeout_keep_valid_scan",
+        "tests/test_cache.py::test_fallback_snapshot_budget_preserves_reference_result",
+        "tests/test_integration.py::test_native_legacy_reference_and_reload",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[not a numpy cache]",
+        "tests/test_integration.py::test_truncated_legacy_rebuild_and_gc_state[\\x93NUMPY\\x01\\x00]",
+        "tests/test_integration.py::test_legacy_malformed_logical_schema_rebuilds",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[True]",
+        "tests/test_integration.py::test_concurrent_legacy_reads_preserve_process_gc[False]"
+      ],
+      "failed": 11,
+      "passed": 79,
+      "skipped": 2
+    }
+  },
+  "scope": "First full hosted matrix, no retries. Includes all three failed job logs and terminal API/job/artifact metadata. Full wheel/sdist archives remain in original GitHub artifacts and are not yet copied into this evidence bundle.",
+  "inspection_note": "Initial log-name parser rejected the count because a parametrized test name contains spaces. Corrected extraction reads all 11 names in each immutable log; no CI run was retried.",
+  "bundle": "bench/results/dataset-hosted-matrix-v1-terminal-evidence.tar.gz",
+  "bundle_bytes": 81660,
+  "bundle_sha256": "60c37aa116080c8237dab0113c6386d352f42db42179280bbf9e61dfd7961b79",
+  "members": {
+    "dataset-hosted-matrix-v1-run.json": {
+      "bytes": 14034,
+      "sha256": "829ad4d07d18a158eef4498e407a48d0033785ada767417a508482b762734ce7"
+    },
+    "dataset-hosted-matrix-v1-job-103690048466.log": {
+      "bytes": 126590,
+      "sha256": "3b74c04820d7610ec44b6c79ae17d8d8bee63e611107b9bd3eb89a575c6ac98b"
+    },
+    "dataset-hosted-matrix-v1-jobs.json": {
+      "bytes": 46195,
+      "sha256": "e89858d84735681cf1c05b365779be52f4909a4b0e179ef8ad6482ef9371620a"
+    },
+    "dataset-hosted-matrix-v1-job-103690048451.log": {
+      "bytes": 124533,
+      "sha256": "14cdc9b50485caa1641d261c336f255e2246165e8dbced081611de3a78a6ece4"
+    },
+    "dataset-hosted-matrix-v1-job-103690048444.log": {
+      "bytes": 128695,
+      "sha256": "06d13e20932b9eebf2d5656cf223b25df772193557ff872a00341571860e1458"
+    },
+    "dataset-hosted-matrix-v1-artifacts.json": {
+      "bytes": 9016,
+      "sha256": "2bea0813be96b990e53d4b7f5959cb788896fa1d4ca5f83469af65a980273a2f"
+    },
+    "original-wheels.yml": {
+      "bytes": 4257,
+      "sha256": "39f47f218c32bf4744c2199c245f3e1b9a79ddea467c4fee6b25a5511e924d9e"
+    }
+  }
+}
