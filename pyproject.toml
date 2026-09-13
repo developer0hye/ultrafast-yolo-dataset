@@ -14,7 +14,12 @@ license = "AGPL-3.0-only"
 python-source = "python"
 module-name = "ultrafast_yolo_dataset._native"
 locked = true
-exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]
+exclude = [
+    "**/__pycache__/**", "**/*.pyc", "**/*.pyo",
+    # Preserve measured evidence in Git; source installers need the code and notices.
+    { path = "bench/results/*.tar.gz*", format = "sdist" },
+    { path = "bench/results/*.zip", format = "sdist" },
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
