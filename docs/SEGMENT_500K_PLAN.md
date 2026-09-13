@@ -140,3 +140,23 @@ and controller checkpoint by SHA-256. Those copies were read back after transfer
 It verifies output/count agreement and cache-size arithmetic; it does not rerun
 the workload or independently re-read all inputs/cache sections. Final P1/P3/P4
 conclusions require the complete phase records and their independent audits.
+
+## Prepared P3/P4 artifact collection
+
+`docs/validation/collect-segment-startup-v1.py --phase p3` (or `--phase p4`)
+is prepared for an explicit Python invocation after that phase and its server
+audit have terminated successfully. It has passed source syntax inspection only;
+it has not yet collected either live phase and is not automatically queued.
+
+The collector checks the controller's successful phase/audit commands, retains
+every raw worker JSON and log (including both separate P4 primers), and reruns
+the qualified standard-library artifact auditor locally. It requires agreement
+with the server audit and the full-capacity output hashes. Each resulting archive
+embeds the already sealed P1 evidence with the exact source/wheel and fixture
+manifests; the documented Linux dependency-notice gap remains explicit. Every
+archive member and copied report is read back before publishing the receipt.
+
+Collection does not reread the million input files or generated cache bodies,
+repeat ML tests, or establish performance for newer candidates. P3 collection
+may run while P4 is active because it only copies the terminal phase's small
+artifacts. Neither collector success nor a P3 checkpoint certifies P4 completion.
