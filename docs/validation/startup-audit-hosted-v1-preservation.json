@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "scope": "Standalone synthetic artifact-auditor qualification, not a full measurement or wheel result",
+  "run_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34744717739",
+  "source_commit": "b5c2073bb61587532b1f9accd2f04bac860fbf01",
+  "tests": 37,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "artifact_id": 10313726107,
+  "artifact_zip_sha256": "b5a72516ffd0f708b37f1692e5e2fec65e298738dff2155d9daf8437f1661635",
+  "bundle": "bench/results/startup-audit-hosted-v1-evidence.tar.gz",
+  "bundle_bytes": 26589,
+  "bundle_sha256": "b8211db25f6954a56ce64932004c6bcefd310ef943ab43a7aeab09585b53e5d3",
+  "members": {
+    "startup-audit-hosted-v1.zip": {
+      "bytes": 1598,
+      "sha256": "b5a72516ffd0f708b37f1692e5e2fec65e298738dff2155d9daf8437f1661635"
+    },
+    "startup-audit-hosted-v1.log": {
+      "bytes": 39843,
+      "sha256": "bbe050ed12aedd8adf49052567932dbaf0df33ab50e5e5224e6cc3a65a0a8b8e"
+    },
+    "startup-audit-hosted-v1-run.json": {
+      "bytes": 14040,
+      "sha256": "77bde9a479aacbd34c4a0ef99652fb301cb151b4836639a7c1f5d1dc854076da"
+    },
+    "startup-audit-hosted-v1-artifacts.json": {
+      "bytes": 776,
+      "sha256": "4cae916f4056bd80b45d588aaa5aff01c9fb6aee27dff6b92bca6557ccd0c804"
+    },
+    "job-summary.json": {
+      "bytes": 2403,
+      "sha256": "fc924d2a109c6c69b1aefa7aa8151097d2e01abe5de0a9230c013241d221da5b"
+    },
+    "source/bench/audit_startup_workers.py": {
+      "bytes": 18385,
+      "sha256": "136c215cae9e740f5e2269afbbcabaa0f8efe65085ca436c28d68be222f32def"
+    },
+    "source/docs/validation/audit-snapshot-startup-v1.py": {
+      "bytes": 20457,
+      "sha256": "f10f41460dc2496d09f23bd4b485fc1840c3dfd922bb472b196d0390bdec62eb"
+    },
+    "source/tests/test_startup_workers_audit.py": {
+      "bytes": 16540,
+      "sha256": "4042d56896661f119245e7ab03651c2f292fcb3e76333d00b3bdcd8bcf00f714"
+    },
+    "source/.github/workflows/wheels.yml": {
+      "bytes": 6083,
+      "sha256": "a9d73e87aa7898bce21c88d59b56e52030ac342384ec8459ee079c7f80b5877e"
+    }
+  }
+}

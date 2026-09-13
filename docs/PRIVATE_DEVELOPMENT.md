@@ -15,15 +15,17 @@ investigations and limitations. Branches are not implicitly merged by this uploa
 
 The 12-process, 500,000-pair startup confirmation is still running. Its complete
 result and independent final audit are pending. The new
-`bench/audit_startup_workers.py` is a **draft, untested audit implementation**;
-it must receive positive/negative controls and pass qualification before it is
-used as evidence. It reuses the earlier independent startup audit's cache,
-result and paired-bootstrap checks and adds campaign/telemetry binding.
+`bench/audit_startup_workers.py` was initially uploaded as a draft. On the
+separate `bench/startup-worker-audit` branch it now passed 37 hosted synthetic
+tests with preserved JUnit/source/artifact evidence. See
+[STARTUP_AUDIT_QUALIFICATION.md](STARTUP_AUDIT_QUALIFICATION.md). It reuses the
+earlier independent startup audit's cache, result and paired-bootstrap checks
+and adds campaign/telemetry binding. The complete measured result remains pending.
 
-Hosted wheel CI has not yet qualified this snapshot. Automatic Actions are
+Hosted wheel CI has not yet qualified this snapshot. Automatic Actions were
 disabled for the initial multi-branch upload to avoid launching a separate
-12-job wheel matrix for every historical development branch. Enable Actions
-and select the intended source revision for the subsequent platform campaign.
+12-job wheel matrix for every historical development branch. They are now
+enabled, and the first full matrix is running at the frozen `e1c5861` revision.
 
 Tracked raw reports, manifests and evidence archives are included. Large local
 datasets, build environments and live experiment output remain on their hosts;
