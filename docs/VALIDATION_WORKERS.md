@@ -1,4 +1,4 @@
-# Input-validation worker tuning: full experiment pending
+# Input-validation worker tuning: full experiment running
 
 The [file-access profile](INPUT_VALIDATION_PROFILE.md) motivates testing worker
 concurrency before changing hash computation or consistency checks. This new
@@ -47,3 +47,26 @@ The full comparison and an independent readback of all results are still pending
 Any favorable worker setting must subsequently be checked in full startup and
 for memory/error behavior before changing a library default or claiming an
 end-to-end improvement. No speedup has been established by this new experiment.
+
+## Active M2 campaign
+
+The [launch record](validation/validation-workers-m2-v1-launch.json) binds source
+commit `f7e65b6639765606ddcd8121af51b0c8fd5b31dd` and frozen harness SHA-256
+`8865ee8eb92933f8ef959210f9ec4d261d52cd28cce31d101d257098c02a4e36`.
+The original [pilot report](validation/validation-workers-m2-pilot-v1.json),
+[log](validation/validation-workers-m2-pilot-v1.log) and exact
+[pilot source](validation/validation-workers-m2-pilot-v1-source.py) are retained.
+Its trial-function AST matches the launched source.
+
+The [initial checkpoint](validation/validation-workers-m2-v1-initial-checkpoint.json)
+contains nine completed trials: three primers and six measured processes, followed
+by an active tenth trial. A [read-only observation](validation/validation-workers-m2-v1-initial-observation.json)
+checked the completed raw/log hashes, zero child exit codes and all one million
+path checks per trial, and confirmed the next process was live. This checkpoint
+is not the completed series or its final audit. Raw files remain under
+`/Volumes/T7/ultrafast-vision-build/validation-workers-m2-v1.runs`.
+
+An independent summarizer and synthetic corruption/statistics tests have been
+drafted. They have not been executed or qualified yet. Run their checks after
+this benchmark process has terminated, before using the final report. The
+unfinished series must not be restarted merely because observation times out.

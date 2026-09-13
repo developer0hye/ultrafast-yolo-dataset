@@ -1,0 +1,145 @@
+{
+  "complete": true,
+  "passed": true,
+  "pid": 67251,
+  "script_sha256": "5fc89df1b9fe2f79df6982dfd9f5b3ea0fdebd19d6d19941a039db2f6f7eeda2",
+  "started_at_ns": 1789280894679849000,
+  "extension_sha256": "ec52a219e5e159017d221422fa8292cbe24022157370548bd445e3fb082f32d6",
+  "identity_sha256": "5f4251ee972d29a299e8087e9bedfa32070f6ebf3546526fad30816776077805",
+  "cache_sha256": "2e94732eee42009919f1552b702c0ba158e1a0b1b1a49933f7e599eb9a2f1dc6",
+  "workers": 4,
+  "count": 1024,
+  "content": true,
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "cpu_logical": 8,
+  "cpu_physical": 8,
+  "memory_total": 17179869184,
+  "selected": {
+    "images": {
+      "count": 1024,
+      "table_sha256": "d389979b47fd7e42413928bf2c3c9a0d0ad207d735fc7f27293170e0c2bcca00",
+      "paths_sha256": "fded6ac8727f8c83e3ba291d920991e5002ecced17078ffc5f3a23ce043d3369",
+      "max_bytes": 67108864
+    },
+    "labels": {
+      "count": 1024,
+      "table_sha256": "01b7553d79db3e9e8b0d067e41648ef862e5165157cb9f897361f713508477f4",
+      "paths_sha256": "a689cb665bc04d3e5644c5c9e7dd7a135b98106781c7ac7fe460b2de0f13fb01",
+      "max_bytes": 16777216
+    }
+  },
+  "records": [
+    {
+      "kind": "images",
+      "started_at_ns": 1789280895161138000,
+      "complete": true,
+      "verified_paths": 1024,
+      "elapsed_s": 0.30821791698690504,
+      "user_s": 0.00585399999999997,
+      "system_s": 0.111496,
+      "minor_faults": 1082,
+      "major_faults": 0,
+      "finished_at_ns": 1789280895469375000
+    },
+    {
+      "kind": "labels",
+      "started_at_ns": 1789280895469797000,
+      "complete": true,
+      "verified_paths": 1024,
+      "elapsed_s": 0.27903670899104327,
+      "user_s": 0.0030810000000000004,
+      "system_s": 0.100935,
+      "minor_faults": 1055,
+      "major_faults": 0,
+      "finished_at_ns": 1789280895748849000
+    }
+  ],
+  "samples": [
+    {
+      "at_ns": 1789280895160231000,
+      "phase": "ready",
+      "rss_bytes": 445120512,
+      "threads": 1,
+      "cpu_times": {
+        "user": 578317.59,
+        "nice": 0.0,
+        "system": 360530.59,
+        "idle": 4179488.79
+      },
+      "loadavg": [
+        2.369140625,
+        3.142578125,
+        3.51904296875
+      ],
+      "available_memory": 5425512448,
+      "swap_used": 1576075264,
+      "disk_io": {
+        "read_count": 2089860571,
+        "write_count": 32493483,
+        "read_bytes": 11063484381184,
+        "write_bytes": 1226144235520,
+        "read_time": 404192871,
+        "write_time": 33601400
+      }
+    },
+    {
+      "at_ns": 1789280895665732000,
+      "phase": "labels",
+      "rss_bytes": 446414848,
+      "threads": 6,
+      "cpu_times": {
+        "user": 578318.03,
+        "nice": 0.0,
+        "system": 360531.24,
+        "idle": 4179491.65
+      },
+      "loadavg": [
+        2.41943359375,
+        3.14013671875,
+        3.515625
+      ],
+      "available_memory": 5425512448,
+      "swap_used": 1576075264,
+      "disk_io": {
+        "read_count": 2089868156,
+        "write_count": 32493493,
+        "read_bytes": 11063521527808,
+        "write_bytes": 1226144342016,
+        "read_time": 404194724,
+        "write_time": 33601401
+      }
+    },
+    {
+      "at_ns": 1789280895749278000,
+      "phase": "finished",
+      "rss_bytes": 446038016,
+      "threads": 1,
+      "cpu_times": {
+        "user": 578318.1,
+        "nice": 0.0,
+        "system": 360531.33,
+        "idle": 4179492.13
+      },
+      "loadavg": [
+        2.41943359375,
+        3.14013671875,
+        3.515625
+      ],
+      "available_memory": 5425512448,
+      "swap_used": 1576075264,
+      "disk_io": {
+        "read_count": 2089869545,
+        "write_count": 32493494,
+        "read_bytes": 11063527229440,
+        "write_bytes": 1226144346112,
+        "read_time": 404195038,
+        "write_time": 33601401
+      }
+    }
+  ],
+  "validation_elapsed_s": 0.5872546259779483,
+  "sampled_peak_rss": 446414848,
+  "scope": "Fresh process, unchanged native content validation; timing excludes cache decode/hashing, metadata extraction, sampler start/stop and report writes. RSS samples include validation-ready/final observations; sampled phase RSS, not whole-startup peak. Host counters include unrelated activity. No cold-cache or full-startup speedup claim.",
+  "finished_at_ns": 1789280895840841000
+}

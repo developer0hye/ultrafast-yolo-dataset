@@ -1,0 +1,83 @@
+{
+  "observed_at_ns": 1789281420449411000,
+  "full_series_complete": false,
+  "full_audit_passed": false,
+  "completed_raw_checks": [
+    {
+      "index": 0,
+      "workers": 4,
+      "primer": true,
+      "raw_sha256": "694db8d13a66376c003fef0ff67139ca986775b1e33244f177c87b0d2fe2a8a9",
+      "log_sha256": "b2d99a78e0039e6803f5fd59253d6d3178e2930fe39c09f5e5429d7dffd73e0c",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 1,
+      "workers": 7,
+      "primer": true,
+      "raw_sha256": "bc76ffdc80e1c2271d5366d28bd297f5c7b732beb33b82469287deb8c1767e3a",
+      "log_sha256": "09b679587b6bb9dc699a4d1d6132244a3acf88b6d0078b526c59c5ed7d319c8c",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 2,
+      "workers": 16,
+      "primer": true,
+      "raw_sha256": "24031c760250a8868813cd76280e39fdeff485eaed53a34d664bfe2e19d4dd63",
+      "log_sha256": "ba7a36542997812bc3825fea8c2d3d9d45df1ca88410bd2b294ce878b0e29052",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 3,
+      "workers": 4,
+      "primer": false,
+      "raw_sha256": "4f5e0b9d7e54f390601b47ea5c3132efc15abaca925e96fdcbd041727b9faa14",
+      "log_sha256": "ba86af2b9f8e2f966c42228195e34d075eab73f694a092d37a0b1a88fd5930c4",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 4,
+      "workers": 7,
+      "primer": false,
+      "raw_sha256": "e5f08b44744bbdd0f88d115fdee43a157c55983f884a88e77633780d55c9b1ac",
+      "log_sha256": "6f4bc3e78ffea4bd44c00f2ef154492f6071de5211f7d1000c57f4fcc8985f09",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 5,
+      "workers": 16,
+      "primer": false,
+      "raw_sha256": "4fca3dfb4e89f43713e0d0746b5e23b8124631fdc7f399262cb2ac7d1e20b0da",
+      "log_sha256": "4c02ed92f6023b40f240e47f0f1adac9b0be8c98e177167d24f9fc54315457e2",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 6,
+      "workers": 4,
+      "primer": false,
+      "raw_sha256": "1f1577c798ce71fd2b7d340189a81d4a3e4065408f9b25c8e1d96e40850e8f68",
+      "log_sha256": "80842ce8937dbc4e1808825dbe53b91d1750cf8d41bb5075ad160319e09c7ad5",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 7,
+      "workers": 16,
+      "primer": false,
+      "raw_sha256": "d717a22a759154aa0fd4048d2d60c21481e3717debf438f4bb7f0ee11d54c72f",
+      "log_sha256": "a6ed6c5ddf65dc04dbbfba742a31d2ab781e3c8bf3b378ba3e2fc7194892f728",
+      "verified_paths": 1000000
+    },
+    {
+      "index": 8,
+      "workers": 7,
+      "primer": false,
+      "raw_sha256": "e9e0193ca4823a406eb97e71ae4ec4486d8ab47e8e3391d2da6f23c0fd6684fe",
+      "log_sha256": "f55532d534d6fc4d5122a1096d203c030bd4e5fdc8b715bfbb69c1d178782fef",
+      "verified_paths": 1000000
+    }
+  ],
+  "pilot_trial_ast_unchanged": true,
+  "checkpoint_sha256": "2a29de31e5e3b5b799a0c00a57250efd838cc75773dc2620e97f8301ebb3a179",
+  "live_process": "  PID  PPID STAT ELAPSED COMMAND\n68583 67469 Rs     00:29 /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-clean/bin/python /private/tmp/validation-workers-m2-v1-source/validation_workers.py --cache /Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1.caches/baseline/0000-3bf8910a76e9bbf572c4.uydcache --identity /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-build-identity.json --expected-cache-sha256 2e94732eee42009919f1552b702c0ba158e1a0b1b1a49933f7e599eb9a2f1dc6 --out /Volumes/T7/ultrafast-vision-build/validation-workers-m2-v1.runs/09.json --count 500000 --trial-workers 7\n",
+  "scope": "Read-only checkpoint: exact hashes, child exit status and complete image/label path counts for finished trials. Does not establish final timing statistics, all-trial completion or final independent audit."
+}

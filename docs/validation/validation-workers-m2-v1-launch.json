@@ -1,0 +1,7 @@
+{
+  "source_commit": "f7e65b6639765606ddcd8121af51b0c8fd5b31dd",
+  "script": "/tmp/validation-workers-m2-v1-source/validation_workers.py",
+  "script_sha256": "8865ee8eb92933f8ef959210f9ec4d261d52cd28cce31d101d257098c02a4e36",
+  "python": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-clean/bin/python",
+  "scope": "21 fresh processes: 3 primers and 18 full-corpus measured content-validation trials. Same previously qualified native binary; no source optimization or full-startup claim."
+}
