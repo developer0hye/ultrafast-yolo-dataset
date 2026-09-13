@@ -1,0 +1,19 @@
+{
+  "scope": "Baseline provenance refresh: installed/wheel/Cargo binary equality, source/sdist comparison and retained Cargo compiler/flag metadata; not a new runtime test",
+  "wheel_sha256": "2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595",
+  "sdist_sha256": "3d9fd303dbbae6608d88f366a8cb7f7c919a65528c1de0ac3ad8c9853b3c5be7",
+  "cargo_fingerprint_sha256": "afea888f865cd3bbd2f1d17f59b30eabe8ec65c2d1b435fb992487418020a455",
+  "rustc_info_sha256": "8cc36d1e6a140b0787401b3222188a93caf93c7d52ebbb1dcf0a1a5be0efef49",
+  "source_files_checked": 16,
+  "exact_source_files_matched": 15,
+  "normalizations": [
+    {
+      "file": "Cargo.toml",
+      "source_sha256": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+      "sdist_sha256": "7b1711e002523fab85bcd3fdd98630c6a52e6f0e1fab9e213f23bc0fc5b55379",
+      "difference": "Only package.readme = README.md added by sdist packaging; remaining parsed TOML identical"
+    }
+  ],
+  "identity_sha256": "9598e19d803bd9491914982236967b622835feb4a3c5cd2c970c46ee44fd2a95",
+  "cargo_version_note": "Cargo version read in this session; original build log and retained fingerprint preserved separately."
+}

@@ -1,0 +1,29 @@
+{
+  "wheel_sha256": "2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595",
+  "extension_sha256": "5799c19d7fbe704451cb9ac3e7e72f1b6c8ecdd8219d7fca971dfcb24eff2b0b",
+  "library_sources": {
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "python/ultrafast_yolo_dataset/_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3"
+  },
+  "toolchain": {
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)\nbinary: rustc\ncommit-hash: 88d9e12ae178fab0fb5cc050a94da85685d449ea\ncommit-date: 2026-08-18\nhost: aarch64-apple-darwin\nrelease: 1.98.0\nLLVM version: 22.1.8\n",
+    "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)\n",
+    "target": "aarch64-apple-darwin",
+    "profile": "release",
+    "rustflags": "-C link-arg=-undefined -C link-arg=dynamic_lookup"
+  }
+}
