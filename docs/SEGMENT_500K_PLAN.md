@@ -1,9 +1,9 @@
 # Full 500k Segmentation startup: capacity and execution plan
 
 The full 500,000-pair Segmentation fixture and both capacity runs have completed
-on Linux. All output hashes match; five-pair P1 and P3 are complete and audited,
-while P4 remains in progress. See [P1](SEGMENT_500K_P1.md) and the
-[full constructor results](SEGMENT_500K_STARTUP.md).
+on Linux. All output hashes match; five-pair P1, P3 and P4 are complete and audited.
+See [P1](SEGMENT_500K_P1.md), [cache generation](SEGMENT_500K_STARTUP.md) and
+[content-cache hits](SEGMENT_500K_HITS.md).
 Source review shows that its startup memory requirement must not be estimated by
 resampling all instances to 1,000 points. That would be 14.8 GB (13.78 GiB) of
 coordinates, but the pinned implementation does not retain that representation

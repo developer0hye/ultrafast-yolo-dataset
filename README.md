@@ -152,11 +152,13 @@ completed five pairs: **191.64 → 79.67 s (2.41×)**, with constructor process 
 RSS **4.12 → 3.55 GiB (13.86% lower)**. Image verification is included; native
 generation also performs stronger input revalidation, and its disk cache is larger.
 These are shared-host synthetic startup results, not training-throughput gains.
-Content-cache-hit measurements are still running. These results do not validate
-later experimental reader/scratch/digest candidates.
+[Content-cache hits](docs/SEGMENT_500K_HITS.md) completed at **18.93 → 18.18 s
+(1.041×)**, with constructor process peak RSS **4.40 → 2.64 GiB (40.09% lower)**.
+Both sides validate input content. These results do not validate later
+experimental reader/scratch/digest candidates.
 
-Still required: broader Pillow/codec/platform and diagnostic validation, complete
-Segmentation content-hit benchmarks, remaining startup/memory targets, fuzzing,
+Still required: broader Pillow/codec/platform and diagnostic validation,
+remaining startup/memory targets, fuzzing,
 cross-platform wheel/CI validation and release-candidate qualification.
 See [docs/STATUS.md](docs/STATUS.md).
 

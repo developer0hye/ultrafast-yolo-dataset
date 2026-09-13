@@ -3,7 +3,7 @@
 Detection P1, P3 and P4 completed all five paired measurements and their artifact
 audits. [Segmentation P1](SEGMENT_500K_P1.md) and
 [P3 constructor/cache generation](SEGMENT_500K_STARTUP.md) also completed five
-pairs on Linux; its P4 content-hit results remain pending.
+pairs on Linux. [P4 content hits](SEGMENT_500K_HITS.md) also completed all five pairs.
 Fixture preparation and its
 complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
 and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
@@ -21,13 +21,15 @@ measure USB link speed, drive firmware or thermal stability. Treat results as
 specific to this shared host/storage condition, not a general SSD throughput
 claim or a cold-cache benchmark.
 Repeated Segmentation P3 constructor results are now complete at 2.4053× with
-13.86% lower constructor process RSS; content-hit results remain pending. Its P1
+13.86% lower constructor process RSS. Content hits completed at 1.0412× with
+40.09% lower constructor process RSS; their 1.5× speed target remains unmet. Its P1
 label-engine comparison is also complete. The pinned constructor retains raw polygons;
 resampling happens per sample later. The [capacity plan](SEGMENT_500K_PLAN.md)
 estimates 0.612 GiB of packed numeric payload before Python/intermediate overhead,
 not peak RSS. Full capacity qualification has passed on the 32 GB server with
 identical reference/native outputs; the separate one-pair observations and
-original records are in that document. P4 five-pair measurements are running.
+original records are in that document. The repeated P4 results have their own
+[full report and archive](SEGMENT_500K_HITS.md).
 The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
 and Segmentation are separate fixtures. These are synthetic scalability inputs;
@@ -71,7 +73,7 @@ See [raw report](validation/detect-500k-p1-complete-v1.json),
 [audit and exact statistics](validation/detect-500k-p1-complete-audit-v1.json),
 and [byte-preservation receipt](validation/detect-500k-p1-preservation-v1.json).
 P1 alone does not establish actual startup or Segmentation results. The completed
-P3 and P4 results are below; full-scale Segmentation remains required.
+Detection P3 and P4 results are below; completed Segmentation results are linked above.
 
 ## Historical first Detection P3 pair
 
@@ -104,7 +106,7 @@ the required content checks; use complete results before prioritizing changes.
 The [first-pair archive](../bench/results/detect-500k-p3-first-pair-v1.tar.gz)
 contains exact parent/child reports, the partial audit and its source; the
 [preservation receipt](validation/detect-500k-p3-first-pair-v1.json) binds all
-bytes. P3 and P4 subsequently completed; full-scale Segmentation remains incomplete.
+bytes. Detection and Segmentation P1/P3/P4 subsequently completed; see the full reports.
 
 ## Fixture and preflight
 
@@ -168,7 +170,7 @@ Detection script, source hashes, wheel identity and initial headroom are recorde
 in `validation/detect-500k-launch-v1.json`. At that launch, the server GPU job kept
 its existing inputs and installed binaries and Segmentation had not started.
 The later [Linux Segmentation campaign](SEGMENT_500K_PLAN.md) passed full capacity
-qualification and the repeated P1/P3 phases; P4 remains in progress.
+qualification and all repeated P1/P3/P4 phases, including their independent audits.
 
 ## Comparison and evidence requirements
 
@@ -228,7 +230,7 @@ preflight and allocator history. Full file checks can warm the storage cache;
 these are shared-host observations, not cold-storage or working-allocation claims.
 The fixture uses distinct files with repeated synthetic content, not 500,000
 unique natural images. P4 content-mode cache hits completed separately and
-Segmentation P1/P3 have also completed; its P4 result remains pending.
+Segmentation P1/P3/P4 have also completed; their reports are linked above.
 
 The [complete archive](../bench/results/detect-500k-p3-complete-v1.tar.gz) preserves
 the ten raw reports, parent, log, exact auditor, launch/preflight/fixture identity,

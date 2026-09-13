@@ -11,7 +11,8 @@ validate/export time 50.8404 → 32.0845 s (1.5846x), and process peak RSS sampl
 after that timed region 748.53 → 482.23 MiB. The actual-artifact audit passed;
 its 24 adversarial tests passed on Linux. These are label-engine results, excluding
 image verification and actual initialization. Detection P3 and P4 completed and
-passed their five-pair artifact audits; full-scale Segmentation remains incomplete. Historical results
+passed their five-pair artifact audits; full-scale Segmentation P1/P3/P4 also
+completed on Linux, as detailed below. Historical results
 retain the older fingerprint implementation and their original memory scope.
 
 All five P3 constructor/cache-generation pairs passed full-label, first-batch
@@ -43,8 +44,14 @@ The [five-pair Segmentation P3 comparison](SEGMENT_500K_STARTUP.md) also complet
 process high-water RSS 4.1208 → 3.5496 GiB (13.86% lower). All outputs match the
 reference, and server/local audits agree. Image verification is included; native
 generation has stronger input revalidation and a larger cache. All raw worker
-JSON/logs, exact wheel/source and audits are preserved. P4 content hits remain
-in progress; this is not later-candidate or training-throughput evidence.
+JSON/logs, exact wheel/source and audits are preserved.
+[Segmentation P4 content hits](SEGMENT_500K_HITS.md) also completed all five pairs:
+18.9276 → 18.1795 s (1.0412×, paired 95% interval 1.0349–1.0457), and
+4.4047 → 2.6387 GiB constructor process high-water RSS (40.09% lower). Both sides
+validate content with the same fingerprint engine. All outputs match P3/capacity;
+server/local audits agree and all raw reports, primers and logs are sealed.
+The 1.5× cache-hit speed target remains unmet. This is not later-candidate or
+training-throughput evidence.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
@@ -77,4 +84,4 @@ locally linted, with hosted execution awaiting the repository visibility choice.
 - Linux CUDA-environment installed wheel passed all 157 tests. A later archive audit rejected six packaged bytecode files; explicit exclusions fixed the fresh v2 wheel, whose runtime source/native bytes match the tested installation. New standalone Linux installation passed all four Detect/Segment cache smoke cases and RECORD/installed-byte auditing; see [LINUX_WHEEL_VALIDATION.md](LINUX_WHEEL_VALIDATION.md).
 - Combined FastYOLODataset + FastFormat completed one full real-data RTX 3070 YOLO11n-seg training pilot: 5,000 images, finite losses and changed weights. This is integration evidence, not a repeated throughput comparison or an accuracy result; detailed evidence is retained in the maskops repository.
 - The original installed Linux wheels completed the 45-job / 90-epoch RTX 3070 overlap comparison: all 15 groups have identical loss traces and final model hashes. Epoch median ratios are only 1.002–1.021x and process-family RSS does not consistently improve. Full raw/audit evidence and uncertainty are retained in the maskops repository, docs/GPU_RESULTS.md; this is not later-candidate or accuracy evidence.
-- Remaining: cache-hit speed and broader process-memory improvements; 500k-file coverage; broader codecs/fuzz/platform tests; actual training throughput; dependency notice bundling and supported wheels/CI/distribution. Neither library is release-ready; the original goals remain active.
+- Remaining: cache-hit speed and broader process-memory improvements; later-candidate 500k-file coverage; broader codecs/fuzz/platform tests; actual training throughput; dependency notice bundling and supported wheels/CI/distribution. Neither library is release-ready; the original goals remain active.
