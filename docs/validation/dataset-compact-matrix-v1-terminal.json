@@ -1,0 +1,356 @@
+{
+  "passed": true,
+  "run_id": 34745616205,
+  "source_commit": "a9f3b2a6a7e5c319efb6e0f27de0b412d1e7aaab",
+  "wheel_jobs": [
+    {
+      "job_id": 103692916264,
+      "name": "wheel (ubuntu-24.04, 3.10)",
+      "counts": [
+        [
+          86,
+          0
+        ]
+      ],
+      "warnings": [
+        0
+      ]
+    },
+    {
+      "job_id": 103692916310,
+      "name": "wheel (ubuntu-24.04, 3.11)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916313,
+      "name": "wheel (windows-2022, 3.11)",
+      "counts": [
+        [
+          85,
+          1
+        ],
+        [
+          95,
+          2
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916322,
+      "name": "wheel (windows-2022, 3.12)",
+      "counts": [
+        [
+          85,
+          1
+        ],
+        [
+          95,
+          2
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916337,
+      "name": "wheel (windows-2022, 3.10)",
+      "counts": [
+        [
+          85,
+          1
+        ]
+      ],
+      "warnings": [
+        0
+      ]
+    },
+    {
+      "job_id": 103692916351,
+      "name": "wheel (windows-2022, 3.13)",
+      "counts": [
+        [
+          85,
+          1
+        ],
+        [
+          95,
+          2
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916367,
+      "name": "wheel (ubuntu-24.04, 3.12)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916369,
+      "name": "wheel (macos-15, 3.12)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        1
+      ]
+    },
+    {
+      "job_id": 103692916382,
+      "name": "wheel (macos-15, 3.10)",
+      "counts": [
+        [
+          86,
+          0
+        ]
+      ],
+      "warnings": [
+        0
+      ]
+    },
+    {
+      "job_id": 103692916403,
+      "name": "wheel (macos-15, 3.13)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916430,
+      "name": "wheel (macos-15, 3.11)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    },
+    {
+      "job_id": 103692916439,
+      "name": "wheel (ubuntu-24.04, 3.13)",
+      "counts": [
+        [
+          86,
+          0
+        ],
+        [
+          97,
+          0
+        ]
+      ],
+      "warnings": [
+        0,
+        0
+      ]
+    }
+  ],
+  "passed_test_executions": 1895,
+  "skipped_test_executions": 10,
+  "warning_count": 1,
+  "artifact_metadata": [
+    {
+      "id": 10314735125,
+      "name": "dataset-macos-15-py3.13",
+      "size_in_bytes": 1901728,
+      "digest": "sha256:314cbe99d91e22f4b8c0c209db96f5b842ecc2c9c63b923c4102be3e4e7c0cac"
+    },
+    {
+      "id": 10314296095,
+      "name": "dataset-ubuntu-24.04-py3.12",
+      "size_in_bytes": 1965426,
+      "digest": "sha256:cfe5805db81bfc7c09c12c1044ac42e726f3e167e6ca872d3c696ecca69b27f1"
+    },
+    {
+      "id": 10314286240,
+      "name": "dataset-windows-2022-py3.10",
+      "size_in_bytes": 1821900,
+      "digest": "sha256:878671975487d4b6589e4604a38d0739ba0df87e99c1c586553fee768a765c04"
+    },
+    {
+      "id": 10314161859,
+      "name": "dataset-macos-15-py3.12",
+      "size_in_bytes": 1902176,
+      "digest": "sha256:39612d34a92c9713dbcb9864352c00dbdd01ae5af2202fc02f04c4c420a849e4"
+    },
+    {
+      "id": 10314151892,
+      "name": "dataset-macos-15-py3.11",
+      "size_in_bytes": 1903754,
+      "digest": "sha256:a8ce6a2044bad107c2888b1fa8c1ccd5f8b6eea8dd8dcee05d6d9e6d864941cc"
+    },
+    {
+      "id": 10314021928,
+      "name": "dataset-macos-15-py3.10",
+      "size_in_bytes": 1901034,
+      "digest": "sha256:a7d5db8170dad758350d4db08b938a9b10b1eb5981301ffeeabf9cb7ba60432e"
+    },
+    {
+      "id": 10313986699,
+      "name": "dataset-ubuntu-24.04-py3.10",
+      "size_in_bytes": 1964295,
+      "digest": "sha256:e98c3c4dcde52ca48fa5795013d761a31a9152cd16b501e0db5c2754e8819c31"
+    },
+    {
+      "id": 10313941424,
+      "name": "dataset-windows-2022-py3.13",
+      "size_in_bytes": 1825462,
+      "digest": "sha256:49e8c7f538ba3439da4566fde6c903122e4580097f0b79c0789b0106cf99fcbc"
+    },
+    {
+      "id": 10313907097,
+      "name": "dataset-windows-2022-py3.11",
+      "size_in_bytes": 1824512,
+      "digest": "sha256:9e3f6a2b08ca2f965b5e96cb8245087b3cc44c6ab6c0df7b5ba6a62403a63839"
+    },
+    {
+      "id": 10313777620,
+      "name": "dataset-windows-2022-py3.12",
+      "size_in_bytes": 1825780,
+      "digest": "sha256:8a88954f82663b495de54d078476ff56f118225a68275e69dbce06a1c46cfe18"
+    },
+    {
+      "id": 10313757421,
+      "name": "dataset-ubuntu-24.04-py3.11",
+      "size_in_bytes": 1966885,
+      "digest": "sha256:69978db473b74ecfb54cfa457f92c3b9619a61432d8369b91965d9c2d5b5e86b"
+    },
+    {
+      "id": 10313679610,
+      "name": "dataset-ubuntu-24.04-py3.13",
+      "size_in_bytes": 1964781,
+      "digest": "sha256:5ddeb5c8e5d2e0b1970594c22f40eb1a8221e4a111255acf18968c7f1e7e5294"
+    }
+  ],
+  "archive": "bench/results/dataset-compact-matrix-v1-terminal-evidence.tar.gz",
+  "archive_bytes": 163660,
+  "archive_sha256": "46059098ce7bbac0b7345bb553a385423febc501864592cc5cd091c319e51a02",
+  "members": {
+    "dataset-compact-matrix-v1-run.json": {
+      "bytes": 14044,
+      "sha256": "b7fa456d87a0115323373b95f7e7b9bdb723fb8fd0d3eee8b1e0ae4a7a095f2a"
+    },
+    "dataset-compact-matrix-v1-jobs.json": {
+      "bytes": 48036,
+      "sha256": "7df5d892bdd633c640c89c1d49d2f847a0086bf5a52d60060261e7d7f7df01ae"
+    },
+    "dataset-compact-matrix-v1-artifacts.json": {
+      "bytes": 8944,
+      "sha256": "5c3f82f38787313eb55cae485d38edba89e3563b3af42c87fa4f930f8153d407"
+    },
+    "dataset-compact-matrix-v1-job-103692916264.log": {
+      "bytes": 47607,
+      "sha256": "19b3beeed735f49be6e81e83f9e780a689ce60ddeaee8c95e5e8659426e64b48"
+    },
+    "dataset-compact-matrix-v1-job-103692916310.log": {
+      "bytes": 73767,
+      "sha256": "7159229aed9c93834c33f8e82dfa88fd662ed772ec5ba94151f071b41ab40166"
+    },
+    "dataset-compact-matrix-v1-job-103692916313.log": {
+      "bytes": 70761,
+      "sha256": "aed0f412fd464b59796dba5ddf6c77d5212bbbdc6c9c14f35fd575dc5f57c822"
+    },
+    "dataset-compact-matrix-v1-job-103692916322.log": {
+      "bytes": 68653,
+      "sha256": "2a0f93a4449566a159df22fd70727c2e0d198f8e15cc3f99e985ef17d4613893"
+    },
+    "dataset-compact-matrix-v1-job-103692916337.log": {
+      "bytes": 47240,
+      "sha256": "0261ace035346da6f7d301d5c071f9b3ce85a29df198ff7390c34ec2e109d60b"
+    },
+    "dataset-compact-matrix-v1-job-103692916351.log": {
+      "bytes": 66638,
+      "sha256": "861dda02f24f16d408c4715e656380f16bf9bbfcce316819d4eb4c6664051e75"
+    },
+    "dataset-compact-matrix-v1-job-103692916367.log": {
+      "bytes": 70330,
+      "sha256": "872e34bcab75d1c035b84822c660d8c655b3b23178d5f7ce754b0607f0a1528f"
+    },
+    "dataset-compact-matrix-v1-job-103692916369.log": {
+      "bytes": 71221,
+      "sha256": "14f87cb6f0a3e9867b2085c616348c1640ab65a4139779946d32ddb89b2be9e4"
+    },
+    "dataset-compact-matrix-v1-job-103692916382.log": {
+      "bytes": 51587,
+      "sha256": "1cf62e1db8f79cc5d085d89755958112acdc12d2d1c690508a1dd360da036418"
+    },
+    "dataset-compact-matrix-v1-job-103692916403.log": {
+      "bytes": 69789,
+      "sha256": "535e5fb2f055b733ea2acbe40dd6ba6c8272f650d50b224e4d338e01900d7f7a"
+    },
+    "dataset-compact-matrix-v1-job-103692916430.log": {
+      "bytes": 73030,
+      "sha256": "c5dc10d2086ff0d4d06a27e1bed149b230960842e39d167aba876f67aa88b2d7"
+    },
+    "dataset-compact-matrix-v1-job-103692916439.log": {
+      "bytes": 69008,
+      "sha256": "404224a89203c6fc23385c7f39112a48e30d45564106bb3278380f3a75b2c837"
+    },
+    "dataset-compact-matrix-v1-wheels.yml": {
+      "bytes": 8868,
+      "sha256": "bc3a08e667523f067afe46987bb361f83efc6e1f0f80a57c43233dbe865695f2"
+    }
+  },
+  "scope": "All 12 terminal wheel job statuses and full raw logs verified. Counts are repeated test executions across platforms, not unique tests. Original wheel/JUnit/sdist artifact payload readback and durable preservation remain open.",
+  "inspection_note": "Initial log parser omitted summaries with warning counts; it stopped before a success receipt. Parser was corrected for that observed summary; no CI job was rerun."
+}

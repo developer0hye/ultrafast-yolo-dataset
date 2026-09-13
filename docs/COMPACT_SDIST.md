@@ -54,7 +54,23 @@ unpacking; the next revision also retains `original-dist` on inspection failure.
 This limitation is recorded rather than reconstructing the lost artifact and
 presenting it as the original.
 
-This source-only qualification covers Linux CPython 3.12. The separate Windows
-runtime-fix matrix is bound to `eec2453`; its results do not establish the full
-platform matrix for this packaging revision. Portable release repair, complete
-artifact preservation and broader release gates remain open.
+The source-only rebuild above covers Linux CPython 3.12. The subsequent
+[compact-package matrix](https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745616205)
+at `a9f3b2a6a7e5c319efb6e0f27de0b412d1e7aaab` completed all **12 wheel jobs**
+for Ubuntu 24.04, Windows 2022 and macOS 15 ARM, each on Python 3.10–3.13.
+All terminal job states and full raw logs were read back and preserved in the
+[matrix receipt](validation/dataset-compact-matrix-v1-terminal.json).
+
+Linux/macOS core tests passed 86 cases per job; Windows passed 85 with one
+Unix signal test skipped. Python 3.11–3.13 framework suites passed 97 cases on
+Linux/macOS and 95 with two Unix-only skips on Windows. Python 3.10 covers core
+and standalone cache tests because the pinned Torch integration needs 3.11+.
+Across repeated platform executions this is 1,895 passes and 10 skips, not a
+count of distinct tests. macOS Python 3.12 also emitted one DeprecationWarning
+in the inherited-lock ownership test for forking an already multithreaded
+process. That warning is preserved in the original job log.
+
+This matrix builds wheels and sdists from checkout; the separate source-only
+job establishes unpacked-source rebuilding on Linux 3.12. Full readback and
+permanent preservation of all 12 original wheel/JUnit/sdist artifact payloads
+remain open. Portable release repair and broader release gates remain open.
