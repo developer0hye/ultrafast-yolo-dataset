@@ -538,7 +538,9 @@ fn discover_dataset(
     labels_dir: &str,
     suffix: &str,
 ) -> PyResult<Option<DatasetIndex>> {
-    if root.is_empty() || root.ends_with('/') || root.contains(['*', '?', '[']) {
+    // Paths are built with '/', which matches the reference glob only where
+    // that is the separator; Windows keeps the reference discovery.
+    if cfg!(windows) || root.is_empty() || root.ends_with('/') || root.contains(['*', '?', '[']) {
         return Ok(None);
     }
     let formats: Vec<Vec<u8>> = formats.into_iter().map(|f| f.into_bytes()).collect();

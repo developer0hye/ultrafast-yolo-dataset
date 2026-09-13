@@ -1,6 +1,7 @@
 """Fast index/cache parity against the unmodified pinned Ultralytics dataset."""
 
 import copy
+import mmap
 import os
 import pickle
 import time
@@ -218,7 +219,7 @@ def test_fast_reference_discovery_forms(tmp_path, monkeypatch):
     args = kwargs("images")
     FastYOLODataset(**args, annotation_cache="fast")
     fast = FastYOLODataset(**args, annotation_cache="fast")
-    assert fast.annotation_cache_hit and fast.im_files[0].startswith("images/")
+    assert fast.annotation_cache_hit and fast.im_files[0].startswith("images" + os.sep)
     same(reference(args), fast)
 
 
@@ -272,6 +273,10 @@ def test_discovery_matches_reference_glob(tmp_path):
     images = corpus(tmp_path)
     (images / "dir.jpg").mkdir()  # the reference glob reports matching directories
     index = _native.discover_dataset(str(images), sorted(IMG_FORMATS), 4)
+    if os.sep != "/":
+        # Native discovery builds "/" paths; Windows keeps the reference glob.
+        assert index is None
+        return
     probe = object.__new__(dataset.YOLODataset)
     probe.fraction, probe.prefix = 1.0, ""
     ref = dataset.YOLODataset.get_img_files(probe, str(images))
@@ -280,9 +285,19 @@ def test_discovery_matches_reference_glob(tmp_path):
     assert _native.discover_dataset(str(tmp_path / "im[a]ges"), sorted(IMG_FORMATS), 4) is None
 
 
+def index_of(images, workers):
+    index = _native.discover_dataset(str(images), sorted(IMG_FORMATS), workers)
+    if index is None:  # Windows: index the reference file list
+        probe = object.__new__(dataset.YOLODataset)
+        probe.fraction, probe.prefix = 1.0, ""
+        files = dataset.YOLODataset.get_img_files(probe, str(images))
+        index = _native.index_paths(files, workers, f"{os.sep}images{os.sep}", f"{os.sep}labels{os.sep}")
+    return index
+
+
 def test_index_metadata_matches_os_stat(tmp_path):
     images = corpus(tmp_path)
-    index = _native.discover_dataset(str(images), sorted(IMG_FORMATS), 4)
+    index = index_of(images, 4)
     image_meta, label_meta = index.metadata()
     for path, meta in zip(index.image_paths(), image_meta):
         info = os.stat(path)
@@ -296,7 +311,25 @@ def test_index_metadata_matches_os_stat(tmp_path):
         assert meta == expected
     before = index.digest()
     time.sleep(0.01)
-    assert _native.discover_dataset(str(images), sorted(IMG_FORMATS), 1).digest() == before
+    assert index_of(images, 1).digest() == before
+
+
+def test_rejected_cache_is_unmapped(tmp_path, monkeypatch):
+    # The caller rewrites a rejected cache, and Windows cannot replace a file
+    # that is still mapped, so rejection must unmap even after arrays exist.
+    args = kwargs(corpus(tmp_path, "segment"), "segment")
+    FastYOLODataset(**args, annotation_cache="fast")
+    mappings = []
+    real = mmap.mmap
+    monkeypatch.setattr(mmap, "mmap", lambda *a, **k: mappings.append(real(*a, **k)) or mappings[-1])
+
+    def reject(*_):
+        raise _fast.CacheMiss("rejected after the arrays were mapped")
+
+    monkeypatch.setattr(_fast, "_validate", reject)
+    rebuilt = FastYOLODataset(**args, annotation_cache="fast")
+    assert not rebuilt.annotation_cache_hit and rebuilt.annotation_cache_write_ok
+    assert mappings and all(m.closed for m in mappings)
 
 
 def test_chunked_sha256_is_order_and_length_sensitive():

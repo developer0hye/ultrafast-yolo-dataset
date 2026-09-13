@@ -21,6 +21,7 @@ import operator
 import os
 import struct
 import sys
+import traceback
 import uuid
 from collections.abc import Sequence
 from functools import lru_cache
@@ -135,7 +136,11 @@ def _require(condition, message):
 
 
 def load(path, *, digest, config, workers):
-    """Return (metadata, arrays) for a valid cache, else raise CacheMiss."""
+    """Return (metadata, arrays) for a valid cache, else raise CacheMiss.
+
+    A rejected cache is unmapped before the error propagates: the caller then
+    rewrites it, and Windows cannot replace a file that is still mapped.
+    """
     if sys.byteorder != "little":
         raise CacheMiss("fast cache supports little-endian hosts only")
     try:
@@ -146,6 +151,17 @@ def load(path, *, digest, config, workers):
             mapped = mmap.mmap(stream.fileno(), 0, access=mmap.ACCESS_READ)
     except (OSError, ValueError) as error:
         raise CacheMiss(f"{type(error).__name__}: {error}") from None
+    try:
+        return _parse(mapped, size, digest, config, workers)
+    except BaseException as error:
+        # Finished frames of the traceback still hold the rejected arrays,
+        # which export the mapping; drop them so it can close.
+        traceback.clear_frames(error.__traceback__)
+        mapped.close()
+        raise
+
+
+def _parse(mapped, size, digest, config, workers):
     magic, schema, count = _HEADER.unpack_from(mapped, 0)
     _require(magic == MAGIC and schema == SCHEMA, "unknown cache format")
     _require(count == len(_ARRAYS) + 1, "unexpected section count")
