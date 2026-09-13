@@ -1,0 +1,473 @@
+{
+  "complete": true,
+  "passed": true,
+  "controller_pid": 1655228,
+  "started_at_ns": 1789278400955158080,
+  "commands": [
+    {
+      "label": "rustc",
+      "command": [
+        "/home/yonghye/.cargo/bin/rustc",
+        "-Vv"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278400985475420,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-rustc.log",
+      "pid": 1655229,
+      "returncode": 0,
+      "finished_at_ns": 1789278401001671701,
+      "log_sha256": "3975d062e234a9f3921955bf6ae5b90f5819df94fa825d057f76b34a35ed0f4d"
+    },
+    {
+      "label": "rust-sysroot",
+      "command": [
+        "/home/yonghye/.cargo/bin/rustc",
+        "--print",
+        "sysroot"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278401001991171,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-rust-sysroot.log",
+      "pid": 1655239,
+      "returncode": 0,
+      "finished_at_ns": 1789278401017894101,
+      "log_sha256": "b7ca54b094b334e79ff0203240cf29061e80795b257bc4fe7b155f63aaf4fa7a"
+    },
+    {
+      "label": "cargo-fmt",
+      "command": [
+        "/home/yonghye/.cargo/bin/cargo",
+        "fmt",
+        "--check"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278401022313310,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-cargo-fmt.log",
+      "pid": 1655251,
+      "returncode": 0,
+      "finished_at_ns": 1789278401086577979,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "build",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "--wheel",
+        "--sdist",
+        "--no-build-isolation",
+        "--out-dir",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dist"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278401086942315,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-build.log",
+      "pid": 1655270,
+      "returncode": 0,
+      "finished_at_ns": 1789278422193900480,
+      "log_sha256": "d225de7a07c1fc8e4cdd3519f160be515acdcb37f4f146a1f0ff45f4eff35009"
+    },
+    {
+      "label": "cargo-tests",
+      "command": [
+        "/home/yonghye/.cargo/bin/cargo",
+        "test",
+        "--lib",
+        "--locked"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278422197905044,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-cargo-tests.log",
+      "pid": 1656578,
+      "returncode": 0,
+      "finished_at_ns": 1789278435990476170,
+      "log_sha256": "747fef7b2ebc2e2e9efbe238b2857e62884053b0f7db5927c62e1eab98bde577"
+    },
+    {
+      "label": "cargo-clippy",
+      "command": [
+        "/home/yonghye/.cargo/bin/cargo",
+        "clippy",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278435990886915,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-cargo-clippy.log",
+      "pid": 1658171,
+      "returncode": 0,
+      "finished_at_ns": 1789278443219858058,
+      "log_sha256": "b1c4d0163902b9b28f0547050ff8984244ee474007437df8b3f187eef0fb5b4c"
+    },
+    {
+      "label": "standalone-venv",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "venv",
+        "--seed",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278443220254191,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-venv.log",
+      "pid": 1658592,
+      "returncode": 0,
+      "finished_at_ns": 1789278443284699113,
+      "log_sha256": "6bb4af2a43eedab3bef991c4a1accc9336688c444bc07d64e2e9024c2db82310"
+    },
+    {
+      "label": "standalone-dependencies",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "--no-deps",
+        "numpy==2.4.4",
+        "pillow==12.1.1",
+        "pip==26.2.1"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278443285094425,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-dependencies.log",
+      "pid": 1658609,
+      "returncode": 0,
+      "finished_at_ns": 1789278443399385216,
+      "log_sha256": "07ee137c6fe8d7f5730e05f946d354f8e42d30afcf9b875e1bb20922a3f04fc8"
+    },
+    {
+      "label": "standalone-wheel",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "--no-deps",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278443399780503,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-wheel.log",
+      "pid": 1658631,
+      "returncode": 0,
+      "finished_at_ns": 1789278443431965007,
+      "log_sha256": "6f94a0ed504d0c1c674a5fe904e0a1fe3d3eea85c324f1a7872fad3dd2b6ad7b"
+    },
+    {
+      "label": "standalone-isolation",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-c",
+        "import importlib.util; assert all(importlib.util.find_spec(x) is None for x in (\"torch\", \"ultralytics\", \"cv2\", \"ultrafast_maskops\"))"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278443432348649,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-isolation.log",
+      "pid": 1658650,
+      "returncode": 0,
+      "finished_at_ns": 1789278443448622305,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "standalone-audit",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "bench/ci_wheel_check.py"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278443449046271,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-audit.log",
+      "pid": 1658651,
+      "returncode": 0,
+      "finished_at_ns": 1789278444014397848,
+      "log_sha256": "dc43547686419e330e25ac8463d1641b942c23d4a9e93aabba5a0ce6ee4ca601"
+    },
+    {
+      "label": "standalone-cache",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "bench/wheel_smoke.py",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-cache.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278444015105808,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-standalone-cache.log",
+      "pid": 1658654,
+      "returncode": 0,
+      "finished_at_ns": 1789278444480409613,
+      "log_sha256": "124a3a95cfd557b49119cd4ee54c057a7f08aa1c157d75b930ac22543b0befe5"
+    },
+    {
+      "label": "combined-dependencies",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "--no-deps",
+        "-r",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-requirements.txt"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278444481426602,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-dependencies.log",
+      "pid": 1658766,
+      "returncode": 0,
+      "finished_at_ns": 1789278445147727815,
+      "log_sha256": "2034c4c0c57c3ad2243b0fa6f599453ea255b850c709a43e8f60700cd37d716c"
+    },
+    {
+      "label": "combined-mask-wheel",
+      "command": [
+        "/home/yonghye/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "--no-deps",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445148178257,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-mask-wheel.log",
+      "pid": 1658814,
+      "returncode": 0,
+      "finished_at_ns": 1789278445164473983,
+      "log_sha256": "1070b4934b9e5ddbcb81eeab872012f895adbc1aa4407c3a53b7c7d78bd05946"
+    },
+    {
+      "label": "pip-check",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445164957670,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-pip-check.log",
+      "pid": 1658832,
+      "returncode": 0,
+      "finished_at_ns": 1789278445429755073,
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "label": "freeze",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445430209851,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-freeze.log",
+      "pid": 1658833,
+      "returncode": 0,
+      "finished_at_ns": 1789278445645126501,
+      "log_sha256": "511287f16efd210b0718ff44235578029cfb359a058acc9b52afd0c37258cd32"
+    },
+    {
+      "label": "installed-root",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-c",
+        "import sysconfig; print(sysconfig.get_path(\"platlib\"))"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445646170285,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-installed-root.log",
+      "pid": 1658834,
+      "returncode": 0,
+      "finished_at_ns": 1789278445662496594,
+      "log_sha256": "5bff7b3e6b20ce03cb8f252cf679bac6f216b292c56c0ace31dbcab804eda324"
+    },
+    {
+      "label": "combined-dataset-audit",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "bench/audit_wheel.py",
+        "--wheel",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl",
+        "--installed-root",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-dataset-audit.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445684448552,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-dataset-audit.log",
+      "pid": 1658837,
+      "returncode": 0,
+      "finished_at_ns": 1789278445799105905,
+      "log_sha256": "231e1f72f7b4d05c3429f48329703da1cc7610d4c21e4b15ef15f01d7e6f561a"
+    },
+    {
+      "label": "combined-mask-audit",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "bench/audit_wheel.py",
+        "--wheel",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl",
+        "--installed-root",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-mask-audit.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-source",
+      "started_at_ns": 1789278445799679779,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-combined-mask-audit.log",
+      "pid": 1658838,
+      "returncode": 0,
+      "finished_at_ns": 1789278445864183499,
+      "log_sha256": "9f88722184ce74b6d9764d11c990a7bba54d7fd07cd88d9114e6b1f3c070fe02"
+    },
+    {
+      "label": "dataset-tests-collect",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "tests"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278445864732442,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dataset-tests-collect.log",
+      "pid": 1658839,
+      "returncode": 0,
+      "finished_at_ns": 1789278449787192701,
+      "log_sha256": "5b5d33f2e0f883cd1acddd0e836a95eb65f1e77163617bf8cdc4750e86435aaf"
+    },
+    {
+      "label": "dataset-tests",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests",
+        "--junitxml=/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dataset-tests.xml"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278449787899863,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-dataset-tests.log",
+      "pid": 1658840,
+      "returncode": 0,
+      "finished_at_ns": 1789278467786573357,
+      "log_sha256": "6a2787ccf88cded257619096752dc0d4b5d804af6bb8304684da7642b7dfa0e4"
+    },
+    {
+      "label": "mask-tests-collect",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "tests"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-source",
+      "started_at_ns": 1789278467787966331,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-mask-tests-collect.log",
+      "pid": 1660570,
+      "returncode": 0,
+      "finished_at_ns": 1789278469656453986,
+      "log_sha256": "e3270fc2575e28c1379f2d5665072874aca17273fc6b1c65060a75ed4690f0cf"
+    },
+    {
+      "label": "mask-tests",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests",
+        "--junitxml=/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-mask-tests.xml"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-source",
+      "started_at_ns": 1789278469657172397,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-mask-tests.log",
+      "pid": 1660571,
+      "returncode": 0,
+      "finished_at_ns": 1789278520422321273,
+      "log_sha256": "1186ff1e21e4afe8fd2c9f795f1df855cd336f5b694502abb0d20ffdb43ad3dd"
+    },
+    {
+      "label": "rustc-after",
+      "command": [
+        "/home/yonghye/.cargo/bin/rustc",
+        "-Vv"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-source",
+      "started_at_ns": 1789278520444773098,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-rustc-after.log",
+      "pid": 1661147,
+      "returncode": 0,
+      "finished_at_ns": 1789278520461056095,
+      "log_sha256": "3975d062e234a9f3921955bf6ae5b90f5819df94fa825d057f76b34a35ed0f4d"
+    }
+  ],
+  "source_commit": "16d4d6175e749c7213fc3bd24caed7815b59c053",
+  "source_archive_sha256": "080b9250282c05fd04d4e7faf79372295d7106cfb6ea9d26dabe05f2babf7311",
+  "mask_wheel": "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl",
+  "mask_wheel_sha256": "8b467c837c323812a0201b81210a6dcd0c180ef50ba0d16531f07ef2c741cd9a",
+  "controller_sha256": "02fb84b4775fccaaeb1b2052ef0c2903096b057a086322822d5ffa1fd18c36b8",
+  "environment_overrides": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "YOLO_OFFLINE": "true",
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_TARGET_DIR": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-target",
+    "PYO3_PYTHON": "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+    "RUSTUP_TOOLCHAIN": "1.98.0"
+  },
+  "compiler_notice_sha256": "68129500b616d5838629e68f55ff3aed5e096dacf60ce9eb41bbe599a563afa6",
+  "artifacts": {
+    "ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl": "052885ef0c3dad89d62752fa4f4f6442e699c34cfdda52443dfdcde53210677c",
+    "ultrafast_yolo_dataset-0.1.0a1.tar.gz": "b959abc0ee2abb7dcd0ce5ad05816dbdc93eaae83f17da7a1b9ee0ec464a4db8"
+  },
+  "build_passed": true,
+  "standalone_passed": true,
+  "notice_files_checked": 137,
+  "standalone_audit_sha256": "e417a79ccb6fa0bb09d51855b3e4e203a838461fef7121b406a8c1189af55826",
+  "baseline_freeze_sha256": "715bb66783a0923d35b35c1978b158797d61ec5e32c028cab880dd96a3839dad",
+  "requirements_sha256": "deb554bb63e428e326951bd1884a3414c926ac23522f1abf959fe8a41706b5fa",
+  "excluded_old_mask_wheel": [
+    "ultrafast-maskops @ file:///home/yonghye/ultrafast-vision-build/mask-unit-scale-linux-dist-v1/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl"
+  ],
+  "normalized_dependency_pins_match": true,
+  "dataset-tests": {
+    "collected": 166,
+    "cases": 166,
+    "failed": [],
+    "skipped": [],
+    "xml_sha256": "f461677313a94f64405b1536d4140e55932a73f537f9bfcb36443ca8c894479b",
+    "collection_log_sha256": "5b5d33f2e0f883cd1acddd0e836a95eb65f1e77163617bf8cdc4750e86435aaf"
+  },
+  "mask-tests": {
+    "collected": 257,
+    "cases": 257,
+    "failed": [],
+    "skipped": [],
+    "xml_sha256": "cd5935667a0715a6d5522d41950488597728ab2aa667da319cc8e668c4ff3e1e",
+    "collection_log_sha256": "e3270fc2575e28c1379f2d5665072874aca17273fc6b1c65060a75ed4690f0cf"
+  },
+  "finished_at_ns": 1789278520461578965,
+  "installed_sources_unchanged": true,
+  "gpu_training_executed": false
+}

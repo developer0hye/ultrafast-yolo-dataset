@@ -58,8 +58,12 @@ manifest for 54 selected registry crates and the observed standard-library
 versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;
 installed-byte auditing, 65 core tests and four standalone cache cases passed.
 The older measured Linux baseline wheel contains project LICENSE/NOTICE but
-lacks that later 137-file dependency-license bundle. The P1 preservation audit
-records the missing paths; a redistribution-qualified Linux rebuild remains required.
+lacks that later 137-file dependency-license bundle; its historical results and
+missing-path audit remain unchanged. A [fresh Linux rebuild](LINUX_WHEEL_QUALIFICATION.md)
+now preserves all 137 files and passes four standalone cache cases plus 166 dataset
+and 257 mask tests in a new combined runtime. The original Rust 1.97.1 Clippy
+failure is preserved; the successful build uses the workflow's Rust 1.98.0.
+This qualifies the recorded local wheel, not hosted platforms or new performance.
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
 locally linted, with hosted execution awaiting the repository visibility choice.
 

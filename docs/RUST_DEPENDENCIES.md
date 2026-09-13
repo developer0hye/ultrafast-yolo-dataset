@@ -45,3 +45,11 @@ notice comparison and also checks the pinned Rust compiler's copyright HTML
 against the supplied copy. Hosted CI has not run. Embedded notices,
 platform-specific system dependencies and final redistribution coverage still
 require review.
+
+A subsequent [Linux CPython 3.12 rebuild](LINUX_WHEEL_QUALIFICATION.md) now also
+preserves all 137 files in wheel, sdist and installation. It uses Rust 1.98.0
+and verifies the compiler copyright bytes, with four standalone cache cases,
+166 dataset tests and 257 mask tests passing in a fresh combined runtime. The
+original Rust 1.97.1 Clippy failure remains preserved. This is local packaging
+and integration evidence; broader platform and final redistribution review are
+not implied by the notice-file comparison.

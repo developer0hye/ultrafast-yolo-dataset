@@ -1,0 +1,230 @@
+{
+  "archive": "bench/results/dataset-notices-linux-v2-evidence.tar.gz",
+  "archive_sha256": "694a113d7410e5b7a0be7f8ea15c20ab8cb41602c8d190debd4c128183bbfb3c",
+  "archive_bytes": 4880832,
+  "members": 55,
+  "all_members_readback_verified": true,
+  "scope": "Local Linux CPython 3.12 build, wheel/sdist/installed bytes and notice comparisons, standalone caches and both suites in one fresh runtime; not GPU training, hosted matrix or a performance comparison.",
+  "files": {
+    "dataset-notices-linux-v2-build.log": {
+      "bytes": 3512,
+      "sha256": "d225de7a07c1fc8e4cdd3519f160be515acdcb37f4f146a1f0ff45f4eff35009"
+    },
+    "dataset-notices-linux-v2-cargo-clippy.log": {
+      "bytes": 1370,
+      "sha256": "b1c4d0163902b9b28f0547050ff8984244ee474007437df8b3f187eef0fb5b4c"
+    },
+    "dataset-notices-linux-v2-cargo-fmt.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dataset-notices-linux-v2-cargo-tests.log": {
+      "bytes": 2126,
+      "sha256": "747fef7b2ebc2e2e9efbe238b2857e62884053b0f7db5927c62e1eab98bde577"
+    },
+    "dataset-notices-linux-v2-combined-dataset-audit.json": {
+      "bytes": 29114,
+      "sha256": "8cd67a991dafe8bf7587681a3f6a235f4f897264c5e7d9029b9966b8aa71f8e6"
+    },
+    "dataset-notices-linux-v2-combined-dataset-audit.log": {
+      "bytes": 635,
+      "sha256": "231e1f72f7b4d05c3429f48329703da1cc7610d4c21e4b15ef15f01d7e6f561a"
+    },
+    "dataset-notices-linux-v2-combined-dependencies.log": {
+      "bytes": 2252,
+      "sha256": "2034c4c0c57c3ad2243b0fa6f599453ea255b850c709a43e8f60700cd37d716c"
+    },
+    "dataset-notices-linux-v2-combined-mask-audit.json": {
+      "bytes": 3797,
+      "sha256": "43113a4689c72609b7d2659737c70a613e798717d9c1c246af569fbbe57f0c81"
+    },
+    "dataset-notices-linux-v2-combined-mask-audit.log": {
+      "bytes": 626,
+      "sha256": "9f88722184ce74b6d9764d11c990a7bba54d7fd07cd88d9114e6b1f3c070fe02"
+    },
+    "dataset-notices-linux-v2-combined-mask-wheel.log": {
+      "bytes": 323,
+      "sha256": "1070b4934b9e5ddbcb81eeab872012f895adbc1aa4407c3a53b7c7d78bd05946"
+    },
+    "dataset-notices-linux-v2-controller.log": {
+      "bytes": 1812,
+      "sha256": "5cc7730eca5719f14a314cad2b3fea7a773b4409e7af302c9a439d24dede7b19"
+    },
+    "dataset-notices-linux-v2-dataset-tests-collect.log": {
+      "bytes": 12916,
+      "sha256": "5b5d33f2e0f883cd1acddd0e836a95eb65f1e77163617bf8cdc4750e86435aaf"
+    },
+    "dataset-notices-linux-v2-dataset-tests.log": {
+      "bytes": 261,
+      "sha256": "6a2787ccf88cded257619096752dc0d4b5d804af6bb8304684da7642b7dfa0e4"
+    },
+    "dataset-notices-linux-v2-dataset-tests.xml": {
+      "bytes": 19775,
+      "sha256": "f461677313a94f64405b1536d4140e55932a73f537f9bfcb36443ca8c894479b"
+    },
+    "dataset-notices-linux-v2-dist/.gitignore": {
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "dataset-notices-linux-v2-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1159681,
+      "sha256": "052885ef0c3dad89d62752fa4f4f6442e699c34cfdda52443dfdcde53210677c"
+    },
+    "dataset-notices-linux-v2-dist/ultrafast_yolo_dataset-0.1.0a1.tar.gz": {
+      "bytes": 445729,
+      "sha256": "b959abc0ee2abb7dcd0ce5ad05816dbdc93eaae83f17da7a1b9ee0ec464a4db8"
+    },
+    "dataset-notices-linux-v2-dist/wheel-validation.json": {
+      "bytes": 29653,
+      "sha256": "e417a79ccb6fa0bb09d51855b3e4e203a838461fef7121b406a8c1189af55826"
+    },
+    "dataset-notices-linux-v2-freeze.log": {
+      "bytes": 2135,
+      "sha256": "511287f16efd210b0718ff44235578029cfb359a058acc9b52afd0c37258cd32"
+    },
+    "dataset-notices-linux-v2-installed-root.log": {
+      "bytes": 97,
+      "sha256": "5bff7b3e6b20ce03cb8f252cf679bac6f216b292c56c0ace31dbcab804eda324"
+    },
+    "dataset-notices-linux-v2-mask-tests-collect.log": {
+      "bytes": 19270,
+      "sha256": "e3270fc2575e28c1379f2d5665072874aca17273fc6b1c65060a75ed4690f0cf"
+    },
+    "dataset-notices-linux-v2-mask-tests.log": {
+      "bytes": 341,
+      "sha256": "1186ff1e21e4afe8fd2c9f795f1df855cd336f5b694502abb0d20ffdb43ad3dd"
+    },
+    "dataset-notices-linux-v2-mask-tests.xml": {
+      "bytes": 29769,
+      "sha256": "cd5935667a0715a6d5522d41950488597728ab2aa667da319cc8e668c4ff3e1e"
+    },
+    "dataset-notices-linux-v2-pip-check.log": {
+      "bytes": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "dataset-notices-linux-v2-qualification.json": {
+      "bytes": 19474,
+      "sha256": "3cd9cf0bfc2f486c682be2df80f5140f1a9b3fb861b183fff20e71b5ebe2a3b9"
+    },
+    "dataset-notices-linux-v2-requirements.txt": {
+      "bytes": 1843,
+      "sha256": "deb554bb63e428e326951bd1884a3414c926ac23522f1abf959fe8a41706b5fa"
+    },
+    "dataset-notices-linux-v2-rust-sysroot.log": {
+      "bytes": 65,
+      "sha256": "b7ca54b094b334e79ff0203240cf29061e80795b257bc4fe7b155f63aaf4fa7a"
+    },
+    "dataset-notices-linux-v2-rustc-after.log": {
+      "bytes": 196,
+      "sha256": "3975d062e234a9f3921955bf6ae5b90f5819df94fa825d057f76b34a35ed0f4d"
+    },
+    "dataset-notices-linux-v2-rustc.log": {
+      "bytes": 196,
+      "sha256": "3975d062e234a9f3921955bf6ae5b90f5819df94fa825d057f76b34a35ed0f4d"
+    },
+    "dataset-notices-linux-v2-source.json": {
+      "bytes": 25317,
+      "sha256": "f85a4bbeabcd7bbf2cbe6bbc350c1deb0fbbc8bd46a79a943530980ecd6254d6"
+    },
+    "dataset-notices-linux-v2-source.tar": {
+      "bytes": 3522560,
+      "sha256": "080b9250282c05fd04d4e7faf79372295d7106cfb6ea9d26dabe05f2babf7311"
+    },
+    "dataset-notices-linux-v2-standalone-audit.log": {
+      "bytes": 56,
+      "sha256": "dc43547686419e330e25ac8463d1641b942c23d4a9e93aabba5a0ce6ee4ca601"
+    },
+    "dataset-notices-linux-v2-standalone-cache.json": {
+      "bytes": 1142,
+      "sha256": "124a3a95cfd557b49119cd4ee54c057a7f08aa1c157d75b930ac22543b0befe5"
+    },
+    "dataset-notices-linux-v2-standalone-cache.log": {
+      "bytes": 1142,
+      "sha256": "124a3a95cfd557b49119cd4ee54c057a7f08aa1c157d75b930ac22543b0befe5"
+    },
+    "dataset-notices-linux-v2-standalone-dependencies.log": {
+      "bytes": 196,
+      "sha256": "07ee137c6fe8d7f5730e05f946d354f8e42d30afcf9b875e1bb20922a3f04fc8"
+    },
+    "dataset-notices-linux-v2-standalone-isolation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dataset-notices-linux-v2-standalone-venv.log": {
+      "bytes": 337,
+      "sha256": "6bb4af2a43eedab3bef991c4a1accc9336688c444bc07d64e2e9024c2db82310"
+    },
+    "dataset-notices-linux-v2-standalone-wheel.log": {
+      "bytes": 363,
+      "sha256": "6f94a0ed504d0c1c674a5fe904e0a1fe3d3eea85c324f1a7872fad3dd2b6ad7b"
+    },
+    "dataset-notices-linux-v2-toolchain-install.log": {
+      "bytes": 366,
+      "sha256": "0af2ab1fbb57be448d3a11be86468d58927fbceef63cbee075ca2cd5e8655835"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-build.log": {
+      "bytes": 3512,
+      "sha256": "63e078168759809cd94e4bcf89cc5e31773b9b976c9e1a1c0bfd466465a50d17"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-cargo-clippy.log": {
+      "bytes": 1858,
+      "sha256": "283897aa96ff4208aa351257593b98ee05d30aa9c241d3eb843a5b0560acf32f"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-cargo-fmt.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-cargo-tests.log": {
+      "bytes": 2126,
+      "sha256": "9ea8ccab4c104df77ec53f911ab025016a82e6cd38d4ab3eeffa7852f82e7952"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-controller.log": {
+      "bytes": 2686,
+      "sha256": "49b063dc47404c9703e1222c7d7fe73ddb92eae6eb339e6f8ced0c8b048750e4"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-dist/.gitignore": {
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1160482,
+      "sha256": "cedbba88a2c645e54edb817dc73e52fdd594aebaf55eb405f8e1411c5da90323"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-dist/ultrafast_yolo_dataset-0.1.0a1.tar.gz": {
+      "bytes": 445729,
+      "sha256": "b959abc0ee2abb7dcd0ce5ad05816dbdc93eaae83f17da7a1b9ee0ec464a4db8"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-qualification.json": {
+      "bytes": 7623,
+      "sha256": "1b7405cabda4e24321f32018e094cf306f0478df30daf4be01d1f10158af50d5"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-rust-sysroot.log": {
+      "bytes": 65,
+      "sha256": "5487e7d0d13bcea26dc55bb5bc0459f1d01fc4f2ad754b67915a457a108a5408"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-rustc.log": {
+      "bytes": 196,
+      "sha256": "b2bdf493bcf6d1dc55181a0efc2774b6d9cf7bf5c8dcc5bed592c994b2ad38c4"
+    },
+    "failed-rust-1.97.1-attempt/dataset-notices-linux-v1-source.json": {
+      "bytes": 25317,
+      "sha256": "f85a4bbeabcd7bbf2cbe6bbc350c1deb0fbbc8bd46a79a943530980ecd6254d6"
+    },
+    "failed-rust-1.97.1-attempt/qualify-dataset-notices-linux-v1.py": {
+      "bytes": 11761,
+      "sha256": "df185e08eb50951b45ca1a2f8979aad5aca14e55d7074e2b3dd06ab7ddc0dba0"
+    },
+    "mask-shared-linux-v2-qualification-evidence.tar.gz": {
+      "bytes": 1668875,
+      "sha256": "ecd5ebadb94f4c3dfcdeaa616f57c6914737a4b0bca0e80abe9ed2a33cc6701b"
+    },
+    "qualify-dataset-notices-linux-v2.py": {
+      "bytes": 11761,
+      "sha256": "02fb84b4775fccaaeb1b2052ef0c2903096b057a086322822d5ffa1fd18c36b8"
+    },
+    "readback-validation.json": {
+      "bytes": 1024,
+      "sha256": "d86fc41ab1c7ff02f532fe08193a0bf639182cc14bfc3b318b03f47cf33ebfdc"
+    }
+  }
+}
