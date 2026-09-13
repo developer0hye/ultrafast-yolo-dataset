@@ -13,6 +13,7 @@ from . import _native, parse_labels
 from ._reference import exif_size, verify_image_label
 
 IMG_FORMATS = {"avif", "bmp", "dng", "heic", "heif", "jp2", "jpeg", "jpg", "mpo", "png", "tif", "tiff", "webp"}
+NATIVE_JPEG_PROBE = True  # tests disable it to compare against Pillow-only scans
 VID_FORMATS = {"asf", "avi", "gif", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "ts", "wmv", "webm"}
 FORMATS_HELP_MSG = f"Supported formats are:\nimages: {IMG_FORMATS}\nvideos: {VID_FORMATS}"
 
@@ -204,6 +205,13 @@ def scan(
     summary = {"found": 0, "missing": 0, "empty": 0, "corrupt": 0, "total": len(images)}
     diagnostics, sources, shapes, rows, all_segments, repaired_sources = [], [], [], [], [], []
     fallbacks = 0
+    probe = None
+    limit = Image.MAX_IMAGE_PIXELS
+    if not fingerprint and NATIVE_JPEG_PROBE and (limit is None or limit > 0):
+        # Pillow's JPEG marker loop is pure Python under the GIL. One native pass
+        # probes every header; Pillow runs only where the probe cannot guarantee
+        # Pillow's own result (see src/jpeg.rs).
+        probe = _native.probe_jpegs(images, workers, limit or 0, max_image_bytes)
     with ThreadPoolExecutor(max_workers=workers) as pool:
         for start in range(0, len(images), max_in_flight):
             stop = min(start + max_in_flight, len(images))
@@ -215,6 +223,11 @@ def scan(
                 verified = [v[:3] for v in captured_images]
                 image_proofs.extend(v[3] for v in captured_images)
                 unavailable.extend(v[4] for v in captured_images if v[4])
+            elif probe is not None:
+                statuses, heights, widths = probe
+                todo = [i for i in range(start, stop) if statuses[i]]
+                pillow = dict(zip(todo, pool.map(_verify_image, [(images[i], repair_jpeg) for i in todo])))
+                verified = [pillow[i] if statuses[i] else ((heights[i], widths[i]), "", "") for i in range(start, stop)]
             else:
                 verified = list(pool.map(_verify_image, [(p, repair_jpeg) for p in images[start:stop]]))
             valid = [start + i for i, result in enumerate(verified) if result[0] is not None]

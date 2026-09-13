@@ -57,7 +57,10 @@ fn from_std(meta: &std::fs::Metadata) -> Meta {
             .saturating_add(meta.mtime_nsec())
     };
     #[cfg(not(unix))]
-    let mtime_ns = match meta.modified().map(|t| t.duration_since(std::time::UNIX_EPOCH)) {
+    let mtime_ns = match meta
+        .modified()
+        .map(|t| t.duration_since(std::time::UNIX_EPOCH))
+    {
         Ok(Ok(d)) => d.as_nanos() as i64,
         Ok(Err(e)) => -(e.duration().as_nanos() as i64),
         Err(_) => 0,
@@ -103,7 +106,10 @@ mod platform {
     }
 
     fn read<T: Copy>(buffer: &[u8], offset: usize) -> io::Result<T> {
-        if offset.checked_add(size_of::<T>()).is_none_or(|end| end > buffer.len()) {
+        if offset
+            .checked_add(size_of::<T>())
+            .is_none_or(|end| end > buffer.len())
+        {
             return Err(io::Error::other("truncated getattrlistbulk record"));
         }
         // SAFETY: bounds checked above; the kernel packs fields without Rust alignment.
@@ -239,7 +245,9 @@ mod platform {
         for entry in std::fs::read_dir(dir)? {
             // glob swallows per-entry errors; so does this listing.
             let Ok(entry) = entry else { continue };
-            let Ok(kind) = entry.file_type() else { continue };
+            let Ok(kind) = entry.file_type() else {
+                continue;
+            };
             #[cfg(unix)]
             let name = {
                 use std::os::unix::ffi::OsStrExt;
@@ -269,11 +277,7 @@ mod platform {
 /// Replicates `glob.glob(root/**/*.*, recursive=True)` then the reference's
 /// extension filter. Returns `Err(())` for layouts whose exact glob semantics
 /// are not replicated (symlinked directories, undecodable names).
-fn walk(
-    directory: &str,
-    formats: &[Vec<u8>],
-    abort: &AtomicBool,
-) -> Vec<(String, Meta)> {
+fn walk(directory: &str, formats: &[Vec<u8>], abort: &AtomicBool) -> Vec<(String, Meta)> {
     if abort.load(Ordering::Relaxed) {
         return Vec::new();
     }
@@ -412,7 +416,12 @@ fn stat_many(paths: &[String]) -> Vec<Meta> {
     }
 }
 
-fn digest(images: &[String], image_meta: &[Meta], labels: &[String], label_meta: &[Meta]) -> [u8; 32] {
+fn digest(
+    images: &[String],
+    image_meta: &[Meta],
+    labels: &[String],
+    label_meta: &[Meta],
+) -> [u8; 32] {
     let chunks: Vec<[u8; 32]> = (0..images.len().div_ceil(DIGEST_CHUNK))
         .into_par_iter()
         .map(|chunk| {
@@ -477,7 +486,14 @@ impl DatasetIndex {
     }
     /// Ordered digest of paths, kinds, sizes and modification times.
     fn digest<'py>(&self, py: Python<'py>) -> Bound<'py, PyBytes> {
-        let value = py.allow_threads(|| digest(&self.images, &self.image_meta, &self.labels, &self.label_meta));
+        let value = py.allow_threads(|| {
+            digest(
+                &self.images,
+                &self.image_meta,
+                &self.labels,
+                &self.label_meta,
+            )
+        });
         PyBytes::new(py, &value)
     }
     /// The first `count` pairs, as the reference applies `fraction` after sorting.
@@ -537,7 +553,9 @@ fn discover_dataset(
             // Python compares str by code point; UTF-8 byte order is identical.
             found.par_sort_unstable_by(|a, b| a.0.as_bytes().cmp(b.0.as_bytes()));
             let (images, meta): (Vec<String>, Vec<Meta>) = found.into_iter().unzip();
-            Ok(Some(DatasetIndex::build(images, meta, images_dir, labels_dir, suffix)))
+            Ok(Some(DatasetIndex::build(
+                images, meta, images_dir, labels_dir, suffix,
+            )))
         })
     })
 }
@@ -651,10 +669,16 @@ mod tests {
         }
         assert_eq!(listing.len(), 5);
         let abort = AtomicBool::new(false);
-        let formats: Vec<Vec<u8>> = ["jpg", "png"].iter().map(|s| s.as_bytes().to_vec()).collect();
+        let formats: Vec<Vec<u8>> = ["jpg", "png"]
+            .iter()
+            .map(|s| s.as_bytes().to_vec())
+            .collect();
         let mut found = walk(dir.to_str().unwrap(), &formats, &abort);
         found.sort_by(|a, b| a.0.cmp(&b.0));
-        let names: Vec<&str> = found.iter().map(|(p, _)| p.rsplit('/').next().unwrap()).collect();
+        let names: Vec<&str> = found
+            .iter()
+            .map(|(p, _)| p.rsplit('/').next().unwrap())
+            .collect();
         assert!(!abort.load(Ordering::Relaxed));
         assert_eq!(names, ["a.JPG", "link.png", "sub.jpg"]);
         assert_eq!(found[1].1, found[0].1, "symlinks report their target");
