@@ -2,6 +2,9 @@
 
 The native backend validates captured content; the optional legacy backend
 retains Ultralytics' weaker path/size invalidation and trusted pickle bridge.
+The fast backend validates every image and label file's kind, size and
+modification time plus the ordered path list, keeps annotations packed in a
+memory-mapped cache, and creates per-image label dictionaries on access.
 """
 
 import gc
@@ -14,17 +17,19 @@ import pickle
 import stat
 import tempfile
 import threading
+from collections.abc import Sequence
 from copy import copy
 from pathlib import Path
 
+import cv2
 import numpy as np
 import PIL
 from PIL import Image
-from ultralytics.data import build, dataset, utils
+from ultralytics.data import base, build, dataset, utils
 from ultralytics.data.base import BaseDataset
-from ultralytics.utils import LOGGER, colorstr, ops, patches
+from ultralytics.utils import DEFAULT_CFG, LOGGER, colorstr, ops, patches
 
-from . import scan
+from . import _fast, _native, scan
 
 _PROFILE = json.loads(Path(__file__).with_name("_ultralytics_profile.json").read_text())
 _BASE = dataset.YOLODataset
@@ -182,9 +187,32 @@ def _write_legacy(path, value, prefix):
             temporary.unlink(missing_ok=True)
 
 
+class _NpyFiles(Sequence):
+    """``[Path(f).with_suffix(".npy") for f in im_files]``, built per access.
+
+    The reference builds all of these Path objects in its constructor although
+    only disk-cached samples (and one existence check per loaded image) use them.
+    """
+
+    __slots__ = ("_files",)
+
+    def __init__(self, files):
+        self._files = files
+
+    def __len__(self):
+        return len(self._files)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+            return [Path(f).with_suffix(".npy") for f in self._files[index]]
+        return Path(self._files[index]).with_suffix(".npy")
+
+
 class FastYOLODataset(_BASE):
     """Base YOLODataset with an explicit hybrid scan and optional legacy bridge.
 
+    annotation_cache='fast' indexes files natively, validates a packed cache by
+    per-file metadata and returns labels as an on-demand sequence.
     Default annotation_cache='none' scans without reading/writing label caches.
     'ultralytics' requires trust_legacy_cache=True because upstream .cache uses
     pickle. Image RAM/disk caching remains controlled by the original `cache` arg.
@@ -207,13 +235,16 @@ class FastYOLODataset(_BASE):
         max_cache_bytes=2 * 1024**3,
         max_image_bytes=64 * 1024**2,
         max_fallback_bytes=64 * 1024**2,
+        index_workers=16,
         **kwargs,
     ):
         check_profile()
         if type(self) is not FastYOLODataset or task not in ("detect", "segment"):
             raise UnsupportedProfile("only the base Detection/Segmentation dataset is supported; retain custom hooks")
-        if annotation_cache not in ("none", "ultralytics", "native"):
-            raise ValueError("annotation_cache must be none, native, or ultralytics")
+        if annotation_cache not in ("none", "ultralytics", "native", "fast"):
+            raise ValueError("annotation_cache must be none, fast, native, or ultralytics")
+        if not 1 <= index_workers <= 256:
+            raise ValueError("index_workers must be in 1..256")
         if annotation_cache == "ultralytics" and not trust_legacy_cache:
             raise ValueError("legacy pickle caches require explicit trust_legacy_cache=True")
         if not 1 <= scan_workers <= 256 or not 1 <= max_in_flight <= 65536 or max_file_bytes < 1:
@@ -243,7 +274,245 @@ class FastYOLODataset(_BASE):
         self.annotation_cache_miss_reason = None
         self.annotation_cache_write_error = None
         self.annotation_cache_path = None
-        super().__init__(*args, task=task, **kwargs)
+        # Metadata lookups are latency-bound (kernel inode fetches), not
+        # CPU-bound, so this pool is sized independently of scan_workers.
+        self._index_workers = index_workers
+        self._fast_index = None
+        self.annotation_cache_digest = None
+        if annotation_cache == "fast":
+            self._yolo_init(*args, task=task, **kwargs)
+        else:
+            super().__init__(*args, task=task, **kwargs)
+
+    def _yolo_init(self, *args, data=None, task="detect", **kwargs):
+        """Pinned YOLODataset.__init__; check_profile guards its source hash."""
+        self.use_segments = task == "segment"
+        self.use_keypoints = task == "pose"
+        self.use_obb = task == "obb"
+        self.data = data
+        self._base_init(*args, channels=self.data.get("channels", 3), **kwargs)
+
+    def _base_init(
+        self,
+        img_path,
+        imgsz=640,
+        cache=False,
+        augment=True,
+        hyp=DEFAULT_CFG,
+        prefix="",
+        rect=False,
+        batch_size=16,
+        stride=32,
+        pad=0.5,
+        single_cls=False,
+        classes=None,
+        fraction=1.0,
+        channels=3,
+    ):
+        """Pinned BaseDataset.__init__ with on-demand .npy paths.
+
+        check_profile guards the BaseDataset source hash. The only change is
+        npy_files: the reference eagerly builds one Path per image here.
+        """
+        super(BaseDataset, self).__init__()
+        self.img_path = img_path
+        self.imgsz = imgsz
+        self.augment = augment
+        self.single_cls = single_cls
+        self.prefix = prefix
+        self.fraction = base.get_split_fraction(fraction, "train")
+        self.channels = channels
+        self.cv2_flag = cv2.IMREAD_GRAYSCALE if channels == 1 else cv2.IMREAD_COLOR
+        self.im_files = self.get_img_files(self.img_path)
+        self.labels = self.get_labels()
+        self.update_labels(include_class=classes)  # single_cls and include_class
+        self.ni = len(self.labels)  # number of images
+        self.rect = rect
+        self.batch_size = batch_size
+        self.stride = stride
+        self.pad = pad
+        if self.rect:
+            assert self.batch_size is not None
+            self.set_rectangle()
+
+        # Buffer thread for mosaic images
+        self.buffer = []  # buffer size = batch size
+        self.max_buffer_length = min((self.ni, self.batch_size * 8, 1000)) if self.augment else 0
+
+        # Cache images (options are cache = True, False, None, "ram", "disk")
+        self.ims, self.im_hw0, self.im_hw = [None] * self.ni, [None] * self.ni, [None] * self.ni
+        self.npy_files = _NpyFiles(self.im_files)
+        self.cache = cache.lower() if isinstance(cache, str) else "ram" if cache is True else None
+        if self.cache == "ram" and self.check_cache_ram():
+            if hyp.deterministic:
+                LOGGER.warning(
+                    "cache='ram' may produce non-deterministic training results. "
+                    "Consider cache='disk' as a deterministic alternative if your disk space allows."
+                )
+            self.cache_images()
+        elif self.cache == "disk" and self.check_cache_disk():
+            self.cache_images()
+
+        # Transforms
+        self.transforms = self.build_transforms(hyp=hyp)
+
+    def _path_rules(self):
+        return f"{os.sep}images{os.sep}", f"{os.sep}labels{os.sep}"
+
+    def get_img_files(self, img_path):
+        if self.annotation_cache != "fast":
+            return super().get_img_files(img_path)
+        index = None
+        if os.sep == "/" and isinstance(img_path, (str, os.PathLike)) and os.path.isdir(img_path):
+            # One native pass lists every directory together with metadata.
+            index = _native.discover_dataset(str(Path(img_path)), sorted(base.IMG_FORMATS), self._index_workers)
+        if index is None or not len(index):
+            # Reference discovery (file lists, several roots, errors), then index its list.
+            im_files = super().get_img_files(img_path)
+            self._fast_index = _native.index_paths(im_files, self._index_workers, *self._path_rules())
+            return im_files
+        im_files = index.image_paths()
+        count = self.fraction if isinstance(self.fraction, int) else max(1, round(len(im_files) * self.fraction))
+        if count < len(im_files):
+            im_files, index = im_files[:count], index.truncated(count)
+        base.check_file_speeds(im_files, prefix=self.prefix)  # check image read speeds
+        self._fast_index = index
+        return im_files
+
+    def _fast_cache_path(self, legacy_path):
+        path = Path(legacy_path).absolute()
+        if self._native_cache_dir is None:
+            return path.with_suffix(".uydfast")
+        key = hashlib.sha256(str(path).encode()).hexdigest()[:20]
+        return self._native_cache_dir / f"{path.stem}-{key}.uydfast"
+
+    def _fast_config(self):
+        return {
+            **self._cache_profile(),
+            "max_image_bytes": self._scan_options["max_image_bytes"],
+            "max_fallback_bytes": self._scan_options["max_fallback_bytes"],
+            "validation": "ordered-paths+per-file-kind-size-mtime-v1",
+            "path_rules": list(self._path_rules()),
+        }
+
+    def _scan_kwargs(self):
+        return dict(
+            num_classes=len(self.data["names"]),
+            task="segment" if self.use_segments else "detect",
+            single_cls=self.single_cls,
+            prefix=self.prefix,
+            **self._scan_options,
+        )
+
+    def _fast_labels(self):
+        index = self._fast_index
+        self.label_files = index.label_paths()
+        legacy = Path(self.label_files[0]).parent.with_suffix(".cache")
+        path = self._fast_cache_path(legacy)
+        self.annotation_cache_path = str(path)
+        digest, config = index.digest(), self._fast_config()
+        self.annotation_cache_digest = digest
+        try:
+            metadata, arrays = _fast.load(path, digest=digest, config=config, workers=self._index_workers)
+        except _fast.CacheMiss as miss:
+            self.annotation_cache_miss_reason = str(miss)
+            summary, messages, arrays = self._fast_scan(legacy, path, digest, config)
+        else:
+            self.annotation_cache_hit = True
+            summary = metadata["summary"]
+            messages = [item["message"] for item in metadata["diagnostics"]]
+            if dataset.LOCAL_RANK in {-1, 0}:
+                nf, nm, ne, nc, total = (summary[k] for k in ("found", "missing", "empty", "corrupt", "total"))
+                message = f"Scanning {path}... {self.scan_summary(nf, nm, ne, nc)}"
+                dataset.TQDM(None, desc=self.prefix + message, total=total, initial=total)
+                if messages:
+                    LOGGER.info("\n".join(messages))
+        labels = _fast.LazyLabels(list(self.im_files), arrays)
+        if not len(labels):
+            issues = "\n  ".join(sorted(set(messages))) or "no error details"
+            raise RuntimeError(f"No valid images found in {legacy}.\n  {issues}\n{dataset.HELP_URL}")
+        sources = arrays["sources"]
+        if len(sources) != len(self.im_files):
+            self.im_files = [self.im_files[i] for i in sources.tolist()]  # update im_files
+        self._fast_index = None  # only needed during construction; not picklable for loader workers
+        return self._verify_packed(labels, legacy)
+
+    def _fast_scan(self, legacy, path, digest, config):
+        result = scan(self.im_files, self.label_files, **self._scan_kwargs())
+        diagnostics = [vars(d) for d in result.diagnostics]
+        summary = dict(result.summary)
+        self.scan_evidence = {"summary": summary, "fallback_count": result.fallback_count, "diagnostics": diagnostics}
+        messages = [d["message"] for d in diagnostics]
+        if messages:
+            LOGGER.info("\n".join(messages))
+        if summary["found"] == 0:
+            message = f"{self.prefix}No labels found in {legacy}. {dataset.HELP_URL}"
+            if self.augment:
+                raise ValueError(message)
+            LOGGER.warning(message)
+        fallback_count = result.fallback_count
+        arrays = _fast.arrays_from_scan(result)
+        del result
+        if len(arrays["sources"]):  # the reference saves no cache without labels
+            # Publish only if no input changed while it was being scanned.
+            after = _native.index_paths(self.im_files, self._index_workers, *self._path_rules())
+            if after.digest() != digest:
+                self.annotation_cache_write_error = "inputs changed during the scan"
+            else:
+                self.annotation_cache_write_error = _fast.save(
+                    path,
+                    digest=digest,
+                    config=config,
+                    summary=summary,
+                    diagnostics=diagnostics,
+                    fallback_count=fallback_count,
+                    arrays=arrays,
+                    workers=self._index_workers,
+                )
+            self.annotation_cache_write_ok = self.annotation_cache_write_error is None
+            if self.annotation_cache_write_error:
+                LOGGER.warning(
+                    f"{self.prefix}Fast cache not written; using scanned labels: {self.annotation_cache_write_error}"
+                )
+        return summary, messages, arrays
+
+    def _verify_packed(self, labels, cache_path):
+        """Pinned YOLODataset.verify_labels computed from packed totals."""
+        len_boxes, len_segments = labels.counts()
+        len_cls = len_boxes
+        if self.use_segments and len_boxes != len_segments:
+            raise ValueError(
+                f"Segment dataset requires equal numbers of boxes and segments, but got len(segments) = "
+                f"{len_segments}, len(boxes) = {len_boxes}. Please supply a segment dataset, not a detect dataset."
+            )
+        if len_segments and len_boxes != len_segments:
+            LOGGER.warning(
+                f"Box and segment counts should be equal, but got len(segments) = {len_segments}, "
+                f"len(boxes) = {len_boxes}. To resolve this only boxes will be used and all segments will be removed. "
+                "To avoid this please supply either a detect or segment dataset, not a detect-segment mixed dataset."
+            )
+            labels = labels.without_segments()
+        if len_cls == 0:
+            LOGGER.warning(
+                f"Labels are missing or empty in {cache_path}, training may not work correctly. {dataset.HELP_URL}"
+            )
+        return labels
+
+    def update_labels(self, include_class):
+        if isinstance(self.labels, _fast.LazyLabels):
+            if include_class is None:
+                # Without a class filter the reference loop only zeroes single_cls
+                # classes; do that with one vectorized update of the packed rows.
+                if self.single_cls:
+                    self.labels = self.labels.with_zero_classes()
+                return
+            self.labels = self.labels.materialize()  # in-place reference update needs real dicts
+        super().update_labels(include_class)
+
+    def set_rectangle(self):
+        if isinstance(self.labels, _fast.LazyLabels):
+            self.labels = self.labels.materialize()  # the reference pops "shape" in place
+        super().set_rectangle()
 
     def _load_or_scan_cache(self, cache_path, cache_hash):
         if self.annotation_cache == "native":
@@ -260,6 +529,8 @@ class FastYOLODataset(_BASE):
         return self.cache_labels(cache_path), False
 
     def get_labels(self):
+        if self.annotation_cache == "fast":
+            return self._fast_labels()
         if self.annotation_cache != "native":
             return super().get_labels()
         # Retain the pinned get_labels tail, while avoiding its redundant

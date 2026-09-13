@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 mod cache;
+mod index;
 mod materialize;
 mod parser;
 mod provenance;
@@ -183,6 +184,7 @@ fn parse_files(
 #[pymodule]
 fn _native(m: &Bound<'_, PyModule>) -> PyResult<()> {
     snapshot::register(m)?;
+    index::register(m)?;
     provenance::register(m)?;
     cache::register(m)?;
     materialize::register(m)?;
