@@ -1,8 +1,9 @@
 # Full 500k Segmentation startup: capacity and execution plan
 
 The full 500,000-pair Segmentation fixture and both capacity runs have completed
-on Linux. All output hashes match; five-pair P1 is complete and audited, while
-P3/P4 remain in progress. See [the P1 results](SEGMENT_500K_P1.md).
+on Linux. All output hashes match; five-pair P1 and P3 are complete and audited,
+while P4 remains in progress. See [P1](SEGMENT_500K_P1.md) and the
+[full constructor results](SEGMENT_500K_STARTUP.md).
 Source review shows that its startup memory requirement must not be estimated by
 resampling all instances to 1,000 points. That would be 14.8 GB (13.78 GiB) of
 coordinates, but the pinned implementation does not retain that representation
@@ -145,8 +146,10 @@ conclusions require the complete phase records and their independent audits.
 
 `docs/validation/collect-segment-startup-v1.py --phase p3` (or `--phase p4`)
 is prepared for an explicit Python invocation after that phase and its server
-audit have terminated successfully. It has passed source syntax inspection only;
-it has not yet collected either live phase and is not automatically queued.
+audit have terminated successfully. P3 collection has now executed successfully:
+local recalculation matches the server audit, and the complete archive and copied
+reports passed readback. P4 collection has not yet run and is not automatically
+queued. See [the completed P3 evidence](SEGMENT_500K_STARTUP.md).
 
 The collector checks the controller's successful phase/audit commands, retains
 every raw worker JSON and log (including both separate P4 primers), and reruns

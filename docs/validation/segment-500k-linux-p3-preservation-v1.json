@@ -1,0 +1,191 @@
+{
+  "complete": true,
+  "phase": "p3",
+  "archive": "bench/results/segment-500k-linux-p3-complete-v1.tar.gz",
+  "archive_sha256": "63bdd0d45193a0f6a0eeed58b346ac825c3fd15f085e16b51add9a6d86bf841b",
+  "archive_bytes": 1356768,
+  "files": {
+    "audit_startup.py": {
+      "bytes": 13922,
+      "sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d"
+    },
+    "collect-segment-startup-v1.py": {
+      "bytes": 8701,
+      "sha256": "cc8679dd086e4740a44bbfb7b181d4251daf38c7c4a8e534b895c0cf5fc6bafe"
+    },
+    "dataset-segment-500k-linux-v1-identity.json": {
+      "bytes": 8023,
+      "sha256": "53b90b9d03b706e91f8c710928558009ef380aeeaa4c54c17e358784db7ad140"
+    },
+    "dataset-segment-500k-linux-v1-p3-audit.json": {
+      "bytes": 3430,
+      "sha256": "c9e13010c28d3ddb80e61a98d66a217987b6d83d4c3c2897112bce426d072c94"
+    },
+    "dataset-segment-500k-linux-v1-p3-audit.log": {
+      "bytes": 62,
+      "sha256": "88da03d2522c00f8ba4f65c4992a86a4238cf4c40032bc76d4a93f756f243ac2"
+    },
+    "dataset-segment-500k-linux-v1-p3.json": {
+      "bytes": 19128,
+      "sha256": "c2f20ee545d8c729f5e1f7605b46e867b5d81c1a9192f2e2b849e10cbb83e5cf"
+    },
+    "dataset-segment-500k-linux-v1-p3.log": {
+      "bytes": 1285,
+      "sha256": "77895040401eb8308957aa62d1fcc525b268205d0c5764b35d29fd2f2e936741"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/0-native-content.json": {
+      "bytes": 1095,
+      "sha256": "983b4fb9738a60cb8321c5316a7f9cbe05951e75a77e1ae876570b421be1df02"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/0-native-content.log": {
+      "bytes": 81,
+      "sha256": "7ae98fb9776b6a2dd0335acc89709779516f77348c1db28b9dea974ec5319b90"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/0-reference.json": {
+      "bytes": 967,
+      "sha256": "02bc45d9ad366c4ce31180bc6cffeca641e56af9d0a111e29159b9595f2336c6"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/0-reference.log": {
+      "bytes": 365754,
+      "sha256": "36185aa0384f1d3f763dcc3329116056d2c3c659d57db18764bec2a7a009d989"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/1-native-content.json": {
+      "bytes": 1086,
+      "sha256": "1ff89b8c0f3b08cb5c33781cd222240a0104084f09e8a6ab84affc5bc6ec7ea0"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/1-native-content.log": {
+      "bytes": 81,
+      "sha256": "4e4a2ff2b1a9c3d4e1216d58f7433f11857c0c9400ad3d995acb0bb65fcff100"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/1-reference.json": {
+      "bytes": 976,
+      "sha256": "c079ed771a1a3f9909fbd654547c4e10c86258aa661cefe9120d5e53f080be02"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/1-reference.log": {
+      "bytes": 364508,
+      "sha256": "6ca92254aada4bc91862e61973f418913fce9a1c142d020504b9a166913fd910"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/2-native-content.json": {
+      "bytes": 1106,
+      "sha256": "efdb4eb51bb21f852e22a4d81ba060cad492943ffa2bdc3103f1743d24dd3703"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/2-native-content.log": {
+      "bytes": 81,
+      "sha256": "96e76ae6195c66cafc29dd7053ac597964a9600b27f9306c212e350a3751fd0f"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/2-reference.json": {
+      "bytes": 969,
+      "sha256": "a96277823df8978a7e9512080102b274080a2345613e5d4d4bbdf7cdb77fa8d2"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/2-reference.log": {
+      "bytes": 362631,
+      "sha256": "aaca534a5350987febe10463c20a27315648952a06b77bc25254b4e3ff2bff1d"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/3-native-content.json": {
+      "bytes": 1086,
+      "sha256": "d11624598a6751f1a2d160e820f26eed5cb016cbc4567fd204925598e411195b"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/3-native-content.log": {
+      "bytes": 81,
+      "sha256": "6ff6fafedc6710bb721847cb76b16a4d5a976a5971a20e00b748782bf467c2c0"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/3-reference.json": {
+      "bytes": 985,
+      "sha256": "8970053cce2eb6e4acfb006e614db190a589c074bb3583a1dd81ce7c053c1c6d"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/3-reference.log": {
+      "bytes": 363672,
+      "sha256": "5aa17e4eca3cf46bc48aee30076b89581fed65a6da3ccac53fdf8e525c5dace0"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/4-native-content.json": {
+      "bytes": 1087,
+      "sha256": "c7298b689c63ea1a16e2ce48fe7d1cf3a88913f404ecb95503dd4bc00d319fd6"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/4-native-content.log": {
+      "bytes": 81,
+      "sha256": "3bc4f07fb82db2565308438eac1e7d5787548c08e804107001e1cad45b839e70"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/4-reference.json": {
+      "bytes": 973,
+      "sha256": "83bb766215ef39f21c55b5b24fcfa7194a51d49b3d7f6a7049fd02051ef445e4"
+    },
+    "dataset-segment-500k-linux-v1-p3.runs/4-reference.log": {
+      "bytes": 362839,
+      "sha256": "6aaf933f3927129060eaf3093168bf48ee985d439ccd32bda0f2eac69cf05bf9"
+    },
+    "dataset-segment-500k-linux-v1-preflight.json": {
+      "bytes": 445,
+      "sha256": "bf87025410bea8d1572e3a27674dfb27d01846ac952d73bcc7518b61ac8fc3da"
+    },
+    "dataset-segment-500k-linux-v1-state.json": {
+      "bytes": 7367,
+      "sha256": "17bd2a5a1e103fef7bfee3c0a8f3e587b1412d76a73e793bdfa1b2fc958a7a73"
+    },
+    "p1-evidence.tar.gz": {
+      "bytes": 1207028,
+      "sha256": "4092e95c9d7c4e1cf982c293c2192848fa874c9f981e0913c78d530bcd210fdb"
+    },
+    "startup.json": {
+      "bytes": 880,
+      "sha256": "9805dbec1fcf2a15de3313f1ca9999cc88a1f83294c669eef3933d4d2b4ca527"
+    }
+  },
+  "file_count": 31,
+  "embedded_p1_archive_sha256": "4092e95c9d7c4e1cf982c293c2192848fa874c9f981e0913c78d530bcd210fdb",
+  "local_independent_recalculation_matches": true,
+  "all_archive_members_read_back": true,
+  "output_sha256": {
+    "labels": "b9f49377fff5a6d9417447d39e0566b40de91cdfcd548591168662a1927195f7",
+    "first_batch": "6de94f7bf381925ad9a4edcf665e46a91aee2db263e5db37fbba3abca7654209",
+    "scan_summary_and_messages": "cc100000bc72bf22843f56481fbfa04c4d8ef8f95efb48b6a1f034b658f64616"
+  },
+  "summary": {
+    "constructor_s": {
+      "pairs": 5,
+      "reference_median": 191.63518922310323,
+      "candidate_median": 79.67117487406358,
+      "reference_over_candidate": 2.405326512707029,
+      "paired_bootstrap_ci95": [
+        2.3994289243089977,
+        2.4218046181541846
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "first_batch_total_s": {
+      "pairs": 5,
+      "reference_median": 191.65318009909242,
+      "candidate_median": 79.68897518981248,
+      "reference_over_candidate": 2.4050149928844053,
+      "paired_bootstrap_ci95": [
+        2.399118984390874,
+        2.4214911065553624
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "peak_rss_constructor_bytes": {
+      "pairs": 5,
+      "reference_median": 4424650752,
+      "candidate_median": 3811401728,
+      "reference_over_candidate": 1.1608985532789264,
+      "paired_bootstrap_ci95": [
+        1.154874210474549,
+        1.1615654397838695
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    }
+  },
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation.",
+    "The embedded P1 archive retains exact source/wheel bytes and the older Linux wheel's missing dependency-license bundle finding; redistribution qualification remains open.",
+    "The million input files and generated caches remain external; their bytes are not re-read by this collector.",
+    "Controller state is a checkpoint after the selected phase; no later phase is certified by this receipt.",
+    "P3 compares ordinary reference generation with stronger native input revalidation; P4 uses content-validated caches on both sides.",
+    "No runtime tests, ML imports or benchmark jobs are repeated during collection."
+  ]
+}
