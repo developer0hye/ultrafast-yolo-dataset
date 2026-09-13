@@ -1,6 +1,7 @@
 # Full 500k Segmentation startup: capacity and execution plan
 
-The 500,000-pair Segmentation workload remains required and has not run. Source
+The 500,000-pair Segmentation fixture is now being prepared on Linux; full
+capacity and phase results remain unmeasured. Source
 review shows that its startup memory requirement must not be estimated by
 resampling all instances to 1,000 points. That would be 14.8 GB (13.78 GiB) of
 coordinates, but the pinned implementation does not retain that representation
@@ -47,14 +48,15 @@ limits for the benchmark.
 ## Execution after the current host jobs finish
 
 Use the 32 GB Linux server for the complete Segmentation fixture and benchmark.
-Keep the current server DataLoader comparison and M2 500k Detection P4 job
-isolated until they terminate. Do not launch fixture creation or a second
-benchmark concurrently on either host.
+The server DataLoader comparison and its fresh-reference audits have completed.
+M2 is reserved for the separate snapshot-scratch comparison. Run the Linux
+Segmentation controller alone on that server.
 
 1. Select and record a tested installed dataset wheel, exact source snapshot,
    Python/dependency/toolchain identities, CPU/RAM/storage and current load.
-   The cache-buffer candidate remains unbuilt and untested; existing Detection
-   results apply to its frozen baseline, not the new candidate.
+   The cache-buffer candidate has built on M2 and passed all 187 installed tests;
+   existing full Detection startup results apply to its frozen baseline. Linux
+   validation and measured startup gains for that candidate remain open.
 2. Generate a new full 500k Segmentation fixture with the existing templates;
    retain the manifest and verify all one million regular, single-link files,
    content hashes and physical-file distinction. Repeated template content
@@ -77,3 +79,31 @@ benchmark concurrently on either host.
 
 This plan corrects a capacity assumption; it is neither a generated corpus nor
 a passing full-scale memory or performance result.
+
+## Linux launch after loader verification
+
+The mask timing job, both fresh-reference passes and the full artifact audits
+have terminated successfully; 44 damaged-evidence cases were rejected and the
+complete loader archive was sealed before this launch. The server now runs the
+[full Segmentation controller](validation/run-segment-500k-linux-v1.py), starting
+with a new 500,000-pair fixture. The source snapshot is commit
+`3c4610c437122af08a3db26840bbbe3cf7c12ea6`, with all 176 selected library/build/test/
+Python benchmark files preserved and verified after transfer.
+
+The existing tested Linux wheel remains the baseline: wheel SHA-256
+`b40a103f4234c9853150af699a20cd6eb38bce1bdf8357d2bb79cd90119c7f0e`, extension
+`274dc3ae164435e9fa5f588aec3d184a4faffc50a38d6bf8b50273c86f78f7b1`.
+Installed runtime Python/profile bytes match both the wheel and source snapshot.
+Its compiled aggregate source profile matches all six Rust sources and Cargo
+manifests. This is not the M2-only reader/scratch candidate. CPU/RAM, package
+versions, source inventory, initial free storage/load and worker counts are in
+the [launch identity](validation/segment-500k-linux-launch-v1.json).
+
+The controller preserves preparation and complete distinct-file preflight,
+then performs separate full reference/native capacity runs without increasing
+the 2 GiB container or 256 MiB metadata limits. If capacity and output parity pass,
+it runs P1, P3 and P4 with five pairs each, independently auditing each phase.
+Failures stop the sequence and retain logs; it does not reduce file/vertex counts.
+Artifacts use `/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1*`;
+the new corpus is `startup-segment-500k-linux-v1`. Preparation is running.
+No full-scale Segmentation performance or memory result is yet claimed.

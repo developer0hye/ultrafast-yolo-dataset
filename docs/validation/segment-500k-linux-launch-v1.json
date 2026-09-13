@@ -1,0 +1,386 @@
+{
+  "scope": "Full 500k Segmentation baseline experiment launch; not completion evidence",
+  "recorded_unix_ns": 1789262469189087479,
+  "source_commit": "3c4610c437122af08a3db26840bbbe3cf7c12ea6",
+  "source_archive_sha256": "4df2950ad5e63d4e9aa050061803a9d928421374fcf57c6cb88ab1d541685195",
+  "source_sha256": {
+    "src/cache.rs": "8047ee0badb51b5671bd686b4cd9759d624956c00d99baf7b77ba2356fc1a41f",
+    "src/lib.rs": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7",
+    "src/materialize.rs": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42",
+    "src/parser.rs": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7",
+    "src/provenance.rs": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366",
+    "src/snapshot.rs": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4",
+    "python/ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+    "python/ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+    "python/ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+    "python/ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+    "python/ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+    "python/ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+    "bench/audit_startup.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "bench/cache_startup.py": "588981bd6fa1f4947b6a665c94dae97836e6696073aeeff8a1e032a388096c1a",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/collect_rust_notices.py": "c95f5db3678b5c7541c92f216aefcb187ae0d6c83c05b3b35f7df4df0e67bf46",
+    "bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "bench/prepare_coco.py": "06adb46c2997841bb7fb2c46e14930faf2537523b9747469724602a6daeedcdc",
+    "bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "bench/wheel_smoke.py": "fb183c06426daa7142f19732f364bdc2e4bd5366c570c123ba296bbac9ce3ea4",
+    "Cargo.toml": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911",
+    "Cargo.lock": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "native_extension_sha256": "274dc3ae164435e9fa5f588aec3d184a4faffc50a38d6bf8b50273c86f78f7b1",
+  "wheel_sha256": "b40a103f4234c9853150af699a20cd6eb38bce1bdf8357d2bb79cd90119c7f0e",
+  "native_cache_profile": "4d82cb5159b4d31eda4074a1a0cca679c7b92977c6ea2f9c685550e045ff2e7e",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "python_executable": "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "cpu": "Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+  "logical_cpus": 12,
+  "physical_cpus": 6,
+  "ram_bytes": 33547984896,
+  "available_ram_bytes": 31019171840,
+  "storage_free_bytes": 373709369344,
+  "loadavg": [
+    0.08935546875,
+    0.875,
+    1.6083984375
+  ],
+  "packages": [
+    [
+      "Jinja2",
+      "3.1.6"
+    ],
+    [
+      "MarkupSafe",
+      "3.0.3"
+    ],
+    [
+      "PyYAML",
+      "6.0.3"
+    ],
+    [
+      "Pygments",
+      "2.21.0"
+    ],
+    [
+      "anyio",
+      "4.15.1"
+    ],
+    [
+      "certifi",
+      "2026.7.22"
+    ],
+    [
+      "charset-normalizer",
+      "3.5.1"
+    ],
+    [
+      "cloudpickle",
+      "3.1.2"
+    ],
+    [
+      "contourpy",
+      "1.4.0"
+    ],
+    [
+      "cuda-bindings",
+      "12.9.4"
+    ],
+    [
+      "cuda-pathfinder",
+      "1.8.1"
+    ],
+    [
+      "cycler",
+      "0.12.1"
+    ],
+    [
+      "filelock",
+      "3.32.3"
+    ],
+    [
+      "fonttools",
+      "4.65.0"
+    ],
+    [
+      "fsspec",
+      "2026.7.0"
+    ],
+    [
+      "h11",
+      "0.16.0"
+    ],
+    [
+      "httpcore",
+      "1.0.9"
+    ],
+    [
+      "httpx",
+      "0.28.1"
+    ],
+    [
+      "hypothesis",
+      "6.168.0"
+    ],
+    [
+      "idna",
+      "3.19"
+    ],
+    [
+      "iniconfig",
+      "2.3.0"
+    ],
+    [
+      "kiwisolver",
+      "1.5.1"
+    ],
+    [
+      "linkify-it-py",
+      "2.2.0"
+    ],
+    [
+      "markdown-it-py",
+      "4.2.0"
+    ],
+    [
+      "matplotlib",
+      "3.11.2"
+    ],
+    [
+      "maturin",
+      "1.15.0"
+    ],
+    [
+      "mdit-py-plugins",
+      "0.6.1"
+    ],
+    [
+      "mdurl",
+      "0.1.2"
+    ],
+    [
+      "memray",
+      "1.20.0"
+    ],
+    [
+      "mpmath",
+      "1.3.0"
+    ],
+    [
+      "networkx",
+      "3.6.1"
+    ],
+    [
+      "ninja",
+      "1.13.2"
+    ],
+    [
+      "numpy",
+      "2.4.4"
+    ],
+    [
+      "nvidia-cublas-cu12",
+      "12.8.4.1"
+    ],
+    [
+      "nvidia-cuda-cupti-cu12",
+      "12.8.90"
+    ],
+    [
+      "nvidia-cuda-nvrtc-cu12",
+      "12.8.93"
+    ],
+    [
+      "nvidia-cuda-runtime-cu12",
+      "12.8.90"
+    ],
+    [
+      "nvidia-cudnn-cu12",
+      "9.10.2.21"
+    ],
+    [
+      "nvidia-cufft-cu12",
+      "11.3.3.83"
+    ],
+    [
+      "nvidia-cufile-cu12",
+      "1.13.1.3"
+    ],
+    [
+      "nvidia-curand-cu12",
+      "10.3.9.90"
+    ],
+    [
+      "nvidia-cusolver-cu12",
+      "11.7.3.90"
+    ],
+    [
+      "nvidia-cusparse-cu12",
+      "12.5.8.93"
+    ],
+    [
+      "nvidia-cusparselt-cu12",
+      "0.7.1"
+    ],
+    [
+      "nvidia-ml-py",
+      "13.610.43"
+    ],
+    [
+      "nvidia-nccl-cu12",
+      "2.27.5"
+    ],
+    [
+      "nvidia-nvjitlink-cu12",
+      "12.8.93"
+    ],
+    [
+      "nvidia-nvshmem-cu12",
+      "3.4.5"
+    ],
+    [
+      "nvidia-nvtx-cu12",
+      "12.8.90"
+    ],
+    [
+      "opencv-python",
+      "4.13.0.92"
+    ],
+    [
+      "packaging",
+      "26.3"
+    ],
+    [
+      "pathspec",
+      "1.1.1"
+    ],
+    [
+      "pi_heif",
+      "1.4.0"
+    ],
+    [
+      "pillow",
+      "12.1.1"
+    ],
+    [
+      "platformdirs",
+      "4.11.8"
+    ],
+    [
+      "pluggy",
+      "1.6.0"
+    ],
+    [
+      "polars",
+      "1.44.2"
+    ],
+    [
+      "polars-runtime-32",
+      "1.44.2"
+    ],
+    [
+      "psutil",
+      "7.2.2"
+    ],
+    [
+      "pybind11",
+      "3.0.1"
+    ],
+    [
+      "pyparsing",
+      "3.3.2"
+    ],
+    [
+      "pytest",
+      "9.1.1"
+    ],
+    [
+      "python-dateutil",
+      "2.9.0.post0"
+    ],
+    [
+      "requests",
+      "2.34.2"
+    ],
+    [
+      "rich",
+      "15.0.0"
+    ],
+    [
+      "scikit_build_core",
+      "0.11.6"
+    ],
+    [
+      "setuptools",
+      "78.1.0"
+    ],
+    [
+      "six",
+      "1.17.0"
+    ],
+    [
+      "sortedcontainers",
+      "2.4.0"
+    ],
+    [
+      "sympy",
+      "1.14.0"
+    ],
+    [
+      "textual",
+      "8.2.8"
+    ],
+    [
+      "torch",
+      "2.10.0+cu128"
+    ],
+    [
+      "torchvision",
+      "0.25.0+cu128"
+    ],
+    [
+      "triton",
+      "3.6.0"
+    ],
+    [
+      "typing_extensions",
+      "4.16.0"
+    ],
+    [
+      "ultrafast-maskops",
+      "0.1.0a1"
+    ],
+    [
+      "ultrafast-yolo-dataset",
+      "0.1.0a1"
+    ],
+    [
+      "ultralytics",
+      "8.4.149"
+    ],
+    [
+      "ultralytics-platform",
+      "0.1.40"
+    ],
+    [
+      "ultralytics-thop",
+      "2.1.6"
+    ],
+    [
+      "urllib3",
+      "2.7.0"
+    ]
+  ],
+  "task": "segment",
+  "pairs": 500000,
+  "expected_regular_files": 1000000,
+  "rounds": 5,
+  "p1_workers": 4,
+  "startup_workers": 8,
+  "loader_workers": 0,
+  "script_sha256": "951e99ce61c5972887ed36cde4d5fc925c154c45f52c5ab1fcda3e0b8b30527a",
+  "constraint": "One build/test/benchmark job per host; preserve source/runtime/inputs"
+}
