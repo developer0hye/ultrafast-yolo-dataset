@@ -9,6 +9,16 @@ from PIL import Image
 from ultrafast_yolo_dataset import _native, _scan, scan
 
 LIMIT = 64 * 1024**2
+LABELS = [
+    "0 .5 .5 .2 .2\n1 .3 .3 .1 .1",
+    "0 .5 .5 .2 .2\n0 .5 .5 .2 .2",  # duplicate row
+    "",  # empty
+    None,  # missing
+    "0 .1 .1 .8 .1 .8 .8\n1 .2 .2 .4 .2 .4 .4",  # polygons
+    "5 .5 .5 .2 .2",  # class out of range: native defers, reference rejects
+    "0 .5 .5 .2 .2 é",  # non-ASCII: native defers
+    "0 -0 .1 .8 .1 .8 .8",  # negative-zero polygon coordinate: native defers, reference accepts
+]
 
 
 def reference(path):
@@ -135,7 +145,9 @@ def pairs(root):
     for i, (name, source) in enumerate(sorted(files.items())):
         target = images / f"{i:03d}_{name}.jpg"
         target.write_bytes(Path(source).read_bytes())
-        (labels / f"{i:03d}_{name}.txt").write_text("0 .5 .5 .2 .2\n1 .3 .3 .1 .1")
+        text = LABELS[i % len(LABELS)]
+        if text is not None:
+            (labels / f"{i:03d}_{name}.txt").write_text(text)
         paths.append(str(target))
     return paths, [p.replace("/images/", "/labels/").rsplit(".", 1)[0] + ".txt" for p in paths]
 
