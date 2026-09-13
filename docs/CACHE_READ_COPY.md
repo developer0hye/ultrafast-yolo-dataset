@@ -89,3 +89,11 @@ and file reads included. Preserve failure artifacts and compare before/after
 outputs. Then rerun actual P4 construction on fixed real and synthetic fixtures,
 including full mutable labels and first-batch parity. This candidate must remain
 separate until those checks establish both correctness and useful improvement.
+
+## Prepared reader comparison
+
+[The seven-condition paired protocol](CACHE_READ_COMPARISON.md) now includes
+six fixed synthetic layouts and a required copy of the native cache from the
+completed 500k startup experiment. It measures section reading independently
+of Python save-buffer lifetime and full P4 construction. The harness and nine
+helper tests are prepared and linted, but have not run while the hosts are busy.
