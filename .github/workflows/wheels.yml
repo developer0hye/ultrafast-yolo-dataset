@@ -4,12 +4,49 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      audit_only:
+        description: Run only the standalone startup artifact auditor qualification
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
+  startup-audit:
+    if: github.event_name == 'workflow_dispatch' && inputs.audit_only
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install standalone audit test tools
+        run: python -m pip install pytest==9.1.1 ruff==0.15.6
+      - name: Qualify independent artifact checks
+        shell: bash
+        run: |
+          mkdir -p audit-evidence
+          git rev-parse HEAD > audit-evidence/source-commit.txt
+          sha256sum bench/audit_startup_workers.py docs/validation/audit-snapshot-startup-v1.py tests/test_startup_workers_audit.py > audit-evidence/source-sha256.txt
+          python -m pip freeze > audit-evidence/environment.txt
+          python -m ruff check bench/audit_startup_workers.py tests/test_startup_workers_audit.py
+          python -m ruff format --check bench/audit_startup_workers.py tests/test_startup_workers_audit.py
+          python -m pytest -q tests/test_startup_workers_audit.py --junitxml=audit-evidence/tests.xml 2>&1 | tee audit-evidence/pytest.log
+      - name: Preserve auditor qualification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: standalone-startup-audit
+          path: audit-evidence/
+          if-no-files-found: error
+          retention-days: 14
   wheel:
+    if: github.event_name != 'workflow_dispatch' || !inputs.audit_only
     strategy:
       fail-fast: false
       max-parallel: 3
