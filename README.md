@@ -5,6 +5,8 @@ cache library is under development. An explicit base YOLODataset adapter is avai
 for the pinned source profile; it is not a general replacement for custom datasets.
 The original goals and release gates remain in [docs/PRD.md](docs/PRD.md).
 
+Private development snapshot: see [branches and pending validation](docs/PRIVATE_DEVELOPMENT.md).
+
 ```python
 from ultrafast_yolo_dataset import parse_labels
 

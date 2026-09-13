@@ -24,7 +24,8 @@ manifest for 54 selected registry crates and the observed standard-library
 versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;
 installed-byte auditing, 65 core tests and four standalone cache cases passed.
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
-locally linted, with hosted execution awaiting the repository visibility choice.
+locally linted. Private GitHub upload is now approved; hosted qualification
+remains pending. See [PRIVATE_DEVELOPMENT.md](PRIVATE_DEVELOPMENT.md).
 
 - Rust Detection/Segmentation parser, ordered batched file reads and packed results implemented.
 - Hybrid Pillow scan, explicit JPEG repair policy, reference diagnostic fallback, immutable packed arrays and mutable label export implemented.
