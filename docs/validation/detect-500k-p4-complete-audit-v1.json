@@ -1,0 +1,77 @@
+{
+  "complete_requested_samples": true,
+  "phase": "p4",
+  "task": "detect",
+  "pairs": 500000,
+  "repeats": 5,
+  "workers": 7,
+  "completed_workers": 10,
+  "report_sha256": "c2e4595b3d67ef40a7be94669d12fbac697389c85db029f809a9aa7c65f0f5b8",
+  "identity_sha256": "e274e709557bb2f2decccddcca1b48c4b3f5ab548a5fc4c76bb60877e75e8c9e",
+  "preflight_sha256": "2dccb4afbdad6b75eaf11b91f957bbba471bfadcebde316a3e4d0e4eee9eae28",
+  "fixture_manifest_sha256": "18be0c465d5e87030c62a7909a17711451c5bff10f1718d396eefac19cd0fa65",
+  "auditor_sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+  "raw_sha256": {
+    "prime-reference-content.json": "1dfe05466a0d28e73afa44e5fde812d4630972609eb085a6f0a34cd4849383e4",
+    "prime-native-content.json": "c2ca331be438211bd56bc9990054d38715f436f68bd27e08ea38b7049e679505",
+    "0-reference-content.json": "68849e910d544faa8260fbe9e453c94e7a736fa5b57c4e4e1721b22b84e33513",
+    "0-native-content.json": "eb17d87014d5872c863bc05250934da2b0bf1700c1e39e6b41e1505730c45491",
+    "1-native-content.json": "349718992aa60705e24b2bcb343e5436053b308a460daf109beff5bdce541109",
+    "1-reference-content.json": "e7c0d96d0610af0ed3d4d8db654ea99beec50472b6cf9d4825b95d5cbe69869d",
+    "2-reference-content.json": "d90d5c228b5bc8a8b9fbeab66e54bf4d50425685871cf049741266643ca00832",
+    "2-native-content.json": "052a889fed87c80c479e50399dec99a6fba97994a5548d618eb9727fc39d2380",
+    "3-native-content.json": "7e10807e97df525e5e294581df4757130744021556b8c9a64dd1ea15e1bc749a",
+    "3-reference-content.json": "2515227259e905f352609cf670c16426e82fb57e7c6417fa37c886230e0c30ae",
+    "4-reference-content.json": "180777d3f1a9d903853cab19e938ad834ef00f5ce457359762314369e9cfa0bf",
+    "4-native-content.json": "dc3701e9b9072a4ec0f334b10ba8f85e0bd6c512dd2a2ca0dd73d5a13eb83adb"
+  },
+  "output_sha256": {
+    "labels": "d160f830527a1be6a81a4ad41e0853eed7a62fa2235e40bcd6995e34b5428b1d",
+    "first_batch": "6439a6a15e725d6dc33999ae79f253ace35e2565a5fc475524591199008879c9",
+    "scan_summary_and_messages": "cc100000bc72bf22843f56481fbfa04c4d8ef8f95efb48b6a1f034b658f64616"
+  },
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation."
+  ],
+  "summary": {
+    "constructor_s": {
+      "pairs": 5,
+      "reference_median": 56.50131258403417,
+      "candidate_median": 56.12173749995418,
+      "reference_over_candidate": 1.00676342360356,
+      "paired_bootstrap_ci95": [
+        0.9614952536203468,
+        1.092178677271822
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "first_batch_total_s": {
+      "pairs": 5,
+      "reference_median": 56.52078920905478,
+      "candidate_median": 56.14190133300144,
+      "reference_over_candidate": 1.006748753908529,
+      "paired_bootstrap_ci95": [
+        0.9614288213699913,
+        1.0921427869625941
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "peak_rss_constructor_bytes": {
+      "pairs": 5,
+      "reference_median": 1550254080,
+      "candidate_median": 1332723712,
+      "reference_over_candidate": 1.163222403894619,
+      "paired_bootstrap_ci95": [
+        1.0496047600899894,
+        1.2213201507563634
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    }
+  }
+}

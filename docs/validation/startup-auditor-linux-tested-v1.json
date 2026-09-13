@@ -1,0 +1,23 @@
+{
+  "scope": "24 synthetic startup artifact-auditor cases passed on Linux; not a new dataset benchmark or proof of complete 500k P4 measurements",
+  "python": "3.12.14",
+  "environment": "/home/yonghye/ultrafast-vision-build/mask-masks-only-linux-clean-v1",
+  "tests": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "24",
+      "time": "0.114",
+      "timestamp": "2026-09-13T08:48:42.448802+09:00",
+      "hostname": "yonghye-pc"
+    }
+  ],
+  "source_and_report_sha256": {
+    "bench/audit_startup.py": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+    "tests/test_startup_audit.py": "67ef3216391a5b0d4b972ae40cd5c10bf844ee0777340aaf72e71c5b030e978a",
+    "docs/validation/startup-auditor-linux-tests-v1.xml": "ac69466a2509ff28859011759b568cbe88a56217116efe4331a9c03d37e6d863",
+    "docs/validation/startup-auditor-linux-tests-v1.log": "8bf157c502c9d8e22d147e4c7e3b637462d1823ca42c4cb614507762498b3352"
+  }
+}

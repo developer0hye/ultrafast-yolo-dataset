@@ -9,9 +9,9 @@ Detection fixture and complete one-million-file preflight passed. Five-pair P1
 finished with all ten packed-output hashes matching: median file read/parse/
 validate/export time 50.8404 → 32.0845 s (1.5846x), and process peak RSS sampled
 after that timed region 748.53 → 482.23 MiB. The actual-artifact audit passed;
-its adversarial tests remain pending. These are label-engine results, excluding
-image verification and actual initialization. P3 completed and passed the five-pair artifact audit; P4 is running;
-full-scale startup and Segmentation coverage remain incomplete. Historical results
+its 24 adversarial tests passed on Linux. These are label-engine results, excluding
+image verification and actual initialization. Detection P3 and P4 completed and
+passed their five-pair artifact audits; full-scale Segmentation remains incomplete. Historical results
 retain the older fingerprint implementation and their original memory scope.
 
 All five P3 constructor/cache-generation pairs passed full-label, first-batch
@@ -20,6 +20,16 @@ and diagnostic parity. Median constructor time was 137.4544 → 126.2336 s
 RSS increased from 1,752.34 to 1,901.19 MiB (8.49%). The full archive preserves
 all ten raw reports and the independent audit; see LARGE_SCALE.md. This result
 does not validate the experimental cache-buffer lifetime changes.
+
+All five P4 content-cache-hit pairs also passed full output parity. Constructor
+time was 56.5013 → 56.1217 s (1.0068x; paired 95% interval 0.9615–1.0922), with
+no clear speed improvement. Constructor high-water RSS was 1,478.44 → 1,270.98 MiB,
+14.03% lower. Both sides use the same native input fingerprint engine; this is
+not a Python-versus-Rust hashing comparison. The native cache is larger on disk
+(195,001,501 versus 128,361,630 bytes). The 1.5x cache-hit target remains unmet.
+The [Segmentation capacity plan](SEGMENT_500K_PLAN.md) corrects the earlier
+assumption that all polygons are resampled at constructor time; actual full-scale
+memory use and timings still require measurement on the 32 GB server.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library

@@ -1,7 +1,7 @@
 # 500k-pair startup experiment
 
-Detection P1 and P3 completed all five paired measurements and their artifact
-audits; P4 content-cache hits are running. Full-scale Segmentation remains open.
+Detection P1, P3 and P4 completed all five paired measurements and their artifact
+audits. Full-scale Segmentation remains open.
 Fixture preparation and its
 complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
 and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
@@ -9,7 +9,7 @@ and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-2
 The generator and independent preflight fingerprints match; all entries are
 regular single-link files. Original logs/manifests are retained in
 `validation/detect-500k-{fixture,preflight,prepare}-v1.*`. The same frozen runtime
-and inputs continue into the five-pair P4 measurement.
+and inputs were retained through the five-pair P4 measurement.
 The active host is an Apple M2 with eight CPU cores and 16 GiB RAM, on macOS
 26.6.2. Inputs reside on the `/Volumes/T7` USB SSD using APFS and 4 KiB device
 blocks. A read-only mid-run hardware/package observation is preserved in
@@ -18,8 +18,11 @@ checkpoint's native extension, Python, NumPy and CPU/RAM identity. It does not
 measure USB link speed, drive firmware or thermal stability. Treat results as
 specific to this shared host/storage condition, not a general SSD throughput
 claim or a cold-cache benchmark.
-Segmentation remains pending; its resampled annotations need a separate memory
-headroom assessment on the 16 GiB M2 host. The scope is **500,000 image/label
+Segmentation remains pending. The pinned constructor retains raw polygons;
+resampling happens per sample later. The [capacity plan](SEGMENT_500K_PLAN.md)
+estimates 0.612 GiB of packed numeric payload before Python/intermediate overhead,
+not peak RSS; full capacity qualification is planned on the 32 GB server.
+The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
 and Segmentation are separate fixtures. These are synthetic scalability inputs;
 the real COCO experiments remain separate evidence.
@@ -52,14 +55,17 @@ isolated working allocation nor the final process-exit peak. The P1 harness
 embeds worker records in its parent JSON rather than retaining independent
 child files; Python/NumPy/native/CPU/RAM parent metadata matches the mid-run host
 supplement, but there is no per-worker package inventory. The independent
-auditor ran successfully on the actual artifacts; its 24 adversarial tests are
-still pending while the hosts are occupied.
+auditor ran successfully on the actual artifacts; its 24 adversarial tests
+passed on Linux with zero failures, errors or skips. The
+[test receipt](validation/startup-auditor-linux-tested-v1.json) binds the exact
+auditor/test sources and retained JUnit/log bytes. Source snapshots are also
+preserved as `validation/startup-auditor-{audit_startup,test_startup_audit}.py`.
 
 See [raw report](validation/detect-500k-p1-complete-v1.json),
 [audit and exact statistics](validation/detect-500k-p1-complete-audit-v1.json),
 and [byte-preservation receipt](validation/detect-500k-p1-preservation-v1.json).
 P1 alone does not establish actual startup or Segmentation results. The completed
-P3 results are below; P4 and full-scale Segmentation remain required.
+P3 and P4 results are below; full-scale Segmentation remains required.
 
 ## Historical first Detection P3 pair
 
@@ -92,7 +98,7 @@ the required content checks; use complete results before prioritizing changes.
 The [first-pair archive](../bench/results/detect-500k-p3-first-pair-v1.tar.gz)
 contains exact parent/child reports, the partial audit and its source; the
 [preservation receipt](validation/detect-500k-p3-first-pair-v1.json) binds all
-bytes. P3 subsequently completed; P4 and full-scale Segmentation remain incomplete.
+bytes. P3 and P4 subsequently completed; full-scale Segmentation remains incomplete.
 
 ## Fixture and preflight
 
@@ -213,7 +219,7 @@ and post-constructor output hashing. High-water RSS still includes imports,
 preflight and allocator history. Full file checks can warm the storage cache;
 these are shared-host observations, not cold-storage or working-allocation claims.
 The fixture uses distinct files with repeated synthetic content, not 500,000
-unique natural images. P4 content-mode cache hits are running separately and
+unique natural images. P4 content-mode cache hits completed separately and
 full-scale Segmentation remains unmeasured.
 
 The [complete archive](../bench/results/detect-500k-p3-complete-v1.tar.gz) preserves
@@ -221,4 +227,41 @@ the ten raw reports, parent, log, exact auditor, launch/preflight/fixture identi
 and all 25 recorded source files. The
 [preservation manifest](validation/detect-500k-p3-complete-v1.json) binds every
 archived file and retains the complete independent statistics. The auditor passed
-on these real artifacts; its separately prepared adversarial tests remain pending.
+on these real artifacts; its 24 adversarial tests also passed on Linux.
+
+## Completed 500k Detection content-cache hits (P4)
+
+All five alternating fresh-process pairs and two separate untimed primers
+completed. Every measured run has identical complete labels, first batches and
+ordered diagnostics, also matching P3, with 500,000 found labels and zero native
+fallback. Seven scan workers and zero loader workers match the frozen protocol.
+
+| Measurement | Reference content median | Native content median | Reference/native | Exact paired 95% interval |
+|---|---:|---:|---:|---:|
+| Constructor | 56.5013 s | 56.1217 s | 1.0068 | 0.9615–1.0922 |
+| Constructor through first batch | 56.5208 s | 56.1419 s | 1.0067 | 0.9614–1.0921 |
+| Constructor high-water RSS | 1478.43750 MiB | 1270.984375 MiB | 1.1632 | 1.0496–1.2213 |
+
+There is no clear latency improvement; the 1.5x content-hit target is unmet.
+Constructor high-water RSS is 14.03% lower, while the native disk cache is larger:
+195,001,501 versus 128,361,630 bytes. Both backends use the same Rust input
+fingerprint engine, so this does not establish Python-versus-Rust hashing gains.
+The timed constructor includes content validation, cache loading and mutable
+label objects. The experimental reader/save-buffer changes were not installed
+in either P3 or P4; these observations describe their baseline only.
+
+Intervals enumerate all 3,125 ordered paired resamples. RSS includes imports,
+preflight and allocator history up to constructor completion, not isolated
+working allocations. Input checks warm the OS cache; storage is uncontrolled
+and shared-host interference remains possible. These timings are neither
+cold-storage measurements nor training-throughput results.
+
+The [59-file archive](../bench/results/detect-500k-p4-complete-v1.tar.gz) preserves
+all ten raw workers, two primers and their logs, parent report, exact auditor,
+launch/input/host identities and all 25 launch source files. Archive SHA-256 is
+`2b58ad6b1ac6cca74161d7d4d26ab1d0dbb71451bdd1bbe3069beddd9e070af3`.
+The [preservation receipt](validation/detect-500k-p4-preservation-v1.json) records
+byte-for-byte readback of every archive member. The
+[independent audit](validation/detect-500k-p4-complete-audit-v1.json) retains exact
+statistics and full output hashes. Fixture and cache payload files remain
+external and are not included in this small evidence archive.
