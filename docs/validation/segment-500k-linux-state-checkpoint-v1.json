@@ -1,0 +1,98 @@
+{
+  "complete": false,
+  "phase": "p1",
+  "commands": [
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "bench/startup.py",
+        "--prepare",
+        "/home/yonghye/ultrafast-vision-build/startup-segment-500k-linux-v1",
+        "--count",
+        "500000",
+        "--task",
+        "segment"
+      ],
+      "cwd": "/home/yonghye/ultrafast-yolo-dataset-segment500k-v1",
+      "returncode": 0,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-prepare.log",
+      "log_sha256": "eae021ffcff54ea21a5ef810992a625b7afc01851658b00aa586a78c10ca5099"
+    },
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "bench/fixture_files.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/startup-segment-500k-linux-v1",
+        "--pairs",
+        "500000",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-preflight.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-yolo-dataset-segment500k-v1",
+      "returncode": 0,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-preflight.log",
+      "log_sha256": "bf87025410bea8d1572e3a27674dfb27d01846ac952d73bcc7518b61ac8fc3da"
+    },
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "bench/cache_startup.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/startup-segment-500k-linux-v1",
+        "--worker",
+        "reference",
+        "--mode",
+        "miss",
+        "--result",
+        "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-capacity-reference.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-yolo-dataset-segment500k-v1",
+      "returncode": 0,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-capacity-reference.log",
+      "log_sha256": "351eda5e82af09f90078f45e2bf3c5649de7b44e37b35f17a524533412ba4700"
+    },
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python",
+        "bench/cache_startup.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/startup-segment-500k-linux-v1",
+        "--worker",
+        "native-content",
+        "--mode",
+        "miss",
+        "--result",
+        "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-capacity-native-content.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-yolo-dataset-segment500k-v1",
+      "returncode": 0,
+      "log": "/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1-capacity-native-content.log",
+      "log_sha256": "be88320e4732ce4d23c8837a50a2a2832b7fbf79b3ed81030daa6e3b29275463"
+    }
+  ],
+  "identity_sha256": "53b90b9d03b706e91f8c710928558009ef380aeeaa4c54c17e358784db7ad140",
+  "capacity": {
+    "output_sha256": {
+      "labels": "b9f49377fff5a6d9417447d39e0566b40de91cdfcd548591168662a1927195f7",
+      "first_batch": "6de94f7bf381925ad9a4edcf665e46a91aee2db263e5db37fbba3abca7654209",
+      "scan_summary_and_messages": "cc100000bc72bf22843f56481fbfa04c4d8ef8f95efb48b6a1f034b658f64616"
+    },
+    "native_cache_bytes": 808173521,
+    "section_bytes": [
+      94001049,
+      4000000,
+      8000000,
+      4000008,
+      37000000,
+      574572000,
+      14800008,
+      14800000,
+      0,
+      28500000,
+      28500000
+    ],
+    "reference_peak_rss": 4429586432,
+    "native_peak_rss": 3814547456
+  }
+}

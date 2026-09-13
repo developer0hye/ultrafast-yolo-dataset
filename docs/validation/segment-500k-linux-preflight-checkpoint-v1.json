@@ -1,0 +1,15 @@
+{
+  "kind": "synthetic distinct-file preflight",
+  "pairs": 500000,
+  "counts": {
+    "images": 500000,
+    "labels": 500000
+  },
+  "fingerprint": {
+    "files": 1000000,
+    "bytes": 5123766750,
+    "sha256": "99dab9f1152b9e94d99b237e7317134479ef7a6e6e6cae0170103c185f41736a"
+  },
+  "all_regular_single_link_files": true,
+  "scope": "names, bytes and filesystem entries verified; repeated synthetic content and OS-cache warming are explicit"
+}
