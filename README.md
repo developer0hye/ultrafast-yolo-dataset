@@ -147,12 +147,16 @@ on cache generation and decreased on content hits; the detailed results retain
 confidence intervals, exact build identities and memory scope. Full 500k
 [Segmentation P1](docs/SEGMENT_500K_P1.md) completed at 16.81× with 36.90% lower
 process peak RSS and identical outputs; this remains a label-engine result.
-Segmentation capacity has passed, while repeated constructor/content-hit phases
-are running; see [the capacity report](docs/SEGMENT_500K_PLAN.md). These results do not
-validate later experimental reader/scratch/digest candidates.
+[Segmentation constructor/cache generation](docs/SEGMENT_500K_STARTUP.md) also
+completed five pairs: **191.64 → 79.67 s (2.41×)**, with constructor process peak
+RSS **4.12 → 3.55 GiB (13.86% lower)**. Image verification is included; native
+generation also performs stronger input revalidation, and its disk cache is larger.
+These are shared-host synthetic startup results, not training-throughput gains.
+Content-cache-hit measurements are still running. These results do not validate
+later experimental reader/scratch/digest candidates.
 
 Still required: broader Pillow/codec/platform and diagnostic validation, complete
-Segmentation phase benchmarks, remaining startup/memory targets, fuzzing,
+Segmentation content-hit benchmarks, remaining startup/memory targets, fuzzing,
 cross-platform wheel/CI validation and release-candidate qualification.
 See [docs/STATUS.md](docs/STATUS.md).
 

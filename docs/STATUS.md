@@ -38,7 +38,13 @@ outputs in all ten workers: 113.7618 → 6.7693 s (16.8055×, paired 95% interva
 16.0814–20.1145) and 2,518.14 → 1,588.98 MiB process peak RSS (36.90% lower).
 This is label read/parse/validate/packed export, excluding images and construction.
 Server and local artifact audits agree; [all records are preserved](SEGMENT_500K_P1.md).
-Repeated P3/P4 results remain pending.
+The [five-pair Segmentation P3 comparison](SEGMENT_500K_STARTUP.md) also completed:
+191.6352 → 79.6712 s (2.4053×, paired 95% interval 2.3994–2.4218), with constructor
+process high-water RSS 4.1208 → 3.5496 GiB (13.86% lower). All outputs match the
+reference, and server/local audits agree. Image verification is included; native
+generation has stronger input revalidation and a larger cache. All raw worker
+JSON/logs, exact wheel/source and audits are preserved. P4 content hits remain
+in progress; this is not later-candidate or training-throughput evidence.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library

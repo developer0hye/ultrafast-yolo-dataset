@@ -85,6 +85,7 @@ checked separately; wheel redistribution qualification remains open. Missing
 paths are listed in the preservation receipt and archive's wheel-source audit.
 
 The separate [capacity runs](SEGMENT_500K_PLAN.md) already produced identical full
-constructor outputs. Repeated P3 construction and P4 content-hit measurements are
-still running and must establish their own results; this P1 gain cannot substitute
-for either phase or for training throughput.
+constructor outputs. [Repeated P3 construction](SEGMENT_500K_STARTUP.md) has now
+completed at 2.4053× with 13.86% lower constructor process RSS. P4 content-hit
+measurements are still running. This P1 gain cannot substitute for either phase
+or for training throughput.
