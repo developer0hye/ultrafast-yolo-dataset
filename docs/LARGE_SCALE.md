@@ -1,7 +1,8 @@
 # 500k-pair startup experiment
 
 Detection P1, P3 and P4 completed all five paired measurements and their artifact
-audits. Full-scale Segmentation remains open.
+audits. [Segmentation P1](SEGMENT_500K_P1.md) also completed five pairs on Linux;
+its P3/P4 phase results remain pending.
 Fixture preparation and its
 complete distinct-file preflight passed on M2. The fixture contains 500,000 JPEGs
 and 500,000 TXT files totaling 3,625,093,750 bytes, with full name/content SHA-256
@@ -18,7 +19,8 @@ checkpoint's native extension, Python, NumPy and CPU/RAM identity. It does not
 measure USB link speed, drive firmware or thermal stability. Treat results as
 specific to this shared host/storage condition, not a general SSD throughput
 claim or a cold-cache benchmark.
-Repeated Segmentation phase results remain pending. The pinned constructor retains raw polygons;
+Repeated Segmentation constructor/content-hit results remain pending; its P1
+label-engine comparison is complete. The pinned constructor retains raw polygons;
 resampling happens per sample later. The [capacity plan](SEGMENT_500K_PLAN.md)
 estimates 0.612 GiB of packed numeric payload before Python/intermediate overhead,
 not peak RSS. Full capacity qualification has passed on the 32 GB server with

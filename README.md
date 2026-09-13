@@ -145,8 +145,10 @@ for read/parse/validate/export and 1.09× for constructor/cache generation. Cont
 cache hits showed no clear latency improvement. Constructor peak RSS increased
 on cache generation and decreased on content hits; the detailed results retain
 confidence intervals, exact build identities and memory scope. Full 500k
-Segmentation capacity has passed, with repeated phase measurements still running;
-see [the Segmentation report](docs/SEGMENT_500K_PLAN.md). These results do not
+[Segmentation P1](docs/SEGMENT_500K_P1.md) completed at 16.81× with 36.90% lower
+process peak RSS and identical outputs; this remains a label-engine result.
+Segmentation capacity has passed, while repeated constructor/content-hit phases
+are running; see [the capacity report](docs/SEGMENT_500K_PLAN.md). These results do not
 validate later experimental reader/scratch/digest candidates.
 
 Still required: broader Pillow/codec/platform and diagnostic validation, complete

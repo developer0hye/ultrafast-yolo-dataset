@@ -1,0 +1,48 @@
+{
+  "complete_requested_samples": true,
+  "phase": "p1",
+  "task": "segment",
+  "pairs": 500000,
+  "repeats": 5,
+  "workers": 4,
+  "completed_workers": 10,
+  "report_sha256": "a421cfa3dcc29e366bd34b283cd5a00e95bd308131a8cc338b0c6022b1c26fb3",
+  "identity_sha256": "53b90b9d03b706e91f8c710928558009ef380aeeaa4c54c17e358784db7ad140",
+  "preflight_sha256": "bf87025410bea8d1572e3a27674dfb27d01846ac952d73bcc7518b61ac8fc3da",
+  "fixture_manifest_sha256": "9805dbec1fcf2a15de3313f1ca9999cc88a1f83294c669eef3933d4d2b4ca527",
+  "auditor_sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d",
+  "raw_sha256": {},
+  "output_sha256": "c3e1f866a756e500b7148297d27a276d9d15d3067583a124b82173a34bfdf9cf",
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation."
+  ],
+  "summary": {
+    "wall_s": {
+      "pairs": 5,
+      "reference_median": 113.76180444005877,
+      "candidate_median": 6.769312208984047,
+      "reference_over_candidate": 16.80551892540533,
+      "paired_bootstrap_ci95": [
+        16.081415292091343,
+        20.114537358477246
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "peak_rss_bytes": {
+      "pairs": 5,
+      "reference_median": 2640457728,
+      "candidate_median": 1666166784,
+      "reference_over_candidate": 1.584749950218669,
+      "paired_bootstrap_ci95": [
+        1.57983693694356,
+        1.5859000600269628
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    }
+  }
+}

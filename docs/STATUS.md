@@ -33,12 +33,20 @@ one-million-file preflight and both capacity constructors have now passed on the
 32 GB server. This separate one-pair qualification observed 193.53 → 79.21 s and
 4.125 → 3.553 GiB process peak RSS with exact output parity; it is not repeated
 performance evidence. The native disk cache is larger. The controller has advanced
-to the five-pair P1/P3/P4 campaigns, whose full results remain pending.
+to the five-pair phase campaigns. Segmentation P1 has now completed with matching
+outputs in all ten workers: 113.7618 → 6.7693 s (16.8055×, paired 95% interval
+16.0814–20.1145) and 2,518.14 → 1,588.98 MiB process peak RSS (36.90% lower).
+This is label read/parse/validate/packed export, excluding images and construction.
+Server and local artifact audits agree; [all records are preserved](SEGMENT_500K_P1.md).
+Repeated P3/P4 results remain pending.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
 versions. A fresh M2 wheel/sdist preserves all 137 files including the manifest;
 installed-byte auditing, 65 core tests and four standalone cache cases passed.
+The older measured Linux baseline wheel contains project LICENSE/NOTICE but
+lacks that later 137-file dependency-license bundle. The P1 preservation audit
+records the missing paths; a redistribution-qualified Linux rebuild remains required.
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
 locally linted, with hosted execution awaiting the repository visibility choice.
 
