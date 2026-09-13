@@ -40,6 +40,12 @@ cache-decoding or small scratch-allocation changes alone have limited room to
 improve this workload. Further optimization must retain content checks, ordering,
 error behavior and cache invalidation; weaker checking is not an equivalent win.
 
+A subsequent [input-validation diagnostic](INPUT_VALIDATION_PROFILE.md) ran
+after the campaign terminated. It found strong execution-history sensitivity and
+97.93% of the sampled worker stacks inside `read`/`stat`/`open` during one selected
+window. This directs further investigation toward file access; it is not an
+optimized-candidate result or a full-run CPU-time breakdown.
+
 The two slower baseline miss samples (176.262 s and 188.882 s) remain in the
 raw five-pair record and interval calculation. Host pressure snapshots were taken
 after full untimed checks and cannot identify the cause of constructor timing

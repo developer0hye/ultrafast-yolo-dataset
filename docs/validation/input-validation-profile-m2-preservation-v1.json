@@ -1,0 +1,126 @@
+{
+  "complete": true,
+  "all_members_read_back": true,
+  "archive_sha256": "7324b4d0b26faa2911ff016b6ba09f0a4d30aa1ac40fb6dd2294c7a78026a6a5",
+  "archive_bytes": 1271914,
+  "file_count": 30,
+  "manifest": {
+    "input-validation-profile-m2-v1.json": {
+      "bytes": 245457,
+      "sha256": "ff08621aa9ec834857779c24f56473f319bc9c31a9430e96a65a8250b9c8fbb7"
+    },
+    "input-validation-profile-m2-v1.log": {
+      "bytes": 2653,
+      "sha256": "0c8133ad36a56a857a8a2d14f7fed08252364b82a0515e12fe8c6e9e0674df17"
+    },
+    "input-validation-profile-m2-v2-sampled.json": {
+      "bytes": 1183585,
+      "sha256": "51aac780eea5dd274115ba4bd6bd3d1c82cc380de4384ab3d838264dc95cff8b"
+    },
+    "input-validation-profile-m2-v2-sampled.log": {
+      "bytes": 1318,
+      "sha256": "ae82860a77d2f6294958430faa5cb6f81c1f8db3b1b244b80b620e1433687157"
+    },
+    "input-validation-profile-m2-v2-sampling.json": {
+      "bytes": 1571,
+      "sha256": "bd4d5666d72ce9242c11ac63e443de890e67fb2a5ea26e1eccf210861a7f9a2d"
+    },
+    "input-validation-profile-m2-v2-sample.txt": {
+      "bytes": 82337,
+      "sha256": "48d58100f2b00093221bcb8f2ec8b57b8fe192ef31e870091680d62e9366d89b"
+    },
+    "input-validation-profile-m2-v2-sample.log": {
+      "bytes": 252,
+      "sha256": "7c042d008ae1b0aec0d1f11f181edb598eac1d65264f7403687becbf409947b4"
+    },
+    "profile-input-validation-m2-v1.py": {
+      "bytes": 5945,
+      "sha256": "894065d4cc1ae30de52b1b6a19903448ce18e827ac235de0f8cbe9b5a4957cf1"
+    },
+    "summary.json": {
+      "bytes": 14203,
+      "sha256": "3458785b67cb60071a040d0c4c49200464a504c06419e1300b9aea617f88a0e2"
+    },
+    "runtime/identity.json": {
+      "bytes": 2269,
+      "sha256": "5f4251ee972d29a299e8087e9bedfa32070f6ebf3546526fad30816776077805"
+    },
+    "runtime/source/Cargo.toml": {
+      "bytes": 698,
+      "sha256": "7a1159e25fc25f1e4b4e9f763beda9a04bb61de82589ae9ce6295c2668b3d911"
+    },
+    "runtime/source/Cargo.lock": {
+      "bytes": 13523,
+      "sha256": "71fde3ffdf06e3a9728d22e57e60fcbc5c3182eb01d78fae03968360012a2077"
+    },
+    "runtime/source/pyproject.toml": {
+      "bytes": 717,
+      "sha256": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f"
+    },
+    "runtime/source/src/cache.rs": {
+      "bytes": 9872,
+      "sha256": "eaa648cde00a52738d3bb20241723ed76f63c2763455cd1d8efb813c1f8f6730"
+    },
+    "runtime/source/src/lib.rs": {
+      "bytes": 6109,
+      "sha256": "6cca87ad1f86b9ce1164728c70f3ae1937e43dad9732193adbf2cd170ecb7bf7"
+    },
+    "runtime/source/src/materialize.rs": {
+      "bytes": 7021,
+      "sha256": "511bd140b26ca9eedde3ccbcb31dafdfa41e5d645a9dca82cf918df0a55d6c42"
+    },
+    "runtime/source/src/parser.rs": {
+      "bytes": 5618,
+      "sha256": "e1d65837ed26a145ebfe8dc410ae95b4b1cd7c8575bb0f2da44dedbec9c150e7"
+    },
+    "runtime/source/src/provenance.rs": {
+      "bytes": 6198,
+      "sha256": "cec0870f44e00f3b783d4aaac35af8331b382976d12fdb7f55d529b503eb0366"
+    },
+    "runtime/source/src/snapshot.rs": {
+      "bytes": 12199,
+      "sha256": "2234de00d411d3adbfa0280a30f2b7f1307800494ce902d2fc58ecb068076cb4"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/__init__.py": {
+      "bytes": 1642,
+      "sha256": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/_cache.py": {
+      "bytes": 19672,
+      "sha256": "25b2529972dd3544c06d4df14a4621a991b8b111221a52740d885e059bbd534a"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/_reference.py": {
+      "bytes": 5644,
+      "sha256": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/_scan.py": {
+      "bytes": 14993,
+      "sha256": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/_snapshots.py": {
+      "bytes": 3451,
+      "sha256": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/ultralytics.py": {
+      "bytes": 17371,
+      "sha256": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+    },
+    "runtime/source/python/ultrafast_yolo_dataset/_ultralytics_profile.json": {
+      "bytes": 2507,
+      "sha256": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3"
+    },
+    "runtime/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl": {
+      "bytes": 1096736,
+      "sha256": "25f0ce7ff2e40f106ec7af04a744c3883671c4ee502f3bd337e2414fe01b88d3"
+    },
+    "full-startup/bundle.json": {
+      "bytes": 1241,
+      "sha256": "d27f961a5770decb01a87731338c7cbbfd368c81591c06f0b90b20eae14bcbd7"
+    },
+    "full-startup/audit.json": {
+      "bytes": 14347,
+      "sha256": "a47b72f1f59d74bee83f105dff8bf1e51ff4553d5d3b5f13739ceea4174b9d98"
+    }
+  },
+  "scope": "Two read-only diagnostics, 24 native validation calls, one five-second stack sample; baseline wheel/source included; full caches referenced through the previously verified multipart startup archive."
+}
