@@ -155,7 +155,12 @@ def stage_timers():
     return values
 
 
-def worker(root, backend, mode, prime):
+def worker(root, backend, mode, prime, *, scan_workers=None):
+    if scan_workers is not None:
+        if type(scan_workers) is not int or not 1 <= scan_workers <= 256:
+            raise ValueError("scan_workers must be an integer in [1, 256]")
+        if not backend.startswith("native-"):
+            raise ValueError("explicit scan_workers applies only to native cache experiments")
     manifest = fixture_manifest(root)
     assert fingerprint(root) == manifest["fingerprint"]
     check_profile()
@@ -174,7 +179,11 @@ def worker(root, backend, mode, prime):
     before = resource.getrusage(resource.RUSAGE_SELF)
     rss_before, high_water_before = psutil.Process().memory_info().rss, peak_rss()
     start = time.perf_counter()
-    result = cls(**options(root, manifest["task"], backend))
+    settings = options(root, manifest["task"], backend)
+    if scan_workers is not None:
+        settings["scan_workers"] = scan_workers
+    effective_workers = settings.get("scan_workers", NUM_THREADS)
+    result = cls(**settings)
     constructed = time.perf_counter()
     rss_constructor = peak_rss()
     if prime:
@@ -225,7 +234,7 @@ def worker(root, backend, mode, prime):
     return {
         "backend": backend,
         "mode": mode,
-        "workers": NUM_THREADS,
+        "workers": effective_workers,
         "loader_workers": 0,
         "constructor_s": constructed - start,
         "first_batch_total_s": ended - start,

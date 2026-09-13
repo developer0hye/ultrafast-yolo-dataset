@@ -1,4 +1,10 @@
-# Input-validation worker tuning: full experiment running
+# Input-validation worker tuning: full phase experiment completed
+
+All 21 processes and the final independent audit passed. The 16-worker setting
+reduced the measured validation phase relative to 4 and 7 workers, with higher
+CPU time and slightly higher sampled RSS. See the complete
+[results and limitations](VALIDATION_WORKERS_RESULTS.md). Full-size startup
+tuning remains a separate gate.
 
 The [file-access profile](INPUT_VALIDATION_PROFILE.md) motivates testing worker
 concurrency before changing hash computation or consistency checks. This new
@@ -43,12 +49,11 @@ telemetry and before/after cache/extension hashing, then exited zero. Its
 measurements are not full-dataset results. The subsequent source edit changes
 only the parent report's worker-label text, not the pilot's trial function.
 
-The full comparison and an independent readback of all results are still pending.
-Any favorable worker setting must subsequently be checked in full startup and
-for memory/error behavior before changing a library default or claiming an
-end-to-end improvement. No speedup has been established by this new experiment.
+The full phase comparison and independent readback have now passed. Any favorable
+worker setting must still be checked in full startup and for memory/error
+behavior before changing a default or claiming an end-to-end improvement.
 
-## Active M2 campaign
+## Preserved launch and initial checkpoint
 
 The [launch record](validation/validation-workers-m2-v1-launch.json) binds source
 commit `f7e65b6639765606ddcd8121af51b0c8fd5b31dd` and frozen harness SHA-256
@@ -66,7 +71,7 @@ path checks per trial, and confirmed the next process was live. This checkpoint
 is not the completed series or its final audit. Raw files remain under
 `/Volumes/T7/ultrafast-vision-build/validation-workers-m2-v1.runs`.
 
-An independent summarizer and synthetic corruption/statistics tests have been
-drafted. They have not been executed or qualified yet. Run their checks after
-this benchmark process has terminated, before using the final report. The
-unfinished series must not be restarted merely because observation times out.
+After the benchmark terminated naturally, the independent summarizer passed
+22 synthetic tests and the full real-artifact audit. The original launch and
+partial checkpoint above remain historical evidence; the complete results
+and all raw files are retained in the final results bundle.

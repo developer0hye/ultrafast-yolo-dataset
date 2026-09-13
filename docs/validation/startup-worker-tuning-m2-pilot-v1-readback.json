@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "passed": true,
+  "records": [
+    {
+      "workers": 4,
+      "mode": "miss",
+      "raw_sha256": "a54820f0e0eef946831504ca80f43addc8d846445177533331f1f45dcad1b53f",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    },
+    {
+      "workers": 4,
+      "mode": "hit",
+      "raw_sha256": "ae9dc4d286322172373b7f7db89d9d19b2f5abdeca46bf61cf06e545092f5bc1",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    },
+    {
+      "workers": 7,
+      "mode": "miss",
+      "raw_sha256": "83582dd83f834be2137eac865d13f2503c8cf665b70e0ac5849452636c66583d",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    },
+    {
+      "workers": 7,
+      "mode": "hit",
+      "raw_sha256": "87cab8321e0ebb98d5615e88457c3c3ee906beaa29f47cfb19edb66a67ed2bab",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    },
+    {
+      "workers": 16,
+      "mode": "miss",
+      "raw_sha256": "72e3e41281f682d2f20d51568d9714f45fed54856d95f022afe53641292e0407",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    },
+    {
+      "workers": 16,
+      "mode": "hit",
+      "raw_sha256": "78c8769d31ba0b840ce8807910c1b94d81fa8fc50eaf8cc109ca73a8ba328f1e",
+      "cache_sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de"
+    }
+  ],
+  "original_cache_unchanged": true,
+  "observed_at_ns": 1789282264974030000,
+  "scope": "Separate pilot readback: all six child reports/logs and actual cache bytes, requested/effective worker counts and labels/first-batch/diagnostic hashes. No repeated full-dataset performance claim."
+}

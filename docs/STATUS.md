@@ -2,17 +2,22 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
-This experimental branch removes the intermediate copy when reading native cache
-sections. It is not built or tested; twelve focused cases are prepared. No active
-benchmark uses this source. See [CACHE_READ_COPY.md](CACHE_READ_COPY.md) for the
-ownership argument, GIL tradeoff and required validation before merging.
+This worktree evaluates input-validation worker settings using the previously
+qualified cache-reader wheel (187 installed tests). The complete 21-process M2
+experiment and independent audit passed: 16 workers reduced the content-check
+phase from a 4-worker median of 58.28 s to 37.38 s, with higher CPU time and about
+1.45 MiB more sampled RSS. The 7-worker median was 43.83 s. No default has changed;
+full-size startup confirmation is pending. The auditor passed 22 tests, and six
+actual 1,003-pair startup pilots at workers 4/7/16 passed cache rebuild/hit,
+labels/batch/diagnostics and exact cache-byte checks. See
+[VALIDATION_WORKERS_RESULTS.md](VALIDATION_WORKERS_RESULTS.md).
 
-The [500k-pair experiment](LARGE_SCALE.md) now has a prepared directory-streamed
-preflight and distinct-file audit. Its nine filesystem tests and the actual
-1,003-pair Detection/Segmentation P3/P4 pilot passed on M2. Preparation of a fresh
-500,000-pair Detection fixture has started, followed sequentially by five-pair
-P1/P3/P4 measurements. No full-scale result is available yet. Historical results
-retain the older fingerprint implementation and their original memory scope.
+The source tree retains the unpromoted scratch-buffer candidate inherited from
+the preceding branch, while this worker experiment uses the earlier reader
+wheel without that candidate. Its previous full 500,000-pair startup comparison
+did not establish a scratch-buffer speed or RSS gain. See
+[SNAPSHOT_FULL_M2_RESULTS.md](SNAPSHOT_FULL_M2_RESULTS.md). Historical measurements
+remain attached to their exact frozen binary/source identities.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library
