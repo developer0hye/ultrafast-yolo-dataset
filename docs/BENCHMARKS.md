@@ -226,6 +226,15 @@ measurements on shared hosts, not cold-storage or training-throughput measuremen
 Load averages, available RAM and process counters are retained per run. All runs,
 including the slower first M2 Detection sample, contribute to the statistics.
 
+For `bench/cache_startup.py`, `loadavg` and `available_ram_bytes` are sampled
+after output hashing and the post-run full input-content check. They are delayed
+host snapshots, not measurements throughout the constructor or its peak memory
+pressure. In contrast, user/system CPU-time and page-fault deltas bracket dataset
+construction and first-batch creation, before those output/input checks. A high
+reported load therefore cannot by itself explain a slow constructor, and a low
+value cannot establish an uncontended run. Keep all predeclared samples; the
+paired intervals describe the observed runs, not isolation from background load.
+
 | Host / fixture | Constructor reference-content → native | Ratio (95% paired bootstrap CI) | First batch total reference-content → native | Peak constructor RSS reference-content → native |
 |---|---:|---:|---:|---:|
 | i5-10400 / synthetic Detection, 100k | 2.41156 → 2.38507 s | 1.01× (1.002–1.050) | 2.42711 → 2.40027 s | 523.39 → 494.83 MiB |

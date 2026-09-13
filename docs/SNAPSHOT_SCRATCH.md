@@ -135,6 +135,17 @@ and per-worker input checks remain evidence anchors, not a fresh dataset reread.
 Recorded memory is process high-water RSS at constructor/first batch, including
 earlier imports/preflight; it is not temporary allocation or process-family RSS.
 
+Host `loadavg` and `available_ram_bytes` come from the underlying startup worker
+after its untimed output hashing and full input-content recheck. They may lag the
+constructor by minutes at 500k pairs. The auditor checks their validity, not their
+temporal correspondence with constructor contention. Do not infer a cause for
+run-to-run timing variation from these snapshots or remove slower samples using
+them. CPU-time/page-fault deltas have a different scope: construction and the first
+batch, before the post-run verification. The wrapper's wall interval spans the
+underlying startup worker, including its full input/output checks, so it is not a
+startup latency measurement. Descriptor and wrapper cache-section checks occur
+outside that interval. See [benchmark measurement scope](BENCHMARKS.md).
+
 A [corruption qualification script](validation/qualify-snapshot-startup-audit-v1.py)
 is prepared but **not yet executed**. It mutates disposable artifact copies and
 includes explicitly synthetic five-round controls solely to exercise aggregation.
