@@ -1,0 +1,270 @@
+{
+  "complete": true,
+  "ci_passed": true,
+  "source_commit": "eec2453d215ce8f048ce5ffd60d277aa39c3fd7e",
+  "run_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745000202",
+  "successful_jobs": 12,
+  "rows": [
+    {
+      "job_id": 103691172390,
+      "name": "wheel (ubuntu-24.04, 3.13)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172471,
+      "name": "wheel (ubuntu-24.04, 3.11)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172483,
+      "name": "wheel (windows-2022, 3.12)",
+      "stages": [
+        {
+          "passed": 85,
+          "skipped": 1
+        },
+        {
+          "passed": 95,
+          "skipped": 2
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172496,
+      "name": "wheel (windows-2022, 3.11)",
+      "stages": [
+        {
+          "passed": 85,
+          "skipped": 1
+        },
+        {
+          "passed": 95,
+          "skipped": 2
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172501,
+      "name": "wheel (macos-15, 3.11)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172502,
+      "name": "wheel (windows-2022, 3.10)",
+      "stages": [
+        {
+          "passed": 85,
+          "skipped": 1
+        }
+      ],
+      "framework_tested": false
+    },
+    {
+      "job_id": 103691172515,
+      "name": "wheel (macos-15, 3.10)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": false
+    },
+    {
+      "job_id": 103691172518,
+      "name": "wheel (windows-2022, 3.13)",
+      "stages": [
+        {
+          "passed": 85,
+          "skipped": 1
+        },
+        {
+          "passed": 95,
+          "skipped": 2
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172520,
+      "name": "wheel (ubuntu-24.04, 3.12)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172542,
+      "name": "wheel (ubuntu-24.04, 3.10)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": false
+    },
+    {
+      "job_id": 103691172555,
+      "name": "wheel (macos-15, 3.12)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    },
+    {
+      "job_id": 103691172650,
+      "name": "wheel (macos-15, 3.13)",
+      "stages": [
+        {
+          "passed": 86,
+          "skipped": 0
+        },
+        {
+          "passed": 97,
+          "skipped": 0
+        }
+      ],
+      "framework_tested": true
+    }
+  ],
+  "aggregate_passed": 1895,
+  "aggregate_skipped": 10,
+  "artifact_payload_audit_complete": false,
+  "scope": "All terminal job steps and raw pytest summaries checked. Python 3.10 covers core/standalone only. Windows skips Unix interval timer, FIFO, fork ownership checks. Full twelve-artifact JUnit/wheel payload readback and long-term archive preservation remain pending.",
+  "bundle": "bench/results/dataset-hosted-windows-fix-v1-terminal-evidence.tar.gz",
+  "bundle_bytes": 183322,
+  "bundle_sha256": "0da782bf160db227f6e3115c6098ee7813b8730a823f2f46116ec85eecdb6f55",
+  "members": {
+    "dataset-hosted-windows-fix-v1-artifacts.json": {
+      "bytes": 8944,
+      "sha256": "d6b8967ef2c529197eaf0ee434b796cecc2c2835162d0f869543123fde809360"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172471.log": {
+      "bytes": 75313,
+      "sha256": "0260b2a30a52a45e1cb7a1a9f8cc9c424610d6671ed111eedf09d011662b5137"
+    },
+    "dataset-hosted-windows-fix-v1-jobs.json": {
+      "bytes": 46123,
+      "sha256": "0a5ff2384560fdc39476469d612c2d96af57a8f9556a230f8d5434018a5540b8"
+    },
+    "dataset-hosted-windows-fix-v1-run.json": {
+      "bytes": 14061,
+      "sha256": "3556c765fca5a18716ac05beb8c828de40006c8e6d201255f9edcf5802063df4"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172502.log": {
+      "bytes": 48788,
+      "sha256": "b9c4d43a7b5b04e136f2cc7caf0b5d1edd7a96702e2ec70a3a144b5d8d050994"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172515.log": {
+      "bytes": 53126,
+      "sha256": "aa954ecd3df2c4ec2d6ba7cdaf60412d6e959ec90c0f1e548e95ada22f56d6bc"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172501.log": {
+      "bytes": 74567,
+      "sha256": "02494dafe53600f955d6bfa9396f1e1da8a85486916f655d41e70b62ee70511d"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172518.log": {
+      "bytes": 68187,
+      "sha256": "f2d577909479ce10e88d9761f3ade0b28ac425fb6930a043f2357da5fcd1a865"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172650.log": {
+      "bytes": 69966,
+      "sha256": "dfd2b964bebb3d3e91a4d2d0d27d6090747cd928fd3e9e5b8e4188c274abb04f"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172496.log": {
+      "bytes": 72318,
+      "sha256": "0cd33a7027112e484815e2e13ff2ac12cab32e9d003c0581b14302d36609f2a1"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172483.log": {
+      "bytes": 70205,
+      "sha256": "1dd259336c46d645731648dbbfce67b1636886df43ef06397bef5f12231bc9b0"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172520.log": {
+      "bytes": 71874,
+      "sha256": "770448e25e7271c23455732d233c283d0a725ca4bd7cf1b78bb5b161aced670e"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172555.log": {
+      "bytes": 70923,
+      "sha256": "e8f7d7b6361ff351653dd6950b2f58341b7f90ffc4bc861abd7da608c4fa1153"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172390.log": {
+      "bytes": 70543,
+      "sha256": "cbf2f4be3d3c371ddfb5d780e4650ddf924e1ae738164d0541b97fa5026fa62b"
+    },
+    "dataset-hosted-windows-fix-v1-job-103691172542.log": {
+      "bytes": 49143,
+      "sha256": "5146764db5b590e479dc8492ff5b925221a111a53dde1317cb5b10639cc713ac"
+    },
+    "source/.github/workflows/wheels.yml": {
+      "bytes": 4257,
+      "sha256": "39f47f218c32bf4744c2199c245f3e1b9a79ddea467c4fee6b25a5511e924d9e"
+    },
+    "source/python/ultrafast_yolo_dataset/_snapshots.py": {
+      "bytes": 3627,
+      "sha256": "d9b362a9561d09a476e3d4e5d81512ed45c54cdf58b8f75296ab1f0e3204bc62"
+    },
+    "source/python/ultrafast_yolo_dataset/ultralytics.py": {
+      "bytes": 17523,
+      "sha256": "36a41700db1b99231bab62cef6bb470cf46c0f8fa2705e4396b0fa3cdd22d2f6"
+    },
+    "source/tests/test_cache.py": {
+      "bytes": 24456,
+      "sha256": "eb9b4552c19e4ad3322847ccd68bac48c9d99905f35b5afae326c839e0854044"
+    },
+    "source/tests/test_scan.py": {
+      "bytes": 6643,
+      "sha256": "792fec3837d1ee3b4783e3e3cfbd05ca534460f05f86478ebc46bfc16af33ce7"
+    },
+    "source/tests/test_integration.py": {
+      "bytes": 12557,
+      "sha256": "c509199f6f4b66ca4da346dcb262ed350f28d25aa0dc19b3e6b62574e4af3fd2"
+    }
+  }
+}

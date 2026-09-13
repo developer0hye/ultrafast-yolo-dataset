@@ -16,7 +16,18 @@ and source archives still need long-term preservation before GitHub expiry.
 
 The [candidate matrix](https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745000202)
 uses exact runtime source `eec2453d215ce8f048ce5ffd60d277aa39c3fd7e` and is still
-running. No rerun of the failed original jobs is substituted for that evidence.
+retained separately. It has now **passed all twelve jobs**. Terminal job steps
+and the raw logs were independently read back and
+[preserved](validation/dataset-hosted-windows-fix-v1-terminal.json).
+No rerun of the failed original jobs is substituted for that evidence.
+
+Linux/macOS Python 3.11–3.13 each passed 86 core and 97 integration tests.
+Windows Python 3.11–3.13 each passed 85 core and 95 integration tests, with one
+core and two integration skips for Unix interval timers, FIFO files and fork
+ownership. Python 3.10 ran the core/standalone stages only. The matrix aggregates
+1,895 passes and ten skips across repeated platform/version cases; this is not
+a count of distinct tests. All twelve artifact payloads still require complete
+JUnit/wheel readback and long-term preservation before release qualification.
 
 ## Changes under qualification
 
