@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "scope": "1,003-pair actual constructor/hit qualification; not repeated performance evidence",
+  "report_sha256": "fa133745d1d3806704abab5471afa6a6d7c0c20b901addd98696804b9fa70c7c",
+  "raw_sha256": {
+    "miss-0-baseline.json": "97e5b5525eb60b28d29b039538f8658951ab9e5a7c7d3c7d59acfe817997eb95",
+    "miss-0-candidate.json": "6db5b2a32a4c6d586545194894e6430c5b0c9c375bbca0f13d7176aad8b7a7c8",
+    "hit-0-baseline.json": "62c86df3c518599d6c59815de191e764e80322fe89a55ca4a7b167ab66edee6d",
+    "hit-0-candidate.json": "0bc55abc11c09cccd679d65fadbf320d74a0b1222e40b113f6a759e0ad764045",
+    "hit-prime-baseline.json": "11ffeca2e7d8c781a26fea63fd7b1786e5537f46690c093143a9479ebbd888a8",
+    "hit-prime-candidate.json": "6ef6226ba21978c8430d5737be10aee6e9f0ca55a19c6222edeb3e85fc5ae6e3"
+  },
+  "outputs_equal_original_pilot": true,
+  "cache_metadata_except_profile_and_all_payload_sections_equal": true,
+  "output_sha256": {
+    "labels": "d4775c0f8d5e75c68eb2104024b6623aa3e4e7570a99ca6d433915e3efa8cda5",
+    "first_batch": "3434fa1137c624655b32fde160168c9a18ff8bf31770835a94836db296743415",
+    "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+  },
+  "wrapper_sha256": "c8074cabf59db8727b0576de9f7e9c3fe0b4e9a059e180219aaffb423397ee14",
+  "initial_v1_failure_preserved": true
+}

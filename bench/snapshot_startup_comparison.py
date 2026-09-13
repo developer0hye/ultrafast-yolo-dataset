@@ -10,6 +10,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import struct
 import subprocess
 import sys
 import time
@@ -43,6 +44,21 @@ def encoded(value):
 def worker(args):
     reader = module("reader_descriptor", args.harness_root / "bench/cache_read_comparison.py")
     before = reader.descriptor(args.source, args.wheel, args.identity)
+    from ultrafast_yolo_dataset import _native
+
+    embedded = hashlib.sha256()
+    for name in (
+        "src/parser.rs",
+        "src/snapshot.rs",
+        "src/provenance.rs",
+        "src/materialize.rs",
+        "src/cache.rs",
+        "src/lib.rs",
+        "Cargo.toml",
+        "Cargo.lock",
+    ):
+        embedded.update((args.source / name).read_bytes())
+    require(_native.native_cache_profile() == embedded.hexdigest(), "compiled source profile disagrees with archive")
     sys.path.insert(0, str(args.harness_root / "bench"))
     startup = module("startup_worker", args.harness_root / "bench/cache_startup.py")
     # Change only the generated native cache location. Dataset class, verification,
@@ -67,6 +83,22 @@ def worker(args):
     result = startup.worker(args.corpus, "native-content", args.mode, args.prime)
     end_ns = time.time_ns()
     (cache,) = args.cache_root.glob("*.uydcache")
+    inspected = reader.inspect_container(cache)
+    # Cache profiles intentionally change with compiled source. Check each against
+    # its own runtime; compare every other metadata field and all payload sections.
+    from ultrafast_yolo_dataset import _cache
+
+    with cache.open("rb") as stream:
+        stream.seek(12)
+        count = struct.unpack("<I", stream.read(4))[0]
+        metadata_bytes = struct.unpack("<Q", stream.read(8))[0]
+        stream.seek(16 + 40 * count)
+        metadata = json.loads(stream.read(metadata_bytes))
+    cache_profile = metadata.pop("profile")
+    require(cache_profile == _cache._profile(), "cache profile does not match its runtime")
+    comparable_metadata = hashlib.sha256(
+        json.dumps(metadata, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
     require(before == reader.descriptor(args.source, args.wheel, args.identity), "worker identity drift")
     return {
         "version": args.version,
@@ -77,7 +109,15 @@ def worker(args):
         "wall_end_ns": end_ns,
         "wrapper_sha256": sha(Path(__file__)),
         "descriptor": before,
-        "cache": {"path": str(cache), "sha256": sha(cache), "bytes": cache.stat().st_size},
+        "compiled_source_profile": embedded.hexdigest(),
+        "cache": {
+            "path": str(cache),
+            "sha256": inspected["sha256"],
+            "bytes": inspected["bytes"],
+            "sections": inspected["sections"],
+            "profile": cache_profile,
+            "metadata_except_profile_sha256": comparable_metadata,
+        },
         "result": result,
     }
 
@@ -240,10 +280,11 @@ def main():
             if mode == "hit":
                 for version in anchors:
                     run(version, mode, -1, True)
+                left, right = [row["report"]["cache"] for row in report["primers"]]
                 require(
-                    report["primers"][0]["report"]["cache"]["sha256"]
-                    == report["primers"][1]["report"]["cache"]["sha256"],
-                    "primed native cache bytes differ",
+                    left["metadata_except_profile_sha256"] == right["metadata_except_profile_sha256"]
+                    and left["sections"][1:] == right["sections"][1:],
+                    "primed cache annotation/provenance mismatch",
                 )
             for repeat in range(args.rounds):
                 for version in ("baseline", "candidate") if repeat % 2 == 0 else ("candidate", "baseline"):

@@ -62,3 +62,48 @@ comparison. A 1,003-pair pilot must pass both phases before the full 500k series
 The full series uses five alternating pairs per phase and two separate primers,
 retaining raw reports/logs, complete label/batch/diagnostic hashes, stage timers
 and peak RSS. Final results still need an independent full artifact audit.
+
+## Pilot correction: source-bound cache profiles
+
+The first pilot's P3 workers produced identical labels, first batches and ordered
+diagnostics. Both P4 primers completed, but the wrapper then rejected their
+whole-file SHA-256 difference. Inspection found that all ten array/fingerprint
+sections match, and metadata differs only in `profile`. This is required behavior:
+`native_cache_profile()` hashes six embedded Rust files and Cargo.toml/Cargo.lock,
+so a Rust source change invalidates the old cache profile.
+
+The corrected wrapper verifies each compiled profile against those eight source
+files and each cache profile against its own runtime. It compares all metadata
+except that one verified profile field and every array/fingerprint section hash.
+The initial failed report/logs/caches are retained under
+`/Volumes/T7/ultrafast-vision-build/snapshot-startup-pilot-m2-v1*`; the corrected
+pilot uses new `v2` paths. No library code or test result changed for this fix.
+The [runtime profile check](validation/native-source-profile-m2-v1.json) also
+corrects earlier claims that the native extension had no embedded source digest.
+
+The corrected pilot completed both P3 workers, two independent primers and both
+P4 workers. Every complete label, first-batch and diagnostic hash matches the
+original pinned-reference pilot. The two caches have identical annotation and
+input-fingerprint sections and identical metadata after excluding their separately
+verified implementation profiles. Single-run constructor times were
+0.2785 → 0.3210 s for P3 and 0.05634 → 0.05783 s for P4; these slower candidate
+observations are retained and are not five-pair performance conclusions.
+
+The [40-file pilot archive](../bench/results/snapshot-startup-pilot-m2-v2.tar.gz)
+preserves the initial failure, both exact wrapper versions, corrected raw runs,
+generated caches and identity/reference anchors. SHA-256 is
+`6674d37983be1cd1fe6ae4a3c594726ffa2b4eeec49b811fe3b813f2e815f684`.
+The [audit](validation/snapshot-startup-pilot-m2-v2-audit.json) and
+[preservation receipt](validation/snapshot-startup-pilot-m2-v2-preservation.json)
+record full readback and output agreement.
+
+After the corrected pilot passed, the full M2 Detection comparison started with
+the unchanged one-million-file, 500,000-pair corpus. It runs five alternating
+native-versus-native pairs for each phase, with separate untimed primers and
+generated cache directories. The [launch controller](validation/launch-snapshot-startup-full-m2-v1.py)
+requires 20 measured workers, two primers and output equality with the original
+complete 500k reference experiment. Its artifacts use
+`/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1*`.
+The frozen wrapper SHA-256 is
+`c8074cabf59db8727b0576de9f7e9c3fe0b4e9a059e180219aaffb423397ee14`.
+This measurement is running; no full-scale scratch-candidate speedup is claimed.

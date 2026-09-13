@@ -1,0 +1,56 @@
+{
+  "scope": "Runtime aggregate profile matches concatenated bytes of six embedded Rust sources and Cargo.toml/Cargo.lock. This corrects earlier prose saying the extension had no embedded Rust source digest. Toolchain provenance still needs build artifacts.",
+  "versions": [
+    {
+      "version": "original",
+      "source": "/Users/yhkwon/Documents/ultrafast-yolo-dataset",
+      "python": "/Volumes/T7/ultrafast-vision-build/mask-resize-roi-clean-v2/bin/python",
+      "native_cache_profile": "4d82cb5159b4d31eda4074a1a0cca679c7b92977c6ea2f9c685550e045ff2e7e",
+      "independent_source_digest": "4d82cb5159b4d31eda4074a1a0cca679c7b92977c6ea2f9c685550e045ff2e7e",
+      "ordered_sources": [
+        "src/parser.rs",
+        "src/snapshot.rs",
+        "src/provenance.rs",
+        "src/materialize.rs",
+        "src/cache.rs",
+        "src/lib.rs",
+        "Cargo.toml",
+        "Cargo.lock"
+      ]
+    },
+    {
+      "version": "reader",
+      "source": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-source",
+      "python": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-clean/bin/python",
+      "native_cache_profile": "38c1f8fc6f268ab20a615590621b0df2733451803b22a250576a586790e90d63",
+      "independent_source_digest": "38c1f8fc6f268ab20a615590621b0df2733451803b22a250576a586790e90d63",
+      "ordered_sources": [
+        "src/parser.rs",
+        "src/snapshot.rs",
+        "src/provenance.rs",
+        "src/materialize.rs",
+        "src/cache.rs",
+        "src/lib.rs",
+        "Cargo.toml",
+        "Cargo.lock"
+      ]
+    },
+    {
+      "version": "scratch",
+      "source": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-source",
+      "python": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-clean/bin/python",
+      "native_cache_profile": "0bfda41a2cced9d35ab5bf5f220fcc328eb6c5d4203a3e94a2526ba611ef17c9",
+      "independent_source_digest": "0bfda41a2cced9d35ab5bf5f220fcc328eb6c5d4203a3e94a2526ba611ef17c9",
+      "ordered_sources": [
+        "src/parser.rs",
+        "src/snapshot.rs",
+        "src/provenance.rs",
+        "src/materialize.rs",
+        "src/cache.rs",
+        "src/lib.rs",
+        "Cargo.toml",
+        "Cargo.lock"
+      ]
+    }
+  ]
+}

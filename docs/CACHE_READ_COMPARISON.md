@@ -56,9 +56,14 @@ identity. The two identities must record matching Rust/Cargo versions, target,
 release profile and RUSTFLAGS. Only `src/cache.rs` and
 `python/ultrafast_yolo_dataset/_cache.py` may differ between this specific pair.
 Python, installed dependency versions, platform, CPU and RAM must also match.
-The native extension does not embed these Rust source hashes: source-to-binary
-provenance relies on the corresponding retained build/test artifacts, not on
-an independently generated identity file alone.
+The native extension exposes an aggregate `native_cache_profile()` digest over
+six embedded Rust source files and Cargo.toml/Cargo.lock. An independent source
+concatenation now matches that runtime digest for the original, reader and
+scratch wheels; see [the profile checks](validation/native-source-profile-m2-v1.json).
+Earlier prose and archived receipts saying no Rust source digest was embedded
+were incorrect and are retained as historical artifacts. The aggregate does not
+bind compiler settings or every runtime Python file, so the wheel/source checks
+and retained build/test provenance remain necessary.
 
 The identity JSON has these fields:
 
