@@ -152,6 +152,11 @@ includes explicitly synthetic five-round controls solely to exercise aggregation
 Those controls cannot supply performance evidence. Run it after the host's
 measurement reservation ends, then audit and preserve the actual full campaign.
 
+The [dependent audit controller](SNAPSHOT_FULL_AUDIT_QUEUE.md) is now waiting on
+the exact live measurement processes and will execute this sequence on staged
+copies only after successful termination. Do not run the manual reproduction
+command below while that controller or the measurement remains live.
+
 ```sh
 python3 docs/validation/qualify-snapshot-startup-audit-v1.py \
   --arguments docs/validation/snapshot-startup-pilot-audit-arguments-v1.json \

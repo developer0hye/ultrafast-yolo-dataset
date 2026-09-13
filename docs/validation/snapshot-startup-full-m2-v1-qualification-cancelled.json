@@ -1,0 +1,9 @@
+{
+  "watcher_pid": 38554,
+  "observed_identity": "Sun Sep 13 13:57:19 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Volumes/T7/ultrafast-vision-build/qualify-snapshot-after-startup-v1.py",
+  "watcher_terminated": true,
+  "commands_started": 0,
+  "state_sha256": "0cc78167c1f4f4c678dd50e5d65dba8fb114eab01a143a979b6905c40ff93f2d",
+  "reason": "Replace idle watcher with v2 exclusive output reservation; v1 top-level failure handler could overwrite an earlier receipt on accidental rerun. Measurement processes were not signaled.",
+  "at_ns": 1789275477555604000
+}

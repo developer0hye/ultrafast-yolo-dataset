@@ -1,0 +1,21 @@
+{
+  "controller_pid": 38704,
+  "observed_identity": "Sun Sep 13 13:58:08 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Volumes/T7/ultrafast-vision-build/qualify-snapshot-after-startup-v2.py",
+  "phase": "waiting-for-measurement",
+  "script_sha256": "9b2cf9a1922bb3ee9efda390dd75b2dfb9c8282d58fed9860c9049cafd58f5e6",
+  "dependency_sha256": "77be02cf0c932662843c96c020d0066ab982742c17b38e33818e0823b74e8f8d",
+  "source_before_sha256": {
+    "audit-snapshot-startup-v1.py": "598022f17e07bed9cc1360b680f411086e4ab0784d43c03199601992a44a9b83",
+    "qualify-snapshot-startup-audit-v1.py": "27481591b23e214ec6f97e95ed10896f85bebcc5064733b8b8b59b27810ec21e",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "pilot-arguments.json": "3d3eed6b45ed4bec42a9cb55530e9840c90188de71a1d6d730897ef8706f6e8f",
+    "full-arguments.json": "9d8547c78b23995ce0d41f14f18611f302ff1a29c7083cf4a991b534e5049714"
+  },
+  "qualification_state_path": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification.json",
+  "measurement_handles": [
+    92187,
+    92196
+  ],
+  "host_boot_time": "{ sec = 1788587921, usec = 126181 } Sat Sep  5 14:58:41 2026",
+  "checks_started": 0
+}
