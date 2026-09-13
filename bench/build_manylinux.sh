@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 export PATH="/opt/python/cp312-cp312/bin:$PATH"
+export RUSTUP_HOME="$RUNNER_TEMP/rustup"
+export CARGO_HOME="$RUNNER_TEMP/cargo"
+export CARGO_TARGET_DIR="$RUNNER_TEMP/manylinux-target"
 mkdir -p manylinux-evidence
 git rev-parse HEAD > manylinux-evidence/source-commit.txt
 python -VV > manylinux-evidence/python-build.txt

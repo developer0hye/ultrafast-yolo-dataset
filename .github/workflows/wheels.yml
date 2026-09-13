@@ -39,9 +39,6 @@ jobs:
       OMP_NUM_THREADS: '1'
       YOLO_OFFLINE: 'true'
       RUSTUP_TOOLCHAIN: '1.98.0'
-      RUSTUP_HOME: ${{ runner.temp }}/rustup
-      CARGO_HOME: ${{ runner.temp }}/cargo
-      CARGO_TARGET_DIR: ${{ runner.temp }}/manylinux-target
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -88,7 +85,6 @@ jobs:
       - name: Build wheel using only unpacked source
         working-directory: ${{ steps.unpack.outputs.source }}
         env:
-          CARGO_TARGET_DIR: ${{ runner.temp }}/sdist-cargo-target
         run: python -m build --wheel --no-isolation
       - name: Create clean installed runtime
         run: |
