@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "archive_sha256": "306c32152ab97584eb1b51765cb383a30a6d4f0e65cb3eca996705d9e9dd6fa4",
+  "archive_bytes": 114347086,
+  "file_count": 129,
+  "parts": [
+    {
+      "name": "snapshot-startup-full-m2-v1-evidence.tar.gz.part00",
+      "bytes": 33554432,
+      "sha256": "d0cf3393b851858c2acfec6ba35147c95b3f37cecdfd298348ebb27e92f62f90"
+    },
+    {
+      "name": "snapshot-startup-full-m2-v1-evidence.tar.gz.part01",
+      "bytes": 33554432,
+      "sha256": "7903aec4c4051fd90a105a4016963cd77ce2c17fe568ac4af084d61d044fb5b0"
+    },
+    {
+      "name": "snapshot-startup-full-m2-v1-evidence.tar.gz.part02",
+      "bytes": 33554432,
+      "sha256": "dd3398a8dadffc44be43012ee21766c7c04700d574f13702a001e90f1ffd2273"
+    },
+    {
+      "name": "snapshot-startup-full-m2-v1-evidence.tar.gz.part03",
+      "bytes": 13683790,
+      "sha256": "e597b7ab32d07c8619db54883bba19787c6d984a4ce447a3c3c34d2f625868f9"
+    }
+  ],
+  "all_reconstructed_members_verified": true,
+  "source_preservation_sha256": "3a3a0856b0e3d15d132cd29fda66c6cfa79e93bd3b56b2ac5f44eb9199986f53",
+  "scope": "Ordered concatenation recreates the complete archive. Parts and every reconstructed member were read back locally; includes full retained caches."
+}

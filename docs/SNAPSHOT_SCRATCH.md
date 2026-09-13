@@ -106,7 +106,9 @@ complete 500k reference experiment. Its artifacts use
 `/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1*`.
 The frozen wrapper SHA-256 is
 `c8074cabf59db8727b0576de9f7e9c3fe0b4e9a059e180219aaffb423397ee14`.
-This measurement is running; no full-scale scratch-candidate speedup is claimed.
+This measurement and its independent audit have completed. The
+[full result](SNAPSHOT_FULL_M2_RESULTS.md) establishes output parity but no speed
+or process-memory improvement for this scratch candidate.
 
 ## Independent startup artifact audit
 
@@ -126,7 +128,8 @@ agreement with the original reference. It also checks observed hit/miss stages,
 timer bounds, scan/fallback counts, RSS high-water ordering and host-load fields.
 For five rounds, it independently enumerates all 3,125 paired bootstrap resamples
 and compares medians, ratios, confidence intervals and raw pairs with the parent.
-The full five-round measurement has not finished or passed this audit yet.
+The full five-round measurement has now passed the qualified audit; all 20 actual
+measured records and two primers are retained in the full-result evidence.
 
 Cache profile computation includes runtime CPU features and Pillow plugin state.
 The auditor checks the retained profile and frozen wrapper's verification path;
@@ -147,15 +150,17 @@ startup latency measurement. Descriptor and wrapper cache-section checks occur
 outside that interval. See [benchmark measurement scope](BENCHMARKS.md).
 
 A [corruption qualification script](validation/qualify-snapshot-startup-audit-v1.py)
-is prepared but **not yet executed**. It mutates disposable artifact copies and
+has now passed three controls and rejected all 35 damaged artifacts. It mutates
+disposable artifact copies and
 includes explicitly synthetic five-round controls solely to exercise aggregation.
-Those controls cannot supply performance evidence. Run it after the host's
-measurement reservation ends, then audit and preserve the actual full campaign.
+Those controls cannot supply performance evidence. Qualification ran after the
+host's measurement reservation ended, followed by the actual full audit and
+evidence preservation/readback.
 
-The [dependent audit controller](SNAPSHOT_FULL_AUDIT_QUEUE.md) is now waiting on
-the exact live measurement processes and will execute this sequence on staged
-copies only after successful termination. Do not run the manual reproduction
-command below while that controller or the measurement remains live.
+The [dependent audit controller](SNAPSHOT_FULL_AUDIT_QUEUE.md) completed this
+sequence on staged copies after the exact measurement processes terminated
+successfully. The command below is retained for manual reproduction, not another
+required rerun of the successful checks.
 
 ```sh
 python3 docs/validation/qualify-snapshot-startup-audit-v1.py \

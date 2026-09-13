@@ -1,0 +1,151 @@
+{
+  "complete": true,
+  "passed": true,
+  "controller_pid": 38704,
+  "commands": [
+    {
+      "label": "format",
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "audit-snapshot-startup-v1.py",
+        "qualify-snapshot-startup-audit-v1.py"
+      ],
+      "cwd": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-stage",
+      "started_at_ns": 1789276088825630000,
+      "pid": 40513,
+      "returncode": 0,
+      "finished_at_ns": 1789276091083777000,
+      "log_sha256": "fac631b8a01a2876187fa4ebe990a04c9466b5f6102e7ace2b33f61fc4e558ec"
+    },
+    {
+      "label": "lint",
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "audit-snapshot-startup-v1.py",
+        "qualify-snapshot-startup-audit-v1.py"
+      ],
+      "cwd": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-stage",
+      "started_at_ns": 1789276091095990000,
+      "pid": 40516,
+      "returncode": 0,
+      "finished_at_ns": 1789276091147151000,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "label": "format-check",
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "audit-snapshot-startup-v1.py",
+        "qualify-snapshot-startup-audit-v1.py"
+      ],
+      "cwd": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-stage",
+      "started_at_ns": 1789276091147631000,
+      "pid": 40518,
+      "returncode": 0,
+      "finished_at_ns": 1789276091192934000,
+      "log_sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+    },
+    {
+      "label": "negative",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-clean/bin/python",
+        "qualify-snapshot-startup-audit-v1.py",
+        "--arguments",
+        "pilot-arguments.json",
+        "--out",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-negative.json"
+      ],
+      "cwd": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-stage",
+      "started_at_ns": 1789276091193416000,
+      "pid": 40520,
+      "returncode": 0,
+      "finished_at_ns": 1789276092099505000,
+      "log_sha256": "d15a52a56fd7247f671a564659adbe3db37777d7bd69b7e4be60f826e3427e11"
+    },
+    {
+      "label": "audit",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-clean/bin/python",
+        "audit-snapshot-startup-v1.py",
+        "--report",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1.json",
+        "--runs-dir",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1.runs",
+        "--caches-dir",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v1.caches",
+        "--wrapper",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-wrapper-m2-v2.py",
+        "--harness-root",
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-source",
+        "--fixture-manifest",
+        "/Volumes/T7/ultrafast-vision-build/startup-detect-500k-v1/startup.json",
+        "--preflight",
+        "/Volumes/T7/ultrafast-vision-build/startup-detect-500k-preflight-v1.json",
+        "--reference-audit",
+        "/Volumes/T7/ultrafast-vision-build/dataset-500k-p3-complete-audit-v1.json",
+        "--pairs",
+        "500000",
+        "--rounds",
+        "5",
+        "--workers",
+        "7",
+        "--task",
+        "detect",
+        "--baseline-identity",
+        "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-build-identity.json",
+        "--baseline-source",
+        "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-source",
+        "--baseline-wheel",
+        "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+        "--candidate-identity",
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-identity.json",
+        "--candidate-source",
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-source",
+        "--candidate-wheel",
+        "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+        "--out",
+        "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-audit.json"
+      ],
+      "cwd": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-full-m2-v2-qualification-stage",
+      "started_at_ns": 1789276092100594000,
+      "pid": 40528,
+      "returncode": 0,
+      "finished_at_ns": 1789276093439753000,
+      "log_sha256": "57622fd3d00b974ee5152e3c697bb781aae118250617d0637b3d5aa666d840d8"
+    }
+  ],
+  "phase": "audited-full-series",
+  "started_at_ns": 1789275488151772000,
+  "script_sha256": "9b2cf9a1922bb3ee9efda390dd75b2dfb9c8282d58fed9860c9049cafd58f5e6",
+  "dependency_sha256": "77be02cf0c932662843c96c020d0066ab982742c17b38e33818e0823b74e8f8d",
+  "source_before_sha256": {
+    "audit-snapshot-startup-v1.py": "598022f17e07bed9cc1360b680f411086e4ab0784d43c03199601992a44a9b83",
+    "qualify-snapshot-startup-audit-v1.py": "27481591b23e214ec6f97e95ed10896f85bebcc5064733b8b8b59b27810ec21e",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "pilot-arguments.json": "3d3eed6b45ed4bec42a9cb55530e9840c90188de71a1d6d730897ef8706f6e8f",
+    "full-arguments.json": "9d8547c78b23995ce0d41f14f18611f302ff1a29c7083cf4a991b534e5049714"
+  },
+  "benchmark_restarted": false,
+  "launch_sha256": "9a0083862cd00a700e8cb9ea0f025a64050c5de720897dc4a26da9787d4ab83a",
+  "report_sha256": "0d293d4397166e283efc65101fbc78c0b92a81504b29894b682a412423e6e833",
+  "qualification_started_at_ns": 1789276088811867000,
+  "formatting_preserved_ast": true,
+  "source_after_sha256": {
+    "audit-snapshot-startup-v1.py": "f10f41460dc2496d09f23bd4b485fc1840c3dfd922bb472b196d0390bdec62eb",
+    "qualify-snapshot-startup-audit-v1.py": "e03c8bc61f01fb94b4813432b5289dc8aa7b31d8a51777c5aad6fcd3f3148998",
+    "pyproject.toml": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f",
+    "pilot-arguments.json": "3d3eed6b45ed4bec42a9cb55530e9840c90188de71a1d6d730897ef8706f6e8f",
+    "full-arguments.json": "9d8547c78b23995ce0d41f14f18611f302ff1a29c7083cf4a991b534e5049714"
+  },
+  "negative_sha256": "c286c367ec180e48538ca353a8641feec9cd5461f864ac0b43c9b79cdd9139f7",
+  "finished_at_ns": 1789276093440645000,
+  "audit_sha256": "a47b72f1f59d74bee83f105dff8bf1e51ff4553d5d3b5f13739ceea4174b9d98",
+  "scope": "35 artifact rejection cases and three controls, including synthetic five-round controls; independent audit of 20 actual measured workers and two primers. Native-versus-native incremental startup, not upstream Python or training. Evidence archive/readback remains separate."
+}

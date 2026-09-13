@@ -1,0 +1,200 @@
+{
+  "complete": true,
+  "controls": [
+    {
+      "name": "unmodified actual one-round pilot",
+      "measured_workers_in_fixture": 4
+    },
+    {
+      "name": "synthetic five-round aggregation control; not a measurement",
+      "measured_workers_in_fixture": 20
+    },
+    {
+      "name": "synthetic five-round post-mutation control; not a measurement",
+      "measured_workers_in_fixture": 20
+    }
+  ],
+  "negative_cases": [
+    {
+      "case": "incomplete",
+      "rejected": true,
+      "reason": "unfinished or failed campaign"
+    },
+    {
+      "case": "error retained despite complete",
+      "rejected": true,
+      "reason": "unfinished or failed campaign"
+    },
+    {
+      "case": "wrong pair count",
+      "rejected": true,
+      "reason": "declared campaign size"
+    },
+    {
+      "case": "missing measured worker",
+      "rejected": true,
+      "reason": "missing/duplicate/reordered measured workers"
+    },
+    {
+      "case": "reordered workers",
+      "rejected": true,
+      "reason": "missing/duplicate/reordered measured workers"
+    },
+    {
+      "case": "missing primer",
+      "rejected": true,
+      "reason": "separate primers"
+    },
+    {
+      "case": "raw hash mismatch",
+      "rejected": true,
+      "reason": "raw/log identity"
+    },
+    {
+      "case": "log hash mismatch",
+      "rejected": true,
+      "reason": "raw/log identity"
+    },
+    {
+      "case": "raw parent mismatch",
+      "rejected": true,
+      "reason": "raw/parent disagreement"
+    },
+    {
+      "case": "wrong source digest",
+      "rejected": true,
+      "reason": "descriptor build field: library_sources"
+    },
+    {
+      "case": "wrong compiled profile",
+      "rejected": true,
+      "reason": "wrapper/compiled profile"
+    },
+    {
+      "case": "wrong wrapper digest",
+      "rejected": true,
+      "reason": "wrapper identity"
+    },
+    {
+      "case": "reused PID",
+      "rejected": true,
+      "reason": "fresh worker PID"
+    },
+    {
+      "case": "overlapping intervals",
+      "rejected": true,
+      "reason": "overlapping/reordered worker intervals"
+    },
+    {
+      "case": "missing stage",
+      "rejected": true,
+      "reason": "observed cache stages"
+    },
+    {
+      "case": "fallback",
+      "rejected": true,
+      "reason": "diagnostics/fallback"
+    },
+    {
+      "case": "wrong scan count",
+      "rejected": true,
+      "reason": "scan counts"
+    },
+    {
+      "case": "wrong first batch",
+      "rejected": true,
+      "reason": "output differs from independent reference"
+    },
+    {
+      "case": "negative stage",
+      "rejected": true,
+      "reason": "stage timing"
+    },
+    {
+      "case": "stages exceed constructor",
+      "rejected": true,
+      "reason": "stage timing"
+    },
+    {
+      "case": "wrong cache mode",
+      "rejected": true,
+      "reason": "backend/mode"
+    },
+    {
+      "case": "wrong worker count",
+      "rejected": true,
+      "reason": "worker settings"
+    },
+    {
+      "case": "RSS high water decreases",
+      "rejected": true,
+      "reason": "RSS high-water order"
+    },
+    {
+      "case": "RSS before exceeds high water",
+      "rejected": true,
+      "reason": "pre-constructor RSS"
+    },
+    {
+      "case": "negative available memory",
+      "rejected": true,
+      "reason": "available memory"
+    },
+    {
+      "case": "negative CPU time",
+      "rejected": true,
+      "reason": "CPU/fault counters"
+    },
+    {
+      "case": "wrong cache payload",
+      "rejected": true,
+      "reason": "retained cache differs from worker"
+    },
+    {
+      "case": "wrong cache profile",
+      "rejected": true,
+      "reason": "retained cache differs from worker"
+    },
+    {
+      "case": "primer has measured result",
+      "rejected": true,
+      "reason": "raw worker identity"
+    },
+    {
+      "case": "command switches backend version",
+      "rejected": true,
+      "reason": "command experiment settings"
+    },
+    {
+      "case": "pilot claims summary",
+      "rejected": true,
+      "reason": "pilot must not claim repeated summary"
+    },
+    {
+      "case": "wrong median",
+      "rejected": true,
+      "reason": "parent statistics/raw pairs mismatch"
+    },
+    {
+      "case": "wrong ratio",
+      "rejected": true,
+      "reason": "parent statistics/raw pairs mismatch"
+    },
+    {
+      "case": "wrong CI",
+      "rejected": true,
+      "reason": "parent statistics/raw pairs mismatch"
+    },
+    {
+      "case": "wrong summary raw pairs",
+      "rejected": true,
+      "reason": "parent statistics/raw pairs mismatch"
+    }
+  ],
+  "negative_case_count": 35,
+  "auditor_sha256": "f10f41460dc2496d09f23bd4b485fc1840c3dfd922bb472b196d0390bdec62eb",
+  "qualifier_sha256": "e03c8bc61f01fb94b4813432b5289dc8aa7b31d8a51777c5aad6fcd3f3148998",
+  "arguments_sha256": "3d3eed6b45ed4bec42a9cb55530e9840c90188de71a1d6d730897ef8706f6e8f",
+  "pilot_report_sha256": "fa133745d1d3806704abab5471afa6a6d7c0c20b901addd98696804b9fa70c7c",
+  "scope": "Disposable artifact corruption checks; no dataset execution. Expanded five-round fixture is synthetic and supplies no performance evidence."
+}
