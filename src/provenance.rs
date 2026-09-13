@@ -23,7 +23,7 @@ fn required_digest<'de, D: serde::Deserializer<'de>>(
     Option::<String>::deserialize(deserializer)
 }
 
-fn record(kind: &str, size: u64, modified_ns: i128, digest: Option<&str>) -> PyResult<[u8; WIDTH]> {
+fn record_header(kind: &str, size: u64, modified_ns: i128) -> PyResult<[u8; WIDTH]> {
     let mut out = [0; WIDTH];
     out[0] = match kind {
         "file" => 0,
@@ -34,6 +34,11 @@ fn record(kind: &str, size: u64, modified_ns: i128, digest: Option<&str>) -> PyR
     };
     out[1..9].copy_from_slice(&size.to_le_bytes());
     out[9..25].copy_from_slice(&modified_ns.to_le_bytes());
+    Ok(out)
+}
+
+fn record(kind: &str, size: u64, modified_ns: i128, digest: Option<&str>) -> PyResult<[u8; WIDTH]> {
+    let mut out = record_header(kind, size, modified_ns)?;
     if kind == "file" {
         let hex = digest.ok_or_else(|| PyValueError::new_err("missing file digest"))?;
         if hex.len() != 64 {
@@ -50,6 +55,25 @@ fn record(kind: &str, size: u64, modified_ns: i128, digest: Option<&str>) -> PyR
             *target = nibble(pair[0])? * 16 + nibble(pair[1])?;
         }
     } else if digest.is_some() || (kind == "missing" && (size != 0 || modified_ns != 0)) {
+        return Err(PyValueError::new_err("invalid non-file fingerprint"));
+    }
+    Ok(out)
+}
+
+fn captured_record(value: &crate::snapshot::Fingerprint, content: bool) -> PyResult<[u8; WIDTH]> {
+    let mut out = record_header(value.kind, value.size, value.modified_ns)?;
+    if value.kind == "file" {
+        if content {
+            let digest = value
+                .sha256
+                .as_ref()
+                .ok_or_else(|| PyValueError::new_err("missing file digest"))?;
+            out[25..].copy_from_slice(digest);
+        }
+        // Metadata mode compares only the 25-byte prefix. Its digest stays zero.
+    } else if value.sha256.is_some()
+        || (value.kind == "missing" && (value.size != 0 || value.modified_ns != 0))
+    {
         return Err(PyValueError::new_err("invalid non-file fingerprint"));
     }
     Ok(out)
@@ -139,16 +163,7 @@ fn verify_fingerprint_table(
                     .try_for_each(|(path, stored)| -> PyResult<()> {
                         let value =
                             crate::snapshot::read(path, max_bytes, false, content)?.fingerprint;
-                        // Metadata checks deliberately ignore SHA256. The canonical
-                        // record still requires a digest for files, so use zero bytes.
-                        let digest = if content {
-                            value.sha256.as_deref()
-                        } else if value.kind == "file" {
-                            Some("0000000000000000000000000000000000000000000000000000000000000000")
-                        } else {
-                            None
-                        };
-                        let current = record(value.kind, value.size, value.modified_ns, digest)?;
+                        let current = captured_record(&value, content)?;
                         let width = if content { WIDTH } else { 25 };
                         if current[..width] != stored[..width] {
                             return Err(crate::snapshot::InputChangedError::new_err(format!(

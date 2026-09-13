@@ -6,7 +6,7 @@ use pyo3::{
     types::PyBytes,
 };
 use rayon::prelude::*;
-use serde::Serialize;
+use serde::{Serialize, Serializer};
 use sha2::{Digest, Sha256};
 use std::{
     cell::RefCell,
@@ -91,7 +91,25 @@ pub struct Fingerprint {
     pub kind: &'static str,
     pub size: u64,
     pub modified_ns: i128,
-    pub sha256: Option<String>,
+    #[serde(serialize_with = "serialize_digest")]
+    pub sha256: Option<[u8; 32]>,
+}
+
+// Keep the existing lowercase hexadecimal JSON boundary while retaining the
+// native digest without a per-file String allocation or an encode/decode trip.
+fn serialize_digest<S: Serializer>(digest: &Option<[u8; 32]>, serializer: S) -> Result<S::Ok, S::Error> {
+    match digest {
+        None => serializer.serialize_none(),
+        Some(bytes) => {
+            const HEX: &[u8; 16] = b"0123456789abcdef";
+            let mut encoded = [0_u8; 64];
+            for (byte, pair) in bytes.iter().zip(encoded.chunks_exact_mut(2)) {
+                pair[0] = HEX[(byte >> 4) as usize];
+                pair[1] = HEX[(byte & 15) as usize];
+            }
+            serializer.serialize_some(std::str::from_utf8(&encoded).expect("hex digits are ASCII"))
+        }
+    }
 }
 
 #[pyclass(frozen)]
@@ -215,7 +233,7 @@ fn read_impl(
             kind,
             size: total as u64,
             modified_ns: before.modified_ns,
-            sha256: Some(format!("{:x}", hasher.finalize())),
+            sha256: Some(hasher.finalize().into()),
         },
         data: retain.then_some(data),
     })
@@ -396,10 +414,8 @@ mod tests {
         fs::write(&path, b"z").unwrap();
         let recovered = read(path.to_str().unwrap(), 4, true, true).unwrap();
         assert_eq!(recovered.data.as_deref(), Some(&b"z"[..]));
-        assert_eq!(
-            recovered.fingerprint.sha256.as_deref(),
-            Some(format!("{:x}", Sha256::digest(b"z")).as_str())
-        );
+        let expected: [u8; 32] = Sha256::digest(b"z").into();
+        assert_eq!(recovered.fingerprint.sha256, Some(expected));
         fs::remove_dir_all(directory).unwrap();
     }
 
@@ -425,5 +441,29 @@ mod tests {
         });
         assert!(matches!(result, Err(Error::Changed(_))));
         fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    fn binary_digest_preserves_exact_json_representation() {
+        let fingerprint = Fingerprint {
+            kind: "file",
+            size: 3,
+            modified_ns: -123,
+            sha256: Some(Sha256::digest(b"abc").into()),
+        };
+        assert_eq!(
+            serde_json::to_string(&fingerprint).unwrap(),
+            r#"{"kind":"file","size":3,"modified_ns":-123,"sha256":"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"}"#
+        );
+        let missing = Fingerprint {
+            kind: "missing",
+            size: 0,
+            modified_ns: 0,
+            sha256: None,
+        };
+        assert_eq!(
+            serde_json::to_string(&missing).unwrap(),
+            r#"{"kind":"missing","size":0,"modified_ns":0,"sha256":null}"#
+        );
     }
 }
