@@ -43,7 +43,9 @@ def verify_image(args):
         try:
             with open(path, "rb"):
                 raise InputChangedError(f"non-file input became readable during scan: {path}")
-        except (FileNotFoundError, IsADirectoryError) as error:
+        except (FileNotFoundError, IsADirectoryError, PermissionError) as error:
+            # Windows reports opening a directory as PermissionError. Keep the
+            # original diagnostic only while the captured non-file proof holds.
             if fingerprints([path], limit, 1)[0] != proof:
                 raise InputChangedError(f"input changed during scan: {path}") from error
             return None, str(error), "corrupt_image", proof, None

@@ -28,7 +28,7 @@ def corpus(root, texts=None):
         image, label = root / f"图像 {index}.png", root / f"标注 {index}.txt"
         Image.new("RGB", (32 + index, 24 + index)).save(image)
         if text is not None:
-            label.write_text(text)
+            label.write_text(text, encoding="utf-8")
         images.append(str(image))
         labels.append(str(label))
     return images, labels
@@ -172,6 +172,63 @@ def test_corrupt_and_missing_images_use_reference_diagnostics(tmp_path):
     assert scan_cached(tmp_path / "errors.uydcache", images, labels, num_classes=1, prefix="val: ").cache_hit
 
 
+def test_directory_permission_diagnostic_retains_cache_proof(tmp_path, monkeypatch):
+    import ultrafast_yolo_dataset._snapshots as snapshots
+
+    images, labels = corpus(tmp_path, ["0 .5 .5 .2 .2"] * 2)
+    Path(images[0]).unlink()
+    Path(images[0]).mkdir()
+    error = PermissionError(13, "Permission denied", images[0])
+
+    def directory_open(path, mode):
+        assert path == images[0] and mode == "rb"
+        raise error
+
+    monkeypatch.setattr(snapshots, "open", directory_open, raising=False)
+    cache = tmp_path / "directory.uydcache"
+    captured = scan_cached(cache, images, labels, num_classes=1, prefix="val: ")
+    assert captured.num_valid == 1 and not captured.cache_write_error
+    assert captured.diagnostics[0].message == f"val: {images[0]}: ignoring corrupt image/label: {error}"
+    loaded = scan_cached(cache, images, labels, num_classes=1, prefix="val: ")
+    assert loaded.cache_hit
+    assert_equal_results(captured, loaded)
+
+
+def test_directory_permission_diagnostic_rechecks_input_identity(tmp_path, monkeypatch):
+    import ultrafast_yolo_dataset._snapshots as snapshots
+
+    path = tmp_path / "directory.png"
+    path.mkdir()
+
+    def replace_directory(name, mode):
+        assert name == str(path) and mode == "rb"
+        path.rmdir()
+        path.write_bytes(b"replacement file")
+        raise PermissionError(13, "Permission denied", name)
+
+    monkeypatch.setattr(snapshots, "open", replace_directory, raising=False)
+    with pytest.raises(InputChangedError, match="input changed during scan"):
+        snapshots.verify_image((str(path), "reject", 1024))
+
+
+@pytest.mark.parametrize("contents", [b"0\xc2\xa0.5 .5 .2 .2", b"0\xa0.5 .5 .2 .2"])
+def test_label_encoding_uses_utf8_and_preserves_decode_errors(tmp_path, contents):
+    images, labels = corpus(tmp_path, ["0 .5 .5 .2 .2"])
+    Path(labels[0]).write_bytes(contents)
+    reference = verify_image_label((images[0], labels[0], "val: ", False, 1, 0, 0, False))
+    expected = scan(images, labels, num_classes=1, prefix="val: ")
+    assert expected.num_valid == int(reference[0] is not None)
+    assert [d.message for d in expected.diagnostics] == ([reference[-1]] if reference[-1] else [])
+    if reference[0] is not None:
+        equal(expected.to_ultralytics_labels()[0], reference)
+    cache = tmp_path / "encoding.uydcache"
+    captured = scan_cached(cache, images, labels, num_classes=1, prefix="val: ")
+    loaded = scan_cached(cache, images, labels, num_classes=1, prefix="val: ")
+    assert loaded.cache_hit
+    assert_equal_results(captured, expected)
+    assert_equal_results(loaded, expected)
+
+
 @pytest.mark.parametrize("fallback", [False, True])
 def test_exact_label_bytes_used_after_path_changes(tmp_path, monkeypatch, fallback):
     import ultrafast_yolo_dataset._scan as scan_module
@@ -184,7 +241,7 @@ def test_exact_label_bytes_used_after_path_changes(tmp_path, monkeypatch, fallba
     def replace_after_capture(*args):
         result = original(*args)
         before = os.stat(labels[0])
-        Path(labels[0]).write_text(text.replace(".2", ".3"))
+        Path(labels[0]).write_text(text.replace(".2", ".3"), encoding="utf-8")
         os.utime(labels[0], ns=(before.st_atime_ns, before.st_mtime_ns))
         return result
 

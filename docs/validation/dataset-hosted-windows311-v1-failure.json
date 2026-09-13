@@ -1,0 +1,25 @@
+{
+  "passed": false,
+  "scope": "Initial Windows CPython 3.11 integration/cache job failure, unmodified first matrix",
+  "source": "e1c5861607a86d234e26de35b37734519d901820",
+  "run_id": 34744593599,
+  "job_id": 103690048444,
+  "job_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34744593599/job/103690048444",
+  "test_stage": {
+    "failed": 11,
+    "passed": 79,
+    "skipped": 2
+  },
+  "bundle": "bench/results/dataset-hosted-windows311-v1-failure.tar.gz",
+  "bundle_sha256": "068e2f74cecfd3a667ebbcf462528a2225effe04c4e37aceb678c19a004b4693",
+  "members": {
+    "dataset-hosted-windows311-v1.log": {
+      "bytes": 128695,
+      "sha256": "06d13e20932b9eebf2d5656cf223b25df772193557ff872a00341571860e1458"
+    },
+    "dataset-hosted-windows311-v1-job.json": {
+      "bytes": 3849,
+      "sha256": "5e63b30c146ce14269cdad79171407a4a5bfa3617fae445dec2f380179b442af"
+    }
+  }
+}

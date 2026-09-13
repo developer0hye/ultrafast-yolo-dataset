@@ -41,7 +41,7 @@ def test_hybrid_scan_full_reference(tmp_path, workers, chunk):
         label = tmp_path / f"标注 {i}.txt"
         Image.new("RGB", (32, 24)).save(image)
         if text is not None:
-            label.write_text(text)
+            label.write_text(text, encoding="utf-8")
         images.append(str(image))
         labels.append(str(label))
     Path(images[-1]).write_bytes(b"corrupt PNG")

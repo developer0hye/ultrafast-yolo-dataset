@@ -168,7 +168,9 @@ def _write_legacy(path, value, prefix):
         utils.save_dataset_cache_file(prefix, temporary, value, dataset.DATASET_CACHE_VERSION)
         if not temporary.exists() or temporary.stat().st_size == 0:
             return False
-        with temporary.open("rb") as stream:
+        # Windows FlushFileBuffers (via os.fsync) requires write access.
+        # Reopen without truncating the complete cache written by the helper.
+        with temporary.open("r+b") as stream:
             os.fsync(stream.fileno())
         os.replace(temporary, path)
         return True

@@ -99,6 +99,24 @@ def test_native_legacy_reference_and_reload(tmp_path):
     assert not list(tmp_path.glob(".labels.cache.*"))
 
 
+def test_legacy_sync_failure_keeps_previous_cache(tmp_path, monkeypatch):
+    import ultrafast_yolo_dataset.ultralytics as integration
+
+    images = corpus(tmp_path)
+    first = FastYOLODataset(**kwargs(images), annotation_cache="ultralytics", trust_legacy_cache=True)
+    assert first.annotation_cache_write_ok
+    path = tmp_path / "labels.cache"
+    previous = path.read_bytes()
+
+    def failed_sync(_):
+        raise OSError("injected sync failure")
+
+    monkeypatch.setattr(integration.os, "fsync", failed_sync)
+    assert integration._write_legacy(path, {"labels": []}, "") is False
+    assert path.read_bytes() == previous
+    assert not list(tmp_path.glob(".labels.cache.*"))
+
+
 @pytest.mark.parametrize("damage", [b"", b"not a numpy cache", b"\x93NUMPY\x01\x00"])
 def test_truncated_legacy_rebuild_and_gc_state(tmp_path, damage):
     images = corpus(tmp_path)
