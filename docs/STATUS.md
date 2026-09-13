@@ -28,10 +28,12 @@ no clear speed improvement. Constructor high-water RSS was 1,478.44 → 1,270.98
 not a Python-versus-Rust hashing comparison. The native cache is larger on disk
 (195,001,501 versus 128,361,630 bytes). The 1.5x cache-hit target remains unmet.
 The [Segmentation capacity plan](SEGMENT_500K_PLAN.md) corrects the earlier
-assumption that all polygons are resampled at constructor time; actual full-scale
-memory use and timings still require measurement. The full 500k Segmentation
-controller has now started preparation on the 32 GB server, followed by capacity
-qualification and five-pair P1/P3/P4 measurements if all preceding checks pass.
+assumption that all polygons are resampled at constructor time. The full fixture,
+one-million-file preflight and both capacity constructors have now passed on the
+32 GB server. This separate one-pair qualification observed 193.53 → 79.21 s and
+4.125 → 3.553 GiB process peak RSS with exact output parity; it is not repeated
+performance evidence. The native disk cache is larger. The controller has advanced
+to the five-pair P1/P3/P4 campaigns, whose full results remain pending.
 
 The [Rust notice bundle](RUST_DEPENDENCIES.md) now contains 136 files plus its
 manifest for 54 selected registry crates and the observed standard-library

@@ -1,0 +1,55 @@
+{
+  "complete": true,
+  "scope": "Full500k Segmentation capacity qualification only; one reference/native run, not repeated performance evidence. Phase campaigns remain in progress.",
+  "files": {
+    "capacity-reference": {
+      "file": "segment-500k-linux-capacity-reference-checkpoint-v1.json",
+      "sha256": "2f173b41483c9ffdb32e6c562ac0a47705418f88a326ec8b24194fda29e31d33"
+    },
+    "capacity-native-content": {
+      "file": "segment-500k-linux-capacity-native-content-checkpoint-v1.json",
+      "sha256": "bd4d2106a10237906a93ef98bc5f141da77e804d1f6bbd1d9e3449c57617bf08"
+    },
+    "preflight": {
+      "file": "segment-500k-linux-preflight-checkpoint-v1.json",
+      "sha256": "bf87025410bea8d1572e3a27674dfb27d01846ac952d73bcc7518b61ac8fc3da"
+    },
+    "state": {
+      "file": "segment-500k-linux-state-checkpoint-v1.json",
+      "sha256": "fd0323a7c1cdfc6d868942edf956d2c5b56061b88f968552edca05bb9abed30b"
+    },
+    "identity": {
+      "file": "segment-500k-linux-launch-v1.json",
+      "sha256": "53b90b9d03b706e91f8c710928558009ef380aeeaa4c54c17e358784db7ad140"
+    }
+  },
+  "output_sha256": {
+    "labels": "b9f49377fff5a6d9417447d39e0566b40de91cdfcd548591168662a1927195f7",
+    "first_batch": "6de94f7bf381925ad9a4edcf665e46a91aee2db263e5db37fbba3abca7654209",
+    "scan_summary_and_messages": "cc100000bc72bf22843f56481fbfa04c4d8ef8f95efb48b6a1f034b658f64616"
+  },
+  "native_cache_bytes": 808173521,
+  "native_section_bytes": [
+    94001049,
+    4000000,
+    8000000,
+    4000008,
+    37000000,
+    574572000,
+    14800008,
+    14800000,
+    0,
+    28500000,
+    28500000
+  ],
+  "reference_constructor_s": 193.53349398402497,
+  "native_constructor_s": 79.21287868684158,
+  "reference_peak_rss_bytes": 4429586432,
+  "native_peak_rss_bytes": 3814547456,
+  "limitations": [
+    "Sequential reference-then-native qualification; OS file cache and background load uncontrolled.",
+    "Native cache generation includes captured-input content revalidation beyond the ordinary reference weak cache policy.",
+    "Raw worker JSON and controller-reported section lengths copied and checked. This checkpoint does not independently re-read the current cache or all input files.",
+    "Process high-water RSS includes imports and fixture preflight, not isolated temporary allocation."
+  ]
+}

@@ -18,10 +18,12 @@ checkpoint's native extension, Python, NumPy and CPU/RAM identity. It does not
 measure USB link speed, drive firmware or thermal stability. Treat results as
 specific to this shared host/storage condition, not a general SSD throughput
 claim or a cold-cache benchmark.
-Segmentation remains pending. The pinned constructor retains raw polygons;
+Repeated Segmentation phase results remain pending. The pinned constructor retains raw polygons;
 resampling happens per sample later. The [capacity plan](SEGMENT_500K_PLAN.md)
 estimates 0.612 GiB of packed numeric payload before Python/intermediate overhead,
-not peak RSS; full capacity qualification is planned on the 32 GB server.
+not peak RSS. Full capacity qualification has passed on the 32 GB server with
+identical reference/native outputs; the separate one-pair observations and
+original records are in that document. Five-pair phase measurements are running.
 The scope is **500,000 image/label
 pairs per task**, meaning 500,000 JPEG paths plus 500,000 TXT paths. Detection
 and Segmentation are separate fixtures. These are synthetic scalability inputs;
@@ -159,8 +161,10 @@ python bench/cache_startup.py --corpus /measurement/new-detect-500k --mode hit -
 Repeat with a distinct `segment` fixture and `--task segment`. Do not run another
 build, test or benchmark on that host during this series. The launched M2
 Detection script, source hashes, wheel identity and initial headroom are recorded
-in `validation/detect-500k-launch-v1.json`. The server GPU job keeps its existing
-inputs and installed binaries. Segmentation has not been launched.
+in `validation/detect-500k-launch-v1.json`. At that launch, the server GPU job kept
+its existing inputs and installed binaries and Segmentation had not started.
+The later [Linux Segmentation campaign](SEGMENT_500K_PLAN.md) passed full capacity
+qualification and is now measuring the repeated phases.
 
 ## Comparison and evidence requirements
 
@@ -220,7 +224,7 @@ preflight and allocator history. Full file checks can warm the storage cache;
 these are shared-host observations, not cold-storage or working-allocation claims.
 The fixture uses distinct files with repeated synthetic content, not 500,000
 unique natural images. P4 content-mode cache hits completed separately and
-full-scale Segmentation remains unmeasured.
+the full repeated Segmentation phase results remain pending.
 
 The [complete archive](../bench/results/detect-500k-p3-complete-v1.tar.gz) preserves
 the ten raw reports, parent, log, exact auditor, launch/preflight/fixture identity,

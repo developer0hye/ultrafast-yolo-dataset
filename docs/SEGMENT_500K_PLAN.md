@@ -1,8 +1,8 @@
 # Full 500k Segmentation startup: capacity and execution plan
 
-The 500,000-pair Segmentation fixture is now being prepared on Linux; full
-capacity and phase results remain unmeasured. Source
-review shows that its startup memory requirement must not be estimated by
+The full 500,000-pair Segmentation fixture and both capacity runs have completed
+on Linux. All output hashes match; the five-pair phase campaigns are running.
+Source review shows that its startup memory requirement must not be estimated by
 resampling all instances to 1,000 points. That would be 14.8 GB (13.78 GiB) of
 coordinates, but the pinned implementation does not retain that representation
 for the entire dataset at construction time.
@@ -77,8 +77,8 @@ Segmentation controller alone on that server.
    installed wheel passes corruption, ownership, concurrency, failure and
    framework tests. Attribute the two changes separately where possible.
 
-This plan corrects a capacity assumption; it is neither a generated corpus nor
-a passing full-scale memory or performance result.
+The arithmetic above corrects a capacity assumption. Actual capacity results are
+recorded below separately from the ongoing repeated performance campaign.
 
 ## Linux launch after loader verification
 
@@ -105,5 +105,36 @@ the 2 GiB container or 256 MiB metadata limits. If capacity and output parity pa
 it runs P1, P3 and P4 with five pairs each, independently auditing each phase.
 Failures stop the sequence and retain logs; it does not reduce file/vertex counts.
 Artifacts use `/home/yonghye/ultrafast-vision-build/dataset-segment-500k-linux-v1*`;
-the new corpus is `startup-segment-500k-linux-v1`. Preparation is running.
-No full-scale Segmentation performance or memory result is yet claimed.
+the new corpus is `startup-segment-500k-linux-v1`.
+
+## Completed full-capacity qualification
+
+The complete one-million-file preflight and both 500,000-pair constructors passed.
+All labels, the first batch, and scan counters/diagnostics match, with 500,000
+found pairs, zero corrupt/empty/missing pairs and zero native fallback. The
+controller advanced to the five-pair P1 campaign. These two capacity workers are
+separate from, and will not be pooled into, the repeated phase measurements.
+
+| Capacity worker | Constructor | Peak process RSS | Cache bytes |
+|---|---:|---:|---:|
+| Pinned Ultralytics reference | 193.5335 s | 4.1254 GiB | 769,130,128 |
+| Original tested Linux native wheel | 79.2129 s | 3.5526 GiB | 808,173,521 |
+
+This is one sequential reference/native qualification pair. It establishes that
+the full fixture fits and produces identical outputs, not a repeated speedup or
+memory-improvement conclusion. OS-cache warming and background load are not
+controlled; native generation also performs stronger captured-input validation
+than the ordinary reference's weak cache policy. RSS includes imports/preflight.
+
+The native cache's 11 sections use 94,001,049 bytes of metadata, 657,172,016 bytes
+of numeric arrays and 57,000,000 bytes of fingerprint tables, plus 456 bytes of
+container overhead. The raw-coordinate section is exactly 574,572,000 bytes,
+matching the static estimate. No 2 GiB container or 256 MiB metadata limit was
+increased. The native disk cache is larger than the reference cache.
+
+The [capacity checkpoint](validation/segment-500k-linux-capacity-checkpoint-v1.json)
+binds the copied original worker JSON, complete file preflight, launch identity
+and controller checkpoint by SHA-256. Those copies were read back after transfer.
+It verifies output/count agreement and cache-size arithmetic; it does not rerun
+the workload or independently re-read all inputs/cache sections. Final P1/P3/P4
+conclusions require the complete phase records and their independent audits.
