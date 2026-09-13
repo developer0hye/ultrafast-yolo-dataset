@@ -1,0 +1,62 @@
+{
+  "observed_at_ns": 1789282928974480000,
+  "controller_commit": "2f10b3ecb585c6080a47edf30d43f7d76b1aeed6",
+  "controller_sha256": "b365217f204c76188cabb26bdc291f0a1d4c374d5a5ada29b9f8967b6bf753c4",
+  "controller_pid": 72501,
+  "planned_trials": 12,
+  "planned_measured_trials": 10,
+  "record": {
+    "spec": {
+      "primer": true,
+      "pair": -1,
+      "position": 0,
+      "workers": 7
+    },
+    "path": "/Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1.runs/00-w7.json",
+    "command": [
+      "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-clean/bin/python",
+      "/tmp/startup-worker-tuning-full-m2-v1-source/bench/startup_worker_trial.py",
+      "--corpus",
+      "/Volumes/T7/ultrafast-vision-build/startup-detect-500k-v1",
+      "--harness-root",
+      "/tmp/startup-worker-tuning-full-m2-v1-source",
+      "--library-source",
+      "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-source",
+      "--wheel",
+      "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+      "--identity",
+      "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-build-identity.json",
+      "--cache-root",
+      "/Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1-cache-w7",
+      "--expected-outputs",
+      "/Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1-expected.json",
+      "--out",
+      "/Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1.runs/00-w7.json",
+      "--workers",
+      "7",
+      "--mode",
+      "hit",
+      "--expected-cache-sha256",
+      "2e94732eee42009919f1552b702c0ba158e1a0b1b1a49933f7e599eb9a2f1dc6"
+    ],
+    "started_at_ns": 1789282856723065000,
+    "pid": 72519
+  },
+  "source_files": {
+    "bench/startup_worker_trial.py": "a910733e35471f86195a9a79cb8b29e54d6a1d2cb76a7afd1a67b62d13435fd3",
+    "bench/cache_startup.py": "85f3328539eab28ee4987560678cf41d2685a203b5aaf57ea72ab74317dfdbbb",
+    "bench/cache_read_comparison.py": "f79fd09baf58e551a241fa00db2fd8b40c07d736f880fe92ed90c25f5e76c0b3",
+    "bench/startup.py": "e7cafabc7e06dd00d8d7000f0db7a21021d873e1b27da091ea1eb8e17cea1541",
+    "bench/fixture_files.py": "1696e4ef1e03a9dc7d97e85fba61a9aa3ac65475a3adac68d8ca9706789de99f",
+    "bench/label_engine.py": "f04e700f3625482883a7a4fe8e00511eff4212a812b4d8f6d4c975f0e02e9067",
+    "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924"
+  },
+  "phase_audit_sha256": "535cbc3daee61c2c67d48851821b06775157ff7b052fd62825576803c68a7e4e",
+  "pilot_qualification_sha256": "d670d3841f9be5768b689dea55397b8c5e117a9be64b41a7ae5c39fddc1755bf",
+  "original_cache_sha256": "2e94732eee42009919f1552b702c0ba158e1a0b1b1a49933f7e599eb9a2f1dc6",
+  "live_process": "  PID  PPID STAT ELAPSED COMMAND\n72519 72501 Us     01:12 /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-clean/bin/python /tmp/startup-worker-tuning-full-m2-v1-source/bench/startup_worker_trial.py --corpus /Volumes/T7/ultrafast-vision-build/startup-detect-500k-v1 --harness-root /tmp/startup-worker-tuning-full-m2-v1-source --library-source /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-source --wheel /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl --identity /Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-build-identity.json --cache-root /Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1-cache-w7 --expected-outputs /Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1-expected.json --out /Volumes/T7/ultrafast-vision-build/startup-worker-tuning-full-m2-v1.runs/00-w7.json --workers 7 --mode hit --expected-cache-sha256 2e94732eee42009919f1552b702c0ba158e1a0b1b1a49933f7e599eb9a2f1dc6\n",
+  "host_samples_seen": 72,
+  "full_series_complete": false,
+  "final_audit_passed": false,
+  "scope": "Initial launch observation with a live first primer. Exact tested worker sources and observer output confirmed. Not a measured startup result."
+}

@@ -1,5 +1,10 @@
 # Full startup confirmation: seven versus sixteen scan workers
 
+The campaign has launched. Its [initial observation](validation/startup-worker-tuning-full-m2-v1-launch.json)
+confirmed the first primer process was live, all frozen worker files matched
+the tested pilot and whole-child telemetry was being written. Results and the
+final independent audit remain pending.
+
 The [phase experiment](VALIDATION_WORKERS_RESULTS.md) found a 14.7% reduction
 in time medians from 7 to 16 workers. Seven is the setting used by the preceding
 full-startup experiment, so this confirmation retains it as the baseline.

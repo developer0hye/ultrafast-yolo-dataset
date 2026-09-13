@@ -63,7 +63,9 @@ Source/wheel/installed identities and full fixture hashes were checked before
 and after. This qualifies the pilot's functional scope, not a full-size startup
 speedup.
 
-The next gate is a repeated full-size constructor/first-batch comparison.
+The next gate is a repeated full-size constructor/first-batch comparison. The
+[seven-versus-sixteen-worker cache-hit confirmation](STARTUP_WORKER_CONFIRMATION.md)
+has launched with two separate primers and five alternating measured pairs.
 Keep the library default unchanged until full startup and workload tradeoffs
 are established. These results do not establish Windows/Linux worker tuning,
 Segmentation startup, steady-state training gains or long-run storage lifetime.
