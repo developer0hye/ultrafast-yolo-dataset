@@ -1,8 +1,10 @@
 # Snapshot scratch candidate
 
 This separate candidate starts from the tested cache-reader implementation at
-`409c154`. It has not yet been compiled or measured. Existing cache-reader results
-do not measure this additional change.
+`409c154`. Frozen library source `9e2ab29` now passes five Rust unit tests, Clippy,
+standalone wheel/notice checks and all 193 installed Python tests on M2, with
+zero skips or failures. Existing cache-reader results do not measure this
+additional change. Performance and Linux validation remain open.
 
 The completed 500k Detection content-hit baseline spent approximately 46 s of
 its 56 s constructor in input-content validation. Source review found two
@@ -31,3 +33,32 @@ actual content-validation path against the preceding tested wheel with equal
 input bytes, worker count and runtime. Keep scratch-related memory increases and
 slower cases. Full constructor/cache-generation measurements and Linux validation
 remain necessary even if isolated input validation improves.
+
+## Installed M2 validation and next comparison
+
+The build uses the preceding candidate's Rust 1.98.0 / LLVM 22.1.8, release
+settings and pinned Python dependencies. Wheel, installed extension and retained
+Cargo dylibs are byte-identical. The selected source archive includes all library,
+build, test and Python benchmark files from the commit; it omits historical
+benchmark archives and unrelated documentation. Its contents match the frozen
+source selection, and the sdist matches library sources with only the documented
+Cargo README normalization.
+
+See the [build receipt](validation/snapshot-scratch-m2-build-v1.json),
+[installed JUnit](validation/snapshot-scratch-m2-tests-v1.xml),
+[test output](validation/snapshot-scratch-m2-tests-v1.log) and
+[build evidence archive](../bench/results/snapshot-scratch-m2-build-v1.tar.gz).
+The full suite completed in 131.35 s, including six new mixed-size, chunk-boundary,
+threaded, ownership and failure-recovery cases. A new Rust test also forces a
+read-time limit failure and verifies the next snapshot succeeds.
+
+`bench/snapshot_startup_comparison.py` compares the previous tested native wheel
+with this candidate through the existing actual constructor/first-batch worker.
+Only the generated native cache directory is redirected per version; dataset
+class, scan/image verification, transforms and full input/output checks remain
+unchanged. It records process identity and installed descriptors outside timing.
+This is an incremental native-versus-native comparison, not an upstream-Python
+comparison. A 1,003-pair pilot must pass both phases before the full 500k series.
+The full series uses five alternating pairs per phase and two separate primers,
+retaining raw reports/logs, complete label/batch/diagnostic hashes, stage timers
+and peak RSS. Final results still need an independent full artifact audit.
