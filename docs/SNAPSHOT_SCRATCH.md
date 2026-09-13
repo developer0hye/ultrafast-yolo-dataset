@@ -107,3 +107,42 @@ complete 500k reference experiment. Its artifacts use
 The frozen wrapper SHA-256 is
 `c8074cabf59db8727b0576de9f7e9c3fe0b4e9a059e180219aaffb423397ee14`.
 This measurement is running; no full-scale scratch-candidate speedup is claimed.
+
+## Independent startup artifact audit
+
+The separate standard-library [auditor](validation/audit-snapshot-startup-v1.py)
+now verifies the completed pilot against its external build identities, frozen
+sources/wheels, fixture preflight and original reference audit. All four measured
+workers and two separate primers passed; see the
+[independent receipt](validation/snapshot-startup-pilot-independent-v1.json) and
+[explicit input paths](validation/snapshot-startup-pilot-audit-arguments-v1.json).
+This audit does not import either measured implementation or touch dataset files.
+
+Checks cover complete alternating order, non-overlapping worker intervals,
+distinct PIDs, raw/parent/log hashes, command settings, source-bound compiled
+profiles, installed-descriptor consistency, retained cache section checksums,
+metadata equality except the implementation profile, and label/batch/diagnostic
+agreement with the original reference. It also checks observed hit/miss stages,
+timer bounds, scan/fallback counts, RSS high-water ordering and host-load fields.
+For five rounds, it independently enumerates all 3,125 paired bootstrap resamples
+and compares medians, ratios, confidence intervals and raw pairs with the parent.
+The full five-round measurement has not finished or passed this audit yet.
+
+Cache profile computation includes runtime CPU features and Pillow plugin state.
+The auditor checks the retained profile and frozen wrapper's verification path;
+it does not independently rerun that runtime computation. The fixture preflight
+and per-worker input checks remain evidence anchors, not a fresh dataset reread.
+Recorded memory is process high-water RSS at constructor/first batch, including
+earlier imports/preflight; it is not temporary allocation or process-family RSS.
+
+A [corruption qualification script](validation/qualify-snapshot-startup-audit-v1.py)
+is prepared but **not yet executed**. It mutates disposable artifact copies and
+includes explicitly synthetic five-round controls solely to exercise aggregation.
+Those controls cannot supply performance evidence. Run it after the host's
+measurement reservation ends, then audit and preserve the actual full campaign.
+
+```sh
+python3 docs/validation/qualify-snapshot-startup-audit-v1.py \
+  --arguments docs/validation/snapshot-startup-pilot-audit-arguments-v1.json \
+  --out docs/validation/snapshot-startup-audit-qualification-v1.json
+```

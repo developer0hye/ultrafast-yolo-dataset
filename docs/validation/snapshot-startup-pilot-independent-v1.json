@@ -1,0 +1,155 @@
+{
+  "complete": true,
+  "report_sha256": "fa133745d1d3806704abab5471afa6a6d7c0c20b901addd98696804b9fa70c7c",
+  "auditor_sha256": "598022f17e07bed9cc1360b680f411086e4ab0784d43c03199601992a44a9b83",
+  "pairs": 1003,
+  "rounds": 1,
+  "workers": 7,
+  "measured_workers": 4,
+  "separate_primers": 2,
+  "anchors": {
+    "fixture_manifest": "b3838ed33958310b4b114ac9926c8939fdae22a002e3f0cd35a192139260a532",
+    "preflight": "4c9730d4b4cfcc7682da28f7cd7dbafeda4e2ce1b0228947ce24c0bc45dd3a55",
+    "reference_audit": "1c99148bf681f20f2d7f4368030de8477e09e557e7f8e47731a0d2e1f1d6b857",
+    "wrapper": "c8074cabf59db8727b0576de9f7e9c3fe0b4e9a059e180219aaffb423397ee14",
+    "baseline_identity": "5f4251ee972d29a299e8087e9bedfa32070f6ebf3546526fad30816776077805",
+    "candidate_identity": "8f419bc17e358212de3cc0791bfd0738181c78923032ea810421226ddfd98163"
+  },
+  "raw_sha256": {
+    "miss-0-baseline.json": "97e5b5525eb60b28d29b039538f8658951ab9e5a7c7d3c7d59acfe817997eb95",
+    "miss-0-baseline.log": "ce9b319f67ff5c559c7f0f8e235ffeba790cd3a9127c903d5e4558a278fa8a70",
+    "miss-0-candidate.json": "6db5b2a32a4c6d586545194894e6430c5b0c9c375bbca0f13d7176aad8b7a7c8",
+    "miss-0-candidate.log": "193a549483735d2eb16be22ca3798dcf8d63db1803215149787156f00d352af7",
+    "hit-prime-baseline.json": "11ffeca2e7d8c781a26fea63fd7b1786e5537f46690c093143a9479ebbd888a8",
+    "hit-prime-baseline.log": "1e5830512a08856291c9d17b35f76f3fb1e839ff74523fb83e750150384a99b8",
+    "hit-prime-candidate.json": "6ef6226ba21978c8430d5737be10aee6e9f0ca55a19c6222edeb3e85fc5ae6e3",
+    "hit-prime-candidate.log": "ecd4c0e83bcc00f3ac9ea45143e6ff59452eed00b4cb22750c0415fb1e31da2a",
+    "hit-0-baseline.json": "62c86df3c518599d6c59815de191e764e80322fe89a55ca4a7b167ab66edee6d",
+    "hit-0-baseline.log": "880b8b2d4630b5420e94838791c1728a975ddc008dc37a3a4475a46bc44e3b6e",
+    "hit-0-candidate.json": "0bc55abc11c09cccd679d65fadbf320d74a0b1222e40b113f6a759e0ad764045",
+    "hit-0-candidate.log": "2550dd33f06dfa6c44a61bcabb7e5b92504d714c729c78c7b9287f20a1bc3659"
+  },
+  "compiled_source_profiles": {
+    "baseline": "38c1f8fc6f268ab20a615590621b0df2733451803b22a250576a586790e90d63",
+    "candidate": "0bfda41a2cced9d35ab5bf5f220fcc328eb6c5d4203a3e94a2526ba611ef17c9"
+  },
+  "cache_checks": {
+    "baseline": {
+      "sha256": "59b166618a4b6e6008aeb37adf77dbd7a880297eeb0d9aec07bd4a57b38407de",
+      "bytes": 404532,
+      "sections": [
+        {
+          "bytes": 183562,
+          "sha256": "83ea06f278efdf622e0f401c4d1b988f765a5c5e9cdd99feb49df9b3fdcaab5c"
+        },
+        {
+          "bytes": 8024,
+          "sha256": "ab0997429bcbef387fc598f4c7639f74e2a293cda8457da61d8efc3ec251b419"
+        },
+        {
+          "bytes": 16048,
+          "sha256": "41d4b2f8e8d2f7a10431cfe557ae50af3b2fb1adffdf386e1002bb8f0adee8bc"
+        },
+        {
+          "bytes": 8032,
+          "sha256": "083d566dea442076d282d9d0d00931b24d3a469cf0c8e34aa18e0829bbb1b1ea"
+        },
+        {
+          "bytes": 74060,
+          "sha256": "3684471b6d5e2f450d44929c5d6d88d427a0c1b010c1b302854ebc8f4fd38c13"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 8,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 57171,
+          "sha256": "34293117f99ef1b460542ebeef92b771bf0c6c0cc4a980a5da3cbb475b43c444"
+        },
+        {
+          "bytes": 57171,
+          "sha256": "8fd224d138abe777350fd2a22ab17bd1a7fbe77e9e3ebe5bfcd3eeaedbc37f32"
+        }
+      ],
+      "profile": "8fe9cc84cc84b2657c27a6a96a9e81d72fb770c158b9f4db0bbcc0eb889619e2",
+      "metadata_except_profile_sha256": "e6ae93f6ed9a596df30064c055828aa4d1aac5d4b4aa194ac0be96fbd5c4d18c"
+    },
+    "candidate": {
+      "sha256": "42ae5c5377dfc145e6a9dd3caed9c14250e912dcafcd07f58ae8fd456bb2e123",
+      "bytes": 404532,
+      "sections": [
+        {
+          "bytes": 183562,
+          "sha256": "0cef454b5e911937e16342e6cd82853c2cbef595e11c726abce78f7bebe1e75e"
+        },
+        {
+          "bytes": 8024,
+          "sha256": "ab0997429bcbef387fc598f4c7639f74e2a293cda8457da61d8efc3ec251b419"
+        },
+        {
+          "bytes": 16048,
+          "sha256": "41d4b2f8e8d2f7a10431cfe557ae50af3b2fb1adffdf386e1002bb8f0adee8bc"
+        },
+        {
+          "bytes": 8032,
+          "sha256": "083d566dea442076d282d9d0d00931b24d3a469cf0c8e34aa18e0829bbb1b1ea"
+        },
+        {
+          "bytes": 74060,
+          "sha256": "3684471b6d5e2f450d44929c5d6d88d427a0c1b010c1b302854ebc8f4fd38c13"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 8,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 57171,
+          "sha256": "34293117f99ef1b460542ebeef92b771bf0c6c0cc4a980a5da3cbb475b43c444"
+        },
+        {
+          "bytes": 57171,
+          "sha256": "8fd224d138abe777350fd2a22ab17bd1a7fbe77e9e3ebe5bfcd3eeaedbc37f32"
+        }
+      ],
+      "profile": "21322f7a520ea0df3c436a41670de09eed9e0aee82b2da88908328a88c69c5b9",
+      "metadata_except_profile_sha256": "e6ae93f6ed9a596df30064c055828aa4d1aac5d4b4aa194ac0be96fbd5c4d18c"
+    }
+  },
+  "output_sha256": {
+    "labels": "d4775c0f8d5e75c68eb2104024b6623aa3e4e7570a99ca6d433915e3efa8cda5",
+    "first_batch": "3434fa1137c624655b32fde160168c9a18ff8bf31770835a94836db296743415",
+    "scan_summary_and_messages": "b86ccc2c9e837da8997abad03eb0c05d47ea96a95a23549974c33d57b6c77502"
+  },
+  "summary": {},
+  "limitations": [
+    "Native-versus-native incremental comparison; not upstream Python or training throughput.",
+    "Cache profiles agree with retained cache bytes and the frozen wrapper's runtime assertions; the auditor does not re-execute runtime plugin/CPU profile computation.",
+    "Preflight and per-worker frozen-harness checks bind inputs; this audit does not reread dataset files.",
+    "RSS is process high-water at constructor/first batch, includes earlier imports/preflight, and is not isolated allocation.",
+    "External artifacts are trust anchors, not cryptographic attestations of execution."
+  ]
+}

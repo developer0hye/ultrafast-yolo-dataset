@@ -1,0 +1,20 @@
+{
+  "report": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-pilot-m2-v2.json",
+  "runs_dir": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-pilot-m2-v2.runs",
+  "caches_dir": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-pilot-m2-v2.caches",
+  "wrapper": "/Volumes/T7/ultrafast-vision-build/snapshot-startup-wrapper-m2-v2.py",
+  "harness_root": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-source",
+  "fixture_manifest": "/Volumes/T7/ultrafast-vision-build/fixture-pilot-detect-1003-v1/startup.json",
+  "preflight": "/Volumes/T7/ultrafast-vision-build/fixture-pilot-detect-preflight-v1.json",
+  "reference_audit": "/Volumes/T7/ultrafast-vision-build/fixture-pilot-detect-p3-independent-audit-v2.json",
+  "pairs": 1003,
+  "rounds": 1,
+  "workers": 7,
+  "task": "detect",
+  "baseline_identity": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-build-identity.json",
+  "baseline_source": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-source",
+  "baseline_wheel": "/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+  "candidate_identity": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-identity.json",
+  "candidate_source": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-source",
+  "candidate_wheel": "/Volumes/T7/ultrafast-vision-build/dataset-snapshot-scratch-m2-v1-dist/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl"
+}
