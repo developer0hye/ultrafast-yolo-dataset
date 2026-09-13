@@ -1,5 +1,13 @@
 # 500k-pair startup experiment preparation
 
+The Linux Segmentation campaign has now completed all five-pair P1/P3/P4
+measurements and independent audits. See [P1](SEGMENT_500K_P1.md),
+[cache generation](SEGMENT_500K_STARTUP.md) and [content hits](SEGMENT_500K_HITS.md).
+The material below records the earlier preparation state; the later capacity
+analysis corrected its all-at-once polygon resampling assumption.
+
+## Historical preparation state
+
 No 500k-pair measurement is completed yet. Detection fixture preparation is now
 running on M2, with sequential five-pair P1/P3/P4 runs queued in the same script.
 Segmentation remains pending; its resampled annotations need a separate memory

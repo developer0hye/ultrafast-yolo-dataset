@@ -4,7 +4,8 @@ All five alternating reference/native pairs completed on the Linux server with
 identical full labels, first batches and ordered diagnostics. P3 measures the
 actual dataset constructor with cache generation, including Pillow image
 verification, annotation validation and mutable label materialization. The
-separate P4 content-cache-hit campaign is still running.
+separate [P4 content-cache-hit campaign](SEGMENT_500K_HITS.md) also completed: a
+1.0412× constructor ratio and 40.09% lower constructor process high-water RSS.
 
 | Metric | Reference median | Native median | Reference/native | Paired 95% interval |
 |---|---:|---:|---:|---:|
@@ -109,5 +110,5 @@ generator/manifests support reproduction; this collection does not repeat the
 runtime tests or reread cache bodies. The embedded source/wheel audit preserves
 the older Linux wheel's missing 137-file dependency-license bundle finding.
 Runtime identity is verified, but redistribution-qualified Linux packaging is
-still required. P4, later candidates, broader platforms and actual training
-gains retain their separate validation gates; neither library is release-ready.
+still required. P4 is separately documented; later candidates, broader platforms
+and actual training gains retain their separate validation gates; neither library is release-ready.

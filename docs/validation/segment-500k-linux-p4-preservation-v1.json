@@ -1,0 +1,207 @@
+{
+  "complete": true,
+  "phase": "p4",
+  "archive": "bench/results/segment-500k-linux-p4-complete-v1.tar.gz",
+  "archive_sha256": "741936e4350276cc5401d7fa659b67364e49cdac8b5e35e2a1bafc5bed29998d",
+  "archive_bytes": 1256174,
+  "files": {
+    "audit_startup.py": {
+      "bytes": 13922,
+      "sha256": "d745e43cc6c63dc77335d5756c315447f8a22a86f70b483b7e812456c497b80d"
+    },
+    "collect-segment-startup-v1.py": {
+      "bytes": 8701,
+      "sha256": "cc8679dd086e4740a44bbfb7b181d4251daf38c7c4a8e534b895c0cf5fc6bafe"
+    },
+    "dataset-segment-500k-linux-v1-identity.json": {
+      "bytes": 8023,
+      "sha256": "53b90b9d03b706e91f8c710928558009ef380aeeaa4c54c17e358784db7ad140"
+    },
+    "dataset-segment-500k-linux-v1-p4-audit.json": {
+      "bytes": 3674,
+      "sha256": "e667780f4b9b00cddfdef12e0cccf14fa26c9dc32f0c500046c702245fd7e40f"
+    },
+    "dataset-segment-500k-linux-v1-p4-audit.log": {
+      "bytes": 62,
+      "sha256": "88da03d2522c00f8ba4f65c4992a86a4238cf4c40032bc76d4a93f756f243ac2"
+    },
+    "dataset-segment-500k-linux-v1-p4.json": {
+      "bytes": 19751,
+      "sha256": "8a4923d47b23a2472b5b09c0515ef261875a4f2a069f84baa1c761ab1af2c1b5"
+    },
+    "dataset-segment-500k-linux-v1-p4.log": {
+      "bytes": 1406,
+      "sha256": "d9363b9a71e3a51c82a8da5a96fe26236e7022311370013c1a4de5b0056cd1de"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/0-native-content.json": {
+      "bytes": 1095,
+      "sha256": "a6cc67a2a338ac8b70445606d7673763b4b9cf71696a4162c6a0729d98cbc3f9"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/0-native-content.log": {
+      "bytes": 344,
+      "sha256": "818ef9c5e1073325d23edc043f9f17d7e756ed8294c1a19df7e4f8fbc1c56711"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/0-reference-content.json": {
+      "bytes": 1063,
+      "sha256": "efffce6de7f73912a7d6331966443258ab0a3311f0e478ffc81dfac797080b67"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/0-reference-content.log": {
+      "bytes": 295,
+      "sha256": "edbd012cb1624fc55e567a7cf143c972342e58af5e88137dcdf12a008edc6778"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/1-native-content.json": {
+      "bytes": 1084,
+      "sha256": "a6f85507d0fd09a829cf9df5257b72560cbe4cee7f67d8082d1e0840e16f6a6c"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/1-native-content.log": {
+      "bytes": 344,
+      "sha256": "0958629eeb08602f2374bca9561e9c0bb57db0b34eaf0b338e5b3e3630a0cc36"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/1-reference-content.json": {
+      "bytes": 1081,
+      "sha256": "56c02114da1ac089e644a6c4040ac86249159bcef6fde7d6873714f9bc46000b"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/1-reference-content.log": {
+      "bytes": 295,
+      "sha256": "6f6509e0fc05b4ec7f6aba10c71e14882c83ef1f79fbd6f04f5c6b6dd8602d61"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/2-native-content.json": {
+      "bytes": 1092,
+      "sha256": "a8c7ac6186d6c308c075928f82cfef273ac2075f65f02126bef73ce4577143f3"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/2-native-content.log": {
+      "bytes": 344,
+      "sha256": "aca04a51b3ac63e0d565d883564aea78f3ca8a823cad9af0351b02e0012b8413"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/2-reference-content.json": {
+      "bytes": 1065,
+      "sha256": "311f6224115df73d962a4786e2f23e91840929b0cfbd55d9fe15cefd145cef9c"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/2-reference-content.log": {
+      "bytes": 295,
+      "sha256": "04c42bc4edbe822a3cde5e79c1d6cf1dd750c582ee99907706bcb60a8c55134c"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/3-native-content.json": {
+      "bytes": 1105,
+      "sha256": "696d84a9422039b3a36a359542622ed32ca550a943c9fc03f53de620886ad440"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/3-native-content.log": {
+      "bytes": 344,
+      "sha256": "e991c1a3778f9cd0dcf251b06fa9a4ed1a9395d10aef957a7abefba917305702"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/3-reference-content.json": {
+      "bytes": 1062,
+      "sha256": "b8d4a59fa1e0b198b8b6535be1a28da4fc62d23e89e660f40289b0e09720310c"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/3-reference-content.log": {
+      "bytes": 295,
+      "sha256": "db2c5bf8257dbbe1d3d5657bc0c37537f0996f32311ddf10d351aba08413adca"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/4-native-content.json": {
+      "bytes": 1087,
+      "sha256": "448ced2e0697e6e8e40d3ba0a7527ba1a5185f9bc931b296079061bee3d6e602"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/4-native-content.log": {
+      "bytes": 344,
+      "sha256": "0693ff964d7eaa5b6d6d34e932b9be6c81e9e44f4ea5b4a6c685b999a6f7c3b9"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/4-reference-content.json": {
+      "bytes": 1073,
+      "sha256": "d9b31e404a695535f69b2c30348dac27ecc1b0610b55a3e06849203cad136ffd"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/4-reference-content.log": {
+      "bytes": 295,
+      "sha256": "62eeb2e9c4269f3afd114f12382fb336db5f725bc957197b0cb532c51986c05e"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/prime-native-content.json": {
+      "bytes": 28,
+      "sha256": "c2ca331be438211bd56bc9990054d38715f436f68bd27e08ea38b7049e679505"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/prime-native-content.log": {
+      "bytes": 81,
+      "sha256": "c9981ddbfb73b1c83c3046e04c8a96ac3bf68ce87f5eb94b0c8c0c7e5cf0cb72"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/prime-reference-content.json": {
+      "bytes": 31,
+      "sha256": "1dfe05466a0d28e73afa44e5fde812d4630972609eb085a6f0a34cd4849383e4"
+    },
+    "dataset-segment-500k-linux-v1-p4.runs/prime-reference-content.log": {
+      "bytes": 360959,
+      "sha256": "e3dafd624e37eac0b4314c11dc2da3972f880490545a5066522b15ea1f84bad5"
+    },
+    "dataset-segment-500k-linux-v1-preflight.json": {
+      "bytes": 445,
+      "sha256": "bf87025410bea8d1572e3a27674dfb27d01846ac952d73bcc7518b61ac8fc3da"
+    },
+    "dataset-segment-500k-linux-v1-state.json": {
+      "bytes": 9415,
+      "sha256": "0b20a5d7c6a38b0b200deaa779915e7f3551b0ad2d51a6facd1106e0673670e9"
+    },
+    "p1-evidence.tar.gz": {
+      "bytes": 1207028,
+      "sha256": "4092e95c9d7c4e1cf982c293c2192848fa874c9f981e0913c78d530bcd210fdb"
+    },
+    "startup.json": {
+      "bytes": 880,
+      "sha256": "9805dbec1fcf2a15de3313f1ca9999cc88a1f83294c669eef3933d4d2b4ca527"
+    }
+  },
+  "file_count": 35,
+  "embedded_p1_archive_sha256": "4092e95c9d7c4e1cf982c293c2192848fa874c9f981e0913c78d530bcd210fdb",
+  "local_independent_recalculation_matches": true,
+  "all_archive_members_read_back": true,
+  "output_sha256": {
+    "labels": "b9f49377fff5a6d9417447d39e0566b40de91cdfcd548591168662a1927195f7",
+    "first_batch": "6de94f7bf381925ad9a4edcf665e46a91aee2db263e5db37fbba3abca7654209",
+    "scan_summary_and_messages": "cc100000bc72bf22843f56481fbfa04c4d8ef8f95efb48b6a1f034b658f64616"
+  },
+  "summary": {
+    "constructor_s": {
+      "pairs": 5,
+      "reference_median": 18.927647070027888,
+      "candidate_median": 18.17954646795988,
+      "reference_over_candidate": 1.0411506746544243,
+      "paired_bootstrap_ci95": [
+        1.0348884294687066,
+        1.04565164107059
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "first_batch_total_s": {
+      "pairs": 5,
+      "reference_median": 18.961504963226616,
+      "candidate_median": 18.197983733844012,
+      "reference_over_candidate": 1.041956363987876,
+      "paired_bootstrap_ci95": [
+        1.0357289730780086,
+        1.0464688786414638
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    },
+    "peak_rss_constructor_bytes": {
+      "pairs": 5,
+      "reference_median": 4729466880,
+      "candidate_median": 2833309696,
+      "reference_over_candidate": 1.669237530467266,
+      "paired_bootstrap_ci95": [
+        1.6687532701040941,
+        1.669681034059075
+      ],
+      "bootstrap": "all ordered resamples",
+      "resamples": 3125
+    }
+  },
+  "limits": [
+    "Compares supplied immutable artifacts; does not rerun or re-hash the full input corpus.",
+    "P1 worker records are embedded in the parent; no independent per-worker JSON was retained by that harness.",
+    "Peak RSS includes imports, preflight and allocator history; it is not working allocation or process-family RSS.",
+    "Parent median/p95 values are checked; its random bootstrap endpoints are replaced by an independent calculation.",
+    "The embedded P1 archive retains exact source/wheel bytes and the older Linux wheel's missing dependency-license bundle finding; redistribution qualification remains open.",
+    "The million input files and generated caches remain external; their bytes are not re-read by this collector.",
+    "Controller state is a checkpoint after the selected phase; no later phase is certified by this receipt.",
+    "P3 compares ordinary reference generation with stronger native input revalidation; P4 uses content-validated caches on both sides.",
+    "No runtime tests, ML imports or benchmark jobs are repeated during collection."
+  ]
+}
