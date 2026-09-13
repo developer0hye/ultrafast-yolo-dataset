@@ -85,6 +85,7 @@ jobs:
       - name: Build wheel using only unpacked source
         working-directory: ${{ steps.unpack.outputs.source }}
         env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/sdist-cargo-target
         run: python -m build --wheel --no-isolation
       - name: Create clean installed runtime
         run: |
