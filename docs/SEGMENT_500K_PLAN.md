@@ -53,8 +53,8 @@ benchmark concurrently on either host.
 
 1. Select and record a tested installed dataset wheel, exact source snapshot,
    Python/dependency/toolchain identities, CPU/RAM/storage and current load.
-   The cache-buffer candidate has built on M2 and its installed full suite is
-   running; existing Detection results apply to its frozen baseline. Linux
+   The cache-buffer candidate has built on M2 and passed all 187 installed tests;
+   existing full Detection startup results apply to its frozen baseline. Linux
    validation and measured startup gains for that candidate remain open.
 2. Generate a new full 500k Segmentation fixture with the existing templates;
    retain the manifest and verify all one million regular, single-link files,
