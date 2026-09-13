@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "scope": "Linux CPython 3.12 source-only wheel rebuild, clean installation, notices and standalone/core tests. Does not replace full framework/platform qualification.",
+  "run_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745337881",
+  "source_commit": "9a981e45066636b0d726559c3b9f846942635f50",
+  "source_files_byte_identical": 202,
+  "baseline_sdist_bytes": 176951569,
+  "sdist_bytes": 990595,
+  "reduction_percent": 99.44018863150063,
+  "sdist_sha256": "74b336141fbc31d51236da3803081d82560e55ea5592dec53b6c1bfbed92ca00",
+  "wheel_sha256": "fba92ca4ba036e326213d830281dfb2435270200dbb46a74090e9032455a5d72",
+  "extension_sha256": "77a512ff532003dc4e10dc67b427c2a5b9f2472c728c1ce3f2b88e0f51590d47",
+  "notice_files": 137,
+  "core_tests": 86,
+  "failures": 0,
+  "skips": 0,
+  "standalone_cache_cases": 4,
+  "bundle": "bench/results/dataset-sdist-rebuild-v2-evidence.tar.gz",
+  "bundle_bytes": 2961249,
+  "bundle_sha256": "cb1b6789e0dad18d5eb81fac8b5f2bc16cc690394fa09ec0442af871c6124d63",
+  "members": {
+    "dataset-sdist-rebuild-v2.zip": {
+      "bytes": 2947529,
+      "sha256": "0711a2581998bbc9177043ecccd9dda2fc3e42c3eef8ea687c4bed424918bf62"
+    },
+    "dataset-sdist-rebuild-v2-run.json": {
+      "bytes": 14026,
+      "sha256": "ecac2e721d46bf165ff892aed28e1b002b672df895a69d333c01deeca82d3289"
+    },
+    "dataset-sdist-rebuild-v2-artifacts.json": {
+      "bytes": 761,
+      "sha256": "4b50e73392fe7a8b193438e45d80916c7ad73924dc74beab9f73ed05b3ed33cf"
+    },
+    "dataset-sdist-rebuild-v2.log": {
+      "bytes": 78070,
+      "sha256": "19f628911eff3dec9c7df2e124fd2b41cdfa14e102e8bc9a54c2658b6f1aca12"
+    }
+  }
+}

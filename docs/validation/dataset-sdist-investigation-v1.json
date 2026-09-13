@@ -1,0 +1,90 @@
+{
+  "inspected_original_artifact": true,
+  "source_rebuild_v1_passed": false,
+  "baseline_source_commit": "e1c5861607a86d234e26de35b37734519d901820",
+  "baseline_sdist_bytes": 176951569,
+  "uncompressed_benchmark_archive_bytes": 191255055,
+  "original_core_tests": 86,
+  "original_integration_tests": 92,
+  "original_skips": 0,
+  "probe_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745090892",
+  "failed_rebuild_url": "https://github.com/developer0hye/ultrafast-yolo-dataset/actions/runs/34745213534",
+  "limitation": "The first failed rebuild job retained its source commit and logs, but its newly generated sdist was not uploaded because inspection stopped before unpacking. The next revision preserves original-dist even on inspection failure. Original 177MB baseline archive remains in its source GitHub artifact; not included here.",
+  "bundle": "bench/results/dataset-sdist-investigation-v1-evidence.tar.gz",
+  "bundle_bytes": 32554,
+  "bundle_sha256": "85b5f8b0fe6181c317185c77cb28cefbca9b7dc8383260cc98b5d0d7924bc110",
+  "members": {
+    "wheel-validation.json": {
+      "bytes": 29739,
+      "sha256": "adc8b976b96e85f652a7fade3572a8e3c176ed42e0e4c90e7911d23c04c42f39"
+    },
+    "core-tests.xml": {
+      "bytes": 10695,
+      "sha256": "7fc1b3b1b0a7eae9b965e56dfd549edf683e59319cfc12a8e21c56564a84009e"
+    },
+    "artifact-api.json": {
+      "bytes": 832,
+      "sha256": "c1169cdc87499c072bc7d302a92a58058510864971acf2dd326f68dbe4cb93e6"
+    },
+    "integration-tests.xml": {
+      "bytes": 10806,
+      "sha256": "17c85cedc838353610dcefe7bed6550bb95029f1acbff5b65a5d503c209dbcc4"
+    },
+    "standalone-cache-smoke.json": {
+      "bytes": 1146,
+      "sha256": "554e16d7595eb8026659ebccc18e1f6579f0254b560a0e17ab8cbfcf79296acb"
+    },
+    "run-api.json": {
+      "bytes": 15363,
+      "sha256": "1ba5a6cdd24855eb262f09fd3b8aeb89291434a0b2cdb3dbe757f43eff6f69d8"
+    },
+    "final-environment.txt": {
+      "bytes": 1196,
+      "sha256": "7d9c709dc8f4b14be0c0306aa930b0d955238736094a6043f68ac68c0b041107"
+    },
+    "source-pyproject.toml": {
+      "bytes": 717,
+      "sha256": "0e124707382661ecb74974403b2c78c5a5d45b21e0990503d52518248d054a2f"
+    },
+    "inspection.json": {
+      "bytes": 6701,
+      "sha256": "b7fbbc336c334407b1165dfc1d38b43f01ab2aa089e62c1aef693a0649a015bf"
+    },
+    "dataset-artifact-inspection-v1-run.json": {
+      "bytes": 14041,
+      "sha256": "4f94d1323a0f28bdf554fc6be4389524d94a77c3f758c0142a5c8b82539ca72a"
+    },
+    "dataset-artifact-inspection-v1.log": {
+      "bytes": 33048,
+      "sha256": "b31dcb7e8036a13ac1db8f2b4664017d9ad701248c47c5afa328c3ac5d3845fa"
+    },
+    "dataset-sdist-rebuild-v1-run.json": {
+      "bytes": 14049,
+      "sha256": "16147e54baa91b0850757941d73f49c8de8c41b83aaea265ef0977ef5cda59c0"
+    },
+    "dataset-sdist-rebuild-v1-job.json": {
+      "bytes": 3355,
+      "sha256": "ea7b843b260d11758693d8630069e41546750d70935154f80ff0ce146ca5e32a"
+    },
+    "dataset-sdist-rebuild-v1-failure.log": {
+      "bytes": 32045,
+      "sha256": "c2c0b542fdeb9db4fe2288eaededf76c8086eb0313b777ec13284e149684c301"
+    },
+    "source/5118f84/bench/inspect_hosted_artifact.py": {
+      "bytes": 5940,
+      "sha256": "627fe793c8c9d3f357b3effc18e50416f2d9a2ed6e9025a09b9a752b53b3fe84"
+    },
+    "source/0a563c9/bench/inspect_sdist.py": {
+      "bytes": 3693,
+      "sha256": "04aef4a35417fdbcf2ba0917ad280b7532ec7918c3619a12f5f4edb9dac692d9"
+    },
+    "source/0a563c9/.github/workflows/wheels.yml": {
+      "bytes": 8772,
+      "sha256": "7cb1257c51ca42b654317665241264955f277adf7d9d4f590be0892e93540eca"
+    },
+    "source/0a563c9/pyproject.toml": {
+      "bytes": 926,
+      "sha256": "cb917725c34144aed85080f843dee2ce7fa0ca7c4dad6e9507c7a99b9be9378e"
+    }
+  }
+}
