@@ -139,6 +139,7 @@ def worker(root, backend, mode, prime, args):
     )
     first = next(iter(loader))
     ended = time.perf_counter()
+    phases = dict(timings)  # freeze: verification below calls the wrapped functions again
     after, rss_batch = resource.getrusage(resource.RUSAGE_SELF), peak_rss()
     del loader
     # Verification is outside every timer and memory sample.
@@ -178,7 +179,7 @@ def worker(root, backend, mode, prime, args):
         "mode": mode,
         "constructor_s": constructed - started,
         "first_batch_total_s": ended - started,
-        "phases_s": timings,
+        "phases_s": phases,
         "rss_before_constructor_bytes": rss_before,
         "peak_rss_before_constructor_bytes": high_water_before,
         "peak_rss_constructor_bytes": rss_constructor,
