@@ -1,11 +1,9 @@
-# Prepared comparison of the native cache section reader
+# Comparison of the native cache section reader
 
-`bench/cache_read_comparison.py` is prepared but **has not run**. Both hosts are
-still occupied by frozen measurements. The cache-buffer candidate remains
-unbuilt and untested. Ruff formatting/linting passed; that does not validate
-fixture generation, a descriptor, a native call, a paired run or its statistics.
-Nine small helper tests are prepared in `tests/test_cache_read_comparison.py`
-and have not run either.
+The candidate Release wheel and all **187 installed tests passed on M2**,
+including twelve native-buffer cases and nine reader helper cases. The seven-case
+fixture is being prepared after completion of the original Detection P4 series.
+Paired reader performance, full startup gains and Linux validation remain open.
 
 This experiment isolates the Rust reader change in `CACHE_READ_COPY.md`.
 The native API opens a file, checks headers and limits, reads/checksums sections,
@@ -138,25 +136,46 @@ macOS dynamic lookup; an unset shell RUSTFLAGS does not mean an empty Cargo
 fingerprint. Cargo 1.98.0 was read in this session, as distinguished in the
 receipt from retained compiler/build evidence.
 
-[The M2 follow-up controller](validation/build-cache-copy-after-p4-v1.py) has
-started its waiting path for the exact Detection experiment shell PID 27081
-(started Sun Sep 13 04:35:46 2026). After that process exits, it requires all ten
-P4 workers and independently audits a sealed final parent snapshot against the
-launch identity, raw records, primers and input manifest. It also compares
-complete P3/P4 outputs. Failure stops the pipeline; no benchmark is restarted.
+## Completed M2 build and installed tests
 
-Only after that audit passes does it archive candidate source
-`f120cab2f907e36fdcfd93d0879fe56ec4324017` into a new build directory, build a
-Release wheel/sdist with the pinned compiler, create a fresh environment, check
-standalone installation/notices and run the full installed test suite. It
-explicitly requires the twelve native-buffer and nine helper cases to be
-present and unskipped, and records other skips. Compilation, installation and
-test commands retain their output and stop on failure.
+[The follow-up controller](validation/build-cache-copy-after-p4-v1.py) waited for
+the exact Detection parent, then audited all ten P4 workers and two primers and
+confirmed matching complete P3/P4 outputs. It archived source commit
+`f120cab2f907e36fdcfd93d0879fe56ec4324017`, built a Release wheel/sdist using Rust
+1.98.0 / LLVM 22.1.8, and created a fresh CPython 3.12.13 environment.
 
-Its state/artifacts use the prefix
-`/Volumes/T7/ultrafast-vision-build/dataset-cache-read-copy-m2-v1`. The controller
-owns the final `dataset-500k-p4-complete-v1.json` and corresponding audit path;
-do not create competing results there. Do not start another M2 build/test/
-benchmark until this controller terminates. **Only waiting has been exercised
-so far**: the candidate build, installed tests and paired reader experiment
-remain unexecuted at this checkpoint.
+The original controller stopped when the offline install could not find a
+cached Pillow wheel. A subsequent offline dependency install also lacked
+contourpy. Online installation recovered both using the same pinned requirements;
+the failed controller state and logs are preserved unchanged. Dependency freezes
+match the baseline after excluding the dataset wheel itself, and `uv pip check`
+passed. This was installation recovery, not a source or test change.
+
+The standalone wheel passed all four Detect/Segment content/metadata cold/warm
+cache cases, restored-mtime content edit detection and immutable ownership
+checks. Wheel RECORD, installed bytes, sdist sources and all 137 notice files
+were checked. The full installed suite then passed **187 tests in 132.15 s**,
+with zero failures, errors or skips, including all twelve native-buffer and nine
+reader-helper cases. [JUnit](validation/cache-copy-m2-tests-v1.xml) and the
+[test log](validation/cache-copy-m2-tests-v1.log) are retained.
+
+Wheel SHA-256: `25f0ce7ff2e40f106ec7af04a744c3883671c4ee502f3bd337e2414fe01b88d3`.
+Its extension, installed extension and both retained Cargo release dylibs are
+identical at `ec52a219e5e159017d221422fa8292cbe24022157370548bd445e3fb082f32d6`.
+The [build identity](validation/cache-copy-m2-build-identity-v1.json) matches the
+baseline toolchain; only `src/cache.rs` and package `_cache.py` differ in the
+sixteen-file library inventory. All extracted source files match the archived
+commit. Sdist normalization adds only `package.readme = "README.md"` to Cargo.toml.
+The macOS 11.0 wheel tag does not prove execution on macOS 11.0.
+
+The [28-file build archive](../bench/results/cache-copy-m2-build-evidence-v1.tar.gz)
+contains the source archive, wheel, sdist, logs, failed controller state,
+dependency freezes, JUnit, standalone result, wheel audit, Cargo fingerprint,
+cached compiler information, exact sealer and build identity. SHA-256:
+`11074f87869f8313d7a71c8ebb2f36db2b4f7822d8f3709fd25d0182b7607234`.
+The [resume receipt](validation/cache-copy-m2-resume-v1.json) records all member
+hashes and successful byte-for-byte readback. Its sealer was checked with Ruff's
+Python 3.12 target because it uses standard-library `tomllib`.
+
+This proves the recorded M2 build and correctness scope. Reader latency/RSS,
+full cache generation/content-hit startup and Linux/platform gates remain open.

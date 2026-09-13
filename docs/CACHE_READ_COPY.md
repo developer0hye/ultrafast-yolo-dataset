@@ -1,9 +1,11 @@
 # Experimental cache buffer lifetime changes
 
-This `perf/cache-read-copy` worktree contains an **unbuilt, untested candidate**.
-The ongoing 500k-pair and GPU measurements use their original installed wheels
-and source trees. No existing result measures this change. Rust formatting,
-Ruff and workflow linting are source checks, not compilation or runtime evidence.
+This `perf/cache-read-copy` candidate has passed **187 installed-wheel tests on
+M2**, including all twelve new buffer cases and nine reader-harness helper cases,
+with zero failures, errors or skips. The frozen source is commit `f120cab`.
+The completed 500k Detection measurements and earlier GPU measurements use their
+original wheels; neither measures this change. Linux, broader platforms and
+measured full-startup benefits remain open. See the [build evidence](CACHE_READ_COMPARISON.md#completed-m2-build-and-installed-tests).
 
 ## Change
 
@@ -44,10 +46,10 @@ by dropping the section list. No cache format, content check, publication order,
 locking, failure cleanup or reference-compatibility contract is changed.
 
 The prior preparation receipt covers only the Rust reader prototype. This
-save-path change is also **not runtime-tested or benchmarked**. After the hosts
-are free, qualify it using existing save/load parity, mutation-before-publication,
-write-failure and concurrent-writer tests, then profile the constructor phases
-and run a separately identified cache-generation comparison. The direct-reader
+save-path change passed the installed save/load parity, mutation-before-publication,
+write-failure and concurrent-writer suite on M2. It is **not benchmarked**. Next,
+profile the constructor phases and run a separately identified cache-generation
+comparison. The direct-reader
 and save-lifetime changes need separate performance attribution.
 
 ## Ownership, errors and GIL scope
@@ -57,8 +59,8 @@ zero-initializes it, passes a mutable slice to the initializer, and returns the
 object only on success. On initializer error, the private object is dropped.
 This candidate adds no unsafe block. The unexposed bytes object's owning handle
 stays alive while file read/checksum chunks release the GIL; only the mutable
-byte slice, file and hasher enter those closures. This reasoning still needs
-compiler and runtime validation.
+byte slice, file and hasher enter those closures. The M2 Release build and installed buffer/concurrency tests passed; this is
+not exhaustive memory-safety or cross-platform evidence.
 
 Container magic/version, section count/length bounds, checksum checks, file
 modification checks and per-chunk Python signal checks remain in place. Empty
@@ -78,9 +80,9 @@ prove memory safety, successful allocation or cache-format correctness.
 Twelve new cases in `tests/test_cache_section_buffers.py` are prepared for zero,
 one-byte and 4 MiB chunk boundaries, multi-chunk reads, exact built-in bytes
 results, NumPy ownership after list/file removal, late checksum rejection,
-independent concurrent readers and file/size limits. They have **not run**. The
+independent concurrent readers and file/size limits. All twelve passed, together with the
 existing corruption/logical-schema, content-validation, concurrency and full
-framework cache suites must also pass from a freshly installed candidate wheel.
+framework cache suites, from a freshly installed M2 candidate wheel.
 
 After a host is free, build the candidate with the same pinned toolchain and
 dependency versions as the baseline. Run the focused cases and full existing
@@ -95,5 +97,6 @@ separate until those checks establish both correctness and useful improvement.
 [The seven-condition paired protocol](CACHE_READ_COMPARISON.md) now includes
 six fixed synthetic layouts and a required copy of the native cache from the
 completed 500k startup experiment. It measures section reading independently
-of Python save-buffer lifetime and full P4 construction. The harness and nine
-helper tests are prepared and linted, but have not run while the hosts are busy.
+of Python save-buffer lifetime and full P4 construction. The nine helper tests passed in the installed suite. Fixture preparation has
+started after correctness checks; paired results still require native-worker
+qualification and an independent artifact audit.
