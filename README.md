@@ -1,7 +1,7 @@
 # ultrafast-yolo-dataset
 
-Experimental Rust/PyO3 YOLO label engine. The full dataset initialization and
-cache library is under development. An explicit base YOLODataset adapter is available
+Experimental Rust/PyO3 YOLO annotation scanning and compact cache library.
+An explicit base YOLODataset adapter is available
 for the pinned source profile; it is not a general replacement for custom datasets.
 The original goals and release gates remain in [docs/PRD.md](docs/PRD.md).
 
@@ -106,13 +106,19 @@ startup measurements and remaining regressions are also recorded.
 
 ```sh
 uv venv --python 3.12
-uv pip install -r requirements-test.txt
-uv pip install -e .
-cargo test --lib
-pytest -q tests/test_parser.py
-uv pip install -r requirements-integration.txt
-pytest -q tests
+uv pip install --python .venv/bin/python -r requirements-test.txt
+uv pip install --python .venv/bin/python -e .
+PYO3_PYTHON="$(pwd)/.venv/bin/python" cargo test --lib --locked
+.venv/bin/python -m pytest -q tests/test_parser.py
+uv pip install --python .venv/bin/python -r requirements-integration.txt
+.venv/bin/python -m pytest -q tests
 ```
+
+These are macOS/Linux source-development commands and require Rust/Cargo.
+The Python commands explicitly use the environment just created; activation is
+not assumed. Core installation does not install Ultralytics or Torch. Install
+the pinned integration requirements before using `FastYOLODataset`. The wider
+platform wheel matrix and release distribution remain unqualified.
 
 The label-only oracle contains unmodified functions from Ultralytics commit
 `795a556942a12fe0124cf767888194a1d0b83e2e`; only image checking is deliberately
@@ -133,9 +139,20 @@ and after timing deliberately pre-read files: **no cold-cache claim**. The refer
 runs Ultralytics label verification in its existing ThreadPool style; image checking
 is excluded from both sides. Results are not full dataset-startup or training gains.
 
-Still required: broader Pillow/codec/platform and diagnostic validation,
-representative 100k/500k full-scan/cache/first-batch benchmarks,
-fuzzing and cross-platform wheel/CI validation. See [docs/STATUS.md](docs/STATUS.md).
+The completed [500k Detection experiment](docs/LARGE_SCALE.md) distinguishes
+label-engine work from actual initialization: five-pair median ratios were 1.58×
+for read/parse/validate/export and 1.09× for constructor/cache generation. Content
+cache hits showed no clear latency improvement. Constructor peak RSS increased
+on cache generation and decreased on content hits; the detailed results retain
+confidence intervals, exact build identities and memory scope. Full 500k
+Segmentation capacity has passed, with repeated phase measurements still running;
+see [the Segmentation report](docs/SEGMENT_500K_PLAN.md). These results do not
+validate later experimental reader/scratch/digest candidates.
+
+Still required: broader Pillow/codec/platform and diagnostic validation, complete
+Segmentation phase benchmarks, remaining startup/memory targets, fuzzing,
+cross-platform wheel/CI validation and release-candidate qualification.
+See [docs/STATUS.md](docs/STATUS.md).
 
 Prototype results, including unfavorable cases and measurement limitations, are
 in [docs/BENCHMARKS.md](docs/BENCHMARKS.md).
