@@ -80,8 +80,14 @@ raise `UnsupportedProfile`; keep their original implementation.
 
 The current adapter profile pins NumPy 2.4.4, which requires Python 3.11 or
 newer. Although core package metadata allows Python 3.10 with an older NumPy,
-that is not a validated adapter combination. Current execution evidence is on
-CPython 3.12; the wider wheel/profile matrix remains a release requirement.
+that is not a validated adapter combination. The compact-package candidate at
+`a9f3b2a` passed all 12 hosted wheel jobs across Linux x86-64, Windows x86-64 and
+macOS ARM on Python 3.10–3.13. Framework tests cover Python 3.11–3.13; Python
+3.10 covers core and standalone cache tests. See [package qualification and its
+remaining gates](docs/COMPACT_SDIST.md) and [the Windows cache fixes](docs/WINDOWS_CACHE_COMPATIBILITY.md).
+These functional results do not promote the unproven scratch-buffer optimization
+inherited by this development branch or transfer older performance results to
+new wheels.
 
 `annotation_cache="ultralytics", trust_legacy_cache=True` enables the legacy
 pickle bridge for trusted, user-owned caches. It retains **weak path/size hashing**:
