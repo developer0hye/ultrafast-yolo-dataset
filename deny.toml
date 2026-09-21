@@ -10,3 +10,8 @@ version = 2
 yanked = "deny"
 unmaintained = "none"
 unsound = "workspace"
+ignore = [
+  # Pre-existing when this gate was added (2026-09-22); needs a pyo3 upgrade.
+  { id = "RUSTSEC-2026-0176", reason = "pyo3 0.25; fixed in >=0.29, needs a pyo3 API migration" },
+  { id = "RUSTSEC-2026-0177", reason = "pyo3 0.25; fixed in >=0.29, needs a pyo3 API migration" },
+]
