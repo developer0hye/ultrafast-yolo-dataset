@@ -8,6 +8,9 @@ on:
 permissions:
   contents: read
 
+env:
+  MATURIN_PEP517_ARGS: --locked
+
 jobs:
   wheel:
     strategy:
